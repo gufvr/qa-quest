@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="QA Quest — aprenda Quality Assurance por meio de desafios, fases e missões práticas."
+    />
+    <title>QA Quest — Sua jornada em Quality Assurance</title>
+    <script>
+      document.documentElement.dataset.theme = localStorage.getItem("qa-quest-theme") || "dark";
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+
+    <header class="site-header">
+      <nav class="nav container" aria-label="Navegação principal">
+        <a class="brand" href="#inicio" aria-label="QA Quest — início">
+          <span class="brand__mark" aria-hidden="true">Q</span>
+          <span>QA <strong>Quest</strong></span>
+        </a>
+
+        <div class="nav__links">
+          <a href="#jornada">Jornada</a>
+          <a href="#como-funciona">Como funciona</a>
+        </div>
+
+        <div class="nav__actions">
+          <button
+            class="theme-toggle"
+            type="button"
+            aria-label="Ativar tema claro"
+            aria-pressed="false"
+            title="Alternar tema"
+          >
+            <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">☼</span>
+            <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">☾</span>
+          </button>
+          <button class="button button--small button--ghost" data-start type="button">
+            Começar
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main id="conteudo">
+      <section class="hero" id="inicio">
+        <div class="hero__glow hero__glow--one" aria-hidden="true"></div>
+        <div class="hero__glow hero__glow--two" aria-hidden="true"></div>
+
+        <div class="container hero__grid">
+          <div class="hero__content">
+            <div class="eyebrow">
+              <span class="eyebrow__dot" aria-hidden="true"></span>
+              Sua evolução em QA começa aqui
+            </div>
+
+            <h1>Teste seus conhecimentos.<br /><span>Evolua como QA.</span></h1>
+            <p class="hero__description">
+              Domine análise, estratégia e testes em uma jornada feita de missões
+              práticas, desafios reais e conquistas.
+            </p>
+
+            <div class="hero__actions">
+              <button class="button button--primary" data-start type="button">
+                Começar jornada <span aria-hidden="true">→</span>
+              </button>
+              <a class="button button--text" href="#como-funciona">
+                Ver como funciona
+              </a>
+            </div>
+
+            <div class="hero__proof" aria-label="Destaques da plataforma">
+              <div><strong>10+</strong><span>mundos de QA</span></div>
+              <div><strong>50+</strong><span>desafios</span></div>
+              <div><strong>100%</strong><span>prático</span></div>
+            </div>
+          </div>
+
+          <div class="mission-panel" aria-label="Prévia da jornada">
+            <div class="mission-panel__top">
+              <div>
+                <span class="label">MISSÃO ATUAL</span>
+                <h2>Olhar de Analista</h2>
+              </div>
+              <div class="level-badge" aria-label="Nível 1">NV. 01</div>
+            </div>
+
+            <div class="xp-card">
+              <div class="xp-card__row">
+                <span>Progresso do nível</span><strong>0 / 500 XP</strong>
+              </div>
+              <div class="progress progress--empty" role="progressbar" aria-label="Progresso do nível: 0 de 500 XP" aria-valuemin="0" aria-valuemax="500" aria-valuenow="0">
+                <span></span>
+              </div>
+            </div>
+
+            <div class="path-preview" aria-label="Caminho de aprendizado">
+              <div class="path-line" aria-hidden="true"></div>
+
+              <article class="path-node path-node--active">
+                <span class="path-node__icon" aria-hidden="true">◆</span>
+                <div><small>FASE 01</small><strong>Fundamentos</strong></div>
+                <span class="path-node__status">ATUAL</span>
+              </article>
+
+              <article class="path-node path-node--locked">
+                <span class="path-node__icon" aria-hidden="true">◇</span>
+                <div><small>FASE 02</small><strong>Análise de Requisitos</strong></div>
+                <span class="path-node__lock" aria-label="Bloqueada">●</span>
+              </article>
+
+              <article class="path-node path-node--locked">
+                <span class="path-node__icon" aria-hidden="true">◇</span>
+                <div><small>FASE 03</small><strong>Análise de Riscos</strong></div>
+                <span class="path-node__lock" aria-label="Bloqueada">●</span>
+              </article>
+            </div>
+
+            <div class="streak">
+              <span class="streak__icon" aria-hidden="true">✦</span>
+              <div><strong>3 dias de sequência</strong><small>Continue explorando!</small></div>
+              <div class="streak__days" aria-label="Sequência semanal">
+                <span class="is-done">S</span><span class="is-done">T</span><span class="is-today">Q</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="journey section" id="jornada">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <span class="label label--cyan">MAPA DA JORNADA</span>
+              <h2>Cada mundo desenvolve uma habilidade.</h2>
+            </div>
+            <p>Do raciocínio analítico aos testes especializados, avance no seu ritmo.</p>
+          </div>
+
+          <div class="worlds">
+            <article class="world-card world-card--active">
+              <div class="world-card__number">01</div>
+              <div class="world-card__icon" aria-hidden="true">◈</div>
+              <span class="tag">INÍCIO</span>
+              <h3>Mente Analítica</h3>
+              <p>Requisitos, riscos, impacto e cobertura.</p>
+              <div class="world-card__footer"><span>4 fases</span><strong>Explorar →</strong></div>
+            </article>
+
+            <article class="world-card">
+              <div class="world-card__number">02</div>
+              <div class="world-card__icon" aria-hidden="true">⌁</div>
+              <span class="tag tag--purple">EM BREVE</span>
+              <h3>Laboratório de Testes</h3>
+              <p>Funcional, exploratório, regressão e E2E.</p>
+              <div class="world-card__footer"><span>6 fases</span><strong>Bloqueado</strong></div>
+            </article>
+
+            <article class="world-card">
+              <div class="world-card__number">03</div>
+              <div class="world-card__icon" aria-hidden="true">⌘</div>
+              <span class="tag tag--purple">EM BREVE</span>
+              <h3>Domínio Técnico</h3>
+              <p>API, logs, automação e performance.</p>
+              <div class="world-card__footer"><span>7 fases</span><strong>Bloqueado</strong></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="how section" id="como-funciona">
+        <div class="container">
+          <div class="section-heading section-heading--center">
+            <span class="label label--cyan">COMO FUNCIONA</span>
+            <h2>Aprender também pode ser uma aventura.</h2>
+          </div>
+
+          <div class="steps">
+            <article>
+              <span class="steps__number">01</span>
+              <h3>Escolha uma missão</h3>
+              <p>Explore conteúdos organizados por habilidades reais de QA.</p>
+            </article>
+            <article>
+              <span class="steps__number">02</span>
+              <h3>Resolva desafios</h3>
+              <p>Analise situações, tome decisões e receba feedback imediato.</p>
+            </article>
+            <article>
+              <span class="steps__number">03</span>
+              <h3>Conquiste experiência</h3>
+              <p>Ganhe XP, desbloqueie mundos e acompanhe sua evolução.</p>
+            </article>
+          </div>
+
+          <div class="cta">
+            <div>
+              <span class="label">PRONTO PARA COMEÇAR?</span>
+              <h2>Sua primeira missão está esperando.</h2>
+            </div>
+            <button class="button button--light" data-start type="button">
+              Iniciar jornada <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__content">
+        <a class="brand" href="#inicio"><span class="brand__mark">Q</span><span>QA <strong>Quest</strong></span></a>
+        <p>Aprenda. Teste. Evolua.</p>
+        <span>Projeto de aprendizado em construção.</span>
+      </div>
+    </footer>
+
+    <div class="toast" role="status" aria-live="polite" aria-hidden="true">
+      <span aria-hidden="true">◆</span>
+      <div><strong>Missão quase pronta!</strong><small>O mapa interativo será a próxima feature.</small></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

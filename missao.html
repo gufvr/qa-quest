@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Primeira missão do QA Quest: teste seus conhecimentos sobre os fundamentos de Quality Assurance."
+    />
+    <title>Fundamentos de QA — QA Quest</title>
+    <script>
+      document.documentElement.dataset.theme = localStorage.getItem("qa-quest-theme") || "dark";
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="missao.css" />
+  </head>
+  <body class="mission-page">
+    <a class="skip-link" href="#missao">Ir para a missão</a>
+
+    <header class="mission-header">
+      <nav class="nav container" aria-label="Navegação da missão">
+        <a class="brand" href="index.html" aria-label="QA Quest — início">
+          <span class="brand__mark" aria-hidden="true">Q</span>
+          <span>QA <strong>Quest</strong></span>
+        </a>
+
+        <div class="nav__actions">
+          <span class="mission-header__xp"><strong id="header-xp">0</strong> XP</span>
+          <button
+            class="theme-toggle"
+            type="button"
+            aria-label="Ativar tema claro"
+            aria-pressed="false"
+            title="Alternar tema"
+          >
+            <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">☼</span>
+            <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">☾</span>
+          </button>
+          <a class="mission-header__exit" href="index.html">Sair</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="mission-shell" id="missao">
+      <div class="container mission-layout">
+        <aside class="mission-briefing" aria-labelledby="mission-title">
+          <a class="back-link" href="index.html"><span aria-hidden="true">←</span> Voltar à jornada</a>
+          <span class="label label--cyan">MUNDO 01 · MISSÃO 01</span>
+          <h1 id="mission-title">Fundamentos de QA</h1>
+          <p>
+            Mostre que você entende o papel de QA e reconhece os testes essenciais
+            para proteger a qualidade do produto.
+          </p>
+
+          <div class="mission-meta">
+            <div><span>DESAFIOS</span><strong>5 questões</strong></div>
+            <div><span>RECOMPENSA</span><strong>Até 100 XP</strong></div>
+          </div>
+
+          <div class="mission-objectives">
+            <span class="mission-objectives__icon" aria-hidden="true">◇</span>
+            <div>
+              <strong>Objetivo da missão</strong>
+              <p>Identificar conceitos, responsabilidades e estratégias básicas de QA.</p>
+            </div>
+          </div>
+        </aside>
+
+        <section class="quiz-card" aria-label="Desafio de múltipla escolha">
+          <div id="quiz-screen">
+            <header class="quiz-card__header">
+              <div>
+                <span class="label">PROGRESSO DA MISSÃO</span>
+                <strong id="question-counter">Questão 1 de 5</strong>
+              </div>
+              <span class="quiz-card__reward">+20 XP</span>
+            </header>
+
+            <div class="mission-progress" aria-hidden="true">
+              <span id="mission-progress-bar"></span>
+            </div>
+
+            <div class="question-area">
+              <span class="question-kind">MÚLTIPLA ESCOLHA</span>
+              <h2 id="question-title"></h2>
+              <p id="question-context"></p>
+              <div class="answers" id="answers" role="group" aria-labelledby="question-title"></div>
+            </div>
+
+            <div class="answer-feedback" id="answer-feedback" role="status" aria-live="polite" hidden>
+              <span class="answer-feedback__icon" id="feedback-icon" aria-hidden="true"></span>
+              <div>
+                <strong id="feedback-title"></strong>
+                <p id="feedback-text"></p>
+              </div>
+            </div>
+
+            <footer class="quiz-card__footer">
+              <span id="selection-hint">Selecione uma alternativa para continuar.</span>
+              <button class="button button--primary" id="confirm-answer" type="button" disabled>
+                Confirmar resposta
+              </button>
+              <button class="button button--primary" id="next-question" type="button" hidden>
+                Próxima questão <span aria-hidden="true">→</span>
+              </button>
+            </footer>
+          </div>
+
+          <div class="result-screen" id="result-screen" hidden>
+            <div class="result-screen__symbol" aria-hidden="true">◆</div>
+            <span class="label label--cyan">MISSÃO CONCLUÍDA</span>
+            <h2>Fundamentos dominados!</h2>
+            <p id="result-message"></p>
+
+            <div class="result-score">
+              <div><span>ACERTOS</span><strong id="result-correct">0 / 5</strong></div>
+              <div><span>EXPERIÊNCIA</span><strong><span id="result-xp">0</span> XP</strong></div>
+            </div>
+
+            <div class="result-actions">
+              <button class="button button--primary" id="retry-mission" type="button">Tentar novamente</button>
+              <a class="button button--ghost" href="index.html">Voltar à jornada</a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="missao.js"></script>
+  </body>
+</html>
