@@ -1,9 +1,8 @@
-# QA Quest
-
 <p align="center">
   <img src="qaquest.png" alt="Ícone do QA Quest" width="120">
 </p>
 
+# QA Quest
 Uma experiência gamificada para estudar Quality Assurance por meio de missões, desafios e feedbacks.
 
 O QA Quest nasceu de um objetivo pessoal: depender menos de plataformas de cursos e assumir um papel mais ativo no meu aprendizado. A ideia é transformar conteúdos de QA em uma jornada prática, na qual eu possa testar conhecimentos, receber feedback e evoluir enquanto também desenvolvo minhas habilidades técnicas.
@@ -35,7 +34,7 @@ O projeto não possui dependências nem processo de build.
 1. Clone este repositório:
 
    ```bash
-   git clone URL_DO_REPOSITORIO
+   git clone https://github.com/gufvr/qa-quest/
    ```
 
 2. Entre na pasta do projeto:
