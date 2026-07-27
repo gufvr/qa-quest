@@ -1,96 +1,82 @@
 # QA Quest
 
-O QA Quest é um projeto pessoal que criei para estudar Quality Assurance de uma forma mais prática, interativa e divertida.
+Uma experiência gamificada para estudar Quality Assurance por meio de missões, desafios e feedbacks.
 
-A ideia surgiu porque eu queria ter mais autonomia nos meus estudos, sem depender somente de plataformas de cursos. Em vez de apenas assistir às aulas, decidi construir meu próprio espaço de aprendizado, com missões, perguntas, feedbacks e um sistema de XP.
+O QA Quest nasceu de um objetivo pessoal: depender menos de plataformas de cursos e assumir um papel mais ativo no meu aprendizado. A ideia é transformar conteúdos de QA em uma jornada prática, na qual eu possa testar conhecimentos, receber feedback e evoluir enquanto também desenvolvo minhas habilidades técnicas.
 
-O projeto ainda está no começo, mas já possui uma primeira missão funcional sobre fundamentos de QA.
-
-## Por que criei este projeto?
-
-Além de aprofundar meus conhecimentos em QA, estou usando o projeto para praticar desenvolvimento web e melhorar minha forma de trabalhar com inteligência artificial.
-
-E sim, posso dizer que me rendi ao tal do _vibe coding_ 😅. Mas a ideia não é apenas gerar código, quero aprender, testar e entender cada etapa do que estou construindo.
-
-A IA tem sido uma parceira nesse processo, ajudando a transformar ideias em código, explorar possibilidades e esclarecer conceitos. Ainda assim, faço questão de testar, ajustar e compreender como cada parte funciona.
-
-No fim, o QA Quest é tanto uma plataforma de estudos quanto uma forma de aprender construindo.
+Este é um projeto em construção — e também meu experimento com *vibe coding*. Estou usando IA como parceira para explorar ideias, praticar a criação de prompts e aprender durante o desenvolvimento. As decisões sobre o produto, os testes e a evolução do projeto fazem parte desse processo.
 
 ## O que já funciona
 
-- página inicial responsiva;
+- landing page responsiva com a apresentação da jornada;
 - primeira missão sobre fundamentos de QA;
-- quiz com cinco questões;
+- dez questões de múltipla escolha sorteadas de um banco com 21 fundamentos;
+- alternativas embaralhadas a cada nova tentativa;
 - feedback explicativo após cada resposta;
-- pontuação de até 100 XP;
-- resultado final da missão;
-- opção de tentar novamente;
-- temas claro e escuro;
-- preferência de tema salva no navegador;
-- alguns cuidados básicos com acessibilidade.
+- pontuação de até 100 XP e tela de resultado;
+- opção de refazer a missão;
+- temas claro e escuro, com preferência salva no navegador;
+- navegação por teclado, link para pular conteúdo e suporte a movimento reduzido.
 
-## Tecnologias utilizadas
-
-O projeto foi criado inicialmente sem frameworks, utilizando:
-
-- HTML;
-- CSS;
-- JavaScript;
-- `localStorage` para salvar a preferência de tema;
-- Google Fonts.
-
-Escolhi começar dessa forma para praticar os fundamentos e entender melhor o que acontece por trás da interface.
+O progresso entre sessões, os novos mundos e o desbloqueio de fases ainda não foram implementados.
 
 ## Como executar
 
-O projeto não possui dependências ou processo de instalação.
+O projeto não possui dependências nem processo de build.
 
-Clone o repositório:
+1. Clone este repositório:
 
-```bash
-git clone https://github.com/gufvr/qa-quest
-```
+   ```bash
+   git clone URL_DO_REPOSITORIO
+   ```
 
-Entre na pasta:
+2. Entre na pasta do projeto:
 
-```bash
-cd qa-quest
-```
+   ```bash
+   cd qa-quest
+   ```
 
-Depois, abra o arquivo `index.html` em um navegador.
+3. Abra o arquivo `index.html` em um navegador moderno.
 
-Também é possível baixar o projeto e abrir o arquivo diretamente.
+Também é possível baixar os arquivos e abrir o `index.html` diretamente.
+
+## Tecnologias utilizadas
+
+- HTML5;
+- CSS3;
+- JavaScript;
+- `localStorage` para guardar a preferência de tema;
+- Google Fonts.
+
+Escolhi começar sem frameworks para fortalecer meus fundamentos e entender melhor o funcionamento de cada parte da interface.
 
 ## Estrutura do projeto
 
 ```text
 qa-quest/
-├── index.html
-├── styles.css
-├── script.js
-├── missao.html
-├── missao.css
-├── missao.js
-└── README.md
+├── index.html       # página inicial e mapa da jornada
+├── styles.css       # estilos globais e da página inicial
+├── script.js        # tema e início da jornada
+├── missao.html      # interface da primeira missão
+├── missao.css       # estilos da missão
+└── missao.js        # questões, respostas, feedback e pontuação
 ```
 
 ## Próximos passos
 
-Algumas ideias que pretendo explorar:
+- criar novas missões e ampliar o conteúdo de QA;
+- salvar o progresso e a pontuação entre sessões;
+- liberar mundos e fases de forma progressiva;
+- adicionar testes automatizados ao próprio projeto;
+- publicar uma versão online para facilitar a experimentação;
+- melhorar a experiência com base no feedback de quem testar.
 
-- criar novas missões;
-- adicionar mais conteúdos de QA;
-- salvar o progresso entre sessões;
-- criar novos mundos e fases;
-- adicionar conquistas;
-- implementar testes automatizados;
-- publicar uma versão online;
-- evoluir o projeto com base nos feedbacks recebidos.
+## IA como parte do aprendizado
 
-## Status do projeto
+A IA foi usada como apoio na ideação, no desenvolvimento da interface e na revisão do código. Mais do que acelerar a construção, meu objetivo é aprender a dar contexto, avaliar respostas, testar sugestões e transformar prompts em decisões conscientes.
 
-O QA Quest é um protótipo em desenvolvimento.
+Para mim, *vibe coding* não significa abrir mão de entender o que foi criado. Significa usar a IA para experimentar mais, fazer perguntas melhores e aprender construindo.
 
-Ainda existem funcionalidades planejadas que não foram implementadas, mas decidi compartilhar o projeto desde o início para registrar minha evolução e aprender também com os feedbacks.
+## Status
 
-Sugestões são bem-vindas!
+Protótipo funcional em desenvolvimento. Sugestões e feedbacks são bem-vindos.

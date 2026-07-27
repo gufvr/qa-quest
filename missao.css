@@ -55,7 +55,7 @@
 .quiz-card__header strong { font-family: "Space Grotesk"; font-size: .78rem; }
 .quiz-card__reward { padding: 7px 10px; color: var(--cyan); background: rgba(82,225,232,.07); border: 1px solid rgba(82,225,232,.16); border-radius: 8px; font-size: .66rem; font-weight: 800; }
 .mission-progress { height: 4px; margin: 20px 0 38px; overflow: hidden; background: rgba(255,255,255,.07); border-radius: 8px; }
-.mission-progress span { display: block; width: 20%; height: 100%; background: linear-gradient(90deg, var(--purple), var(--cyan)); border-radius: inherit; transition: width .35s ease; }
+.mission-progress span { display: block; width: 10%; height: 100%; background: linear-gradient(90deg, var(--purple), var(--cyan)); border-radius: inherit; transition: width .35s ease; }
 .question-kind { display: inline-block; margin-bottom: 13px; color: var(--purple-bright); font-size: .57rem; font-weight: 800; letter-spacing: .14em; }
 .question-area h2 { max-width: 650px; font-size: clamp(1.5rem, 2.6vw, 2.25rem); letter-spacing: -.035em; line-height: 1.22; }
 .question-area > p { min-height: 25px; margin: 12px 0 24px; color: var(--muted); font-size: .86rem; }
