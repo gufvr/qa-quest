@@ -174,8 +174,12 @@ h1 span { color: transparent; background: linear-gradient(100deg, var(--cyan), v
 .cta .button { position: relative; z-index: 1; flex: none; }
 
 .footer { padding: 32px 0; background: #0b0b0c; border-top: 1px solid rgba(255,255,255,.06); }
-.footer__content { display: flex; align-items: center; justify-content: space-between; gap: 20px; color: #667092; font-size: .72rem; }
-.footer__content p { color: var(--muted); }
+.footer__content { display: grid; gap: 22px; color: #667092; font-size: .72rem; }
+.footer__top, .footer__bottom { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.footer__top p { margin: 0; color: var(--muted); }
+.footer__bottom { flex-direction: column; justify-content: center; gap: 6px; color: #77717f; font-size: .64rem; text-align: center; }
+.footer__bottom a { color: var(--cyan); font-weight: 700; }
+.footer__bottom a:hover { color: var(--cyan-soft); }
 .footer .brand { color: var(--white); }
 .footer .brand__mark { width: 28px; height: 28px; font-size: .8rem; }
 
@@ -243,7 +247,7 @@ h1 span { color: transparent; background: linear-gradient(100deg, var(--cyan), v
   .steps { gap: 42px; margin: 52px 0 70px; }
   .cta { align-items: flex-start; flex-direction: column; padding: 36px 26px; }
   .cta .button { width: 100%; }
-  .footer__content { flex-direction: column; text-align: center; }
+  .footer__top, .footer__bottom { flex-direction: column; text-align: center; }
 }
 
 @media (prefers-reduced-motion: reduce) {
