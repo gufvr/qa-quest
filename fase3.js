@@ -26,7 +26,7 @@ const tasks = [
   {
     type: "TESTE NEGATIVO",
     title: "Investigue a mensagem de autenticação",
-    instruction: "Tente entrar com inexistente@nexora.test e qualquer senha. Compare a resposta com a tarefa anterior.",
+    instruction: "Tente entrar com inexistente@qaquest.example e qualquer senha. Compare a resposta com a tarefa anterior.",
     expectedEvents: ["unknown_user"],
     points: 10,
     feedback: "Defeito observado: mensagens diferentes revelam se uma conta está cadastrada. O comportamento esperado seria uma resposta genérica."
@@ -34,7 +34,7 @@ const tasks = [
   {
     type: "CAMINHO FELIZ",
     title: "Execute o login com sucesso",
-    instruction: "Use qa@nexora.test e QA@2026 para confirmar o fluxo principal de autenticação.",
+    instruction: "Use qa@qaquest.example e QA@2026 para confirmar o fluxo principal de autenticação.",
     expectedEvents: ["login_success", "login_success_with_remember"],
     points: 10,
     feedback: "O caminho principal levou à área autenticada e apresentou uma confirmação clara ao usuário."
@@ -68,7 +68,7 @@ const actionLabels = {
   valid_bug_report: "Relatório de defeito enviado"
 };
 
-const validEmail = "qa@nexora.test";
+const validEmail = "qa@qaquest.example";
 const validPassword = "QA@2026";
 
 const themeToggle = document.querySelector(".theme-toggle");
