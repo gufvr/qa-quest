@@ -113,6 +113,9 @@ h1 span { color: transparent; background: linear-gradient(100deg, var(--cyan), v
 .path-line { position: absolute; left: 20px; top: 35px; bottom: 35px; width: 1px; background: linear-gradient(var(--cyan), rgba(119,133,180,.15)); }
 .path-node { position: relative; display: grid; grid-template-columns: 42px 1fr auto; align-items: center; gap: 13px; min-height: 72px; padding: 12px 14px 12px 10px; background: rgba(16,16,18,.7); border: 1px solid rgba(255,255,255,.07); border-radius: 14px; }
 .path-node--active { background: linear-gradient(100deg, rgba(56,232,255,.1), rgba(138,108,255,.07)); border-color: rgba(56,232,255,.4); box-shadow: 0 0 24px rgba(56,232,255,.08); }
+.path-node--available { background: linear-gradient(100deg, rgba(139,92,246,.11), rgba(82,225,232,.04)); border-color: rgba(182,156,255,.32); transition: transform .2s, border-color .2s, background .2s; }
+.path-node--available:hover { transform: translateX(3px); border-color: var(--purple-bright); background: linear-gradient(100deg, rgba(139,92,246,.17), rgba(82,225,232,.07)); }
+.path-node--available .path-node__icon { color: var(--purple-bright); border-color: rgba(182,156,255,.3); }
 .path-node__icon { z-index: 1; display: grid; place-items: center; width: 38px; height: 38px; color: var(--muted); background: #202024; border: 1px solid rgba(255,255,255,.1); border-radius: 50%; }
 .path-node--done .path-node__icon { color: var(--navy-950); background: var(--cyan); }
 .path-node--active .path-node__icon { color: var(--white); background: var(--purple); box-shadow: 0 0 18px rgba(138,108,255,.5); }
@@ -185,6 +188,7 @@ h1 span { color: transparent; background: linear-gradient(100deg, var(--cyan), v
 [data-theme="light"] .mission-panel { background: linear-gradient(145deg, rgba(255,255,255,.98), rgba(244,240,252,.98)); border-color: rgba(109,66,216,.18); }
 [data-theme="light"] .xp-card, [data-theme="light"] .path-node { background: rgba(255,255,255,.72); }
 [data-theme="light"] .path-node--active { background: linear-gradient(100deg, rgba(8,127,140,.1), rgba(109,66,216,.08)); }
+[data-theme="light"] .path-node--available { background: linear-gradient(100deg, rgba(109,66,216,.1), rgba(8,127,140,.04)); }
 [data-theme="light"] .path-node__icon { background: #eee9f8; border-color: rgba(109,66,216,.12); }
 [data-theme="light"] .journey { background: #f0edf7; }
 [data-theme="light"] .world-card { background: rgba(255,255,255,.82); border-color: rgba(74,52,123,.12); }

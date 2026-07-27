@@ -8,6 +8,8 @@
       content="QA Quest — aprenda Quality Assurance por meio de desafios, fases e missões práticas."
     />
     <title>QA Quest — Sua jornada em Quality Assurance</title>
+    <link rel="icon" type="image/png" href="qaquest.png" />
+    <link rel="apple-touch-icon" href="qaquest.png" />
     <script>
       document.documentElement.dataset.theme = localStorage.getItem("qa-quest-theme") || "dark";
     </script>
@@ -113,17 +115,17 @@
                 <span class="path-node__status">ATUAL</span>
               </article>
 
-              <article class="path-node path-node--locked">
+              <a class="path-node path-node--available" href="fase2.html" aria-label="Abrir Fase 2: Análise de Requisitos">
                 <span class="path-node__icon" aria-hidden="true">◇</span>
                 <div><small>FASE 02</small><strong>Análise de Requisitos</strong></div>
-                <span class="path-node__lock" aria-label="Bloqueada">●</span>
-              </article>
+                <span class="path-node__status">NOVA</span>
+              </a>
 
-              <article class="path-node path-node--locked">
+              <a class="path-node path-node--available" href="fase3.html" aria-label="Abrir Fase 3: Simulador de Login">
                 <span class="path-node__icon" aria-hidden="true">◇</span>
-                <div><small>FASE 03</small><strong>Análise de Riscos</strong></div>
-                <span class="path-node__lock" aria-label="Bloqueada">●</span>
-              </article>
+                <div><small>FASE 03</small><strong>Simulador de Login</strong></div>
+                <span class="path-node__status">LAB</span>
+              </a>
             </div>
 
             <div class="streak">
