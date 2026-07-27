@@ -22,7 +22,7 @@ Este é um projeto em construção — e também meu experimento com *vibe codin
 - temas claro e escuro, com preferência salva no navegador;
 - navegação por teclado, link para pular conteúdo e suporte a movimento reduzido.
 
-O progresso entre sessões, os novos mundos e o desbloqueio de fases ainda não foram implementados.
+O XP, as tentativas, os melhores resultados e o desbloqueio sequencial das fases são preservados entre sessões no navegador.
 
 ## Como executar
 
@@ -49,7 +49,7 @@ Também é possível baixar os arquivos e abrir o `index.html` diretamente.
 - HTML5;
 - CSS3;
 - JavaScript;
-- `localStorage` para guardar a preferência de tema;
+- `localStorage` para guardar tema, XP, tentativas, conclusões e fases desbloqueadas;
 - Google Fonts.
 
 Escolhi começar sem frameworks para fortalecer meus fundamentos e entender melhor o funcionamento de cada parte da interface.
@@ -61,16 +61,22 @@ qa-quest/
 ├── index.html       # página inicial e mapa da jornada
 ├── styles.css       # estilos globais e da página inicial
 ├── script.js        # tema e início da jornada
+├── progress.js      # estado persistente, XP e desbloqueio das fases
 ├── missao.html      # interface da primeira missão
 ├── missao.css       # estilos da missão
-└── missao.js        # questões, respostas, feedback e pontuação
+├── missao.js        # questões, respostas, feedback e pontuação
+├── fase2.html       # missão prática de análise de requisitos
+├── fase2.css        # estilos específicos da segunda fase
+├── fase2.js         # caso, diagnóstico e pontuação da segunda fase
+├── fase3.html       # simulador de rotina QA na tela de login
+├── fase3.css        # interface da aplicação e do painel QA
+└── fase3.js         # tarefas, eventos, relatório e pontuação do simulador
 ```
 
 ## Próximos passos
 
 - criar novas missões e ampliar o conteúdo de QA;
-- salvar o progresso e a pontuação entre sessões;
-- liberar mundos e fases de forma progressiva;
+- criar simuladores de dashboard e checkout;
 - adicionar testes automatizados ao próprio projeto;
 - publicar uma versão online para facilitar a experimentação;
 - melhorar a experiência com base no feedback de quem testar.

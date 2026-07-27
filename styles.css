@@ -118,6 +118,8 @@ h1 span { color: transparent; background: linear-gradient(100deg, var(--cyan), v
 .path-node--available .path-node__icon { color: var(--purple-bright); border-color: rgba(182,156,255,.3); }
 .path-node__icon { z-index: 1; display: grid; place-items: center; width: 38px; height: 38px; color: var(--muted); background: #202024; border: 1px solid rgba(255,255,255,.1); border-radius: 50%; }
 .path-node--done .path-node__icon { color: var(--navy-950); background: var(--cyan); }
+.path-node--done { background: linear-gradient(100deg, rgba(77,227,161,.09), rgba(82,225,232,.04)); border-color: rgba(77,227,161,.24); }
+.path-node--done .path-node__status { color: #4de3a1; background: rgba(77,227,161,.08); }
 .path-node--active .path-node__icon { color: var(--white); background: var(--purple); box-shadow: 0 0 18px rgba(138,108,255,.5); }
 .path-node div { display: grid; }
 .path-node small { color: #817b8b; font-size: .58rem; letter-spacing: .12em; }
@@ -125,7 +127,7 @@ h1 span { color: transparent; background: linear-gradient(100deg, var(--cyan), v
 .path-node__xp { color: var(--cyan); font-size: .65rem; font-weight: 800; }
 .path-node__status { padding: 4px 7px; color: var(--cyan); background: rgba(56,232,255,.1); border-radius: 5px; font-size: .55rem; font-weight: 800; }
 .path-node__lock { color: #625d69; font-size: .6rem; }
-.path-node--locked { opacity: .48; }
+.path-node--locked { opacity: .48; cursor: not-allowed; }
 .streak { display: grid; grid-template-columns: 38px 1fr auto; align-items: center; gap: 10px; margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.08); }
 .streak__icon { display: grid; place-items: center; width: 34px; height: 34px; color: #ffb44a; background: rgba(255,180,74,.09); border-radius: 10px; }
 .streak div { display: grid; }
@@ -179,6 +181,7 @@ h1 span { color: transparent; background: linear-gradient(100deg, var(--cyan), v
 .toast div { display: grid; }
 .toast strong { font-size: .8rem; }
 .toast small { color: var(--muted); font-size: .68rem; }
+.progress-save-status { max-width: 560px; margin: 14px auto 0 !important; padding: 10px 13px; color: #76e7b3 !important; background: rgba(77,227,161,.07); border: 1px solid rgba(77,227,161,.16); border-radius: 9px; font-size: .68rem !important; font-weight: 700; }
 
 [data-theme="light"] .site-header { background: rgba(255,255,255,.66); border-bottom-color: rgba(43,31,73,.1); backdrop-filter: blur(14px); }
 [data-theme="light"] .theme-toggle { background: rgba(109,66,216,.06); border-color: rgba(109,66,216,.18); }

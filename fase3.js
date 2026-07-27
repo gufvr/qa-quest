@@ -108,6 +108,7 @@ const bugActual = document.querySelector("#bug-actual");
 const bugReportError = document.querySelector("#bug-report-error");
 const resultXp = document.querySelector("#result-xp");
 const resultActions = document.querySelector("#result-actions");
+const progressSaveStatus = document.querySelector("#progress-save-status");
 const restartButton = document.querySelector("#restart-simulator");
 
 let currentTask = 0;
@@ -324,6 +325,10 @@ function showResult() {
   resultScreen.hidden = false;
   resultXp.textContent = xp;
   resultActions.textContent = actions.length;
+  const savedProgress = window.QAQuestProgress.saveMissionResult("phase3", xp);
+  progressSaveStatus.textContent = savedProgress.gainedXp > 0
+    ? `Progresso salvo · +${savedProgress.gainedXp} XP adicionados ao total (${savedProgress.totalXp} XP).`
+    : `Progresso salvo · Seu melhor resultado permanece em ${savedProgress.bestXp} XP.`;
   document.querySelector("#simulator-result-title").focus();
 }
 
@@ -346,6 +351,7 @@ function restartSimulator() {
   [...bugReport.elements].forEach((element) => { element.disabled = false; });
   workspace.hidden = false;
   resultScreen.hidden = true;
+  progressSaveStatus.textContent = "";
   renderActionLog();
   renderTask();
 }

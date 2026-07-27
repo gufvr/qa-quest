@@ -307,6 +307,7 @@ const headerXp = document.querySelector("#header-xp");
 const resultCorrect = document.querySelector("#result-correct");
 const resultXp = document.querySelector("#result-xp");
 const resultMessage = document.querySelector("#result-message");
+const progressSaveStatus = document.querySelector("#progress-save-status");
 const retryButton = document.querySelector("#retry-mission");
 
 let currentQuestion = 0;
@@ -415,6 +416,10 @@ function showResult() {
   resultScreen.hidden = false;
   resultCorrect.textContent = `${correctAnswers} / ${questions.length}`;
   resultXp.textContent = xp;
+  const savedProgress = window.QAQuestProgress.saveMissionResult("phase1", xp);
+  progressSaveStatus.textContent = savedProgress.gainedXp > 0
+    ? `Progresso salvo · +${savedProgress.gainedXp} XP adicionados ao total (${savedProgress.totalXp} XP).`
+    : `Progresso salvo · Seu melhor resultado permanece em ${savedProgress.bestXp} XP.`;
 
   if (correctAnswers === questions.length) {
     resultMessage.textContent = "Excelente! Você demonstrou uma base sólida e conquistou toda a experiência desta missão.";
@@ -446,6 +451,7 @@ function restartMission() {
   xp = 0;
   headerXp.textContent = "0";
   resultScreen.hidden = true;
+  progressSaveStatus.textContent = "";
   quizScreen.hidden = false;
   renderQuestion();
 }

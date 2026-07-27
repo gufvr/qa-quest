@@ -92,39 +92,39 @@
             <div class="mission-panel__top">
               <div>
                 <span class="label">MISSÃO ATUAL</span>
-                <h2>Olhar de Analista</h2>
+                <h2 id="current-mission-title">Olhar de Analista</h2>
               </div>
-              <div class="level-badge" aria-label="Nível 1">NV. 01</div>
+              <div class="level-badge" id="level-badge" aria-label="Nível 1">NV. 01</div>
             </div>
 
             <div class="xp-card">
               <div class="xp-card__row">
-                <span>Progresso do nível</span><strong>0 / 500 XP</strong>
+                <span>Progresso do nível</span><strong id="total-xp-label">0 / 500 XP</strong>
               </div>
-              <div class="progress progress--empty" role="progressbar" aria-label="Progresso do nível: 0 de 500 XP" aria-valuemin="0" aria-valuemax="500" aria-valuenow="0">
-                <span></span>
+              <div class="progress progress--empty" id="total-xp-progress" role="progressbar" aria-label="Progresso do nível: 0 de 500 XP" aria-valuemin="0" aria-valuemax="500" aria-valuenow="0">
+                <span id="total-xp-progress-bar"></span>
               </div>
             </div>
 
             <div class="path-preview" aria-label="Caminho de aprendizado">
               <div class="path-line" aria-hidden="true"></div>
 
-              <article class="path-node path-node--active">
+              <a class="path-node path-node--active" href="missao.html" data-phase="1" aria-label="Abrir Fase 1: Fundamentos">
                 <span class="path-node__icon" aria-hidden="true">◆</span>
                 <div><small>FASE 01</small><strong>Fundamentos</strong></div>
-                <span class="path-node__status">ATUAL</span>
-              </article>
-
-              <a class="path-node path-node--available" href="fase2.html" aria-label="Abrir Fase 2: Análise de Requisitos">
-                <span class="path-node__icon" aria-hidden="true">◇</span>
-                <div><small>FASE 02</small><strong>Análise de Requisitos</strong></div>
-                <span class="path-node__status">NOVA</span>
+                <span class="path-node__status" data-phase-status>ATUAL</span>
               </a>
 
-              <a class="path-node path-node--available" href="fase3.html" aria-label="Abrir Fase 3: Simulador de Login">
+              <a class="path-node path-node--locked" href="fase2.html" data-phase="2" aria-label="Abrir Fase 2: Análise de Requisitos">
+                <span class="path-node__icon" aria-hidden="true">◇</span>
+                <div><small>FASE 02</small><strong>Análise de Requisitos</strong></div>
+                <span class="path-node__status" data-phase-status>BLOQ.</span>
+              </a>
+
+              <a class="path-node path-node--locked" href="fase3.html" data-phase="3" aria-label="Abrir Fase 3: Simulador de Login">
                 <span class="path-node__icon" aria-hidden="true">◇</span>
                 <div><small>FASE 03</small><strong>Simulador de Login</strong></div>
-                <span class="path-node__status">LAB</span>
+                <span class="path-node__status" data-phase-status>BLOQ.</span>
               </a>
             </div>
 
@@ -231,6 +231,7 @@
       <div><strong>Missão quase pronta!</strong><small>O mapa interativo será a próxima feature.</small></div>
     </div>
 
+    <script src="progress.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
