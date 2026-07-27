@@ -8,7 +8,14 @@ class QABrand extends HTMLElement {
 
     this.innerHTML = `
       <a class="brand" href="${href}" aria-label="${label}">
-        <span class="brand__mark" aria-hidden="true">Q</span>
+        <img
+          class="brand__mark"
+          src="qaquest.png"
+          alt=""
+          width="44"
+          height="44"
+          aria-hidden="true"
+        >
         <span>QA <strong>Quest</strong></span>
       </a>
     `;

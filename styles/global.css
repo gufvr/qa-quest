@@ -58,7 +58,7 @@ button { border: 0; }
 .nav { min-height: 80px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .brand { display: flex; align-items: center; gap: 11px; font-family: "Space Grotesk", sans-serif; font-size: 1.12rem; letter-spacing: -.03em; }
 .brand strong { color: var(--cyan); }
-.brand__mark { display: grid; place-items: center; width: 34px; height: 34px; color: var(--navy-950); background: linear-gradient(135deg, var(--cyan), #7d8cff); border-radius: 10px 4px 10px 4px; font-weight: 800; box-shadow: 0 0 25px rgba(56,232,255,.32); }
+.brand__mark { display: block; flex: 0 0 auto; width: 44px; height: 44px; object-fit: contain; filter: drop-shadow(0 0 10px rgba(56,232,255,.28)); }
 .nav__links { display: flex; gap: 32px; color: var(--muted); font-size: .9rem; }
 .nav__links a:hover, .nav__links a:focus-visible { color: var(--cyan-soft); }
 .nav__actions { display: flex; align-items: center; gap: 10px; }
@@ -181,7 +181,7 @@ h1 span { color: transparent; background: linear-gradient(100deg, var(--cyan), v
 .footer__bottom a { color: var(--cyan); font-weight: 700; }
 .footer__bottom a:hover { color: var(--cyan-soft); }
 .footer .brand { color: var(--white); }
-.footer .brand__mark { width: 28px; height: 28px; font-size: .8rem; }
+.footer .brand__mark { width: 34px; height: 34px; }
 
 .toast { position: fixed; z-index: 30; right: 24px; bottom: 24px; display: grid; grid-template-columns: 36px 1fr; align-items: center; gap: 12px; width: min(360px, calc(100% - 32px)); padding: 16px; color: var(--white); background: rgba(22,22,24,.97); border: 1px solid rgba(82,225,232,.34); border-radius: 14px; box-shadow: var(--shadow); opacity: 0; transform: translateY(20px); pointer-events: none; transition: .25s ease; }
 .toast.is-visible { opacity: 1; transform: translateY(0); }
