@@ -31,7 +31,7 @@ O projeto não possui dependências nem processo de build.
 1. Clone este repositório:
 
    ```bash
-   git clone https://github.com/gufvr/qa-quest/tree/main
+   git clone https://github.com/gufvr/qa-quest/
    ```
 
 2. Entre na pasta do projeto:
