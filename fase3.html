@@ -19,36 +19,13 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="fase3.css" />
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/phase3.css" />
   </head>
   <body class="simulator-page">
     <a class="skip-link" href="#simulador">Ir para o simulador</a>
 
-    <header class="simulator-header">
-      <nav class="nav simulator-container" aria-label="Navegação do simulador">
-        <a class="brand" href="index.html" aria-label="QA Quest — início">
-          <span class="brand__mark" aria-hidden="true">Q</span>
-          <span>QA <strong>Quest</strong></span>
-        </a>
-
-        <div class="simulator-header__status">
-          <span class="environment-badge"><i aria-hidden="true"></i> HOMOLOGAÇÃO</span>
-          <span class="simulator-xp"><strong id="header-xp">0</strong> XP</span>
-          <button
-            class="theme-toggle"
-            type="button"
-            aria-label="Ativar tema claro"
-            aria-pressed="false"
-            title="Alternar tema"
-          >
-            <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">☼</span>
-            <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">☾</span>
-          </button>
-          <a class="simulator-exit" href="index.html">Encerrar turno</a>
-        </div>
-      </nav>
-    </header>
+    <qa-header variant="simulator"></qa-header>
 
     <main id="simulador" class="simulator-main">
       <div class="simulator-container">
@@ -209,7 +186,7 @@
           <span class="label label--cyan">TURNO CONCLUÍDO</span>
           <h2 id="simulator-result-title" tabindex="-1">Teste funcional executado!</h2>
           <p>Você percorreu o fluxo de login, investigou comportamentos inesperados e registrou uma evidência de qualidade.</p>
-          <p class="progress-save-status" id="progress-save-status" role="status"></p>
+          <qa-save-status></qa-save-status>
 
           <div class="simulator-result__stats">
             <div><span>TAREFAS</span><strong>7 / 7</strong></div>
@@ -230,7 +207,11 @@
       </div>
     </main>
 
-    <script src="progress.js"></script>
-    <script src="fase3.js"></script>
+    <script src="components/qa-brand.js"></script>
+    <script src="components/qa-theme-toggle.js"></script>
+    <script src="components/qa-header.js"></script>
+    <script src="components/qa-save-status.js"></script>
+    <script src="core/progress.js"></script>
+    <script src="pages/phase3.js"></script>
   </body>
 </html>

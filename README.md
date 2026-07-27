@@ -48,29 +48,40 @@ Também é possível baixar os arquivos e abrir o `index.html` diretamente.
 
 - HTML5;
 - CSS3;
-- JavaScript;
+- JavaScript e Web Components nativos;
 - `localStorage` para guardar tema, XP, tentativas, conclusões e fases desbloqueadas;
 - Google Fonts.
 
-Escolhi começar sem frameworks para fortalecer meus fundamentos e entender melhor o funcionamento de cada parte da interface.
+Escolhi começar sem frameworks para fortalecer meus fundamentos e entender melhor o funcionamento de cada parte da interface. A organização usa componentes nativos carregados por scripts clássicos, mantendo a execução direta pelo navegador sem servidor ou processo de build.
 
 ## Estrutura do projeto
 
 ```text
 qa-quest/
-├── index.html       # página inicial e mapa da jornada
-├── styles.css       # estilos globais e da página inicial
-├── script.js        # tema e início da jornada
-├── progress.js      # estado persistente, XP e desbloqueio das fases
-├── missao.html      # interface da primeira missão
-├── missao.css       # estilos da missão
-├── missao.js        # questões, respostas, feedback e pontuação
-├── fase2.html       # missão prática de análise de requisitos
-├── fase2.css        # estilos específicos da segunda fase
-├── fase2.js         # caso, diagnóstico e pontuação da segunda fase
-├── fase3.html       # simulador de rotina QA na tela de login
-├── fase3.css        # interface da aplicação e do painel QA
-└── fase3.js         # tarefas, eventos, relatório e pontuação do simulador
+├── components/              # componentes reutilizáveis da interface
+│   ├── qa-brand.js          # marca e link inicial
+│   ├── qa-header.js         # cabeçalhos configurados por variante
+│   ├── qa-theme-toggle.js   # alternância e persistência do tema
+│   ├── qa-footer.js         # rodapé compartilhado
+│   ├── qa-save-status.js    # feedback do progresso salvo
+│   └── qa-toast.js          # notificações temporárias
+├── core/
+│   └── progress.js          # XP, tentativas e desbloqueio das fases
+├── pages/
+│   ├── home.js              # mapa e comportamento da página inicial
+│   ├── phase1.js            # questionário de fundamentos
+│   ├── phase2.js            # análise de requisitos
+│   └── phase3.js            # simulador de rotina QA
+├── styles/
+│   ├── global.css           # tokens, componentes e estilos globais
+│   ├── mission.css          # estrutura compartilhada das missões
+│   ├── phase2.css           # estilos da análise de requisitos
+│   └── phase3.css           # estilos do simulador
+├── index.html               # página inicial e mapa da jornada
+├── missao.html              # Fase 1
+├── fase2.html               # Fase 2
+├── fase3.html               # Fase 3
+└── qaquest.png              # favicon
 ```
 
 ## Próximos passos

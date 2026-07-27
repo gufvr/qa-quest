@@ -1,3 +1,4 @@
+/* Estrutura compartilhada pelas missões de perguntas e análise. */
 .mission-page {
   min-height: 100vh;
   background: radial-gradient(circle at 78% 16%, rgba(139, 92, 246, .16), transparent 27%), var(--navy-950);

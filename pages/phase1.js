@@ -1,3 +1,4 @@
+// Conteúdo e fluxo da Fase 1.
 const questionBank = [
   {
     question: "Qual afirmação descreve melhor o papel de uma pessoa QA?",
@@ -288,7 +289,6 @@ function createMissionQuestions() {
 
 let questions = createMissionQuestions();
 
-const themeToggle = document.querySelector(".theme-toggle");
 const quizScreen = document.querySelector("#quiz-screen");
 const resultScreen = document.querySelector("#result-screen");
 const questionCounter = document.querySelector("#question-counter");
@@ -307,27 +307,13 @@ const headerXp = document.querySelector("#header-xp");
 const resultCorrect = document.querySelector("#result-correct");
 const resultXp = document.querySelector("#result-xp");
 const resultMessage = document.querySelector("#result-message");
-const progressSaveStatus = document.querySelector("#progress-save-status");
+const progressSaveStatus = document.querySelector("qa-save-status");
 const retryButton = document.querySelector("#retry-mission");
 
 let currentQuestion = 0;
 let selectedAnswer = null;
 let correctAnswers = 0;
 let xp = 0;
-
-function updateThemeButton(theme) {
-  const isLight = theme === "light";
-  themeToggle.setAttribute("aria-pressed", String(isLight));
-  themeToggle.setAttribute("aria-label", isLight ? "Ativar tema escuro" : "Ativar tema claro");
-  themeToggle.title = isLight ? "Usar tema escuro" : "Usar tema claro";
-}
-
-function toggleTheme() {
-  const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-  document.documentElement.dataset.theme = nextTheme;
-  localStorage.setItem("qa-quest-theme", nextTheme);
-  updateThemeButton(nextTheme);
-}
 
 function selectAnswer(index) {
   selectedAnswer = index;
@@ -417,9 +403,7 @@ function showResult() {
   resultCorrect.textContent = `${correctAnswers} / ${questions.length}`;
   resultXp.textContent = xp;
   const savedProgress = window.QAQuestProgress.saveMissionResult("phase1", xp);
-  progressSaveStatus.textContent = savedProgress.gainedXp > 0
-    ? `Progresso salvo · +${savedProgress.gainedXp} XP adicionados ao total (${savedProgress.totalXp} XP).`
-    : `Progresso salvo · Seu melhor resultado permanece em ${savedProgress.bestXp} XP.`;
+  progressSaveStatus.show(savedProgress);
 
   if (correctAnswers === questions.length) {
     resultMessage.textContent = "Excelente! Você demonstrou uma base sólida e conquistou toda a experiência desta missão.";
@@ -451,13 +435,11 @@ function restartMission() {
   xp = 0;
   headerXp.textContent = "0";
   resultScreen.hidden = true;
-  progressSaveStatus.textContent = "";
+  progressSaveStatus.reset();
   quizScreen.hidden = false;
   renderQuestion();
 }
 
-updateThemeButton(document.documentElement.dataset.theme);
-themeToggle.addEventListener("click", toggleTheme);
 confirmButton.addEventListener("click", confirmAnswer);
 nextButton.addEventListener("click", goToNextQuestion);
 retryButton.addEventListener("click", restartMission);

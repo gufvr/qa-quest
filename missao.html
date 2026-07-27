@@ -19,35 +19,13 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="missao.css" />
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/mission.css" />
   </head>
   <body class="mission-page">
     <a class="skip-link" href="#missao">Ir para a missão</a>
 
-    <header class="mission-header">
-      <nav class="nav container" aria-label="Navegação da missão">
-        <a class="brand" href="index.html" aria-label="QA Quest — início">
-          <span class="brand__mark" aria-hidden="true">Q</span>
-          <span>QA <strong>Quest</strong></span>
-        </a>
-
-        <div class="nav__actions">
-          <span class="mission-header__xp"><strong id="header-xp">0</strong> XP</span>
-          <button
-            class="theme-toggle"
-            type="button"
-            aria-label="Ativar tema claro"
-            aria-pressed="false"
-            title="Alternar tema"
-          >
-            <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">☼</span>
-            <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">☾</span>
-          </button>
-          <a class="mission-header__exit" href="index.html">Sair</a>
-        </div>
-      </nav>
-    </header>
+    <qa-header variant="mission"></qa-header>
 
     <main class="mission-shell" id="missao">
       <div class="container mission-layout">
@@ -119,7 +97,7 @@
             <span class="label label--cyan">MISSÃO CONCLUÍDA</span>
             <h2>Fundamentos dominados!</h2>
             <p id="result-message"></p>
-            <p class="progress-save-status" id="progress-save-status" role="status"></p>
+            <qa-save-status></qa-save-status>
 
             <div class="result-score">
               <div><span>ACERTOS</span><strong id="result-correct">0 / 10</strong></div>
@@ -136,7 +114,11 @@
       </div>
     </main>
 
-    <script src="progress.js"></script>
-    <script src="missao.js"></script>
+    <script src="components/qa-brand.js"></script>
+    <script src="components/qa-theme-toggle.js"></script>
+    <script src="components/qa-header.js"></script>
+    <script src="components/qa-save-status.js"></script>
+    <script src="core/progress.js"></script>
+    <script src="pages/phase1.js"></script>
   </body>
 </html>

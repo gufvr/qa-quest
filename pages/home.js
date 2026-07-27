@@ -1,42 +1,21 @@
+// Comportamentos exclusivos da página inicial.
 const startButtons = document.querySelectorAll("[data-start]");
-const themeToggle = document.querySelector(".theme-toggle");
 const phaseNodes = document.querySelectorAll("[data-phase]");
 const totalXpLabel = document.querySelector("#total-xp-label");
 const totalXpProgress = document.querySelector("#total-xp-progress");
 const totalXpProgressBar = document.querySelector("#total-xp-progress-bar");
 const levelBadge = document.querySelector("#level-badge");
 const currentMissionTitle = document.querySelector("#current-mission-title");
-const toast = document.querySelector(".toast");
+const toast = document.querySelector("qa-toast");
 const routes = { 1: "missao.html", 2: "fase2.html", 3: "fase3.html" };
 const titles = { 1: "Fundamentos de QA", 2: "Análise de Requisitos", 3: "Simulador de Login" };
 let currentPhase = 1;
-let toastTimer;
-
-function updateThemeButton(theme) {
-  const isLight = theme === "light";
-  themeToggle.setAttribute("aria-pressed", String(isLight));
-  themeToggle.setAttribute("aria-label", isLight ? "Ativar tema escuro" : "Ativar tema claro");
-  themeToggle.title = isLight ? "Usar tema escuro" : "Usar tema claro";
-}
-
-function toggleTheme() {
-  const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-  document.documentElement.dataset.theme = nextTheme;
-  localStorage.setItem("qa-quest-theme", nextTheme);
-  updateThemeButton(nextTheme);
-}
 
 function showLockedMessage(phaseNumber) {
-  window.clearTimeout(toastTimer);
-  toast.querySelector("strong").textContent = `Fase ${phaseNumber} bloqueada`;
-  toast.querySelector("small").textContent = `Conclua a Fase ${phaseNumber - 1} para continuar sua jornada.`;
-  toast.classList.add("is-visible");
-  toast.setAttribute("aria-hidden", "false");
-
-  toastTimer = window.setTimeout(() => {
-    toast.classList.remove("is-visible");
-    toast.setAttribute("aria-hidden", "true");
-  }, 3800);
+  toast.show(
+    `Fase ${phaseNumber} bloqueada`,
+    `Conclua a Fase ${phaseNumber - 1} para continuar sua jornada.`
+  );
 }
 
 function applySavedProgress() {
@@ -99,8 +78,6 @@ function applySavedProgress() {
   });
 }
 
-updateThemeButton(document.documentElement.dataset.theme);
-themeToggle.addEventListener("click", toggleTheme);
 applySavedProgress();
 
 startButtons.forEach((button) => {

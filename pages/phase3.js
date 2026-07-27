@@ -1,3 +1,4 @@
+// Tarefas e máquina de estados do Simulador da Fase 3.
 const tasks = [
   {
     type: "VALIDAÇÃO DE CAMPOS",
@@ -71,7 +72,6 @@ const actionLabels = {
 const validEmail = "qa@qaquest.example";
 const validPassword = "QA@2026";
 
-const themeToggle = document.querySelector(".theme-toggle");
 const workspace = document.querySelector("#simulator-workspace");
 const resultScreen = document.querySelector("#simulator-result");
 const headerXp = document.querySelector("#header-xp");
@@ -108,27 +108,13 @@ const bugActual = document.querySelector("#bug-actual");
 const bugReportError = document.querySelector("#bug-report-error");
 const resultXp = document.querySelector("#result-xp");
 const resultActions = document.querySelector("#result-actions");
-const progressSaveStatus = document.querySelector("#progress-save-status");
+const progressSaveStatus = document.querySelector("qa-save-status");
 const restartButton = document.querySelector("#restart-simulator");
 
 let currentTask = 0;
 let xp = 0;
 let actions = [];
 let taskCompleted = false;
-
-function updateThemeButton(theme) {
-  const isLight = theme === "light";
-  themeToggle.setAttribute("aria-pressed", String(isLight));
-  themeToggle.setAttribute("aria-label", isLight ? "Ativar tema escuro" : "Ativar tema claro");
-  themeToggle.title = isLight ? "Usar tema escuro" : "Usar tema claro";
-}
-
-function toggleTheme() {
-  const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-  document.documentElement.dataset.theme = nextTheme;
-  localStorage.setItem("qa-quest-theme", nextTheme);
-  updateThemeButton(nextTheme);
-}
 
 function isValidEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -326,9 +312,7 @@ function showResult() {
   resultXp.textContent = xp;
   resultActions.textContent = actions.length;
   const savedProgress = window.QAQuestProgress.saveMissionResult("phase3", xp);
-  progressSaveStatus.textContent = savedProgress.gainedXp > 0
-    ? `Progresso salvo · +${savedProgress.gainedXp} XP adicionados ao total (${savedProgress.totalXp} XP).`
-    : `Progresso salvo · Seu melhor resultado permanece em ${savedProgress.bestXp} XP.`;
+  progressSaveStatus.show(savedProgress);
   document.querySelector("#simulator-result-title").focus();
 }
 
@@ -351,13 +335,11 @@ function restartSimulator() {
   [...bugReport.elements].forEach((element) => { element.disabled = false; });
   workspace.hidden = false;
   resultScreen.hidden = true;
-  progressSaveStatus.textContent = "";
+  progressSaveStatus.reset();
   renderActionLog();
   renderTask();
 }
 
-updateThemeButton(document.documentElement.dataset.theme);
-themeToggle.addEventListener("click", toggleTheme);
 loginForm.addEventListener("submit", handleLoginSubmit);
 simulateVisitButton.addEventListener("click", simulateNewVisit);
 backToLoginButton.addEventListener("click", resetSimulatedApp);

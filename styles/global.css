@@ -1,3 +1,4 @@
+/* Design tokens e estilos globais compartilhados por todas as páginas. */
 :root {
   color-scheme: dark;
   --navy-950: #101011;
@@ -34,6 +35,9 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+qa-header, qa-footer, qa-save-status { display: block; }
+qa-brand, qa-theme-toggle { display: inline-flex; align-items: center; }
+qa-toast { display: contents; }
 body {
   margin: 0;
   color: var(--white);

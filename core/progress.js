@@ -1,3 +1,4 @@
+// Estado global de progresso, independente das interfaces das páginas.
 (function initializeProgress(global) {
   const STORAGE_KEY = "qa-quest-progress";
   const CURRENT_VERSION = 1;

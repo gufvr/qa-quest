@@ -19,40 +19,12 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles/global.css" />
   </head>
   <body>
     <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
 
-    <header class="site-header">
-      <nav class="nav container" aria-label="Navegação principal">
-        <a class="brand" href="#inicio" aria-label="QA Quest — início">
-          <span class="brand__mark" aria-hidden="true">Q</span>
-          <span>QA <strong>Quest</strong></span>
-        </a>
-
-        <div class="nav__links">
-          <a href="#jornada">Jornada</a>
-          <a href="#como-funciona">Como funciona</a>
-        </div>
-
-        <div class="nav__actions">
-          <button
-            class="theme-toggle"
-            type="button"
-            aria-label="Ativar tema claro"
-            aria-pressed="false"
-            title="Alternar tema"
-          >
-            <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">☼</span>
-            <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">☾</span>
-          </button>
-          <button class="button button--small button--ghost" data-start type="button">
-            Começar
-          </button>
-        </div>
-      </nav>
-    </header>
+    <qa-header variant="site"></qa-header>
 
     <main id="conteudo">
       <section class="hero" id="inicio">
@@ -218,20 +190,15 @@
       </section>
     </main>
 
-    <footer class="footer">
-      <div class="container footer__content">
-        <a class="brand" href="#inicio"><span class="brand__mark">Q</span><span>QA <strong>Quest</strong></span></a>
-        <p>Aprenda. Teste. Evolua.</p>
-        <span>Projeto de aprendizado em construção.</span>
-      </div>
-    </footer>
+    <qa-footer></qa-footer>
+    <qa-toast></qa-toast>
 
-    <div class="toast" role="status" aria-live="polite" aria-hidden="true">
-      <span aria-hidden="true">◆</span>
-      <div><strong>Missão quase pronta!</strong><small>O mapa interativo será a próxima feature.</small></div>
-    </div>
-
-    <script src="progress.js"></script>
-    <script src="script.js"></script>
+    <script src="components/qa-brand.js"></script>
+    <script src="components/qa-theme-toggle.js"></script>
+    <script src="components/qa-header.js"></script>
+    <script src="components/qa-footer.js"></script>
+    <script src="components/qa-toast.js"></script>
+    <script src="core/progress.js"></script>
+    <script src="pages/home.js"></script>
   </body>
 </html>
