@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Fase 3 do QA Quest: execute testes funcionais em um simulador de login e registre um defeito."
+    />
+    <title>Simulador de Login — QA Quest</title>
+    <link rel="icon" type="image/png" href="qaquest.png" />
+    <link rel="apple-touch-icon" href="qaquest.png" />
+    <script>
+      document.documentElement.dataset.theme = localStorage.getItem("qa-quest-theme") || "dark";
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="fase3.css" />
+  </head>
+  <body class="simulator-page">
+    <a class="skip-link" href="#simulador">Ir para o simulador</a>
+
+    <header class="simulator-header">
+      <nav class="nav simulator-container" aria-label="Navegação do simulador">
+        <a class="brand" href="index.html" aria-label="QA Quest — início">
+          <span class="brand__mark" aria-hidden="true">Q</span>
+          <span>QA <strong>Quest</strong></span>
+        </a>
+
+        <div class="simulator-header__status">
+          <span class="environment-badge"><i aria-hidden="true"></i> HOMOLOGAÇÃO</span>
+          <span class="simulator-xp"><strong id="header-xp">0</strong> XP</span>
+          <button
+            class="theme-toggle"
+            type="button"
+            aria-label="Ativar tema claro"
+            aria-pressed="false"
+            title="Alternar tema"
+          >
+            <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">☼</span>
+            <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">☾</span>
+          </button>
+          <a class="simulator-exit" href="index.html">Encerrar turno</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="simulador" class="simulator-main">
+      <div class="simulator-container">
+        <div class="simulator-intro">
+          <div>
+            <span class="label label--cyan">MUNDO 01 · MISSÃO 03</span>
+            <h1>Simulador de Login</h1>
+          </div>
+          <p>Seu primeiro turno prático começou. Execute ações reais e investigue o comportamento da aplicação.</p>
+        </div>
+
+        <div class="simulator-workspace" id="simulator-workspace">
+          <aside class="briefing-panel" aria-labelledby="briefing-title">
+            <div class="panel-heading">
+              <span class="panel-heading__icon" aria-hidden="true">▤</span>
+              <div><small>BRIEFING DO TURNO</small><strong id="briefing-title">Release 2.4.0</strong></div>
+            </div>
+
+            <div class="briefing-section">
+              <span class="briefing-label">REQUISITO</span>
+              <p>Clientes cadastrados devem acessar a plataforma com e-mail e senha. A opção “Lembrar acesso” deve manter a sessão na próxima visita.</p>
+            </div>
+
+            <div class="briefing-section">
+              <span class="briefing-label">CREDENCIAIS DE TESTE</span>
+              <dl class="credentials">
+                <div><dt>E-mail</dt><dd>qa@nexora.test</dd></div>
+                <div><dt>Senha</dt><dd>QA@2026</dd></div>
+              </dl>
+            </div>
+
+            <div class="briefing-section">
+              <span class="briefing-label">CRITÉRIOS PRINCIPAIS</span>
+              <ul class="criteria-list">
+                <li>Campos obrigatórios devem ser indicados.</li>
+                <li>Credenciais inválidas não devem revelar contas existentes.</li>
+                <li>O acesso válido deve abrir a área autenticada.</li>
+                <li>A preferência de sessão deve ser respeitada.</li>
+              </ul>
+            </div>
+
+            <div class="briefing-note"><span aria-hidden="true">!</span><p>Este ambiente contém comportamentos defeituosos intencionais.</p></div>
+          </aside>
+
+          <section class="app-panel" aria-label="Aplicação Nexora simulada">
+            <div class="browser-frame">
+              <div class="browser-frame__bar" aria-hidden="true">
+                <div class="browser-dots"><i></i><i></i><i></i></div>
+                <div class="browser-address"><span>⌁</span> hml.nexora.test/login</div>
+                <span class="browser-refresh">↻</span>
+              </div>
+
+              <div class="fake-app" id="fake-app">
+                <div class="fake-app__side" aria-hidden="true">
+                  <div class="nexora-mark">N</div>
+                  <div>
+                    <span>WORKSPACE NEXORA</span>
+                    <h2>Dados que movem<br />o seu negócio.</h2>
+                    <p>Acompanhe operações, pedidos e resultados em um único lugar.</p>
+                  </div>
+                  <div class="fake-app__metric"><strong>99,8%</strong><span>disponibilidade</span></div>
+                </div>
+
+                <div class="fake-app__content">
+                  <section class="login-view" id="login-view" aria-labelledby="login-title">
+                    <div class="login-brand"><span>N</span><strong>Nexora</strong></div>
+                    <span class="login-kicker">PORTAL CORPORATIVO</span>
+                    <h2 id="login-title">Acesse sua conta</h2>
+                    <p>Entre com as credenciais da sua organização.</p>
+
+                    <form id="login-form" novalidate>
+                      <label class="sim-field" for="sim-email">
+                        <span>E-mail corporativo</span>
+                        <input id="sim-email" name="email" type="text" autocomplete="off" placeholder="nome@empresa.com" />
+                        <small id="email-error"></small>
+                      </label>
+
+                      <label class="sim-field" for="sim-password">
+                        <span>Senha</span>
+                        <input id="sim-password" name="password" type="password" autocomplete="off" placeholder="Digite sua senha" />
+                        <small id="password-error"></small>
+                      </label>
+
+                      <div class="login-options">
+                        <label class="sim-checkbox"><input id="sim-remember" type="checkbox" /><span></span> Lembrar acesso</label>
+                        <button type="button" class="fake-link">Esqueci minha senha</button>
+                      </div>
+
+                      <div class="login-message" id="login-message" role="status" aria-live="polite" hidden></div>
+                      <button class="nexora-button" type="submit">Entrar <span aria-hidden="true">→</span></button>
+                    </form>
+                    <small class="app-version">Nexora Portal · v2.4.0-hml</small>
+                  </section>
+
+                  <section class="logged-view" id="logged-view" aria-labelledby="logged-title" hidden>
+                    <div class="logged-view__icon" aria-hidden="true">✓</div>
+                    <span class="login-kicker">AUTENTICAÇÃO CONCLUÍDA</span>
+                    <h2 id="logged-title">Bem-vindo, QA!</h2>
+                    <p id="session-message">Sua sessão foi iniciada com sucesso.</p>
+                    <div class="logged-view__actions">
+                      <button class="nexora-button" id="simulate-visit" type="button" hidden>Simular nova visita</button>
+                      <button class="fake-link" id="back-to-login" type="button">Voltar ao login</button>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <aside class="qa-panel" aria-labelledby="task-title">
+            <div class="qa-progress">
+              <div><span>TAREFA ATUAL</span><strong id="task-counter">1 / 7</strong></div>
+              <div class="qa-progress__track" aria-hidden="true"><i id="task-progress"></i></div>
+            </div>
+
+            <section class="task-card">
+              <span class="task-card__type" id="task-type">TESTE FUNCIONAL</span>
+              <h2 id="task-title" tabindex="-1"></h2>
+              <p id="task-instruction"></p>
+              <div class="task-reward"><span aria-hidden="true">✦</span><strong id="task-points">+10 XP</strong> ao concluir</div>
+            </section>
+
+            <div class="task-feedback" id="task-feedback" role="status" aria-live="polite" hidden>
+              <span id="task-feedback-icon" aria-hidden="true">✓</span>
+              <div><strong id="task-feedback-title"></strong><p id="task-feedback-text"></p></div>
+            </div>
+
+            <form class="bug-report" id="bug-report" hidden>
+              <div class="bug-report__heading"><span aria-hidden="true">◆</span><div><small>EVIDÊNCIA FINAL</small><strong>Relatório de defeito</strong></div></div>
+              <label>Título do defeito<input id="bug-title" type="text" placeholder="Resuma o problema encontrado" /></label>
+              <label>Severidade
+                <select id="bug-severity">
+                  <option value="">Selecione</option>
+                  <option value="baixa">Baixa</option>
+                  <option value="media">Média</option>
+                  <option value="alta">Alta</option>
+                  <option value="critica">Crítica</option>
+                </select>
+              </label>
+              <label>Passos para reproduzir<textarea id="bug-steps" rows="3" placeholder="Descreva as ações executadas"></textarea></label>
+              <label>Resultado esperado<textarea id="bug-expected" rows="2" placeholder="O que deveria acontecer?"></textarea></label>
+              <label>Resultado obtido<textarea id="bug-actual" rows="2" placeholder="O que aconteceu?"></textarea></label>
+              <p class="bug-report__error" id="bug-report-error" role="alert" hidden></p>
+              <button class="button button--primary" type="submit">Enviar relatório</button>
+            </form>
+
+            <button class="button button--primary next-task" id="next-task" type="button" hidden>Próxima tarefa <span aria-hidden="true">→</span></button>
+
+            <section class="action-log" aria-labelledby="action-log-title">
+              <div class="action-log__heading"><strong id="action-log-title">Registro de ações</strong><span id="action-count">0 ações</span></div>
+              <ol id="action-list"><li class="action-log__empty">Suas interações aparecerão aqui.</li></ol>
+            </section>
+          </aside>
+        </div>
+
+        <section class="simulator-result" id="simulator-result" hidden aria-labelledby="simulator-result-title">
+          <div class="simulator-result__icon" aria-hidden="true">◆</div>
+          <span class="label label--cyan">TURNO CONCLUÍDO</span>
+          <h2 id="simulator-result-title" tabindex="-1">Teste funcional executado!</h2>
+          <p>Você percorreu o fluxo de login, investigou comportamentos inesperados e registrou uma evidência de qualidade.</p>
+
+          <div class="simulator-result__stats">
+            <div><span>TAREFAS</span><strong>7 / 7</strong></div>
+            <div><span>DEFEITOS OBSERVADOS</span><strong>2</strong></div>
+            <div><span>EXPERIÊNCIA</span><strong><span id="result-xp">0</span> XP</strong></div>
+            <div><span>AÇÕES EXECUTADAS</span><strong id="result-actions">0</strong></div>
+          </div>
+
+          <div class="simulator-result__skills">
+            <span>Execução funcional</span><span>Observação crítica</span><span>Relato de defeito</span>
+          </div>
+
+          <div class="simulator-result__actions">
+            <button class="button button--primary" id="restart-simulator" type="button">Reiniciar turno</button>
+            <a class="button button--ghost" href="index.html">Voltar à jornada</a>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="fase3.js"></script>
+  </body>
+</html>

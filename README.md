@@ -15,6 +15,10 @@ Este é um projeto em construção — e também meu experimento com *vibe codin
 - feedback explicativo após cada resposta;
 - pontuação de até 100 XP e tela de resultado;
 - opção de refazer a missão;
+- segunda missão baseada em um caso prático de análise de requisitos;
+- diagnóstico final das competências de fluxos, critérios de aceitação e revisão de riscos;
+- simulador de rotina QA com uma aplicação fictícia de login;
+- sete tarefas avaliadas pelas ações do jogador e relatório de defeito;
 - temas claro e escuro, com preferência salva no navegador;
 - navegação por teclado, link para pular conteúdo e suporte a movimento reduzido.
 
