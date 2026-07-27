@@ -1,10 +1,14 @@
 # QA Quest
 
+<p align="center">
+  <img src="qaquest.png" alt="Ícone do QA Quest" width="120">
+</p>
+
 Uma experiência gamificada para estudar Quality Assurance por meio de missões, desafios e feedbacks.
 
 O QA Quest nasceu de um objetivo pessoal: depender menos de plataformas de cursos e assumir um papel mais ativo no meu aprendizado. A ideia é transformar conteúdos de QA em uma jornada prática, na qual eu possa testar conhecimentos, receber feedback e evoluir enquanto também desenvolvo minhas habilidades técnicas.
 
-Este é um projeto em construção — e também meu experimento com _vibe coding_. Estou usando IA como parceira para explorar ideias, praticar a criação de prompts e aprender durante o desenvolvimento. As decisões sobre o produto, os testes e a evolução do projeto fazem parte desse processo.
+Este é um projeto em construção — e também meu experimento com *vibe coding*. Estou usando IA como parceira para explorar ideias, praticar a criação de prompts e aprender durante o desenvolvimento. As decisões sobre o produto, os testes e a evolução do projeto fazem parte desse processo.
 
 ## O que já funciona
 
@@ -31,7 +35,7 @@ O projeto não possui dependências nem processo de build.
 1. Clone este repositório:
 
    ```bash
-   git clone https://github.com/gufvr/qa-quest/
+   git clone URL_DO_REPOSITORIO
    ```
 
 2. Entre na pasta do projeto:
@@ -95,6 +99,8 @@ qa-quest/
 ## IA como parte do aprendizado
 
 A IA foi usada como apoio na ideação, no desenvolvimento da interface e na revisão do código. Mais do que acelerar a construção, meu objetivo é aprender a dar contexto, avaliar respostas, testar sugestões e transformar prompts em decisões conscientes.
+
+Para mim, *vibe coding* não significa abrir mão de entender o que foi criado. Significa usar a IA para experimentar mais, fazer perguntas melhores e aprender construindo.
 
 ## Status
 
