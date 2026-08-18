@@ -1,4 +1,4 @@
-// Conteúdo e fluxo da Fase 1.
+// Phase 1 content and flow.
 const questionBank = [
   {
     question: "Qual afirmação descreve melhor o papel de uma pessoa QA?",

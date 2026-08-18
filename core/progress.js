@@ -1,9 +1,9 @@
-// Estado global de progresso, independente das interfaces das páginas.
+// Global progress state, independent from page interfaces.
 (function initializeProgress(global) {
   const STORAGE_KEY = "qa-quest-progress";
   const CURRENT_VERSION = 1;
   const MAX_XP_PER_PHASE = 100;
-  const phaseNumbers = { phase1: 1, phase2: 2, phase3: 3 };
+  const phaseNumbers = { phase1: 1, phase2: 2, phase3: 3, phase4: 4 };
 
   function createInitialState() {
     return {
@@ -56,7 +56,7 @@
     return {
       version: CURRENT_VERSION,
       totalXp,
-      unlockedPhase: Math.max(1, Math.min(4, Math.max(Number(value.unlockedPhase) || 1, highestCompleted + 1))),
+      unlockedPhase: Math.max(1, Math.min(5, Math.max(Number(value.unlockedPhase) || 1, highestCompleted + 1))),
       missions
     };
   }
@@ -80,7 +80,7 @@
     try {
       global.localStorage.setItem(STORAGE_KEY, JSON.stringify(normalized));
     } catch (error) {
-      // Mantém o progresso em memória quando o armazenamento do navegador não está disponível.
+      // Keeps progress in memory when browser storage is unavailable.
     }
 
     return clone(normalized);
@@ -113,7 +113,7 @@
     try {
       global.dispatchEvent(new CustomEvent("qaquest:progress", { detail: clone(savedState) }));
     } catch (error) {
-      // O evento é apenas uma conveniência para páginas abertas em contextos limitados.
+      // The event is only a convenience for pages running in limited contexts.
     }
 
     return {

@@ -1,4 +1,4 @@
-// Conteúdo e fluxo da Fase 2.
+// Phase 2 content and flow.
 const requirementQuestions = [
   {
     category: "Fluxos",

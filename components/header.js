@@ -7,7 +7,8 @@ class QAHeader extends HTMLElement {
     const templates = {
       site: this.siteTemplate(),
       mission: this.missionTemplate(),
-      simulator: this.simulatorTemplate()
+      simulator: this.simulatorTemplate(),
+      planner: this.plannerTemplate()
     };
 
     this.innerHTML = templates[variant] || templates.site;
@@ -56,6 +57,22 @@ class QAHeader extends HTMLElement {
             <span class="simulator-xp"><strong id="header-xp">0</strong> XP</span>
             <qa-theme-toggle></qa-theme-toggle>
             <a class="simulator-exit" href="index.html">Encerrar turno</a>
+          </div>
+        </nav>
+      </header>
+    `;
+  }
+
+  plannerTemplate() {
+    return `
+      <header class="planning-header">
+        <nav class="nav planning-container" aria-label="Navegação do simulador de planejamento">
+          <qa-brand href="index.html"></qa-brand>
+          <div class="planning-header__status">
+            <span class="planning-badge"><i aria-hidden="true"></i> PLANEJAMENTO</span>
+            <span class="planning-xp"><strong id="header-xp">0</strong> XP</span>
+            <qa-theme-toggle></qa-theme-toggle>
+            <a class="planning-exit" href="index.html">Encerrar missão</a>
           </div>
         </nav>
       </header>

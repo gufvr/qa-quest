@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Fase 4 do QA Quest: construa um plano de testes para um checkout fictício e responda a mudanças reais de projeto."
+    />
+    <title>Plano de Testes — QA Quest</title>
+    <link rel="icon" type="image/png" href="qaquest.png" />
+    <link rel="apple-touch-icon" href="qaquest.png" />
+    <script>
+      document.documentElement.dataset.theme = localStorage.getItem("qa-quest-theme") || "dark";
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/phase4.css" />
+  </head>
+  <body class="planning-page">
+    <a class="skip-link" href="#planning">Ir para o planejamento</a>
+
+    <qa-header variant="planner"></qa-header>
+
+    <main id="planning" class="planning-main">
+      <div class="planning-container">
+        <header class="planning-intro">
+          <div>
+            <span class="label label--cyan">MUNDO 01 · MISSÃO 04</span>
+            <h1>Plano de Testes Guiado</h1>
+          </div>
+          <p>Transforme requisitos, riscos e restrições em uma estratégia de teste executável para o novo checkout da Nexora.</p>
+        </header>
+
+        <section class="planning-workspace" id="planning-workspace">
+          <aside class="context-panel" aria-labelledby="context-title">
+            <div class="planning-panel__heading">
+              <span aria-hidden="true">▤</span>
+              <div><small>BRIEFING DA RELEASE</small><strong id="context-title">Checkout 3.0</strong></div>
+            </div>
+
+            <div class="context-section">
+              <span>OBJETIVO DO NEGÓCIO</span>
+              <p>Permitir que clientes finalizem pedidos usando cartão ou Pix e apliquem cupons promocionais antes do pagamento.</p>
+            </div>
+
+            <div class="context-section">
+              <span>ESCOPO INFORMADO</span>
+              <ul>
+                <li>Resumo do pedido e endereço de entrega.</li>
+                <li>Cupom percentual ou de valor fixo.</li>
+                <li>Pagamento via cartão e Pix.</li>
+                <li>Criação do pedido após confirmação.</li>
+              </ul>
+            </div>
+
+            <div class="context-section">
+              <span>RESTRIÇÕES</span>
+              <dl class="release-facts">
+                <div><dt>Prazo inicial</dt><dd>5 dias</dd></div>
+                <div><dt>Equipe</dt><dd>1 QA + 3 devs</dd></div>
+                <div><dt>Ambiente</dt><dd>Homologação</dd></div>
+                <div><dt>Release</dt><dd>Sexta, 18h</dd></div>
+              </dl>
+            </div>
+
+            <div class="context-note"><span aria-hidden="true">!</span><p>O gateway de pagamento está disponível apenas em modo sandbox.</p></div>
+          </aside>
+
+          <section class="decision-panel" aria-labelledby="decision-title">
+            <div class="decision-progress">
+              <div>
+                <span id="step-label">ETAPA 1 DE 7</span>
+                <strong id="step-xp">0 / 100 XP</strong>
+              </div>
+              <div class="decision-progress__track" role="progressbar" aria-label="Progresso do plano" aria-valuemin="1" aria-valuemax="7" aria-valuenow="1">
+                <i id="step-progress"></i>
+              </div>
+            </div>
+
+            <div class="deadline-alert" id="deadline-alert" role="status" hidden>
+              <span aria-hidden="true">⚡</span>
+              <div><strong>Mudança de contexto</strong><p>A direção antecipou a release. Restam apenas 2 dias para testar.</p></div>
+            </div>
+
+            <form id="decision-form" class="decision-form">
+              <fieldset>
+                <legend class="decision-kicker" id="decision-kicker"></legend>
+                <h2 id="decision-title" tabindex="-1"></h2>
+                <p id="decision-instruction"></p>
+                <span class="selection-hint" id="selection-hint"></span>
+                <div class="decision-options" id="decision-options"></div>
+              </fieldset>
+
+              <p class="decision-error" id="decision-error" role="alert" hidden></p>
+              <button class="button button--primary decision-submit" id="decision-submit" type="submit" disabled>
+                Confirmar decisão <span aria-hidden="true">→</span>
+              </button>
+            </form>
+
+            <div class="decision-feedback" id="decision-feedback" role="status" aria-live="polite" hidden>
+              <span class="decision-feedback__icon" id="feedback-icon" aria-hidden="true">✓</span>
+              <div><strong id="feedback-title"></strong><p id="feedback-text"></p><small id="feedback-recommendation"></small></div>
+            </div>
+
+            <button class="button button--primary decision-next" id="decision-next" type="button" hidden>
+              Próxima etapa <span aria-hidden="true">→</span>
+            </button>
+          </section>
+
+          <aside class="plan-panel" aria-labelledby="plan-preview-title">
+            <div class="planning-panel__heading">
+              <span aria-hidden="true">◎</span>
+              <div><small>PLANO EM CONSTRUÇÃO</small><strong id="plan-preview-title">Indicadores</strong></div>
+            </div>
+
+            <div class="plan-metrics">
+              <div class="plan-metric">
+                <div><span>Cobertura</span><strong id="coverage-value">0%</strong></div>
+                <div><i id="coverage-bar"></i></div>
+              </div>
+              <div class="plan-metric">
+                <div><span>Riscos</span><strong id="risk-value">0%</strong></div>
+                <div><i id="risk-bar"></i></div>
+              </div>
+              <div class="plan-metric">
+                <div><span>Viabilidade</span><strong id="feasibility-value">0%</strong></div>
+                <div><i id="feasibility-bar"></i></div>
+              </div>
+            </div>
+
+            <div class="plan-preview">
+              <div><strong>Decisões registradas</strong><span id="decision-count">0 / 7</span></div>
+              <ol id="plan-preview-list"><li>Suas escolhas formarão o plano final.</li></ol>
+            </div>
+
+            <div class="mentor-tip">
+              <span aria-hidden="true">✦</span>
+              <div><strong>Dica da mentoria</strong><p id="mentor-tip-text">Um bom plano conecta risco, cobertura e tempo disponível.</p></div>
+            </div>
+          </aside>
+        </section>
+
+        <section class="planning-result" id="planning-result" hidden aria-labelledby="planning-result-title">
+          <div class="planning-result__icon" aria-hidden="true">✓</div>
+          <span class="label label--cyan">PLANO FINALIZADO</span>
+          <h2 id="planning-result-title" tabindex="-1">Sua estratégia está pronta.</h2>
+          <p id="result-summary"></p>
+          <qa-save-status></qa-save-status>
+
+          <div class="planning-result__stats">
+            <div><span>COBERTURA</span><strong id="result-coverage">0%</strong></div>
+            <div><span>RISCOS</span><strong id="result-risk">0%</strong></div>
+            <div><span>VIABILIDADE</span><strong id="result-feasibility">0%</strong></div>
+            <div><span>EXPERIÊNCIA</span><strong><span id="result-xp">0</span> XP</strong></div>
+          </div>
+
+          <div class="generated-plan" aria-labelledby="generated-plan-title">
+            <div class="generated-plan__heading">
+              <div><span>DOCUMENTO GERADO</span><h3 id="generated-plan-title">Plano de Testes · Checkout 3.0</h3></div>
+              <span class="generated-plan__status">PRONTO PARA REVISÃO</span>
+            </div>
+            <div class="generated-plan__grid" id="generated-plan-grid"></div>
+          </div>
+
+          <div class="planning-result__actions">
+            <button class="button button--primary" id="restart-planning" type="button">Criar outro plano</button>
+            <a class="button button--ghost" href="index.html">Voltar à jornada</a>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="components/brand.js"></script>
+    <script src="components/theme-toggle.js"></script>
+    <script src="components/header.js"></script>
+    <script src="components/save-status.js"></script>
+    <script src="core/progress.js"></script>
+    <script src="pages/phase4.js"></script>
+  </body>
+</html>

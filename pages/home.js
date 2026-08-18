@@ -1,4 +1,4 @@
-// Comportamentos exclusivos da página inicial.
+// Home page-specific behavior.
 const startButtons = document.querySelectorAll("[data-start]");
 const phaseNodes = document.querySelectorAll("[data-phase]");
 const totalXpLabel = document.querySelector("#total-xp-label");
@@ -7,8 +7,8 @@ const totalXpProgressBar = document.querySelector("#total-xp-progress-bar");
 const levelBadge = document.querySelector("#level-badge");
 const currentMissionTitle = document.querySelector("#current-mission-title");
 const toast = document.querySelector("qa-toast");
-const routes = { 1: "missao.html", 2: "fase2.html", 3: "fase3.html" };
-const titles = { 1: "Fundamentos de QA", 2: "Análise de Requisitos", 3: "Simulador de Login" };
+const routes = { 1: "phase1.html", 2: "phase2.html", 3: "phase3.html", 4: "phase4.html" };
+const titles = { 1: "Fundamentos de QA", 2: "Análise de Requisitos", 3: "Simulador de Login", 4: "Plano de Testes" };
 let currentPhase = 1;
 
 function showLockedMessage(phaseNumber) {
@@ -23,12 +23,12 @@ function applySavedProgress() {
   const level = Math.floor(state.totalXp / 500) + 1;
   const levelXp = state.totalXp % 500;
   const levelPercentage = (levelXp / 500) * 100;
-  const incompletePhase = [1, 2, 3].find((phaseNumber) => {
+  const incompletePhase = [1, 2, 3, 4].find((phaseNumber) => {
     const mission = state.missions[`phase${phaseNumber}`];
     return state.unlockedPhase >= phaseNumber && !mission?.completed;
   });
 
-  currentPhase = incompletePhase || Math.min(3, state.unlockedPhase);
+  currentPhase = incompletePhase || Math.min(4, state.unlockedPhase);
   totalXpLabel.textContent = `${levelXp} / 500 XP`;
   totalXpProgress.classList.toggle("progress--empty", levelXp === 0);
   totalXpProgress.setAttribute("aria-valuenow", String(levelXp));
@@ -36,7 +36,7 @@ function applySavedProgress() {
   totalXpProgressBar.style.width = `${levelPercentage}%`;
   levelBadge.textContent = `NV. ${String(level).padStart(2, "0")}`;
   levelBadge.setAttribute("aria-label", `Nível ${level}`);
-  currentMissionTitle.textContent = state.missions.phase3?.completed
+  currentMissionTitle.textContent = state.missions.phase4?.completed
     ? "Jornada atual concluída"
     : titles[currentPhase];
 

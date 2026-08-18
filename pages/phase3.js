@@ -1,4 +1,4 @@
-// Tarefas e máquina de estados do Simulador da Fase 3.
+// Tasks and state machine for the Phase 3 Simulator.
 const tasks = [
   {
     type: "VALIDAÇÃO DE CAMPOS",

@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Primeira missão do QA Quest: teste seus conhecimentos sobre os fundamentos de Quality Assurance."
+      content="Fase 2 do QA Quest: analise requisitos, mapeie fluxos e identifique ambiguidades em um caso prático."
     />
-    <title>Fundamentos de QA — QA Quest</title>
+    <title>Análise de Requisitos — QA Quest</title>
     <link rel="icon" type="image/png" href="qaquest.png" />
     <link rel="apple-touch-icon" href="qaquest.png" />
     <script>
@@ -21,42 +21,60 @@
     />
     <link rel="stylesheet" href="styles/global.css" />
     <link rel="stylesheet" href="styles/mission.css" />
+    <link rel="stylesheet" href="styles/phase2.css" />
   </head>
-  <body class="mission-page">
+  <body class="mission-page phase-two-page">
     <a class="skip-link" href="#missao">Ir para a missão</a>
 
     <qa-header variant="mission"></qa-header>
 
     <main class="mission-shell" id="missao">
-      <div class="container mission-layout">
+      <div class="container mission-layout phase-two-layout">
         <aside class="mission-briefing" aria-labelledby="mission-title">
           <a class="back-link" href="index.html"><span aria-hidden="true">←</span> Voltar à jornada</a>
-          <span class="label label--cyan">MUNDO 01 · MISSÃO 01</span>
-          <h1 id="mission-title">Fundamentos de QA</h1>
+          <span class="label label--cyan">MUNDO 01 · MISSÃO 02</span>
+          <h1 id="mission-title">Análise de Requisitos</h1>
           <p>
-            Mostre que você entende o papel de QA e reconhece os testes essenciais
-            para proteger a qualidade do produto.
+            Investigue uma solicitação incompleta, mapeie seus fluxos e transforme
+            expectativas vagas em condições verificáveis.
           </p>
 
           <div class="mission-meta">
-            <div><span>DESAFIOS</span><strong>10 questões aleatórias</strong></div>
+            <div><span>DESAFIOS</span><strong>10 análises</strong></div>
             <div><span>RECOMPENSA</span><strong>Até 100 XP</strong></div>
           </div>
 
-          <div class="mission-objectives">
-            <span class="mission-objectives__icon" aria-hidden="true">◇</span>
-            <div>
-              <strong>Objetivo da missão</strong>
-              <p>Identificar conceitos, responsabilidades e estratégias básicas de QA.</p>
+          <section class="requirement-dossier" aria-labelledby="requirement-title">
+            <header>
+              <span class="requirement-dossier__icon" aria-hidden="true">▤</span>
+              <div>
+                <small>REQUISITO EM ANÁLISE</small>
+                <strong id="requirement-title">Alteração de e-mail</strong>
+              </div>
+            </header>
+            <p class="requirement-story">
+              “Como cliente autenticado, quero alterar meu e-mail pelo perfil para
+              manter meus dados atualizados.”
+            </p>
+            <div class="requirement-draft">
+              <span>DESCRIÇÃO RECEBIDA</span>
+              <p>
+                O usuário informa o novo e-mail e confirma. O sistema atualiza o
+                endereço rapidamente, envia uma confirmação e deve funcionar para
+                usuários válidos.
+              </p>
             </div>
-          </div>
+            <p class="requirement-dossier__hint">
+              O texto contém lacunas intencionais. Use-o como evidência durante toda a missão.
+            </p>
+          </section>
         </aside>
 
-        <section class="quiz-card" aria-label="Desafio de múltipla escolha">
+        <section class="quiz-card" aria-label="Caso prático de análise de requisitos">
           <div id="quiz-screen">
             <header class="quiz-card__header">
               <div>
-                <span class="label">PROGRESSO DA MISSÃO</span>
+                <span class="label">PROGRESSO DA ANÁLISE</span>
                 <strong id="question-counter">Questão 1 de 10</strong>
               </div>
               <span class="quiz-card__reward">+10 XP</span>
@@ -67,8 +85,8 @@
             </div>
 
             <div class="question-area">
-              <span class="question-kind">MÚLTIPLA ESCOLHA</span>
-              <h2 id="question-title"></h2>
+              <span class="question-kind" id="question-kind">TÉCNICA DE ANÁLISE</span>
+              <h2 id="question-title" tabindex="-1"></h2>
               <p id="question-context"></p>
               <div class="answers" id="answers" role="group" aria-labelledby="question-title"></div>
             </div>
@@ -82,20 +100,20 @@
             </div>
 
             <footer class="quiz-card__footer">
-              <span id="selection-hint">Selecione uma alternativa para continuar.</span>
+              <span id="selection-hint">Selecione a melhor análise para continuar.</span>
               <button class="button button--primary" id="confirm-answer" type="button" disabled>
-                Confirmar resposta
+                Confirmar análise
               </button>
               <button class="button button--primary" id="next-question" type="button" hidden>
-                Próxima questão <span aria-hidden="true">→</span>
+                Próxima análise <span aria-hidden="true">→</span>
               </button>
             </footer>
           </div>
 
-          <div class="result-screen" id="result-screen" hidden>
-            <div class="result-screen__symbol" aria-hidden="true">◆</div>
-            <span class="label label--cyan">MISSÃO CONCLUÍDA</span>
-            <h2>Fundamentos dominados!</h2>
+          <div class="result-screen phase-result" id="result-screen" hidden>
+            <div class="result-screen__symbol" aria-hidden="true">◈</div>
+            <span class="label label--cyan">ANÁLISE CONCLUÍDA</span>
+            <h2 tabindex="-1">Requisito investigado!</h2>
             <p id="result-message"></p>
             <qa-save-status></qa-save-status>
 
@@ -104,9 +122,14 @@
               <div><span>EXPERIÊNCIA</span><strong><span id="result-xp">0</span> XP</strong></div>
             </div>
 
+            <section class="competency-summary" aria-labelledby="competency-title">
+              <h3 id="competency-title">Resumo por competência</h3>
+              <div id="competency-list"></div>
+            </section>
+
             <div class="result-actions">
-              <a class="button button--primary" href="fase2.html">Avançar para Fase 2</a>
-              <button class="button button--ghost" id="retry-mission" type="button">Tentar novamente</button>
+              <a class="button button--primary" href="phase3.html">Entrar no Simulador</a>
+              <button class="button button--ghost" id="retry-mission" type="button">Analisar novamente</button>
               <a class="button button--text" href="index.html">Voltar à jornada</a>
             </div>
           </div>
@@ -119,6 +142,6 @@
     <script src="components/header.js"></script>
     <script src="components/save-status.js"></script>
     <script src="core/progress.js"></script>
-    <script src="pages/phase1.js"></script>
+    <script src="pages/phase2.js"></script>
   </body>
 </html>
