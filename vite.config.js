@@ -9,7 +9,8 @@ export default defineConfig({
         phase1: "phase1.html",
         phase2: "phase2.html",
         phase3: "phase3.html",
-        phase4: "phase4.html"
+        phase4: "phase4.html",
+        tracks: "tracks.html"
       }
     }
   }

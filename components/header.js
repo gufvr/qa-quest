@@ -6,12 +6,27 @@ class QAHeader extends HTMLElement {
     const variant = this.getAttribute("variant") || "site";
     const templates = {
       site: this.siteTemplate(),
+      tracks: this.tracksTemplate(),
       mission: this.missionTemplate(),
       simulator: this.simulatorTemplate(),
       planner: this.plannerTemplate()
     };
 
     this.innerHTML = templates[variant] || templates.site;
+  }
+
+  tracksTemplate() {
+    return `
+      <header class="tracks-header">
+        <nav class="nav container" aria-label="Navegação das trilhas">
+          <qa-brand href="index.html"></qa-brand>
+          <div class="nav__actions">
+            <qa-theme-toggle></qa-theme-toggle>
+            <a class="button button--small button--ghost tracks-header__back" href="index.html">Voltar à jornada</a>
+          </div>
+        </nav>
+      </header>
+    `;
   }
 
   siteTemplate() {

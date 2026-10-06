@@ -1,6 +1,7 @@
 // Home page-specific behavior.
 const startButtons = document.querySelectorAll("[data-start]");
 const phaseNodes = document.querySelectorAll("[data-phase]");
+const tracksNode = document.querySelector("[data-tracks]");
 const totalXpLabel = document.querySelector("#total-xp-label");
 const totalXpProgress = document.querySelector("#total-xp-progress");
 const totalXpProgressBar = document.querySelector("#total-xp-progress-bar");
@@ -36,9 +37,27 @@ function applySavedProgress() {
   totalXpProgressBar.style.width = `${levelPercentage}%`;
   levelBadge.textContent = `NV. ${String(level).padStart(2, "0")}`;
   levelBadge.setAttribute("aria-label", `Nível ${level}`);
-  currentMissionTitle.textContent = state.missions.phase4?.completed
-    ? "Jornada atual concluída"
+  const tracksUnlocked = Boolean(state.missions.phase4?.completed);
+  currentMissionTitle.textContent = tracksUnlocked
+    ? "Escolha sua trilha"
     : titles[currentPhase];
+
+  tracksNode.classList.toggle("path-node--available", tracksUnlocked);
+  tracksNode.classList.toggle("path-node--locked", !tracksUnlocked);
+  tracksNode.querySelector(".path-node__icon").textContent = tracksUnlocked ? "◆" : "◇";
+  tracksNode.querySelector("[data-tracks-status]").textContent = tracksUnlocked ? "ABERTO" : "BLOQ.";
+  if (tracksUnlocked) {
+    tracksNode.href = "tracks.html";
+    tracksNode.removeAttribute("aria-disabled");
+    tracksNode.onclick = null;
+  } else {
+    tracksNode.removeAttribute("href");
+    tracksNode.setAttribute("aria-disabled", "true");
+    tracksNode.onclick = (event) => {
+      event.preventDefault();
+      toast.show("Trilhas bloqueadas", "Conclua a Fase 4 para explorar as trilhas de QA.");
+    };
+  }
 
   phaseNodes.forEach((node) => {
     const phaseNumber = Number(node.dataset.phase);
@@ -82,6 +101,6 @@ applySavedProgress();
 
 startButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    window.location.href = routes[currentPhase];
+    window.location.href = window.QAQuestProgress.isTracksUnlocked() ? "tracks.html" : routes[currentPhase];
   });
 });
