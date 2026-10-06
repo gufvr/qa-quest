@@ -17,12 +17,16 @@ O progresso, XP, tentativas, tema e desbloqueio das fases são salvos no navegad
 
 ## Como executar
 
-O projeto não possui dependências ou processo de build. Clone ou baixe o repositório e abra `index.html` em um navegador moderno.
+O projeto usa Vite para desenvolvimento local e build. Requer Node.js e npm instalados.
 
 ```bash
 git clone URL_DO_REPOSITORIO
 cd qa-quest
+npm install
+npm run dev
 ```
+
+Abra o endereço local exibido pelo Vite. Para gerar e visualizar a versão de produção, use `npm run build` e `npm run preview`.
 
 ## Tecnologias
 
