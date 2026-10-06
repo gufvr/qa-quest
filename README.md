@@ -4,7 +4,7 @@
   <img src="qaquest.png" alt="Ícone do QA Quest" width="120">
 </p>
 
-Plataforma gamificada para estudar Quality Assurance por meio de desafios, análises e simuladores práticos. O projeto também é um exercício de HTML, CSS, JavaScript e aprendizado assistido por IA.
+Plataforma gamificada para estudar Quality Assurance por meio de desafios, análises e simuladores práticos. A Bazaraza e os endereços `bazaraza.test` são exemplos fictícios usados nos cenários. O projeto também é um exercício de HTML, CSS, JavaScript e aprendizado assistido por IA.
 
 ## Fases disponíveis
 

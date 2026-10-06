@@ -49,7 +49,7 @@
 .fake-app { display: grid; grid-template-columns: .82fr 1.18fr; min-height: 612px; color: #232229; background: #f7f7fa; font-family: "Manrope", sans-serif; }
 .fake-app__side { position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; padding: 32px 28px; color: #fff; background: radial-gradient(circle at 20% 20%, rgba(107,231,221,.2), transparent 25%), linear-gradient(145deg, #17172b, #24204a); }
 .fake-app__side::after { content: ""; position: absolute; width: 240px; height: 240px; right: -130px; bottom: 30px; border: 1px solid rgba(255,255,255,.12); border-radius: 50%; box-shadow: 0 0 0 42px rgba(255,255,255,.025), 0 0 0 84px rgba(255,255,255,.018); }
-.nexora-mark, .login-brand > span { display: grid; place-items: center; width: 34px; height: 34px; color: #17222a; background: linear-gradient(135deg, #6be7dd, #a99bff); border-radius: 10px 4px 10px 4px; font-weight: 800; }
+.bazaraza-mark, .login-brand > span { display: grid; place-items: center; width: 34px; height: 34px; color: #17222a; background: linear-gradient(135deg, #6be7dd, #a99bff); border-radius: 10px 4px 10px 4px; font-weight: 800; }
 .fake-app__side > div:nth-child(2) { position: relative; z-index: 1; }
 .fake-app__side span { font-size: .48rem; font-weight: 800; letter-spacing: .16em; opacity: .6; }
 .fake-app__side h2 { margin: 10px 0; font-size: clamp(1.5rem, 2vw, 2.2rem); letter-spacing: -.04em; }
@@ -78,9 +78,9 @@
 .sim-checkbox input:checked + span::after { content: "✓"; color: #fff; font-size: .54rem; font-weight: 800; }
 .sim-checkbox input:focus-visible + span { outline: 2px solid #7658dd; outline-offset: 2px; }
 .fake-link { padding: 0; color: #6d42d8; background: transparent; font-size: .56rem; font-weight: 700; cursor: pointer; }
-.nexora-button { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; min-height: 40px; color: #fff; background: #6d42d8; border: 0; border-radius: 7px; font: 700 .66rem "Manrope"; cursor: pointer; }
-.nexora-button:hover { background: #5d34c9; }
-.nexora-button:focus-visible, .fake-link:focus-visible { outline: 3px solid #56bac1; outline-offset: 2px; }
+.bazaraza-button { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; min-height: 40px; color: #fff; background: #6d42d8; border: 0; border-radius: 7px; font: 700 .66rem "Manrope"; cursor: pointer; }
+.bazaraza-button:hover { background: #5d34c9; }
+.bazaraza-button:focus-visible, .fake-link:focus-visible { outline: 3px solid #56bac1; outline-offset: 2px; }
 .login-message { margin-bottom: 12px; padding: 9px 10px; color: #9d2947; background: #fff0f3; border: 1px solid #f0c1cd; border-radius: 7px; font-size: .56rem; }
 .login-message.is-success { color: #176c4a; background: #eaf9f2; border-color: #bfe7d3; }
 .app-version { display: block; margin-top: 24px; color: #aaa7b0; font-size: .48rem; text-align: center; }

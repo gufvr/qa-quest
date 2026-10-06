@@ -52,7 +52,7 @@
             <div class="briefing-section">
               <span class="briefing-label">CREDENCIAIS DE TESTE</span>
               <dl class="credentials">
-                <div><dt>E-mail</dt><dd>qa@qaquest.example</dd></div>
+                <div><dt>E-mail</dt><dd>qa@bazaraza.test</dd></div>
                 <div><dt>Senha</dt><dd>QA@2026</dd></div>
               </dl>
             </div>
@@ -70,36 +70,36 @@
             <div class="briefing-note"><span aria-hidden="true">!</span><p>Este ambiente contém comportamentos defeituosos intencionais.</p></div>
           </aside>
 
-          <section class="app-panel" aria-label="Aplicação Nexora simulada">
+          <section class="app-panel" aria-label="Aplicação Bazaraza simulada">
             <div class="browser-frame">
               <div class="browser-frame__bar" aria-hidden="true">
                 <div class="browser-dots"><i></i><i></i><i></i></div>
-                <div class="browser-address"><span>⌁</span> hml.qaquest.example/login</div>
+                <div class="browser-address"><span>⌁</span> bazaraza.test/login</div>
                 <span class="browser-refresh">↻</span>
               </div>
 
               <div class="fake-app" id="fake-app">
                 <div class="fake-app__side" aria-hidden="true">
-                  <div class="nexora-mark">N</div>
+                  <div class="bazaraza-mark">B</div>
                   <div>
-                    <span>WORKSPACE NEXORA</span>
-                    <h2>Dados que movem<br />o seu negócio.</h2>
-                    <p>Acompanhe operações, pedidos e resultados em um único lugar.</p>
+                    <span>LOJA BAZARAZA</span>
+                    <h2>Seu próximo achado<br />começa aqui.</h2>
+                    <p>Explore produtos e acompanhe seus pedidos em um único lugar.</p>
                   </div>
                   <div class="fake-app__metric"><strong>99,8%</strong><span>disponibilidade</span></div>
                 </div>
 
                 <div class="fake-app__content">
                   <section class="login-view" id="login-view" aria-labelledby="login-title">
-                    <div class="login-brand"><span>N</span><strong>Nexora</strong></div>
-                    <span class="login-kicker">PORTAL CORPORATIVO</span>
+                    <div class="login-brand"><span>B</span><strong>Bazaraza</strong></div>
+                    <span class="login-kicker">ÁREA DO CLIENTE</span>
                     <h2 id="login-title">Acesse sua conta</h2>
-                    <p>Entre com as credenciais da sua organização.</p>
+                    <p>Entre com as credenciais da sua conta.</p>
 
                     <form id="login-form" novalidate>
                       <label class="sim-field" for="sim-email">
-                        <span>E-mail corporativo</span>
-                        <input id="sim-email" name="email" type="text" autocomplete="off" placeholder="nome@empresa.com" />
+                        <span>E-mail</span>
+                        <input id="sim-email" name="email" type="text" autocomplete="off" placeholder="nome@bazaraza.test" />
                         <small id="email-error"></small>
                       </label>
 
@@ -115,9 +115,9 @@
                       </div>
 
                       <div class="login-message" id="login-message" role="status" aria-live="polite" hidden></div>
-                      <button class="nexora-button" type="submit">Entrar <span aria-hidden="true">→</span></button>
+                      <button class="bazaraza-button" type="submit">Entrar <span aria-hidden="true">→</span></button>
                     </form>
-                    <small class="app-version">Nexora Portal · v2.4.0-hml</small>
+                    <small class="app-version">Bazaraza · ambiente de simulação · v2.4.0</small>
                   </section>
 
                   <section class="logged-view" id="logged-view" aria-labelledby="logged-title" hidden>
@@ -126,7 +126,7 @@
                     <h2 id="logged-title">Bem-vindo, QA!</h2>
                     <p id="session-message">Sua sessão foi iniciada com sucesso.</p>
                     <div class="logged-view__actions">
-                      <button class="nexora-button" id="simulate-visit" type="button" hidden>Simular nova visita</button>
+                      <button class="bazaraza-button" id="simulate-visit" type="button" hidden>Simular nova visita</button>
                       <button class="fake-link" id="back-to-login" type="button">Voltar ao login</button>
                     </div>
                   </section>

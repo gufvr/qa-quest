@@ -5,7 +5,7 @@ const planningSteps = [
     kicker: "OBJETIVO E ESCOPO",
     shortTitle: "Objetivo",
     title: "Qual é o objetivo central deste plano?",
-    instruction: "Escolha a formulação que orienta melhor o esforço de teste da release Checkout 3.0.",
+    instruction: "Escolha a formulação que orienta melhor o esforço de teste do Checkout 3.0 da Bazaraza.",
     type: "single",
     min: 1,
     max: 1,
