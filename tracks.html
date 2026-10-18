@@ -51,19 +51,19 @@
           </div>
 
           <div class="tracks-grid">
-            <button class="track-card" type="button" data-track="release" aria-controls="track-details" aria-pressed="false">
-              <span class="track-card__eyebrow">TRILHA 01 · RELEASE</span>
-              <strong>Confiança na release</strong>
-              <span class="track-card__description">Decida o que verificar antes e depois de uma entrega.</span>
-              <span class="track-card__sequence">Smoke → Sanidade → Regressão</span>
-              <span class="track-card__footer"><span data-track-count>0 / 3 temas</span><span>Ver trilha →</span></span>
-              <span class="track-card__bar" aria-hidden="true"><i data-track-bar></i></span>
-            </button>
             <button class="track-card" type="button" data-track="flows" aria-controls="track-details" aria-pressed="false">
-              <span class="track-card__eyebrow">TRILHA 02 · FLUXOS</span>
+              <span class="track-card__eyebrow">TRILHA 01 · FLUXOS</span>
               <strong>Fluxos e investigação</strong>
               <span class="track-card__description">Investigue comportamentos e acompanhe jornadas completas.</span>
               <span class="track-card__sequence">Funcional → Exploratório → E2E</span>
+              <span class="track-card__footer"><span data-track-count>0 / 3 temas</span><span>Ver trilha →</span></span>
+              <span class="track-card__bar" aria-hidden="true"><i data-track-bar></i></span>
+            </button>
+            <button class="track-card" type="button" data-track="release" aria-controls="track-details" aria-pressed="false">
+              <span class="track-card__eyebrow">TRILHA 02 · RELEASE</span>
+              <strong>Confiança na release</strong>
+              <span class="track-card__description">Decida o que verificar antes e depois de uma entrega.</span>
+              <span class="track-card__sequence">Smoke → Sanidade → Regressão</span>
               <span class="track-card__footer"><span data-track-count>0 / 3 temas</span><span>Ver trilha →</span></span>
               <span class="track-card__bar" aria-hidden="true"><i data-track-bar></i></span>
             </button>
@@ -92,7 +92,7 @@
             <p><strong>Ordem sugerida</strong><span id="track-details-order"></span></p>
           </div>
           <ol class="track-modules" id="track-modules"></ol>
-          <p class="track-details__note">As próximas missões ainda serão criadas. Smoke Test será a primeira implementação desta etapa.</p>
+          <p class="track-details__note" id="track-details-note"></p>
         </section>
       </div>
     </main>

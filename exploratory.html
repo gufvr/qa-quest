@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Missão de teste exploratório do QA Quest em uma loja fictícia da Bazaraza." />
+    <title>Teste Exploratório — QA Quest</title>
+    <link rel="icon" type="image/png" href="qaquest.png" />
+    <link rel="apple-touch-icon" href="qaquest.png" />
+    <script>document.documentElement.dataset.theme = localStorage.getItem("qa-quest-theme") || "dark";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/exploratory.css" />
+  </head>
+  <body class="exploratory-page">
+    <a class="skip-link" href="#exploratory-main">Ir para o simulador</a>
+    <qa-header variant="simulator"></qa-header>
+
+    <main class="exploratory-main" id="exploratory-main">
+      <div class="exploratory-container">
+        <header class="exploratory-intro">
+          <div>
+            <span class="label label--cyan">TRILHA 01 · FLUXOS E INVESTIGAÇÃO</span>
+            <h1>Laboratório Exploratório</h1>
+          </div>
+          <p>Investigue a Bazaraza como faria em um turno real de QA: crie hipóteses, experimente comportamentos e registre evidências.</p>
+        </header>
+
+        <section class="exploratory-workspace" id="exploratory-workspace">
+          <aside class="exploration-briefing" aria-labelledby="briefing-title">
+            <div class="exploration-heading"><span aria-hidden="true">⌕</span><div><small>MISSÃO ABERTA</small><strong id="briefing-title">Carrinho Bazaraza</strong></div></div>
+            <section>
+              <span>OBJETIVO</span>
+              <p>Explorar o fluxo de compra e encontrar comportamentos que coloquem pedido, desconto ou dados de entrega em risco.</p>
+            </section>
+            <section>
+              <span>HEURÍSTICAS PARA COMEÇAR</span>
+              <ul>
+                <li>Varie quantidade, ritmo e ordem das ações.</li>
+                <li>Teste o que acontece ao desfazer uma ação.</li>
+                <li>Use dados incomuns nos campos.</li>
+                <li>Observe mensagens, totais e persistência.</li>
+              </ul>
+            </section>
+            <div class="exploration-tip"><strong>Sem roteiro fixo</strong><p>Você decide por onde explorar. A missão registra os sinais relevantes conforme eles aparecem.</p></div>
+          </aside>
+
+          <section class="shop-panel" aria-label="Loja Bazaraza simulada">
+            <div class="shop-browser">
+              <div class="shop-browser__bar" aria-hidden="true"><span class="browser-dots"><i></i><i></i><i></i></span><span class="shop-address" id="shop-address">bazaraza.test/catalog</span><span>↻</span></div>
+              <div class="shop-app">
+                <header class="shop-nav">
+                  <strong><b>B</b> Bazaraza</strong>
+                  <nav aria-label="Navegação da loja"><button type="button" data-view="catalog">Produtos</button><button type="button" data-view="cart">Carrinho <span id="cart-count">0</span></button><button type="button" data-view="checkout">Checkout</button></nav>
+                </header>
+
+                <section class="shop-view" data-shop-view="catalog">
+                  <span class="shop-kicker">COLEÇÃO DE FIM DE SEMANA</span>
+                  <h2>Itens para testar o carrinho.</h2>
+                  <article class="product-card"><div class="product-visual" aria-hidden="true">◒</div><div><span>MOCHILA URBANA</span><strong>R$ 189,90</strong><p>Estoque informado: 5 unidades.</p><button class="shop-button" id="add-product" type="button">Adicionar ao carrinho</button></div></article>
+                </section>
+
+                <section class="shop-view" data-shop-view="cart" hidden>
+                  <span class="shop-kicker">SEU CARRINHO</span>
+                  <h2>Revise seu pedido.</h2>
+                  <div class="cart-item"><div><strong>Mochila Urbana</strong><small>R$ 189,90 por unidade</small></div><div class="quantity-control"><button id="decrease-quantity" type="button" aria-label="Diminuir quantidade">−</button><strong id="quantity-value">0</strong><button id="increase-quantity" type="button" aria-label="Aumentar quantidade">+</button></div></div>
+                  <p class="stock-message" id="stock-message">Adicione um item para começar.</p>
+                  <div class="coupon-box"><label for="coupon-input">Cupom</label><div><input id="coupon-input" type="text" placeholder="Ex.: BAZAR10" /><button id="apply-coupon" type="button">Aplicar</button></div><small id="coupon-message"></small><button class="text-button" id="remove-coupon" type="button" hidden>Remover cupom</button></div>
+                  <div class="cart-total"><span>Total</span><strong id="cart-total">R$ 0,00</strong></div>
+                  <button class="shop-button" data-view="checkout" type="button">Ir para checkout →</button>
+                </section>
+
+                <section class="shop-view" data-shop-view="checkout" hidden>
+                  <span class="shop-kicker">ENTREGA E PAGAMENTO</span>
+                  <h2>Finalize seu pedido.</h2>
+                  <label class="checkout-field" for="address-input">Endereço de entrega<input id="address-input" type="text" placeholder="Rua, número e complemento" /></label>
+                  <label class="checkout-field" for="cep-input">CEP<input id="cep-input" type="text" placeholder="00000-000" /></label>
+                  <small class="checkout-message" id="checkout-message"></small>
+                  <button class="shop-button" id="finish-order" type="button">Finalizar compra</button>
+                </section>
+              </div>
+            </div>
+            <button class="simulated-refresh" id="simulate-refresh" type="button">↻ Simular atualização da página</button>
+          </section>
+
+          <aside class="evidence-panel" aria-labelledby="evidence-title">
+            <div class="evidence-progress"><div><span>EVIDÊNCIAS ENCONTRADAS</span><strong id="evidence-count">0 / 4</strong></div><div><i id="evidence-progress"></i></div></div>
+            <section class="exploration-task"><span>SEU FOCO</span><h2 id="evidence-title">Explore antes de concluir.</h2><p>Teste diferentes caminhos da loja. Quando achar um comportamento suspeito, ele aparecerá no quadro de evidências.</p></section>
+            <section class="evidence-list" aria-live="polite" id="evidence-list"><p class="evidence-list__empty">Nenhuma evidência registrada ainda.</p></section>
+            <form class="evidence-review" id="evidence-review" hidden>
+              <div><span>REVISÃO FINAL</span><strong>Quais evidências merecem reporte?</strong></div>
+              <p>Selecione os comportamentos que representam defeitos reais antes de fechar a investigação.</p>
+              <div id="evidence-options"></div>
+              <p id="review-error" role="alert" hidden></p>
+              <button class="button button--primary" type="submit">Concluir investigação</button>
+            </form>
+          </aside>
+        </section>
+
+        <section class="exploratory-result" id="exploratory-result" hidden aria-labelledby="result-title">
+          <div class="exploratory-result__icon" aria-hidden="true">✓</div>
+          <span class="label label--cyan">EXPLORAÇÃO CONCLUÍDA</span>
+          <h2 id="result-title" tabindex="-1">Você transformou curiosidade em evidência.</h2>
+          <p id="result-summary"></p>
+          <qa-save-status></qa-save-status>
+          <div class="exploratory-result__stats"><div><span>EVIDÊNCIAS</span><strong id="result-evidence">0 / 4</strong></div><div><span>DECISÃO</span><strong id="result-review">0 / 4</strong></div><div><span>EXPERIÊNCIA</span><strong><span id="result-xp">0</span> XP</strong></div></div>
+          <div class="exploratory-result__actions"><button class="button button--primary" id="restart-exploration" type="button">Explorar novamente</button><a class="button button--ghost" href="tracks.html">Voltar às trilhas</a></div>
+        </section>
+      </div>
+    </main>
+
+    <script type="module" src="components/brand.js"></script>
+    <script type="module" src="components/theme-toggle.js"></script>
+    <script type="module" src="components/header.js"></script>
+    <script type="module" src="components/save-status.js"></script>
+    <script type="module" src="core/progress.js"></script>
+    <script type="module" src="pages/exploratory.js"></script>
+  </body>
+</html>

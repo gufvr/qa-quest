@@ -13,7 +13,7 @@ Plataforma gamificada para estudar Quality Assurance por meio de desafios, anál
 - **Fase 3 — Simulador de Login:** execução funcional e registro de defeito.
 - **Fase 4 — Plano de Testes:** definição de escopo, riscos, estratégia, prioridades e critérios de saída.
 
-Após a Fase 4, o **hub de trilhas** apresenta Confiança na release, Fluxos e investigação e Qualidade especializada. A Fase 3 já conta como introdução a testes funcionais; as próximas missões ainda serão implementadas.
+Após a Fase 4, o **hub de trilhas** apresenta Fluxos e investigação, Confiança na release e Qualidade especializada. A Fase 3 introduz o teste funcional, e a Trilha 01 inclui o Laboratório de Teste Exploratório.
 
 O progresso por trilha, XP compartilhado, tentativas, tema e desbloqueios são salvos no navegador.
 
@@ -50,6 +50,7 @@ qa-quest/
 ├── phase2.html   # Fase 2
 ├── phase3.html   # Fase 3
 ├── phase4.html   # Fase 4
+├── exploratory.html # laboratório de teste exploratório
 └── tracks.html   # hub de trilhas
 ```
 
