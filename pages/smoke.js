@@ -162,7 +162,7 @@ function updateProgress() {
   const status = get("smoke-release-status");
   status.dataset.blocked = String(failures.length > 0);
   status.textContent = failures.length
-    ? "Smoke reprovado · " + failures.length + " falha(s) crítica(s). Release bloqueada; testes aprofundados não liberados."
+    ? "Smoke reprovado · BZ-2026.10 · " + failures.length + " falha(s) crítica(s). Esta release está bloqueada; testes aprofundados não liberados."
     : count === checks.length
       ? "Smoke aprovado tecnicamente · checks essenciais aprovados. Testes aprofundados liberados; produção ainda não avaliada."
       : count ? "Em avaliação · há verificações essenciais restantes."
@@ -264,7 +264,7 @@ function initializeMission() {
     get("header-xp").textContent = String(score());
     if (!correctDecision || !correctImpact) {
       const messages = [];
-      if (!correctDecision) messages.push("Reprove o Smoke Test e bloqueie a release: o checkout retorna 503 e a API de pedidos retorna 500. As falhas críticas impedem liberar testes aprofundados.");
+      if (!correctDecision) messages.push("Reprove o Smoke Test e bloqueie apenas esta release, BZ-2026.10: o checkout retorna 503 e a API de pedidos retorna 500. As falhas críticas impedem liberar testes aprofundados; isso não reprova a Bazaraza como produto.");
       if (!correctImpact) messages.push("O cliente não consegue concluir a compra nem consultar pedidos. Quatro checks aprovados não compensam esses impedimentos. Um Smoke Test aprovado liberaria apenas testes aprofundados; não aprovaria a aplicação para produção.");
       messages.push("Revise o parecer. Respostas incorretas passam a valer 10 XP quando corrigidas.");
       showFeedback("smoke-review-feedback", messages.join(" "));
@@ -281,7 +281,7 @@ function initializeMission() {
     get("smoke-workspace").hidden = true;
     get("smoke-result").hidden = false;
     get("smoke-result-xp").textContent = score() + " XP";
-    get("smoke-result-summary").textContent = "Missão concluída com o parecer técnico correto: Smoke reprovado e release bloqueada. Melhor resultado: " + saved.bestXp +
+    get("smoke-result-summary").textContent = "Missão concluída com o parecer técnico correto: o Smoke Test da release BZ-2026.10 foi reprovado e somente esta release está bloqueada. Melhor resultado: " + saved.bestXp +
       " XP · Tentativas concluídas: " + saved.attempts + " · XP compartilhado: " + saved.totalXp + ".";
     get("smoke-result-evidence").replaceChildren(...checks.map(makeEvidence));
     saveStatus.show(saved);

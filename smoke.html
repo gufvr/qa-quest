@@ -33,7 +33,7 @@
           <p>Uma nova versão da Bazaraza chegou à homologação. Confira o essencial, registre evidências e decida se vale avançar para testes aprofundados.</p>
         </header>
         <section class="smoke-briefing" aria-labelledby="briefing-title">
-          <div><span class="label">RELEASE BZ-2026.10 · SIMULAÇÃO LOCAL</span><h2 id="briefing-title">Esta versão está estável para seguir para testes aprofundados?</h2><p>Faça seis verificações curtas. Uma falha crítica reprova o Smoke Test e bloqueia a release. Se os checks essenciais passarem, o parecer técnico é Smoke aprovado e os testes aprofundados podem começar. Isso não aprova a aplicação para produção: essa decisão só vem depois de avaliar os testes seguintes.</p></div>
+          <div><span class="label">RELEASE BZ-2026.10 · SIMULAÇÃO LOCAL</span><h2 id="briefing-title">Esta versão estável da Bazaraza pode seguir para testes aprofundados?</h2><p>Faça seis verificações curtas. O parecer vale somente para a release BZ-2026.10 desta simulação, não para a Bazaraza como produto. Uma falha crítica reprova o Smoke Test e bloqueia esta release. Se os checks essenciais passarem, o Smoke Test é aprovado e os testes aprofundados podem começar. Aprovar o Smoke não significa aprovar a aplicação para produção; essa decisão só vem depois de avaliar os testes seguintes. Você conclui esta missão ao emitir o parecer correto.</p></div>
           <div class="smoke-score-guide"><strong>Até 100 XP</strong><span>6 classificações × 10 XP<br />Decisão: 20 XP · Impacto: 20 XP</span><small>Uma resposta corrigida vale metade dos pontos daquele item. Reabrir um check não reduz a pontuação.</small></div>
         </section>
         <section id="smoke-workspace" class="smoke-workspace" aria-label="Bancada de Smoke Test">
@@ -97,11 +97,12 @@
         <section class="smoke-result smoke-panel" id="smoke-result" aria-labelledby="smoke-result-title" hidden>
           <span class="label label--cyan">MISSÃO CONCLUÍDA · PARECER DE QA CORRETO</span>
           <h2 id="smoke-result-title" tabindex="-1">Smoke reprovado. Release bloqueada.</h2>
-          <p>Você concluiu a missão porque identificou as falhas críticas e emitiu o parecer técnico correto: esta release não está liberada para testes aprofundados. Concluir a missão registra seu diagnóstico; não aprova a release. Após a correção, uma nova versão precisa passar pelo Smoke Test para liberar testes aprofundados. A aprovação para produção será uma decisão posterior, depois de avaliar esses testes.</p>
+          <p>Você concluiu a missão porque identificou as falhas críticas e emitiu o parecer técnico correto. A release BZ-2026.10 foi reprovada no Smoke Test e está bloqueada para testes aprofundados; isso não reprova a Bazaraza como produto. Concluir a missão registra seu diagnóstico, não aprova a release. Uma nova versão precisará passar pelo Smoke Test antes de liberar testes aprofundados. A aprovação para produção será decidida depois, com base nos resultados dessas etapas.</p>
           <div class="smoke-result__stats"><div><span>CHECKS</span><strong>6 / 6</strong></div><div><span>FALHAS CRÍTICAS</span><strong>2</strong></div><div><span>NESTA TENTATIVA</span><strong id="smoke-result-xp">0 XP</strong></div></div>
           <p id="smoke-result-summary"></p>
           <qa-save-status></qa-save-status>
           <details class="smoke-result__evidence"><summary>Consultar as seis evidências</summary><div id="smoke-result-evidence"></div></details>
+          <details class="smoke-result__example"><summary>Ver um exemplo de Smoke Test aprovado</summary><p><strong>Exemplo hipotético, não executado nesta missão:</strong> após corrigir os defeitos, uma nova versão passa pelos checks essenciais. Parecer técnico: “Smoke Test aprovado; testes aprofundados liberados”. Isso ainda não aprova a aplicação para produção.</p></details>
           <p class="smoke-learning">Smoke verifica rapidamente se os fluxos essenciais estão disponíveis. Um Smoke Test aprovado libera o início de testes aprofundados, mas, sozinho, não aprova a aplicação para produção. A missão está concluída; a release simulada continua bloqueada.</p>
           <div class="smoke-result__actions"><button class="button button--primary" id="restart-smoke" type="button">Repetir missão</button><a class="button button--ghost" href="tracks.html">Voltar às trilhas</a></div>
         </section>

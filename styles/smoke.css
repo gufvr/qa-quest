@@ -96,7 +96,9 @@
 .smoke-result__stats span { color: var(--muted); font-size: .65rem; font-weight: 800; letter-spacing: .1em; }
 .smoke-result__stats strong { color: var(--cyan); font: 700 1.4rem "Space Grotesk", sans-serif; }
 .smoke-result__evidence { margin-top: 24px; text-align: left; }
-.smoke-result__evidence summary { margin-bottom: 14px; color: var(--cyan); font-size: .85rem; font-weight: 800; cursor: pointer; }
+.smoke-result__example { margin-top: 18px; text-align: left; }
+.smoke-result__evidence summary, .smoke-result__example summary { margin-bottom: 14px; color: var(--cyan); font-size: .85rem; font-weight: 800; cursor: pointer; }
+.smoke-result__example p { margin: 14px 0 0; color: var(--muted); font-size: .83rem; line-height: 1.6; }
 .smoke-result .smoke-learning { margin: 26px 0; padding: 16px; background: var(--navy-900); border-radius: 10px; font-size: .8rem; }
 .smoke-result__actions { display: flex; justify-content: center; gap: 12px; }
 .smoke-locked { max-width: 780px; min-height: 60vh; padding-block: 40px; }

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Valide uma correção do Checkout da Bazaraza em uma missão focada de Teste de Sanidade." />
+    <title>Teste de Sanidade — QA Quest</title>
+    <link rel="icon" type="image/png" href="qaquest.png" />
+    <link rel="apple-touch-icon" href="qaquest.png" />
+    <script>
+      try { document.documentElement.dataset.theme = localStorage.getItem("qa-quest-theme") || "dark"; }
+      catch { document.documentElement.dataset.theme = "dark"; }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/sanity.css" />
+  </head>
+  <body class="sanity-page">
+    <a class="skip-link" href="#sanity-main">Ir para a missão</a>
+    <qa-header variant="simulator"></qa-header>
+    <main class="sanity-container" id="sanity-main">
+      <section class="sanity-locked" id="sanity-locked" hidden>
+        <span class="label label--cyan">BASE COMUM</span>
+        <h1>Conclua a Fase 4 para iniciar esta missão.</h1>
+        <p>Você pode começar a Sanidade sem concluir Smoke Test ou outra trilha. O contexto do defeito anterior está incluído aqui.</p>
+        <a class="button button--primary" id="sanity-locked-link" href="index.html">Voltar à jornada</a>
+      </section>
+      <div id="sanity-content" hidden>
+        <header class="sanity-intro">
+          <div><span class="label label--cyan">TRILHA 02 · CONFIANÇA NA RELEASE</span><h1>O ajuste resolveu?</h1></div>
+          <p>A equipe corrigiu a abertura do Checkout da Bazaraza. Confirme a correção e confira os dados próximos antes de aceitar a candidata.</p>
+        </header>
+        <section class="sanity-briefing" aria-labelledby="sanity-briefing-title">
+          <div>
+            <span class="label">DEFEITO BZ-CHECKOUT-503 · CENÁRIO FICTÍCIO</span>
+            <h2 id="sanity-briefing-title">Uma correção. Um escopo focado.</h2>
+            <p>Esta Sanidade reúne a confirmação do defeito original e verificações próximas da área alterada. Você não precisa repetir Home, Login ou a jornada de compra completa. Use apenas dados fictícios; nenhum pedido ou pagamento será realizado.</p>
+            <div class="sanity-releases">
+              <div><span>ANTES · BZ-2026.10</span><strong>Checkout indisponível</strong><p>Evidência do Smoke: GET /checkout → 503. Entrega e pagamento não carregavam.</p></div>
+              <div><span>AGORA · BZ-2026.10.1</span><strong>Correção entregue para validar</strong><p>A equipe informa que o Checkout voltou a abrir. Item, quantidade e total devem ser preservados, com frete grátis.</p></div>
+            </div>
+          </div>
+          <aside class="sanity-scoring"><strong>Até 100 XP</strong><p>4 ações × 10 XP<br />4 classificações × 10 XP<br />Parecer e justificativa: 20 XP</p><small>Uma resposta corrigida vale metade dos pontos daquele item. O parecer vale apenas para esta candidata, não para o produto inteiro.</small></aside>
+        </section>
+        <section class="sanity-workspace" id="sanity-workspace" aria-label="Bancada de Teste de Sanidade">
+          <aside class="sanity-panel sanity-checklist" aria-labelledby="sanity-checks-title">
+            <span class="label label--cyan">ÁREA ALTERADA: CHECKOUT</span>
+            <h2 id="sanity-checks-title">Confira a correção.</h2>
+            <div class="sanity-progress-copy"><span>Checks registrados</span><strong id="sanity-count">0 / 4</strong></div>
+            <div id="sanity-progress" role="progressbar" aria-label="Checks registrados" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0"><i id="sanity-bar"></i></div>
+            <ol id="sanity-steps"></ol>
+            <p class="sanity-tip">Acompanhe a expectativa de cada check. A abertura da tela e a coerência dos dados são verificações diferentes.</p>
+          </aside>
+          <section class="sanity-panel sanity-lab" aria-labelledby="sanity-check-title">
+            <header class="sanity-lab__heading"><span class="label">CHECK FOCADO</span><h2 id="sanity-check-title" tabindex="-1"></h2><p id="sanity-expected"></p></header>
+            <div class="sanity-browser" aria-label="Loja fictícia Bazaraza">
+              <div class="sanity-browser__bar"><span aria-hidden="true">● ● ●</span><span id="sanity-address">bazaraza.test/cart</span><small>Simulado</small></div>
+              <header class="sanity-store-nav"><strong><b>B</b> Bazaraza</strong><span>BZ-2026.10.1</span></header>
+              <div class="sanity-store">
+                <section data-sanity-view="cart">
+                  <span class="sanity-store-kicker">CARRINHO DE TESTE</span><h3>Prepare o caso da correção.</h3>
+                  <article class="sanity-product"><strong>Mochila Urbana</strong><span>R$ 189,90 por unidade · Frete grátis</span><label for="sanity-quantity">Quantidade<select id="sanity-quantity"><option value="1">1 unidade</option><option value="2">2 unidades</option><option value="3">3 unidades</option></select></label></article>
+                  <div class="sanity-store-total"><span>Total do carrinho</span><strong id="sanity-cart-total">R$ 189,90</strong></div>
+                  <button class="sanity-store-button" id="open-sanity-checkout" type="button">Abrir Checkout com este carrinho</button>
+                </section>
+                <section data-sanity-view="checkout" hidden>
+                  <span class="sanity-store-kicker">CHECKOUT · RESPOSTA SIMULADA</span><h3>A tela de entrega voltou.</h3>
+                  <p class="sanity-http">200 OK · Checkout carregado</p>
+                  <div class="sanity-reference"><span>Referência do carrinho</span><strong id="sanity-cart-reference"></strong></div>
+                  <div class="sanity-order-row"><span>Mochila Urbana <small id="sanity-checkout-quantity"></small></span><strong id="sanity-item-subtotal"></strong></div>
+                  <p class="sanity-store-note">Frete grátis · sem taxas adicionais contratadas.</p>
+                  <form id="sanity-fields-form" novalidate>
+                    <label class="sanity-field" for="sanity-address-input">Endereço fictício<input id="sanity-address-input" type="text" placeholder="Rua Bazaraza, 101" autocomplete="off" maxlength="160" /></label>
+                    <label class="sanity-field" for="sanity-cep-input">CEP fictício<input id="sanity-cep-input" type="text" placeholder="01001-000" autocomplete="off" inputmode="numeric" maxlength="9" /></label>
+                    <label class="sanity-field" for="sanity-payment-input">Pagamento simulado<select id="sanity-payment-input"><option value="">Selecione uma forma</option><option value="pix">Pix de teste</option><option value="card">Cartão de teste · final 4242</option></select></label>
+                    <p id="sanity-fields-feedback" class="sanity-field-feedback" role="status" hidden></p>
+                    <button class="sanity-store-button" id="validate-sanity-fields" type="submit" hidden>Verificar campos preenchidos</button>
+                  </form>
+                  <div class="sanity-store-total"><span>Total no Checkout</span><strong id="sanity-checkout-total"></strong></div>
+                  <button class="sanity-store-button" id="compare-sanity-data" type="button" hidden>Comparar dados com o carrinho</button>
+                  <div class="sanity-comparison" id="sanity-comparison" hidden></div>
+                </section>
+                <section data-sanity-view="empty" hidden>
+                  <span class="sanity-store-kicker">CONDIÇÃO PRÓXIMA</span><h3>E se o carrinho estiver vazio?</h3>
+                  <p class="sanity-store-note">Este caso começa com um carrinho vazio separado. Ele não altera a evidência do carrinho anterior.</p>
+                  <div class="sanity-empty-cart">Seu carrinho está vazio.</div>
+                  <button class="sanity-store-button" id="open-empty-sanity-checkout" type="button">Tentar abrir Checkout vazio</button>
+                  <div class="sanity-empty-guard" id="sanity-empty-guard" role="status" hidden><strong>Adicione um item antes de continuar.</strong><p>O Checkout não foi aberto. A loja manteve o cliente no carrinho.</p></div>
+                </section>
+              </div>
+            </div>
+            <section id="sanity-observation" class="sanity-observation" aria-labelledby="sanity-observed-title" hidden>
+              <h3 id="sanity-observed-title">Resultado observado</h3><p id="sanity-observed"></p>
+            </section>
+            <form id="sanity-classification" class="sanity-classification" hidden>
+              <fieldset><legend>Este check atendeu ao resultado esperado?</legend><div><button type="submit" name="classification" value="pass">Passou</button><button type="submit" name="classification" value="fail">Falhou</button></div></fieldset>
+              <p id="sanity-classification-feedback" class="sanity-feedback" role="status" aria-live="polite" hidden></p>
+            </form>
+            <button class="button button--ghost sanity-next" id="next-sanity-check" type="button" hidden>Continuar verificação →</button>
+          </section>
+          <aside class="sanity-panel sanity-report" aria-labelledby="sanity-report-title">
+            <span class="label label--cyan">EVIDÊNCIAS DA CANDIDATA</span><h2 id="sanity-report-title">O que mudou de verdade?</h2>
+            <p id="sanity-candidate-status" class="sanity-candidate-status" role="status">BZ-2026.10.1 · Aguardando verificações focadas.</p>
+            <div id="sanity-evidence" aria-live="polite"></div>
+            <p id="sanity-review-hint" class="sanity-tip">Registre os quatro checks antes do parecer.</p>
+            <form id="sanity-review" class="sanity-review" hidden>
+              <fieldset><legend>Qual é o parecer desta Sanidade?</legend>
+                <label><input type="radio" name="decision" value="accept" required /> Aceitar a candidata: a correção está validada</label>
+                <label><input type="radio" name="decision" value="return" required /> Devolver a candidata para ajuste</label>
+              </fieldset>
+              <fieldset><legend>Qual evidência fundamenta esse parecer?</legend>
+                <label><input type="radio" name="reason" value="http" required /> O Checkout ainda retorna 503 e não abre.</label>
+                <label><input type="radio" name="reason" value="total" required /> O Checkout abre, mas o total difere do carrinho sem uma taxa contratada.</label>
+                <label><input type="radio" name="reason" value="regression" required /> Era obrigatório executar toda a regressão para validar esta correção.</label>
+              </fieldset>
+              <p id="sanity-review-feedback" class="sanity-feedback" role="status" aria-live="polite" hidden></p>
+              <button class="button button--primary" type="submit">Concluir Sanidade com parecer</button>
+            </form>
+          </aside>
+        </section>
+        <section class="sanity-result sanity-panel" id="sanity-result" aria-labelledby="sanity-result-title" hidden>
+          <span class="label label--cyan">MISSÃO CONCLUÍDA · PARECER CORRETO</span>
+          <h2 id="sanity-result-title" tabindex="-1">O 503 saiu. O total ainda falha.</h2>
+          <p>Você confirmou a correção da abertura do Checkout e encontrou uma inconsistência próxima. A Sanidade da BZ-2026.10.1 foi reprovada: devolva esta candidata para corrigir o cálculo. O parecer vale para esta versão; não reprova a Bazaraza como produto.</p>
+          <div class="sanity-result__stats"><div><span>CHECKS</span><strong>4 / 4</strong></div><div><span>INCONSISTÊNCIA</span><strong>1</strong></div><div><span>NESTA TENTATIVA</span><strong id="sanity-result-xp">0 XP</strong></div></div>
+          <p id="sanity-result-summary"></p><qa-save-status></qa-save-status>
+          <details class="sanity-result__evidence"><summary>Revisar as quatro evidências</summary><div id="sanity-result-evidence"></div></details>
+          <p class="sanity-learning">O foco da Sanidade foi a correção e seu entorno. Smoke verifica rapidamente os fluxos essenciais da versão; E2E acompanha uma jornada completa. Após corrigir os impedimentos e repetir a validação focada, uma regressão será necessária para verificar funcionalidades que já funcionavam. Nenhuma dessas etapas, isoladamente, representa aprovação para produção.</p>
+          <div class="sanity-result__actions"><button class="button button--primary" id="restart-sanity" type="button">Repetir missão</button><a class="button button--ghost" href="tracks.html">Voltar às trilhas</a></div>
+        </section>
+      </div>
+    </main>
+    <script type="module" src="components/brand.js"></script>
+    <script type="module" src="components/theme-toggle.js"></script>
+    <script type="module" src="components/header.js"></script>
+    <script type="module" src="components/save-status.js"></script>
+    <script type="module" src="core/progress.js"></script>
+    <script type="module" src="pages/sanity.js"></script>
+  </body>
+</html>

@@ -13,7 +13,8 @@ export default defineConfig({
         tracks: "tracks.html",
         exploratory: "exploratory.html",
         e2e: "e2e.html",
-        smoke: "smoke.html"
+        smoke: "smoke.html",
+        sanity: "sanity.html"
       }
     }
   }
