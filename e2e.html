@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Missão de teste End-to-End do QA Quest na loja fictícia Bazaraza." />
+    <title>Teste End-to-End — QA Quest</title>
+    <link rel="icon" type="image/png" href="qaquest.png" />
+    <link rel="apple-touch-icon" href="qaquest.png" />
+    <script>
+      try { document.documentElement.dataset.theme = localStorage.getItem("qa-quest-theme") || "dark"; }
+      catch { document.documentElement.dataset.theme = "dark"; }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/e2e.css" />
+  </head>
+  <body class="e2e-page">
+    <a class="skip-link" href="#e2e-main">Ir para o simulador</a>
+    <qa-header variant="simulator"></qa-header>
+
+    <main class="e2e-main" id="e2e-main">
+      <div class="e2e-container">
+        <section class="e2e-locked" id="e2e-locked" hidden>
+          <span class="label label--cyan">BASE COMUM</span>
+          <h1>Conclua a Fase 4 para iniciar esta missão.</h1>
+          <p>O simulador E2E faz parte das trilhas disponíveis após o plano de testes.</p>
+          <a class="button button--primary" id="e2e-locked-link" href="index.html">Voltar à jornada</a>
+        </section>
+        <div id="e2e-content" hidden>
+        <header class="e2e-intro">
+          <div>
+            <span class="label label--cyan">TRILHA 01 · FLUXOS E INVESTIGAÇÃO</span>
+            <h1>Jornada End-to-End</h1>
+          </div>
+          <p>Acompanhe a compra da Bazaraza do catálogo à confirmação pós-compra e compare cada estado com o que o cliente deveria receber.</p>
+        </header>
+
+        <section class="e2e-workspace" id="e2e-workspace">
+          <aside class="journey-panel" aria-labelledby="journey-title">
+            <div class="journey-panel__heading"><span aria-hidden="true">↝</span><div><small>JORNADA DO CLIENTE</small><strong id="journey-title">Compra de uma mochila</strong></div></div>
+            <ol class="journey-steps">
+              <li data-step="catalog"><span>01</span><div><strong>Produto</strong><small>Escolha a mochila indicada.</small></div></li>
+              <li data-step="cart"><span>02</span><div><strong>Carrinho</strong><small>Aplique o cupom BAZAR10.</small></div></li>
+              <li data-step="delivery"><span>03</span><div><strong>Entrega</strong><small>Informe endereço e CEP.</small></div></li>
+              <li data-step="payment"><span>04</span><div><strong>Pagamento</strong><small>Simule uma compra aprovada.</small></div></li>
+              <li data-step="order"><span>05</span><div><strong>Pedido</strong><small>Compare aprovação e status.</small></div></li>
+              <li data-step="post"><span>06</span><div><strong>Pós-compra</strong><small>Revise a confirmação recebida.</small></div></li>
+            </ol>
+            <div class="journey-panel__tip"><strong>O que valida um E2E?</strong><p>O mesmo pedido precisa manter dados e estados coerentes em todas as etapas. Use apenas dados fictícios nesta simulação.</p><p>Até 100 XP: 60 pela execução, 30 pelas comparações e 10 pela revisão. Novas tentativas de resposta valem metade dos pontos da pergunta.</p></div>
+          </aside>
+
+          <section class="e2e-app-panel" aria-label="Loja Bazaraza simulada">
+            <div class="e2e-browser">
+              <div class="e2e-browser__bar" aria-hidden="true"><span class="browser-dots"><i></i><i></i><i></i></span><span id="e2e-address">bazaraza.test/catalog</span><span>↻</span></div>
+              <div class="e2e-store">
+                <header class="e2e-store__nav"><strong><b>B</b> Bazaraza</strong><span id="order-chip">Pedido em andamento</span></header>
+
+                <section class="e2e-view" data-e2e-view="catalog">
+                  <span class="store-kicker">CATÁLOGO</span>
+                  <h2 tabindex="-1">Escolha o item da jornada.</h2>
+                  <article class="e2e-product"><div aria-hidden="true">◒</div><section><span>MOCHILA URBANA</span><strong>R$ 189,90</strong><p>Entrega em até 3 dias úteis.</p><button class="store-button" id="add-e2e-product" type="button">Adicionar ao carrinho</button></section></article>
+                </section>
+
+                <section class="e2e-view" data-e2e-view="cart" hidden>
+                  <span class="store-kicker">CARRINHO</span>
+                  <h2 tabindex="-1">Confirme os dados antes de avançar.</h2>
+                  <div class="summary-row"><span>Mochila Urbana <small>R$ 189,90 por unidade</small></span><strong id="cart-subtotal">R$ 189,90</strong></div>
+                  <label class="store-field quantity-field" for="e2e-quantity">Quantidade<select id="e2e-quantity"><option value="1">1 unidade</option><option value="2">2 unidades</option><option value="3">3 unidades</option></select></label>
+                  <div class="coupon-control"><label for="e2e-coupon">Cupom de desconto</label><div><input id="e2e-coupon" type="text" placeholder="Digite BAZAR10" /><button id="apply-e2e-coupon" type="button">Aplicar</button></div><small id="coupon-feedback" role="status"></small></div>
+                  <div class="store-total"><span>Total do carrinho</span><strong id="cart-summary-total">R$ 189,90</strong></div>
+                  <button class="store-button" id="to-delivery" type="button">Continuar para entrega →</button>
+                </section>
+
+                <section class="e2e-view" data-e2e-view="delivery" hidden>
+                  <span class="store-kicker">ENTREGA</span>
+                  <h2 tabindex="-1">Onde este pedido será entregue?</h2>
+                  <div class="reference-total"><span>Total confirmado no carrinho</span><strong id="cart-reference-total"></strong></div>
+                  <p class="store-note">Frete grátis. O cupom deve continuar válido em todas as etapas.</p>
+                  <label class="store-field" for="delivery-address">Endereço fictício<input id="delivery-address" type="text" autocomplete="off" placeholder="Rua Bazaraza, 101" maxlength="160" /></label>
+                  <label class="store-field" for="delivery-cep">CEP fictício<input id="delivery-cep" type="text" autocomplete="off" inputmode="numeric" placeholder="01001-000" maxlength="9" /></label>
+                  <div class="store-total store-total--checkout"><span>Total no checkout</span><strong id="checkout-summary-total">R$ 189,90</strong></div>
+                  <small class="store-message" id="delivery-message" role="status"></small>
+                  <button class="store-button" id="to-payment" type="button">Escolher pagamento →</button>
+                </section>
+
+                <section class="e2e-view" data-e2e-view="payment" hidden>
+                  <span class="store-kicker">PAGAMENTO</span>
+                  <h2 tabindex="-1">Selecione uma forma de pagamento.</h2>
+                  <dl class="order-details" id="payment-details"></dl>
+                  <fieldset class="payment-options"><legend>Forma de pagamento simulada</legend>
+                    <label class="payment-option"><input name="payment" type="radio" value="pix" checked /><span><strong>Pix simulado</strong><small>Aprovação imediata</small></span></label>
+                    <label class="payment-option"><input name="payment" type="radio" value="card" /><span><strong>Cartão de teste</strong><small>Final 4242 · sem dados reais</small></span></label>
+                  </fieldset>
+                  <div class="store-total"><span>Valor para pagamento</span><strong id="payment-summary-total">R$ 189,90</strong></div>
+                  <button class="store-button" id="approve-payment" type="button">Pagar e concluir pedido</button>
+                </section>
+
+                <section class="e2e-view" data-e2e-view="order" hidden>
+                  <span class="store-kicker">PEDIDO CRIADO</span>
+                  <h2 tabindex="-1">Pedido #BZ-314 criado.</h2>
+                  <div class="order-status"><span id="payment-status">Aguardando pagamento</span><p id="payment-result"></p></div>
+                  <dl class="order-details" id="order-details"></dl>
+                  <div class="summary-row"><span>Total do pedido</span><strong id="order-summary-total"></strong></div>
+                  <button class="store-button" id="to-post-purchase" type="button">Ver confirmação pós-compra →</button>
+                </section>
+
+                <section class="e2e-view" data-e2e-view="post" hidden>
+                  <span class="store-kicker">CONFIRMAÇÃO ENVIADA</span>
+                  <h2 tabindex="-1">E-mail para cliente@bazaraza.test</h2>
+                  <article class="email-preview"><strong>Recebemos seu pedido!</strong><p>Pedido #BZ-314 · Bazaraza</p><dl class="order-details" id="email-details"></dl><div><span>Total informado no e-mail</span><strong id="email-summary-total"></strong></div></article>
+                  <div class="reference-total"><span>Total registrado no pedido</span><strong id="order-reference-total"></strong></div>
+                  <button class="store-button" id="open-e2e-review" type="button">Revisar evidências →</button>
+                </section>
+              </div>
+            </div>
+          </section>
+
+          <aside class="checkpoint-panel" aria-labelledby="checkpoint-title">
+            <div class="checkpoint-progress"><div><span>CHECKPOINTS</span><strong id="checkpoint-count">0 / 6</strong></div><div role="progressbar" aria-label="Checkpoints concluídos" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0" id="checkpoint-progress"><i id="checkpoint-bar"></i></div></div>
+            <section class="checkpoint-task"><span>FOCO DA MISSÃO</span><h2 id="checkpoint-title">Siga o mesmo pedido.</h2><p id="checkpoint-instruction">Escolha a mochila e registre as comparações da jornada.</p></section>
+            <form class="checkpoint-check" id="checkpoint-check" hidden>
+              <fieldset><legend id="comparison-question"></legend>
+                <button type="submit" name="comparison" value="consistent">Dados consistentes</button>
+                <button type="submit" name="comparison" value="divergent">Há uma divergência</button>
+              </fieldset>
+              <p id="comparison-feedback" role="status" aria-live="polite" hidden></p>
+            </form>
+            <section class="finding-list" id="finding-list" aria-live="polite"><p class="finding-list__empty">As evidências aparecerão durante a jornada.</p></section>
+            <form class="e2e-review" id="e2e-review" hidden>
+              <div><span>REVISÃO FINAL</span><strong>Quais comportamentos quebram a jornada?</strong></div>
+              <p>Selecione apenas as divergências. A preservação correta dos dados não é um defeito.</p>
+              <div id="e2e-review-options"></div>
+              <p id="e2e-review-error" role="alert" hidden></p>
+              <button class="button button--primary" type="submit">Concluir jornada E2E</button>
+            </form>
+          </aside>
+        </section>
+
+        <section class="e2e-result" id="e2e-result" hidden aria-labelledby="e2e-result-title">
+          <div class="e2e-result__icon" aria-hidden="true">✓</div>
+          <span class="label label--cyan">JORNADA E2E CONCLUÍDA</span>
+          <h2 id="e2e-result-title" tabindex="-1">Você acompanhou o pedido até o fim.</h2>
+          <p id="e2e-result-summary"></p>
+          <qa-save-status></qa-save-status>
+          <div class="e2e-result__stats"><div><span>CHECKPOINTS</span><strong id="e2e-result-checkpoints">0 / 6</strong></div><div><span>EVIDÊNCIAS</span><strong id="e2e-result-findings">0 / 3</strong></div><div><span>EXPERIÊNCIA</span><strong><span id="e2e-result-xp">0</span> XP</strong></div></div>
+          <div class="e2e-result__actions"><button class="button button--primary" id="restart-e2e" type="button">Executar novamente</button><a class="button button--ghost" href="tracks.html">Voltar às trilhas</a></div>
+        </section>
+        </div>
+      </div>
+    </main>
+
+    <script type="module" src="components/brand.js"></script>
+    <script type="module" src="components/theme-toggle.js"></script>
+    <script type="module" src="components/header.js"></script>
+    <script type="module" src="components/save-status.js"></script>
+    <script type="module" src="core/progress.js"></script>
+    <script type="module" src="pages/e2e.js"></script>
+  </body>
+</html>

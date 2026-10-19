@@ -19,11 +19,11 @@ const tracks = {
     objective: "Passe da validação de uma funcionalidade à descoberta de comportamentos inesperados e à verificação de jornadas de ponta a ponta.",
     prerequisite: "Concluir as Fases 1–4. A Fase 3 já introduz testes funcionais.",
     order: "Funcional → Exploratório → E2E, aproveitando o simulador da Fase 3 como primeiro contato.",
-    note: "O Teste Exploratório está disponível agora. A missão de Teste E2E será implementada em uma próxima etapa.",
+    note: "Teste Exploratório e Teste E2E estão disponíveis. Use o E2E para acompanhar os dados de um único pedido do começo ao fim.",
     modules: [
       { id: "functional", title: "Teste Funcional", detail: "Introduzido no simulador de login da Fase 3.", href: "phase3.html", availableLabel: "Disponível na Fase 3", linkLabel: "Revisitar Fase 3 →" },
       { id: "exploratory", title: "Teste Exploratório", detail: "Investigação guiada por hipóteses, observação e aprendizado.", href: "exploratory.html", availableLabel: "Disponível agora", linkLabel: "Iniciar missão →" },
-      { id: "e2e", title: "Teste End-to-End (E2E)", detail: "Validação de uma jornada completa entre telas e serviços." }
+      { id: "e2e", title: "Teste End-to-End (E2E)", detail: "Validação de uma jornada completa entre catálogo, checkout e confirmação.", href: "e2e.html", availableLabel: "Disponível agora", linkLabel: "Iniciar missão →", completedLinkLabel: "Repetir missão →" }
     ]
   },
   specialized: {
@@ -71,7 +71,7 @@ function renderModule(module, number, completedModules) {
   if (module.href) {
     const link = document.createElement("a");
     link.href = module.href;
-    link.textContent = module.linkLabel;
+    link.textContent = isComplete ? module.completedLinkLabel || module.linkLabel : module.linkLabel;
     actions.append(link);
   }
 

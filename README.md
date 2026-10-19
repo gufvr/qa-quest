@@ -13,7 +13,7 @@ Plataforma gamificada para estudar Quality Assurance por meio de desafios, anál
 - **Fase 3 — Simulador de Login:** execução funcional e registro de defeito.
 - **Fase 4 — Plano de Testes:** definição de escopo, riscos, estratégia, prioridades e critérios de saída.
 
-Após a Fase 4, o **hub de trilhas** apresenta Fluxos e investigação, Confiança na release e Qualidade especializada. A Fase 3 introduz o teste funcional, e a Trilha 01 inclui o Laboratório de Teste Exploratório.
+Após a Fase 4, o **hub de trilhas** apresenta Fluxos e investigação, Confiança na release e Qualidade especializada. A Fase 3 introduz o teste funcional; a Trilha 01 inclui os simuladores de Teste Exploratório e Teste End-to-End. No E2E, acompanhe um pedido por seis checkpoints, registre três divergências e receba até 100 XP.
 
 O progresso por trilha, XP compartilhado, tentativas, tema e desbloqueios são salvos no navegador.
 
@@ -28,7 +28,7 @@ npm install
 npm run dev
 ```
 
-Abra o endereço local exibido pelo Vite. Para gerar e visualizar a versão de produção, use `npm run build` e `npm run preview`.
+Abra o endereço local exibido pelo Vite e entre em `tracks.html` após concluir a Fase 4. Para gerar e visualizar a versão de produção, use `npm run build` e `npm run preview`. O GitHub Pages exibe a versão publicada; edições locais aparecem no servidor do Vite.
 
 ## Tecnologias
 
@@ -51,6 +51,7 @@ qa-quest/
 ├── phase3.html   # Fase 3
 ├── phase4.html   # Fase 4
 ├── exploratory.html # laboratório de teste exploratório
+├── e2e.html        # simulador de teste End-to-End
 └── tracks.html   # hub de trilhas
 ```
 

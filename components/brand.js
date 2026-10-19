@@ -5,12 +5,13 @@ class QABrand extends HTMLElement {
 
     const href = this.getAttribute("href") || "index.html";
     const label = this.getAttribute("aria-label") || "QA Quest — início";
+    const iconUrl = new URL("../qaquest.png", import.meta.url).href;
 
     this.innerHTML = `
       <a class="brand" href="${href}" aria-label="${label}">
         <img
           class="brand__mark"
-          src="qaquest.png"
+          src="${iconUrl}"
           alt=""
           width="44"
           height="44"
