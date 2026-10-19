@@ -6,9 +6,9 @@ const tracks = {
     objective: "Aprenda a avaliar se uma entrega está estável, se a correção resolveu o defeito e se funcionalidades antigas continuam funcionando.",
     prerequisite: "Concluir as Fases 1–4.",
     order: "Smoke → Sanidade → Regressão. A sequência ajuda a ir da checagem rápida à proteção mais ampla.",
-    note: "As próximas missões desta trilha ainda serão criadas. Smoke Test será a primeira implementação.",
+    note: "Smoke Test está disponível: verifique o essencial e decida se a versão permite testes aprofundados. Sanidade e Regressão continuam planejadas.",
     modules: [
-      { id: "smoke", title: "Smoke Test", detail: "Verificações essenciais para decidir se vale continuar a testar." },
+      { id: "smoke", title: "Smoke Test", detail: "Seis verificações essenciais e um parecer sobre a estabilidade da release.", href: "smoke.html", availableLabel: "Disponível agora", linkLabel: "Iniciar missão →", completedLinkLabel: "Repetir missão →" },
       { id: "sanity", title: "Teste de Sanidade", detail: "Validação focada após uma correção ou mudança específica." },
       { id: "regression", title: "Teste de Regressão", detail: "Confirmação de que fluxos existentes seguem funcionando." }
     ]

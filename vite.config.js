@@ -12,7 +12,8 @@ export default defineConfig({
         phase4: "phase4.html",
         tracks: "tracks.html",
         exploratory: "exploratory.html",
-        e2e: "e2e.html"
+        e2e: "e2e.html",
+        smoke: "smoke.html"
       }
     }
   }

@@ -1,0 +1,141 @@
+/* Smoke mission: QA Quest theme around an isolated, fictitious release preview. */
+.smoke-page { min-height: 100vh; background: radial-gradient(circle at 80% 8%, rgba(139,92,246,.11), transparent 30%), var(--navy-950); }
+.smoke-page [hidden] { display: none !important; }
+.smoke-container, .smoke-page .simulator-container { width: min(1480px, calc(100% - 40px)); margin-inline: auto; }
+.smoke-page .simulator-header { background: var(--navy-900); border-bottom: 1px solid var(--line); }
+.smoke-page .simulator-header__status { display: flex; align-items: center; gap: 14px; }
+.smoke-page .environment-badge { padding: 6px 9px; color: var(--purple-bright); background: var(--navy-800); border-radius: 8px; font-size: .65rem; font-weight: 800; }
+.smoke-page .simulator-xp, .smoke-page .simulator-exit { color: var(--muted); font-size: .8rem; }
+.smoke-page .simulator-xp strong, .smoke-page .simulator-exit:hover { color: var(--cyan); }
+.smoke-page main { padding-block: 38px 64px; }
+.smoke-intro { display: flex; align-items: end; justify-content: space-between; gap: 32px; margin-bottom: 26px; }
+.smoke-intro h1 { max-width: 750px; margin-top: 9px; font-size: clamp(2rem, 3.3vw, 3.4rem); letter-spacing: -.05em; }
+.smoke-intro > p { max-width: 500px; margin: 0; color: var(--muted); font-size: .88rem; }
+.smoke-briefing { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: 28px; padding: 22px 26px; margin-bottom: 22px; background: linear-gradient(120deg, rgba(139,92,246,.1), rgba(82,225,232,.035)); border: 1px solid var(--line); border-radius: 16px; }
+.smoke-briefing h2 { margin: 8px 0; font-size: 1.25rem; }
+.smoke-briefing p { max-width: 900px; margin: 0; color: var(--muted); font-size: .8rem; }
+.smoke-score-guide { display: grid; align-content: center; gap: 5px; padding-left: 24px; border-left: 1px solid var(--line); }
+.smoke-score-guide strong { color: var(--cyan); font: 700 1.1rem "Space Grotesk", sans-serif; }
+.smoke-score-guide span, .smoke-score-guide small { color: var(--muted); font-size: .72rem; line-height: 1.5; }
+.smoke-score-guide small { margin-top: 3px; }
+.smoke-workspace { display: grid; grid-template-columns: 230px minmax(0, 1fr) 340px; gap: 16px; align-items: start; }
+.smoke-workspace > * { min-width: 0; }
+.smoke-panel { padding: 20px; background: var(--card); border: 1px solid var(--line); border-radius: 17px; }
+.smoke-panel h2 { margin: 9px 0 16px; font-size: 1.15rem; }
+.smoke-progress-copy { display: flex; justify-content: space-between; gap: 12px; margin: 22px 0 8px; font-size: .7rem; color: var(--muted); }
+.smoke-progress-copy strong { color: var(--cyan); white-space: nowrap; }
+#smoke-progress { height: 5px; overflow: hidden; background: var(--navy-700); border-radius: 9px; }
+#smoke-bar { display: block; width: 0; height: 100%; background: linear-gradient(90deg, var(--purple), var(--cyan)); transition: width .25s; }
+#smoke-checks { display: grid; gap: 8px; padding: 0; margin: 20px 0; list-style: none; }
+#smoke-checks button { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 64px; padding: 10px; color: var(--white); text-align: left; background: var(--navy-900); border: 1px solid var(--line); border-radius: 10px; cursor: pointer; }
+#smoke-checks button[aria-pressed="true"] { border-color: var(--cyan); background: var(--navy-800); }
+#smoke-checks button:hover { border-color: var(--purple-bright); }
+.smoke-check-number { display: grid; place-items: center; flex: 0 0 28px; height: 28px; color: var(--purple-bright); background: var(--navy-800); border-radius: 8px; font: 700 .7rem "Space Grotesk", sans-serif; }
+#smoke-checks button > span:last-child { display: grid; gap: 3px; }
+#smoke-checks strong { font-size: .8rem; }
+#smoke-checks small { color: var(--muted); font-size: .67rem; }
+#smoke-checks [data-outcome="fail"] small { color: var(--purple-bright); font-weight: 800; }
+#smoke-checks [data-outcome="pass"] small { color: var(--cyan); font-weight: 800; }
+.smoke-checklist__tip, #smoke-review-hint { margin: 0; color: var(--muted); font-size: .73rem; }
+.smoke-lab { padding: 14px; }
+.smoke-lab__heading { padding: 6px 7px 18px; }
+.smoke-lab__heading h2 { margin-bottom: 10px; font-size: 1.5rem; }
+.smoke-lab__heading p { margin: 0; color: var(--muted); font-size: .8rem; }
+.smoke-browser { overflow: hidden; background: #fbfbfc; border-radius: 11px; color-scheme: light; }
+.smoke-browser__bar { display: flex; align-items: center; gap: 12px; padding: 9px 12px; color: #665b76; background: #dadbe1; font: .7rem Arial, sans-serif; }
+.smoke-browser__bar > span:first-child { white-space: nowrap; color: #795b8c; letter-spacing: 2px; }
+#smoke-address { flex: 1; min-width: 0; padding: 6px 8px; color: #56535d; background: #f5f5f7; border: 1px solid #cdced4; border-radius: 6px; overflow-wrap: anywhere; }
+.smoke-simulation-label { font-size: .62rem; }
+.smoke-store { min-height: 390px; color: #27252c; background: #fbfbfc; }
+.smoke-store__nav { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; padding: 16px 20px; background: #fff; border-bottom: 1px solid #ebeaf0; }
+.smoke-store__nav strong { display: flex; align-items: center; gap: 7px; font: 700 1rem "Space Grotesk", sans-serif; }
+.smoke-store__nav b { display: grid; place-items: center; width: 28px; height: 28px; color: #18232d; background: linear-gradient(135deg, #6be7dd, #a99bff); border-radius: 8px 3px 8px 3px; }
+.smoke-store__nav > span { color: #6b6375; font-size: .65rem; }
+.smoke-store__body { padding: 26px 22px; }
+.smoke-store__kicker { color: #6d42d8; font-size: .65rem; letter-spacing: .12em; font-weight: 800; }
+.smoke-store h3 { margin-top: 9px; color: #26232d; font-size: clamp(1.35rem, 2.1vw, 1.8rem); letter-spacing: -.04em; }
+.smoke-store__body > p { margin: 13px 0 20px; color: #645d6d; font-size: .8rem; }
+.smoke-store-button { min-height: 44px; padding: 11px 16px; color: #fff; background: #6d42d8; border-radius: 7px; font-weight: 700; font-size: .78rem; cursor: pointer; }
+.smoke-store-button:hover { background: #5d34c9; }
+.smoke-store-button:disabled { color: #544c64; background: #eeeaf5; cursor: default; }
+.smoke-observation { padding: 16px; margin-top: 20px; background: #fff; border: 1px solid #d4ccdf; border-left: 4px solid #087f8c; border-radius: 10px; }
+.smoke-observation[data-outcome="fail"] { border-left-color: #a23c57; }
+.smoke-http-status { color: #08717c; font-size: .73rem; font-weight: 800; overflow-wrap: anywhere; }
+.smoke-observation[data-outcome="fail"] .smoke-http-status { color: #a23c57; }
+.smoke-observation h4 { margin: 9px 0 7px; font-size: .85rem; }
+.smoke-observation p { color: #62596e; margin: 0 0 12px; font-size: .78rem; }
+.smoke-observation pre { white-space: pre-wrap; overflow-wrap: anywhere; word-break: break-word; margin: 0; padding: 12px; color: #443b53; background: #f2eff7; border-radius: 6px; font: .75rem/1.6 Consolas, monospace; }
+.smoke-classification { padding: 18px 6px 6px; }
+.smoke-page fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
+.smoke-page legend { margin-bottom: 12px; color: var(--white); font-size: .85rem; font-weight: 800; }
+.smoke-classification__actions { display: flex; gap: 10px; }
+.smoke-classification__actions button { flex: 1; min-height: 44px; padding: 10px; color: var(--white); background: var(--navy-800); border: 1px solid var(--line); border-radius: 8px; cursor: pointer; font-size: .8rem; font-weight: 700; }
+.smoke-classification__actions button:hover { border-color: var(--cyan); }
+.smoke-classification__actions button:disabled { opacity: .5; cursor: default; }
+#classification-feedback, #smoke-review-feedback { margin: 14px 0 0; padding: 12px; color: var(--cyan-soft); background: var(--navy-900); border: 1px solid var(--line); border-radius: 8px; font-size: .77rem; }
+.smoke-next { width: 100%; margin-top: 14px; min-height: 44px; font-size: .78rem; }
+.smoke-release-status { margin: 16px 0; padding: 12px; color: var(--cyan-soft); background: var(--navy-900); border: 1px solid var(--line); border-radius: 9px; font-size: .78rem; font-weight: 700; }
+.smoke-release-status[data-blocked="true"] { color: var(--purple-bright); border-color: var(--purple-bright); }
+#smoke-evidence, #smoke-result-evidence { display: grid; gap: 12px; }
+#smoke-evidence { margin-bottom: 18px; }
+.smoke-empty { margin: 0; color: var(--muted); font-size: .75rem; }
+.smoke-evidence-item { padding: 14px; background: var(--navy-900); border: 1px solid var(--line); border-radius: 10px; }
+.smoke-evidence-item > summary { cursor: pointer; color: var(--cyan); font-size: .8rem; }
+.smoke-evidence-item[data-outcome="fail"] > summary { color: var(--purple-bright); }
+.smoke-evidence-item p { margin: 8px 0 0; color: var(--muted); font-size: .73rem; line-height: 1.55; overflow-wrap: anywhere; }
+.smoke-evidence-item b { color: var(--white); }
+.smoke-review { display: grid; gap: 20px; padding-top: 18px; border-top: 1px solid var(--line); }
+.smoke-review label { display: flex; align-items: flex-start; gap: 8px; padding: 10px 0; color: var(--muted); font-size: .8rem; cursor: pointer; }
+.smoke-review input { flex: 0 0 auto; margin-top: 5px; accent-color: var(--cyan); }
+.smoke-review .button { font-size: .8rem; }
+.smoke-result { max-width: 900px; margin: 30px auto; padding: 42px; text-align: center; }
+.smoke-result h2 { margin-block: 15px; font-size: clamp(1.9rem, 3.5vw, 3rem); letter-spacing: -.04em; }
+.smoke-result > p { color: var(--muted); font-size: .9rem; }
+.smoke-result__stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; margin: 28px 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.smoke-result__stats > div { display: grid; gap: 6px; padding: 22px 12px; background: var(--navy-900); }
+.smoke-result__stats span { color: var(--muted); font-size: .65rem; font-weight: 800; letter-spacing: .1em; }
+.smoke-result__stats strong { color: var(--cyan); font: 700 1.4rem "Space Grotesk", sans-serif; }
+.smoke-result__evidence { margin-top: 24px; text-align: left; }
+.smoke-result__evidence summary { margin-bottom: 14px; color: var(--cyan); font-size: .85rem; font-weight: 800; cursor: pointer; }
+.smoke-result .smoke-learning { margin: 26px 0; padding: 16px; background: var(--navy-900); border-radius: 10px; font-size: .8rem; }
+.smoke-result__actions { display: flex; justify-content: center; gap: 12px; }
+.smoke-locked { max-width: 780px; min-height: 60vh; padding-block: 40px; }
+.smoke-locked h1 { margin-block: 20px; font-size: clamp(2rem, 5vw, 3.5rem); }
+.smoke-locked p { color: var(--muted); }
+.smoke-page button:focus-visible, .smoke-page input:focus-visible, .smoke-page summary:focus-visible { outline: 3px solid var(--cyan); outline-offset: 3px; }
+.smoke-store button:focus-visible { outline-color: #6d42d8; }
+@media (max-width: 1240px) {
+  .smoke-workspace { grid-template-columns: 230px minmax(0, 1fr); }
+  .smoke-report { grid-column: 1 / -1; }
+  #smoke-evidence { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 820px) {
+  .smoke-intro { flex-direction: column; align-items: start; gap: 16px; }
+  .smoke-intro > p { max-width: none; }
+  .smoke-briefing { grid-template-columns: minmax(0, 1fr); gap: 16px; padding: 20px; }
+  .smoke-score-guide { padding: 14px 0 0; border-left: 0; border-top: 1px solid var(--line); }
+  .smoke-workspace { grid-template-columns: minmax(0, 1fr); }
+  .smoke-report { grid-column: auto; }
+  #smoke-checks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .smoke-container, .smoke-page .simulator-container { width: calc(100% - 24px); }
+  .smoke-page main { padding-top: 28px; }
+  .smoke-page .environment-badge { display: none; }
+  .smoke-page .simulator-header__status { gap: 9px; }
+  .smoke-page .simulator-exit { max-width: 60px; font-size: .7rem; }
+  .smoke-intro h1 { font-size: 2.4rem; }
+  .smoke-panel { padding: 16px; }
+  .smoke-lab { padding: 10px; }
+  .smoke-store__body { padding: 23px 16px; }
+  .smoke-store__nav { padding: 15px; }
+  .smoke-browser__bar { gap: 7px; padding: 8px; }
+  .smoke-simulation-label { display: none; }
+  #smoke-checks { gap: 6px; }
+  #smoke-checks button { gap: 7px; padding: 9px 7px; }
+  #smoke-checks small { font-size: .63rem; }
+  #smoke-evidence { grid-template-columns: minmax(0, 1fr); }
+  .smoke-result { padding: 28px 18px; }
+  .smoke-result__stats { grid-template-columns: minmax(0, 1fr); }
+  .smoke-result__actions { flex-direction: column; }
+}
