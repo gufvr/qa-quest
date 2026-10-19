@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Faça um Smoke Test da release fictícia da Bazaraza e decida se ela está pronta para testes aprofundados." />
+    <meta name="description" content="Faça o Smoke Test da Bazaraza, emita o parecer técnico da release e decida se testes aprofundados podem começar." />
     <title>Smoke Test — QA Quest</title>
     <link rel="icon" type="image/png" href="qaquest.png" />
     <link rel="apple-touch-icon" href="qaquest.png" />
@@ -33,7 +33,7 @@
           <p>Uma nova versão da Bazaraza chegou à homologação. Confira o essencial, registre evidências e decida se vale avançar para testes aprofundados.</p>
         </header>
         <section class="smoke-briefing" aria-labelledby="briefing-title">
-          <div><span class="label">RELEASE BZ-2026.10 · SIMULAÇÃO LOCAL</span><h2 id="briefing-title">A loja está pronta para ser testada?</h2><p>Faça seis verificações curtas, em qualquer ordem. Uma única falha crítica bloqueia a versão. Os demais checks ajudam a compor o relatório; E2E e regressão ficam para depois da correção e de um novo smoke aprovado.</p></div>
+          <div><span class="label">RELEASE BZ-2026.10 · SIMULAÇÃO LOCAL</span><h2 id="briefing-title">Esta versão está estável para seguir para testes aprofundados?</h2><p>Faça seis verificações curtas. Uma falha crítica reprova o Smoke Test e bloqueia a release. Se os checks essenciais passarem, o parecer técnico é Smoke aprovado e os testes aprofundados podem começar. Isso não aprova a aplicação para produção: essa decisão só vem depois de avaliar os testes seguintes.</p></div>
           <div class="smoke-score-guide"><strong>Até 100 XP</strong><span>6 classificações × 10 XP<br />Decisão: 20 XP · Impacto: 20 XP</span><small>Uma resposta corrigida vale metade dos pontos daquele item. Reabrir um check não reduz a pontuação.</small></div>
         </section>
         <section id="smoke-workspace" class="smoke-workspace" aria-label="Bancada de Smoke Test">
@@ -74,15 +74,15 @@
             <button class="button button--ghost smoke-next" id="next-smoke-check" type="button" hidden>Abrir próximo check →</button>
           </section>
           <aside class="smoke-panel smoke-report" aria-labelledby="report-title">
-            <span class="label label--cyan">RELATÓRIO DA RELEASE</span><h2 id="report-title">Evidências antes da decisão.</h2>
+            <span class="label label--cyan">RELATÓRIO DA RELEASE</span><h2 id="report-title">Evidências para o parecer técnico.</h2>
             <p id="smoke-release-status" class="smoke-release-status" role="status">Em avaliação · nenhum resultado registrado.</p>
             <p class="smoke-empty">Abra cada evidência registrada para consultar ação, expectativa, resultado e impacto.</p>
             <div id="smoke-evidence" aria-live="polite"><p class="smoke-empty">Os resultados aparecerão aqui depois que você os classificar corretamente.</p></div>
             <p id="smoke-review-hint">Registre os seis checks para emitir o parecer final.</p>
             <form id="smoke-review" class="smoke-review" hidden>
-              <fieldset><legend>Esta versão está apta para testes aprofundados?</legend>
-                <label><input type="radio" name="decision" value="approve" required /> Aprovar para continuar os testes</label>
-                <label><input type="radio" name="decision" value="block" required /> Bloquear e solicitar correção</label>
+              <fieldset><legend>Qual é o parecer técnico do Smoke Test desta versão?</legend>
+                <label><input type="radio" name="decision" value="approve" required /> Aprovar o Smoke Test e liberar testes aprofundados</label>
+                <label><input type="radio" name="decision" value="block" required /> Reprovar o Smoke Test e bloquear o avanço</label>
               </fieldset>
               <fieldset><legend>Qual impacto justifica sua decisão?</legend>
                 <label><input type="radio" name="impact" value="cosmetic" required /> Só há um problema visual; a compra permanece disponível.</label>
@@ -95,14 +95,14 @@
           </aside>
         </section>
         <section class="smoke-result smoke-panel" id="smoke-result" aria-labelledby="smoke-result-title" hidden>
-          <span class="label label--cyan">MISSÃO CONCLUÍDA · PARECER CORRETO</span>
-          <h2 id="smoke-result-title" tabindex="-1">Versão bloqueada. Decisão fundamentada.</h2>
-          <p>Você identificou os impedimentos antes de investir em testes aprofundados. Informe a equipe, aguarde uma versão corrigida e execute um novo Smoke Test antes de continuar.</p>
+          <span class="label label--cyan">MISSÃO CONCLUÍDA · PARECER DE QA CORRETO</span>
+          <h2 id="smoke-result-title" tabindex="-1">Smoke reprovado. Release bloqueada.</h2>
+          <p>Você concluiu a missão porque identificou as falhas críticas e emitiu o parecer técnico correto: esta release não está liberada para testes aprofundados. Concluir a missão registra seu diagnóstico; não aprova a release. Após a correção, uma nova versão precisa passar pelo Smoke Test para liberar testes aprofundados. A aprovação para produção será uma decisão posterior, depois de avaliar esses testes.</p>
           <div class="smoke-result__stats"><div><span>CHECKS</span><strong>6 / 6</strong></div><div><span>FALHAS CRÍTICAS</span><strong>2</strong></div><div><span>NESTA TENTATIVA</span><strong id="smoke-result-xp">0 XP</strong></div></div>
           <p id="smoke-result-summary"></p>
           <qa-save-status></qa-save-status>
           <details class="smoke-result__evidence"><summary>Consultar as seis evidências</summary><div id="smoke-result-evidence"></div></details>
-          <p class="smoke-learning">Smoke verifica rapidamente se o essencial funciona. Sanidade confirmará uma correção específica; regressão investigará se outras funcionalidades foram afetadas. Esses dois módulos continuam planejados.</p>
+          <p class="smoke-learning">Smoke verifica rapidamente se os fluxos essenciais estão disponíveis. Um Smoke Test aprovado libera o início de testes aprofundados, mas, sozinho, não aprova a aplicação para produção. A missão está concluída; a release simulada continua bloqueada.</p>
           <div class="smoke-result__actions"><button class="button button--primary" id="restart-smoke" type="button">Repetir missão</button><a class="button button--ghost" href="tracks.html">Voltar às trilhas</a></div>
         </section>
       </div>

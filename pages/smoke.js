@@ -162,9 +162,11 @@ function updateProgress() {
   const status = get("smoke-release-status");
   status.dataset.blocked = String(failures.length > 0);
   status.textContent = failures.length
-    ? "Bloqueio identificado · " + failures.length + " falha(s) crítica(s). Não avance para testes aprofundados."
-    : count ? "Em avaliação · os checks restantes ainda precisam ser registrados."
-      : "Em avaliação · nenhum resultado registrado.";
+    ? "Smoke reprovado · " + failures.length + " falha(s) crítica(s). Release bloqueada; testes aprofundados não liberados."
+    : count === checks.length
+      ? "Smoke aprovado tecnicamente · checks essenciais aprovados. Testes aprofundados liberados; produção ainda não avaliada."
+      : count ? "Em avaliação · há verificações essenciais restantes."
+        : "Em avaliação · nenhum resultado registrado.";
   if (count) {
     get("smoke-evidence").replaceChildren(...checks.filter((check) => state.records.has(check.id)).map(makeEvidence));
   } else {
@@ -262,8 +264,8 @@ function initializeMission() {
     get("header-xp").textContent = String(score());
     if (!correctDecision || !correctImpact) {
       const messages = [];
-      if (!correctDecision) messages.push("Bloqueie esta versão: o checkout retorna 503 e a API de pedidos retorna 500. Uma falha crítica já impede continuar os testes aprofundados.");
-      if (!correctImpact) messages.push("O impacto é a interrupção da compra e da consulta de pedidos. Quatro aprovações não compensam esses dois impedimentos.");
+      if (!correctDecision) messages.push("Reprove o Smoke Test e bloqueie a release: o checkout retorna 503 e a API de pedidos retorna 500. As falhas críticas impedem liberar testes aprofundados.");
+      if (!correctImpact) messages.push("O cliente não consegue concluir a compra nem consultar pedidos. Quatro checks aprovados não compensam esses impedimentos. Um Smoke Test aprovado liberaria apenas testes aprofundados; não aprovaria a aplicação para produção.");
       messages.push("Revise o parecer. Respostas incorretas passam a valer 10 XP quando corrigidas.");
       showFeedback("smoke-review-feedback", messages.join(" "));
       return;
@@ -279,7 +281,7 @@ function initializeMission() {
     get("smoke-workspace").hidden = true;
     get("smoke-result").hidden = false;
     get("smoke-result-xp").textContent = score() + " XP";
-    get("smoke-result-summary").textContent = "Melhor resultado: " + saved.bestXp +
+    get("smoke-result-summary").textContent = "Missão concluída com o parecer técnico correto: Smoke reprovado e release bloqueada. Melhor resultado: " + saved.bestXp +
       " XP · Tentativas concluídas: " + saved.attempts + " · XP compartilhado: " + saved.totalXp + ".";
     get("smoke-result-evidence").replaceChildren(...checks.map(makeEvidence));
     saveStatus.show(saved);

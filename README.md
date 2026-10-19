@@ -15,7 +15,7 @@ Plataforma gamificada para estudar Quality Assurance por meio de desafios, anál
 
 Após a Fase 4, o **hub de trilhas** apresenta Fluxos e investigação, Confiança na release e Qualidade especializada. A Fase 3 introduz o teste funcional; a Trilha 01 inclui os simuladores de Teste Exploratório e Teste End-to-End. No E2E, acompanhe um pedido por seis checkpoints, registre três divergências e receba até 100 XP.
 
-Na **Trilha 02**, o Smoke Test simula seis checks rápidos de uma release da Bazaraza: Home, Catálogo, Carrinho, Checkout, Login e API de pedidos. Registre evidências, identifique as duas falhas críticas e emita um parecer para receber até 100 XP. Sanidade e Regressão continuam planejadas.
+Na **Trilha 02**, o Smoke Test simula seis checks rápidos de uma release da Bazaraza: Home, Catálogo, Carrinho, Checkout, Login e API de pedidos. Registre evidências e emita um parecer para receber até 100 XP. Um Smoke aprovado libera testes aprofundados; não aprova a aplicação para produção. Concluir esta missão significa emitir o parecer correto, mesmo quando a release é reprovada e bloqueada. Sanidade e Regressão continuam planejadas.
 
 O progresso por trilha, XP compartilhado, tentativas, tema e desbloqueios são salvos no navegador.
 
