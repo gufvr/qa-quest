@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Repita cenários conhecidos e encontre uma regressão na candidata fictícia da Bazaraza." />
+    <title>Teste de Regressão — QA Quest</title>
+    <link rel="icon" type="image/png" href="qaquest.png" />
+    <link rel="apple-touch-icon" href="qaquest.png" />
+    <script>
+      try { document.documentElement.dataset.theme = localStorage.getItem("qa-quest-theme") || "dark"; }
+      catch { document.documentElement.dataset.theme = "dark"; }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/regression.css" />
+  </head>
+  <body class="regression-page">
+    <a class="skip-link" href="#regression-main">Ir para a missão</a>
+    <qa-header variant="simulator"></qa-header>
+    <main class="regression-container" id="regression-main">
+      <section id="regression-locked" class="regression-locked" hidden>
+        <span class="label label--cyan">BASE COMUM</span>
+        <h1>Conclua a Fase 4 para iniciar esta missão.</h1>
+        <p>Smoke, Sanidade e outras trilhas não são pré-requisitos. O contexto necessário está incluído aqui.</p>
+        <a class="button button--primary" id="regression-locked-link" href="index.html">Voltar à jornada</a>
+      </section>
+      <div id="regression-content" hidden>
+        <header class="regression-intro">
+          <div><span class="label label--cyan">TRILHA 02 · CONFIANÇA NA RELEASE</span><h1>O que continua funcionando?</h1></div>
+          <p>O Checkout foi corrigido. Repita cinco casos conhecidos para descobrir se as mudanças afetaram outros comportamentos da Bazaraza.</p>
+        </header>
+        <section class="regression-briefing" aria-labelledby="regression-briefing-title">
+          <div>
+            <span class="label">CANDIDATA BZ-2026.10.2 · SIMULAÇÃO LOCAL</span>
+            <h2 id="regression-briefing-title">Uma correção pode afetar outras áreas.</h2>
+            <p>Na BZ-2026.10, o Checkout retornava 503. A Sanidade da BZ-2026.10.1 confirmou a abertura, mas encontrou R$ 15,00 a mais no total. A equipe informa que a BZ-2026.10.2 corrige esse cálculo. Agora, compare os comportamentos com a última execução aprovada desta suíte, na BZ-2026.09, anterior às mudanças.</p>
+            <details class="regression-concepts"><summary>Por que esta missão é Regressão?</summary>
+              <p><strong>Regressão</strong> repete cenários conhecidos para verificar comportamentos que já funcionavam. Aqui, cada caso tem uma referência anterior aprovada.</p>
+              <p><strong>Smoke</strong> verifica rapidamente a disponibilidade dos fluxos essenciais. <strong>Sanidade</strong> confirma uma correção e seus efeitos próximos. <strong>E2E</strong> acompanha uma jornada integrada completa. Uma mesma verificação pode integrar mais de um desses escopos; o objetivo desta rodada é comparar comportamentos ao longo das versões.</p>
+            </details>
+          </div>
+          <aside class="regression-scoring"><strong>Até 100 XP</strong><p>5 execuções × 8 XP<br />5 classificações × 8 XP<br />Parecer: 10 XP<br />Justificativa: 10 XP</p><small>Uma resposta corrigida vale metade dos pontos daquele item. Repetir preserva o melhor XP.</small></aside>
+        </section>
+        <section class="regression-workspace" id="regression-workspace" aria-label="Bancada de Teste de Regressão">
+          <aside class="regression-panel regression-checklist">
+            <span class="label label--cyan">SUÍTE CONHECIDA</span><h2>Cinco casos de proteção.</h2>
+            <div class="regression-count"><span>Casos registrados</span><strong id="regression-count">0 / 5</strong></div>
+            <div id="regression-progress" role="progressbar" aria-label="Casos registrados" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0"><i id="regression-bar"></i></div>
+            <ol id="regression-steps"></ol>
+            <p class="regression-tip">Cada caso prepara seus dados de teste. Uma falha não impede executar os outros casos isolados para mapear o impacto. Isso não libera a candidata.</p>
+          </aside>
+          <section class="regression-panel regression-lab" aria-labelledby="regression-check-title">
+            <header class="regression-lab-heading">
+              <span class="label" id="regression-case-id"></span><h2 id="regression-check-title" tabindex="-1"></h2>
+              <p id="regression-instruction"></p>
+              <div class="regression-baseline"><strong>ANTES · BZ-2026.09 · PASSOU</strong><p id="regression-baseline"></p></div>
+              <p class="regression-expected"><strong>Esperado agora:</strong> <span id="regression-expected"></span></p>
+            </header>
+            <div class="regression-browser" aria-label="Bazaraza fictícia">
+              <div class="regression-browser-bar"><span aria-hidden="true">● ● ●</span><span id="regression-address">bazaraza.test/login</span><small>Simulado</small></div>
+              <header class="regression-store-nav"><strong><b>B</b> Bazaraza</strong><span>BZ-2026.10.2</span></header>
+              <div class="regression-store">
+                <section data-regression-view="login">
+                  <span class="regression-kicker">CASO REG-01</span><h3>Acesse sua conta.</h3>
+                  <p class="regression-store-note">Conta de teste: qa@bazaraza.test · Senha: Bazaraza123!</p>
+                  <form id="regression-login-form" novalidate>
+                    <label class="regression-field">E-mail fictício<input id="regression-email" type="email" autocomplete="off" value="qa@bazaraza.test" maxlength="80" /></label>
+                    <label class="regression-field">Senha de teste<input id="regression-password" type="password" autocomplete="off" value="Bazaraza123!" maxlength="80" /></label>
+                    <p id="regression-login-feedback" class="regression-store-message" role="status" hidden></p>
+                    <button class="regression-store-button" type="submit">Entrar na conta de teste</button>
+                  </form>
+                  <div id="regression-dashboard" class="regression-store-message" role="status" hidden><strong>Painel carregado · Acesso autorizado</strong><p>Olá, Pessoa de teste. Seus pedidos e endereços estão disponíveis no painel.</p></div>
+                </section>
+                <section data-regression-view="catalog" hidden>
+                  <span class="regression-kicker">CASO REG-02</span><h3>Encontre uma mochila.</h3>
+                  <form id="regression-search-form" novalidate>
+                    <label class="regression-field">Busca<input id="regression-search" type="search" placeholder="Digite Mochila" maxlength="40" /></label>
+                    <button class="regression-store-button" type="submit">Buscar produtos</button>
+                  </form>
+                  <p id="regression-search-feedback" class="regression-store-message" role="status" hidden></p>
+                  <div id="regression-search-results" hidden>
+                    <label class="regression-field">Categoria<select id="regression-filter"><option value="all">Todas</option><option value="accessories">Acessórios</option><option value="technology">Tecnologia</option></select></label>
+                    <ul class="regression-products" id="regression-products"></ul>
+                    <p id="regression-filter-status" class="regression-store-note" role="status">Categoria: Todas · 2 resultados</p>
+                    <button class="regression-store-button" id="check-regression-filter" type="button">Conferir resultados do filtro</button>
+                  </div>
+                </section>
+                <section data-regression-view="cart" hidden>
+                  <span class="regression-kicker">CASO REG-03 · CARRINHO PREPARADO PARA ESTE TESTE</span><h3>Atualize o carrinho.</h3>
+                  <p class="regression-store-note">Mochila Urbana · R$ 189,90 por unidade · Frete grátis</p>
+                  <button class="regression-store-button" id="add-regression-product" type="button">Adicionar Mochila Urbana</button>
+                  <p id="regression-cart-empty" class="regression-store-note">Carrinho vazio.</p>
+                  <div id="regression-cart-item" hidden>
+                    <label class="regression-field">Quantidade<select id="regression-quantity"><option value="1">1 unidade</option><option value="2">2 unidades</option><option value="3">3 unidades</option></select></label>
+                    <div class="regression-total"><span>Total do carrinho</span><strong id="regression-cart-total">R$ 189,90</strong></div>
+                    <button class="regression-store-button" id="check-regression-cart" type="button">Conferir quantidade e total</button>
+                  </div>
+                  <p id="regression-cart-feedback" class="regression-store-message" role="status" hidden></p>
+                </section>
+                <section data-regression-view="checkout" hidden>
+                  <span class="regression-kicker">CASO REG-04 · CHECKOUT PREPARADO</span><h3>Confira a correção.</h3>
+                  <p class="regression-store-note">Este caso usa uma cópia do carrinho registrado, sem executar uma compra real.</p>
+                  <p class="regression-store-message">200 OK · Entrega e pagamento carregados</p>
+                  <div class="regression-reference"><span>Carrinho de referência</span><strong id="regression-checkout-reference"></strong></div>
+                  <form id="regression-checkout-form" novalidate>
+                    <label class="regression-field">Endereço fictício<input id="regression-address-input" autocomplete="off" placeholder="Rua Bazaraza, 101" maxlength="160" /></label>
+                    <label class="regression-field">CEP fictício<input id="regression-cep" inputmode="numeric" autocomplete="off" placeholder="01001-000" maxlength="9" /></label>
+                    <label class="regression-field">Pagamento simulado<select id="regression-payment"><option value="">Selecione</option><option value="pix">Pix de teste</option><option value="card">Cartão de teste · final 4242</option></select></label>
+                    <p class="regression-store-note">Frete grátis · Taxas adicionais: R$ 0,00</p>
+                    <div class="regression-total"><span>Total no Checkout</span><strong id="regression-checkout-total"></strong></div>
+                    <p id="regression-checkout-feedback" class="regression-store-message" role="status" hidden></p>
+                    <button class="regression-store-button" type="submit">Conferir entrega, pagamento e total</button>
+                  </form>
+                </section>
+                <section data-regression-view="history" hidden>
+                  <span class="regression-kicker">CASO REG-05 · PEDIDO ISOLADO DE TESTE</span><h3>Compare a confirmação.</h3>
+                  <p class="regression-store-note">Crie um pedido apenas nesta simulação, com os dados de teste preparados. Nenhum pagamento é processado e a candidata continua sem aprovação.</p>
+                  <button class="regression-store-button" id="create-regression-order" type="button">Criar pedido de teste local</button>
+                  <div id="regression-order-panels" hidden>
+                    <div class="regression-reference"><span>Confirmação · BZ-REG-1042</span><strong id="regression-confirmation"></strong></div>
+                    <div class="regression-reference"><span>Histórico · BZ-REG-1042 · Confirmado</span><strong id="regression-history"></strong></div>
+                    <button class="regression-store-button" id="check-regression-history" type="button">Conferir histórico com a confirmação</button>
+                  </div>
+                </section>
+              </div>
+            </div>
+            <section id="regression-observation" class="regression-observation" aria-labelledby="regression-observed-title" hidden>
+              <h3 id="regression-observed-title">Resultado observado</h3><p id="regression-observed"></p>
+            </section>
+            <form id="regression-classification" class="regression-classification" hidden>
+              <fieldset><legend>O comportamento conhecido foi preservado?</legend><div><button type="submit" value="pass">Passou</button><button type="submit" value="fail">Falhou</button></div></fieldset>
+              <p id="regression-classification-feedback" class="regression-feedback" role="status" hidden></p>
+            </form>
+            <button class="button button--ghost regression-next" id="next-regression-check" type="button" hidden>Próximo caso →</button>
+          </section>
+          <aside class="regression-panel regression-report">
+            <span class="label label--cyan">PARECER DA CANDIDATA</span><h2>Qual comportamento regrediu?</h2>
+            <p id="regression-candidate-status" class="regression-status" role="status">BZ-2026.10.2 · Aguardando execução da suíte.</p>
+            <div id="regression-evidence" aria-live="polite"></div>
+            <p id="regression-review-hint" class="regression-tip">Registre os cinco casos antes de emitir o parecer.</p>
+            <form id="regression-review" class="regression-review" hidden>
+              <fieldset><legend>Qual é o parecer sobre a BZ-2026.10.2 nesta suíte?</legend>
+                <label><input type="radio" name="decision" value="accept" required /> Aprovar a candidata na regressão: todos os cinco casos passaram.</label>
+                <label><input type="radio" name="decision" value="return" required /> Reprovar a candidata na regressão e devolver para investigação ou ajuste.</label>
+              </fieldset>
+              <fieldset><legend>Qual evidência justifica seu parecer?</legend>
+                <label><input type="radio" name="reason" value="filter" required /> O filtro funcionava na referência anterior, mas agora mantém produtos fora da categoria selecionada.</label>
+                <label><input type="radio" name="reason" value="checkout" required /> O Checkout continua com 503 e R$ 15,00 indevidos.</label>
+                <label><input type="radio" name="reason" value="production" required /> Quatro casos passaram, então a aplicação está aprovada para produção.</label>
+              </fieldset>
+              <p id="regression-review-feedback" class="regression-feedback" role="status" hidden></p>
+              <button class="button button--primary" type="submit">Concluir missão com parecer</button>
+            </form>
+          </aside>
+        </section>
+        <section class="regression-result regression-panel" id="regression-result" aria-labelledby="regression-result-title" hidden>
+          <span class="label label--cyan">MISSÃO CONCLUÍDA · PARECER CORRETO</span>
+          <h2 id="regression-result-title" tabindex="-1">Checkout corrigido. Filtro com regressão.</h2>
+          <p>Login, Carrinho, Checkout e Histórico passaram. O filtro funcionava na referência anterior e falhou na candidata BZ-2026.10.2. A suíte de regressão reprovou esta candidata: investigue a mudança e ajuste o comportamento antes de uma nova rodada.</p>
+          <div class="regression-result-stats"><div><span>CASOS</span><strong>5 / 5</strong></div><div><span>FALHAS</span><strong>1</strong></div><div><span>NESTA TENTATIVA</span><strong id="regression-result-xp">0 XP</strong></div></div>
+          <p id="regression-result-summary"></p><qa-save-status></qa-save-status>
+          <details class="regression-result-evidence"><summary>Revisar as cinco evidências</summary><div id="regression-result-evidence"></div></details>
+          <p class="regression-learning">Você concluiu corretamente ao encontrar e justificar a regressão. Corrigir o Checkout não garante que outros comportamentos estejam preservados. A comparação entre versões demonstra a mudança no filtro; investigar a causa raiz ainda exige trabalho da equipe. Concluir a missão ou aprovar uma suíte isolada não representa aprovação para produção.</p>
+          <div class="regression-result-actions"><button class="button button--primary" id="restart-regression" type="button">Repetir missão</button><a class="button button--ghost" href="tracks.html">Voltar às trilhas</a></div>
+        </section>
+      </div>
+    </main>
+    <script type="module" src="components/brand.js"></script>
+    <script type="module" src="components/theme-toggle.js"></script>
+    <script type="module" src="components/header.js"></script>
+    <script type="module" src="components/save-status.js"></script>
+    <script type="module" src="core/progress.js"></script>
+    <script type="module" src="pages/regression.js"></script>
+  </body>
+</html>
+

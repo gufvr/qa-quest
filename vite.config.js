@@ -14,7 +14,8 @@ export default defineConfig({
         exploratory: "exploratory.html",
         e2e: "e2e.html",
         smoke: "smoke.html",
-        sanity: "sanity.html"
+        sanity: "sanity.html",
+        regression: "regression.html"
       }
     }
   }

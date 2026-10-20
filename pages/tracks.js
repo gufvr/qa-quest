@@ -6,11 +6,11 @@ const tracks = {
     objective: "Aprenda a avaliar se uma entrega está estável, se a correção resolveu o defeito e se funcionalidades antigas continuam funcionando.",
     prerequisite: "Concluir as Fases 1–4.",
     order: "Smoke → Sanidade → Regressão. A sequência ajuda a ir da checagem rápida à proteção mais ampla.",
-    note: "Smoke Test e Sanidade estão disponíveis. Verifique o essencial da release e valide uma correção específica com seus efeitos próximos. Regressão continua planejada.",
+    note: "Smoke Test, Sanidade e Regressão estão disponíveis. Verifique o essencial, valide uma correção e repita casos conhecidos para encontrar comportamentos afetados pelas mudanças.",
     modules: [
       { id: "smoke", title: "Smoke Test", detail: "Seis verificações essenciais e um parecer sobre a estabilidade da release.", href: "smoke.html", availableLabel: "Disponível agora", linkLabel: "Iniciar missão →", completedLinkLabel: "Repetir missão →" },
       { id: "sanity", title: "Teste de Sanidade", detail: "Valide a correção do Checkout e confira os dados próximos antes de aceitar a candidata.", href: "sanity.html", availableLabel: "Disponível agora", linkLabel: "Iniciar missão →", completedLinkLabel: "Repetir missão →" },
-      { id: "regression", title: "Teste de Regressão", detail: "Confirmação de que fluxos existentes seguem funcionando." }
+      { id: "regression", title: "Teste de Regressão", detail: "Repita cinco casos conhecidos e compare a candidata com os comportamentos anteriores.", href: "regression.html", availableLabel: "Disponível agora", linkLabel: "Iniciar missão →", completedLinkLabel: "Repetir missão →" }
     ]
   },
   flows: {
