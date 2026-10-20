@@ -30,7 +30,7 @@
       <div id="sanity-content" hidden>
         <header class="sanity-intro">
           <div><span class="label label--cyan">TRILHA 02 · CONFIANÇA NA RELEASE</span><h1>O ajuste resolveu?</h1></div>
-          <p>A equipe corrigiu a abertura do Checkout da Bazaraza. Confirme a correção e confira os dados próximos antes de aceitar a candidata.</p>
+          <p>A equipe corrigiu a abertura do Checkout da Bazaraza. Confirme separadamente se o 503 foi resolvido e se a candidata inteira pode ser aceita.</p>
         </header>
         <section class="sanity-briefing" aria-labelledby="sanity-briefing-title">
           <div>
@@ -106,11 +106,11 @@
             <div id="sanity-evidence" aria-live="polite"></div>
             <p id="sanity-review-hint" class="sanity-tip">Registre os quatro checks antes do parecer.</p>
             <form id="sanity-review" class="sanity-review" hidden>
-              <fieldset><legend>Qual é o parecer desta Sanidade?</legend>
-                <label><input type="radio" name="decision" value="accept" required /> Aceitar a candidata: a correção está validada</label>
-                <label><input type="radio" name="decision" value="return" required /> Devolver a candidata para ajuste</label>
+              <fieldset><legend>Qual é o parecer sobre a candidata inteira BZ-2026.10.1?</legend>
+                <label><input type="radio" name="decision" value="accept" required /> Aceitar a candidata inteira: todos os checks focados atendem ao esperado</label>
+                <label><input type="radio" name="decision" value="return" required /> Devolver a candidata para ajuste: a divergência no total impede aceitá-la</label>
               </fieldset>
-              <fieldset><legend>Qual evidência fundamenta esse parecer?</legend>
+              <fieldset><legend>Qual evidência define se a candidata inteira pode ser aceita?</legend>
                 <label><input type="radio" name="reason" value="http" required /> O Checkout ainda retorna 503 e não abre.</label>
                 <label><input type="radio" name="reason" value="total" required /> O Checkout abre, mas o total difere do carrinho sem uma taxa contratada.</label>
                 <label><input type="radio" name="reason" value="regression" required /> Era obrigatório executar toda a regressão para validar esta correção.</label>
@@ -122,12 +122,12 @@
         </section>
         <section class="sanity-result sanity-panel" id="sanity-result" aria-labelledby="sanity-result-title" hidden>
           <span class="label label--cyan">MISSÃO CONCLUÍDA · PARECER CORRETO</span>
-          <h2 id="sanity-result-title" tabindex="-1">O 503 saiu. O total ainda falha.</h2>
-          <p>Você confirmou a correção da abertura do Checkout e encontrou uma inconsistência próxima. A Sanidade da BZ-2026.10.1 foi reprovada: devolva esta candidata para corrigir o cálculo. O parecer vale para esta versão; não reprova a Bazaraza como produto.</p>
+          <h2 id="sanity-result-title" tabindex="-1">O 503 foi corrigido; a candidata precisa de ajuste.</h2>
+          <p><strong>Verificação do defeito original: passou.</strong> O Checkout abriu e o HTTP 503 não se reproduziu. <strong>Parecer sobre a candidata: reprovada na Sanidade.</strong> O total divergiu do carrinho sem taxa contratada, então a BZ-2026.10.1 deve voltar para ajuste. <strong>Missão: concluída corretamente</strong> ao identificar essa diferença e justificar a devolução. O parecer vale para esta versão; não reprova a Bazaraza como produto.</p>
           <div class="sanity-result__stats"><div><span>CHECKS</span><strong>4 / 4</strong></div><div><span>INCONSISTÊNCIA</span><strong>1</strong></div><div><span>NESTA TENTATIVA</span><strong id="sanity-result-xp">0 XP</strong></div></div>
           <p id="sanity-result-summary"></p><qa-save-status></qa-save-status>
           <details class="sanity-result__evidence"><summary>Revisar as quatro evidências</summary><div id="sanity-result-evidence"></div></details>
-          <p class="sanity-learning">O foco da Sanidade foi a correção e seu entorno. Smoke verifica rapidamente os fluxos essenciais da versão; E2E acompanha uma jornada completa. Após corrigir os impedimentos e repetir a validação focada, uma regressão será necessária para verificar funcionalidades que já funcionavam. Nenhuma dessas etapas, isoladamente, representa aprovação para produção.</p>
+          <p class="sanity-learning">A correção específica do 503 passou, mas isso não aprova a candidata inteira: o total divergente exige ajuste e nova validação focada. Smoke verifica rapidamente os fluxos essenciais da versão; E2E acompanha uma jornada completa. Depois de corrigir os impedimentos, a regressão verifica funcionalidades que já funcionavam. Concluir esta missão registra o acerto do seu parecer, não a aprovação da versão para produção.</p>
           <div class="sanity-result__actions"><button class="button button--primary" id="restart-sanity" type="button">Repetir missão</button><a class="button button--ghost" href="tracks.html">Voltar às trilhas</a></div>
         </section>
       </div>

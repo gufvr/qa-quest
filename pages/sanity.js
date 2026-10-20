@@ -132,7 +132,7 @@ function renderProgress() {
   status.textContent = state.records.has("consistency")
     ? "BZ-2026.10.1 · Total divergente. O 503 foi corrigido, mas esta candidata precisa voltar para ajuste."
     : state.records.has("open")
-      ? "BZ-2026.10.1 · O 503 não se reproduz. Continue as verificações próximas antes de aceitar a correção."
+      ? "BZ-2026.10.1 · O 503 não se reproduz. Continue as verificações próximas antes de emitir parecer sobre a candidata inteira."
       : "BZ-2026.10.1 · Aguardando verificações focadas.";
   if (count) {
     get("sanity-evidence").replaceChildren(...STEP_IDS.filter((id) => state.records.has(id)).map(makeEvidence));
@@ -304,8 +304,8 @@ function initializeMission() {
     get("header-xp").textContent = String(score());
     if (!correctDecision || !correctReason) {
       const messages = [];
-      if (!correctDecision) messages.push("Devolva a BZ-2026.10.1 para ajuste. O 503 foi corrigido, mas a candidata cobra R$ 15,00 indevidos no Checkout.");
-      if (!correctReason) messages.push("O 503 não se reproduziu: o Checkout respondeu 200. A evidência que impede aceitar a candidata é o total divergente. Sanidade cobre a correção e seu entorno; não exige executar toda a regressão nesta missão.");
+      if (!correctDecision) messages.push("A verificação do defeito 503 passou, mas isso não aprova a candidata inteira. Devolva a BZ-2026.10.1: o Checkout cobra R$ 15,00 a mais que o carrinho sem taxa contratada.");
+      if (!correctReason) messages.push("O Checkout respondeu 200 e o 503 não se reproduziu. Para decidir sobre a candidata inteira, considere a evidência que ainda falha: o total diverge do carrinho. Sanidade cobre a correção e seu entorno; não exige executar toda a regressão nesta missão.");
       messages.push("Revise o parecer. Cada resposta incorreta valerá 5 XP quando corrigida.");
       feedback("sanity-review-feedback", messages.join(" "));
       return;
@@ -321,7 +321,7 @@ function initializeMission() {
     get("sanity-workspace").hidden = true;
     get("sanity-result").hidden = false;
     get("sanity-result-xp").textContent = score() + " XP";
-    get("sanity-result-summary").textContent = "Missão concluída pelo parecer correto; candidata devolvida para ajuste. Melhor resultado: " +
+    get("sanity-result-summary").textContent = "Missão concluída pelo parecer correto. O 503 não se reproduziu; a candidata foi devolvida porque o total diverge do carrinho. Melhor resultado: " +
       saved.bestXp + " XP · Tentativas concluídas: " + saved.attempts + " · XP compartilhado: " + saved.totalXp + ".";
     get("sanity-result-evidence").replaceChildren(...STEP_IDS.map(makeEvidence));
     saveStatus.show(saved);
