@@ -99,6 +99,16 @@ function applySavedProgress() {
 
 applySavedProgress();
 
+window.addEventListener("qaquest:progress", applySavedProgress);
+window.addEventListener("storage", event => {
+  if (event.key === window.QAQuestProgress.storageKey || event.key === null) applySavedProgress();
+});
+window.addEventListener("pageshow", applySavedProgress);
+window.addEventListener("focus", applySavedProgress);
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) applySavedProgress();
+});
+
 startButtons.forEach((button) => {
   button.addEventListener("click", () => {
     window.location.href = window.QAQuestProgress.isTracksUnlocked() ? "tracks.html" : routes[currentPhase];

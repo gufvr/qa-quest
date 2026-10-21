@@ -1,7 +1,7 @@
 // Global progress state, independent from page interfaces.
 (function initializeProgress(global) {
   const STORAGE_KEY = "qa-quest-progress";
-  const CURRENT_VERSION = 2;
+  const CURRENT_VERSION = 3;
   const MAX_XP_PER_PHASE = 100;
   const phaseNumbers = { phase1: 1, phase2: 2, phase3: 3, phase4: 4 };
   const trackModules = {
@@ -17,6 +17,7 @@
       totalXp: 0,
       unlockedPhase: 1,
       missions: {},
+      activityDays: [],
       selectedTrack: null,
       tracks: Object.fromEntries(Object.keys(trackModules).map((id) => [id, { completedModules: [] }]))
     };
@@ -45,6 +46,32 @@
     };
   }
 
+  // Calendar days are stored as local date keys, independent from elapsed hours.
+  function localDay(date) {
+    return [String(date.getFullYear()).padStart(4, "0"),
+      String(date.getMonth() + 1).padStart(2, "0"),
+      String(date.getDate()).padStart(2, "0")].join("-");
+  }
+
+  function isValidDay(value) {
+    if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+    const [year, month, day] = value.split("-").map(Number);
+    const date = new Date(0);
+    date.setFullYear(year, month - 1, day);
+    date.setHours(12, 0, 0, 0);
+    return localDay(date) === value;
+  }
+
+  function normalizeActivityDays(value, missions) {
+    if (Array.isArray(value)) return [...new Set(value.filter(isValidDay))].sort();
+    // Old saves retain only the latest completion per mission. Infer no other days.
+    const days = Object.values(missions).filter(mission => mission.completed && mission.lastCompletedAt)
+      .map(mission => new Date(mission.lastCompletedAt))
+      .filter(date => Number.isFinite(date.getTime()))
+      .map(localDay);
+    return [...new Set(days)].sort();
+  }
+
   function normalizeState(value) {
     const initial = createInitialState();
     if (!value || typeof value !== "object") return initial;
@@ -71,6 +98,7 @@
       totalXp,
       unlockedPhase: Math.max(1, Math.min(5, Math.max(Number(value.unlockedPhase) || 1, highestCompleted + 1))),
       missions,
+      activityDays: normalizeActivityDays(value.activityDays, missions),
       selectedTrack: Object.hasOwn(trackModules, value.selectedTrack) ? value.selectedTrack : null,
       tracks
     };
@@ -83,7 +111,7 @@
       const saved = JSON.parse(stored);
       const normalized = normalizeState(saved);
       memoryState = normalized;
-      if (saved.version !== CURRENT_VERSION || !saved.tracks) {
+      if (saved.version !== CURRENT_VERSION || !saved.tracks || !Array.isArray(saved.activityDays)) {
         try {
           global.localStorage.setItem(STORAGE_KEY, JSON.stringify(normalized));
         } catch (error) {
@@ -126,12 +154,14 @@
     const bestXp = Math.max(previous.bestXp, clampXp(earnedXp));
     const gainedXp = bestXp - previous.bestXp;
 
+    const completedAt = new Date();
     state.missions[missionId] = {
       completed: true,
       bestXp,
       attempts: previous.attempts + 1,
-      lastCompletedAt: new Date().toISOString()
+      lastCompletedAt: completedAt.toISOString()
     };
+    state.activityDays = [...new Set([...state.activityDays, localDay(completedAt)])].sort();
     if (phaseNumber) state.unlockedPhase = Math.max(state.unlockedPhase, phaseNumber + 1);
 
     const savedState = writeState(state);
@@ -183,9 +213,40 @@
     return writeState(state);
   }
 
+  function getActivitySummary() {
+    const days = new Set(readState().activityDays);
+    const today = new Date();
+    today.setHours(12, 0, 0, 0);
+    const todayKey = localDay(today);
+    const completedToday = days.has(todayKey);
+    const cursor = new Date(today);
+    if (!completedToday) cursor.setDate(cursor.getDate() - 1);
+    let currentStreak = 0;
+    while (days.has(localDay(cursor))) {
+      currentStreak++;
+      cursor.setDate(cursor.getDate() - 1);
+    }
+    const monday = new Date(today);
+    monday.setDate(monday.getDate() - (monday.getDay() + 6) % 7);
+    const weekdays = ["Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo"];
+    const labels = ["SEG", "TER", "QUA", "QUI", "SEX", "SÁB", "DOM"];
+    return {
+      currentStreak,
+      completedToday,
+      week: weekdays.map((weekday, index) => {
+        const date = new Date(monday);
+        date.setDate(date.getDate() + index);
+        const day = localDay(date);
+        return { date: day, weekday, label: labels[index], isToday: day === todayKey,
+          completed: day <= todayKey && days.has(day) };
+      })
+    };
+  }
+
   global.QAQuestProgress = Object.freeze({
     storageKey: STORAGE_KEY,
     getState: readState,
+    getActivitySummary,
     getMission,
     isPhaseUnlocked,
     isTracksUnlocked,
