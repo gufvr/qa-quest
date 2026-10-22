@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Valide autenticação, autorização e proteção de dados em uma missão local da Bazaraza." />
+    <title>Teste de Segurança — QA Quest</title>
+    <link rel="icon" type="image/png" href="qaquest.png" />
+    <link rel="apple-touch-icon" href="qaquest.png" />
+    <script>
+      try { document.documentElement.dataset.theme = localStorage.getItem("qa-quest-theme") || "dark"; }
+      catch { document.documentElement.dataset.theme = "dark"; }
+    </script>
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/security.css" />
+  </head>
+  <body class="security-page">
+    <a class="skip-link" href="#security-main">Ir para a missão</a>
+    <qa-header variant="simulator"></qa-header>
+    <main class="security-container" id="security-main">
+      <section id="security-locked" class="security-locked" hidden>
+        <span class="label label--cyan">BASE COMUM</span>
+        <h1>Conclua a Fase 4 para iniciar esta missão.</h1>
+        <p>Segurança independe de Performance e das outras trilhas. O contexto necessário está incluído aqui.</p>
+        <a id="security-locked-link" class="button button--primary" href="index.html">Voltar à jornada</a>
+      </section>
+      <div id="security-content" hidden>
+        <header class="security-intro">
+          <div><span class="label label--cyan">TRILHA 03 · QUALIDADE ESPECIALIZADA</span><h1>Quem pode acessar o quê?</h1></div>
+          <p>Entre com uma conta de teste, confira os limites de acesso e fundamente seu parecer com evidências.</p>
+        </header>
+        <section class="security-panel security-briefing" aria-labelledby="security-briefing-title">
+          <div>
+            <span class="label">BAZARAZA · CANDIDATA BZ-2026.11.1</span>
+            <h2 id="security-briefing-title">Entrar é apenas o primeiro controle.</h2>
+            <p>Ana Lima e Bruno Costa são personagens fictícios. O time precisa confirmar que cada conta acessa apenas os próprios pedidos e que as mensagens de login não revelam informações desnecessárias.</p>
+            <div class="security-accounts">
+              <p><strong>Ana Lima</strong><span>cliente.ana@bazaraza.test</span><span>Pedido BZ-ANA-1042</span></p>
+              <p><strong>Bruno Costa</strong><span>cliente.bruno@bazaraza.test</span><span>Pedido BZ-BRU-2088</span></p>
+            </div>
+            <p class="security-note">Todos os nomes, contas, endereços e pedidos são fictícios. As ações acontecem apenas nesta tela, sem requisições à Bazaraza. Use os dados públicos de laboratório fornecidos; a sessão e as alterações simuladas somem ao repetir ou recarregar. O progresso concluído permanece salvo.</p>
+            <details class="security-concepts"><summary>Conceitos para investigar</summary>
+              <p><strong>Autenticação:</strong> confirmar quem está entrando. Uma tentativa inválida deve ser negada.</p>
+              <p><strong>Autorização:</strong> conferir quais dados e ações pertencem àquela identidade. Estar autenticado não concede acesso a todos os pedidos.</p>
+              <p><strong>Confidencialidade:</strong> evitar que outra pessoa veja dados protegidos. <strong>Integridade:</strong> impedir alterações indevidas.</p>
+              <p><strong>Mensagem segura:</strong> “E-mail ou senha inválidos” evita distinguir uma conta cadastrada de uma inexistente. O erro pode negar a entrada corretamente e ainda revelar informação excessiva.</p>
+              <p><strong>Em uma aplicação real:</strong> o servidor ou a API deve validar as permissões em cada operação. Esconder botões na interface não protege dados por si só. Este laboratório representa respostas com dados locais.</p>
+            </details>
+          </div>
+          <aside class="security-scoring"><strong>Até 100 XP</strong><p>Conceito: 10<br />Execuções: 10 + 5 + 5 + 10<br />4 classificações: 40<br />Parecer + justificativa: 20</p><small>Resposta corrigida vale metade dos pontos do item. A melhor pontuação permanece salva. A rodada em andamento recomeça ao sair.</small></aside>
+        </section>
+        <section id="security-concept-panel" class="security-panel security-concept-panel">
+          <form id="security-concept">
+            <fieldset><legend>Qual é a diferença entre autenticação e autorização?</legend>
+              <label><input type="radio" name="concept" value="identity" required /> Autenticação confirma a identidade; autorização limita os dados e ações permitidos para essa identidade.</label>
+              <label><input type="radio" name="concept" value="performance" required /> Autenticação mede tempo de resposta; autorização conta requisições, como na Performance.</label>
+              <label><input type="radio" name="concept" value="regression" required /> Autenticação repete cenários conhecidos; autorização compara versões, como na Regressão.</label>
+              <label><input type="radio" name="concept" value="smoke" required /> Autenticação verifica se a Home abriu; isso já garante as permissões, como em um Smoke.</label>
+              <label><input type="radio" name="concept" value="sanity" required /> Autenticação confirma uma correção isolada; autorização dispensa a revisão de acesso, como na Sanidade.</label>
+              <label><input type="radio" name="concept" value="e2e" required /> Uma compra E2E concluída substitui a verificação de identidade e das permissões.</label>
+            </fieldset>
+            <p id="security-concept-feedback" class="security-feedback" role="status" hidden></p>
+            <button class="button button--primary" type="submit">Começar a revisão</button>
+          </form>
+        </section>
+        <section id="security-workspace" class="security-workspace" aria-label="Bancada de segurança" hidden>
+          <aside class="security-panel security-checklist">
+            <span class="label label--cyan">QUATRO CENÁRIOS</span><h2>Identidade, permissão e dados.</h2>
+            <p class="security-counter">Evidências classificadas <strong id="security-count">0 / 4</strong></p>
+            <div id="security-progress" role="progressbar" aria-label="Evidências classificadas" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0"><i id="security-bar"></i></div>
+            <ol id="security-steps"></ol>
+            <p class="security-note">Ana permanece autenticada nos casos de leitura e alteração. No último caso, a sessão é encerrada para comparar tentativas de login negadas.</p>
+          </aside>
+          <section class="security-panel security-lab" aria-labelledby="security-check-title">
+            <div class="security-lab-heading">
+              <span class="label label--cyan" id="security-case-id"></span><h2 id="security-check-title" tabindex="-1"></h2>
+              <p id="security-instruction"></p>
+              <div class="security-expected"><strong>Esperado:</strong><p id="security-expected"></p></div>
+            </div>
+            <div class="security-browser" aria-label="Bazaraza fictícia">
+              <div class="security-browser-bar"><span aria-hidden="true">● ● ●</span><span id="security-address">bazaraza.test/account</span><small>Simulado</small></div>
+              <header class="security-store-nav"><strong><b>B</b> Bazaraza</strong><span>BZ-2026.11.1</span></header>
+              <p id="security-session" class="security-session" role="status">Sessão: sem autenticação.</p>
+              <div class="security-store">
+                <section data-security-view="own">
+                  <span class="security-kicker">CASO SEC-01 · DADOS PRÓPRIOS</span><h3>Confira os dois controles.</h3>
+                  <button id="security-check-guest" class="security-store-button" type="button">Abrir Minha Conta sem sessão</button>
+                  <p id="security-guest-feedback" class="security-store-message" role="status" hidden></p>
+                  <form id="security-login" hidden>
+                    <p class="security-store-note">Dados públicos do laboratório, preenchidos para esta simulação.</p>
+                    <label class="security-field">E-mail fictício<input value="cliente.ana@bazaraza.test" readonly autocomplete="off" /></label>
+                    <label class="security-field">Senha fictícia de laboratório<input value="AnaTeste123!" readonly autocomplete="off" /></label>
+                    <button class="security-store-button" type="submit">Entrar como Ana</button>
+                  </form>
+                  <div id="security-own-panels" hidden>
+                    <div class="security-store-card"><h4>Minha Conta</h4><p>Ana Lima<br />cliente.ana@bazaraza.test</p></div>
+                    <div class="security-store-card"><h4>Histórico de Pedidos</h4><p>BZ-ANA-1042 · 1 × Mochila Urbana · R$ 189,90</p><small>1 pedido · titular: Ana Lima</small></div>
+                    <button id="security-check-own" class="security-store-button" type="button">Conferir Minha Conta e Histórico</button>
+                  </div>
+                </section>
+                <section data-security-view="read" hidden>
+                  <span class="security-kicker">CASO SEC-02 · LEITURA DE TERCEIROS</span><h3>Um pedido de outra pessoa.</h3>
+                  <p class="security-store-note">O time forneceu o pedido BZ-BRU-2088 de Bruno como dado de teste. A sessão continua sendo de Ana.</p>
+                  <button id="security-open-foreign" class="security-store-button" type="button">Tentar abrir BZ-BRU-2088 como Ana</button>
+                  <div id="security-foreign-order" class="security-store-card" hidden></div>
+                </section>
+                <section data-security-view="write" hidden>
+                  <span class="security-kicker">CASO SEC-03 · ALTERAÇÃO DE TERCEIROS</span><h3>Uma alteração não permitida.</h3>
+                  <p class="security-store-note">Ana continua autenticada. O pedido abaixo pertence a Bruno.</p>
+                  <div id="security-write-order" class="security-store-card"></div>
+                  <form id="security-change-address">
+                    <label class="security-field">Novo endereço fictício<select id="security-new-address" required><option value="">Selecione um dado de teste</option><option value="lab">Alameda do Laboratório, 77 — Cidade Exemplo</option><option value="simulation">Praça da Simulação, 88 — Cidade Exemplo</option></select></label>
+                    <button class="security-store-button" type="submit">Tentar salvar endereço como Ana</button>
+                  </form>
+                  <p id="security-address-feedback" class="security-store-message" role="status" hidden></p>
+                </section>
+                <section data-security-view="message" hidden>
+                  <span class="security-kicker">CASO SEC-04 · RESPOSTAS DE LOGIN</span><h3>Negar a entrada é suficiente?</h3>
+                  <p class="security-store-note">A sessão de Ana foi encerrada para este caso. Compare duas tentativas inválidas fornecidas pelo laboratório.</p>
+                  <div class="security-store-card"><h4>Conta cadastrada + senha incorreta</h4><p>cliente.ana@bazaraza.test<br />Senha incorreta fictícia: OutraSenhaTeste!</p><button id="security-test-known" class="security-store-button" type="button">Testar senha incorreta para Ana</button><p id="security-known-feedback" class="security-store-message" role="status" hidden></p></div>
+                  <div class="security-store-card"><h4>Conta inexistente</h4><p>cliente.inexistente@bazaraza.test<br />Senha fictícia: OutraSenhaTeste!</p><button id="security-test-unknown" class="security-store-button" type="button" disabled>Testar conta inexistente</button><p id="security-unknown-feedback" class="security-store-message" role="status" hidden></p></div>
+                </section>
+              </div>
+            </div>
+            <section id="security-observation" class="security-observation" hidden><h3>Resultado observado</h3><p id="security-observed"></p></section>
+            <form id="security-classification" hidden>
+              <fieldset><legend>Como você classifica o controle observado?</legend><div id="security-options"></div></fieldset>
+              <p id="security-classification-feedback" class="security-feedback" role="status" hidden></p>
+              <button class="button button--ghost" type="submit">Registrar evidência</button>
+            </form>
+            <button id="next-security" class="button button--ghost security-next" type="button" hidden>Próximo cenário →</button>
+          </section>
+          <aside class="security-panel security-report">
+            <span class="label label--cyan">CADERNO DE EVIDÊNCIAS</span><h2>Fundamente seu parecer.</h2>
+            <p id="security-candidate-status" class="security-status" role="status">BZ-2026.11.1 · Parecer pendente.</p>
+            <div id="security-evidence"></div>
+            <p id="security-review-hint" class="security-note">Classifique os quatro cenários para emitir o parecer.</p>
+            <form id="security-review" hidden>
+              <fieldset><legend id="security-review-title" tabindex="-1">Qual é o parecer sobre a BZ-2026.11.1 neste escopo?</legend>
+                <label><input type="radio" name="decision" value="return" required /> Reprovar a candidata neste escopo e devolver para correção e nova avaliação de segurança.</label>
+                <label><input type="radio" name="decision" value="accept" required /> Aceitar a candidata porque o login válido funciona.</label>
+                <label><input type="radio" name="decision" value="production" required /> Aprovar para produção porque os quatro cenários foram executados.</label>
+              </fieldset>
+              <fieldset><legend>Qual evidência sustenta esse parecer?</legend>
+                <label><input type="radio" name="reason" value="controls" required /> Ana consegue ler e alterar o pedido de Bruno; mensagens de login distinguem contas. O acesso próprio funciona, mas há falhas de autorização e exposição de informação.</label>
+                <label><input type="radio" name="reason" value="smoke" required /> Um Smoke com a Home disponível garante que os dados estão protegidos.</label>
+                <label><input type="radio" name="reason" value="sanity" required /> A correção isolada do Checkout na Sanidade garante as permissões de todos os pedidos.</label>
+                <label><input type="radio" name="reason" value="regression" required /> A Regressão funcional aprovada dispensa testar acesso entre contas.</label>
+                <label><input type="radio" name="reason" value="e2e" required /> Uma compra E2E completa garante o isolamento de dados entre clientes.</label>
+                <label><input type="radio" name="reason" value="performance" required /> Respostas rápidas na Performance comprovam que o acesso é autorizado.</label>
+              </fieldset>
+              <p id="security-review-feedback" class="security-feedback" role="status" hidden></p>
+              <button class="button button--primary" type="submit">Concluir missão com parecer</button>
+            </form>
+          </aside>
+        </section>
+        <section id="security-result" class="security-panel security-result" aria-labelledby="security-result-title" hidden>
+          <span class="label label--cyan">MISSÃO CONCLUÍDA · PARECER CORRETO</span>
+          <h2 id="security-result-title" tabindex="-1">Identidade confirmada. Permissões falharam.</h2>
+          <p>O acesso próprio de Ana funciona e as tentativas inválidas de login são negadas. Porém, Ana consegue ler e alterar o pedido de Bruno, e os erros de login revelam se uma conta existe. A candidata BZ-2026.11.1 foi reprovada neste escopo e deve voltar para correção e nova avaliação.</p>
+          <div class="security-result-stats"><div><span>CENÁRIOS</span><strong>4 / 4</strong></div><div><span>ACHADOS</span><strong>3</strong></div><div><span>NESTA TENTATIVA</span><strong id="security-result-xp">0 XP</strong></div></div>
+          <p id="security-result-summary"></p><qa-save-status></qa-save-status>
+          <details class="security-result-evidence"><summary>Revisar as quatro evidências</summary><div id="security-result-evidence"></div></details>
+          <p class="security-learning"><strong>Autenticação</strong> confirmou a identidade de Ana. <strong>Autorização</strong> deveria impedir leitura e alteração do pedido de Bruno. A leitura expôs dados; a alteração violou sua integridade e também exibiu dados de terceiros. As mensagens de login revelaram informação desnecessária, mesmo negando as duas tentativas.</p>
+          <p class="security-note">Você concluiu corretamente a missão ao fundamentar a reprovação. A candidata precisa de correção e nova avaliação. Este recorte didático não cobre toda a segurança da aplicação nem concede aprovação para produção. Sessões, pedidos e alterações existem somente nesta simulação local.</p>
+          <div class="security-result-actions"><button id="restart-security" class="button button--primary" type="button">Repetir missão</button><a class="button button--ghost" href="tracks.html">Voltar às trilhas</a></div>
+        </section>
+      </div>
+    </main>
+    <script type="module" src="components/brand.js"></script>
+    <script type="module" src="components/theme-toggle.js"></script>
+    <script type="module" src="components/header.js"></script>
+    <script type="module" src="components/save-status.js"></script>
+    <script type="module" src="core/progress.js"></script>
+    <script type="module" src="pages/security.js"></script>
+  </body>
+</html>

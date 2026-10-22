@@ -16,7 +16,8 @@ export default defineConfig({
         smoke: "smoke.html",
         sanity: "sanity.html",
         regression: "regression.html",
-        performance: "performance.html"
+        performance: "performance.html",
+        security: "security.html"
       }
     }
   }

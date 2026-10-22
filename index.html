@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
@@ -11,7 +11,8 @@
     <link rel="icon" type="image/png" href="qaquest.png" />
     <link rel="apple-touch-icon" href="qaquest.png" />
     <script>
-      document.documentElement.dataset.theme = localStorage.getItem("qa-quest-theme") || "dark";
+      document.documentElement.dataset.theme =
+        localStorage.getItem("qa-quest-theme") || "dark";
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -40,8 +41,8 @@
 
             <h1>Teste seus conhecimentos.<br /><span>Evolua como QA.</span></h1>
             <p class="hero__description">
-              Domine análise, estratégia e testes em uma jornada feita de missões
-              práticas, desafios reais e conquistas.
+              Domine análise, estratégia e testes em uma jornada feita de
+              missões práticas, desafios reais e conquistas.
             </p>
 
             <div class="hero__actions">
@@ -66,14 +67,25 @@
                 <span class="label">MISSÃO ATUAL</span>
                 <h2 id="current-mission-title">Olhar de Analista</h2>
               </div>
-              <div class="level-badge" id="level-badge" aria-label="Nível 1">NV. 01</div>
+              <div class="level-badge" id="level-badge" aria-label="Nível 1">
+                NV. 01
+              </div>
             </div>
 
             <div class="xp-card">
               <div class="xp-card__row">
-                <span>Progresso do nível</span><strong id="total-xp-label">0 / 500 XP</strong>
+                <span>Progresso do nível</span
+                ><strong id="total-xp-label">0 / 500 XP</strong>
               </div>
-              <div class="progress progress--empty" id="total-xp-progress" role="progressbar" aria-label="Progresso do nível: 0 de 500 XP" aria-valuemin="0" aria-valuemax="500" aria-valuenow="0">
+              <div
+                class="progress progress--empty"
+                id="total-xp-progress"
+                role="progressbar"
+                aria-label="Progresso do nível: 0 de 500 XP"
+                aria-valuemin="0"
+                aria-valuemax="500"
+                aria-valuenow="0"
+              >
                 <span id="total-xp-progress-bar"></span>
               </div>
             </div>
@@ -81,33 +93,66 @@
             <div class="path-preview" aria-label="Caminho de aprendizado">
               <div class="path-line" aria-hidden="true"></div>
 
-              <a class="path-node path-node--active" href="phase1.html" data-phase="1" aria-label="Abrir Fase 1: Fundamentos">
+              <a
+                class="path-node path-node--active"
+                href="phase1.html"
+                data-phase="1"
+                aria-label="Abrir Fase 1: Fundamentos"
+              >
                 <span class="path-node__icon" aria-hidden="true">◆</span>
                 <div><small>FASE 01</small><strong>Fundamentos</strong></div>
                 <span class="path-node__status" data-phase-status>ATUAL</span>
               </a>
 
-              <a class="path-node path-node--locked" href="phase2.html" data-phase="2" aria-label="Abrir Fase 2: Análise de Requisitos">
+              <a
+                class="path-node path-node--locked"
+                href="phase2.html"
+                data-phase="2"
+                aria-label="Abrir Fase 2: Análise de Requisitos"
+              >
                 <span class="path-node__icon" aria-hidden="true">◇</span>
-                <div><small>FASE 02</small><strong>Análise de Requisitos</strong></div>
+                <div>
+                  <small>FASE 02</small><strong>Análise de Requisitos</strong>
+                </div>
                 <span class="path-node__status" data-phase-status>BLOQ.</span>
               </a>
 
-              <a class="path-node path-node--locked" href="phase3.html" data-phase="3" aria-label="Abrir Fase 3: Simulador de Login">
+              <a
+                class="path-node path-node--locked"
+                href="phase3.html"
+                data-phase="3"
+                aria-label="Abrir Fase 3: Simulador de Login"
+              >
                 <span class="path-node__icon" aria-hidden="true">◇</span>
-                <div><small>FASE 03</small><strong>Simulador de Login</strong></div>
+                <div>
+                  <small>FASE 03</small><strong>Simulador de Login</strong>
+                </div>
                 <span class="path-node__status" data-phase-status>BLOQ.</span>
               </a>
 
-              <a class="path-node path-node--locked" href="phase4.html" data-phase="4" aria-label="Abrir Fase 4: Plano de Testes">
+              <a
+                class="path-node path-node--locked"
+                href="phase4.html"
+                data-phase="4"
+                aria-label="Abrir Fase 4: Plano de Testes"
+              >
                 <span class="path-node__icon" aria-hidden="true">◇</span>
-                <div><small>FASE 04</small><strong>Plano de Testes</strong></div>
+                <div>
+                  <small>FASE 04</small><strong>Plano de Testes</strong>
+                </div>
                 <span class="path-node__status" data-phase-status>BLOQ.</span>
               </a>
 
-              <a class="path-node path-node--locked" href="tracks.html" data-tracks aria-label="Abrir hub de trilhas">
+              <a
+                class="path-node path-node--locked"
+                href="tracks.html"
+                data-tracks
+                aria-label="Abrir hub de trilhas"
+              >
                 <span class="path-node__icon" aria-hidden="true">◇</span>
-                <div><small>PRÓXIMA ETAPA</small><strong>Trilhas de QA</strong></div>
+                <div>
+                  <small>PRÓXIMA ETAPA</small><strong>Trilhas de QA</strong>
+                </div>
                 <span class="path-node__status" data-tracks-status>BLOQ.</span>
               </a>
             </div>
@@ -124,7 +169,10 @@
               <span class="label label--cyan">MAPA DA JORNADA</span>
               <h2>Cada mundo desenvolve uma habilidade.</h2>
             </div>
-            <p>Do raciocínio analítico aos testes especializados, avance no seu ritmo.</p>
+            <p>
+              Do raciocínio analítico aos testes especializados, avance no seu
+              ritmo.
+            </p>
           </div>
 
           <div class="worlds">
@@ -134,7 +182,9 @@
               <span class="tag">INÍCIO</span>
               <h3>Mente Analítica</h3>
               <p>Requisitos, riscos, impacto e cobertura.</p>
-              <div class="world-card__footer"><span>4 fases</span><strong>Explorar →</strong></div>
+              <div class="world-card__footer">
+                <span>4 fases</span><strong>Explorar →</strong>
+              </div>
             </article>
 
             <article class="world-card">
@@ -143,7 +193,9 @@
               <span class="tag tag--purple">EM BREVE</span>
               <h3>Laboratório de Testes</h3>
               <p>Funcional, exploratório, regressão e E2E.</p>
-              <div class="world-card__footer"><span>6 fases</span><strong>Bloqueado</strong></div>
+              <div class="world-card__footer">
+                <span>6 fases</span><strong>Bloqueado</strong>
+              </div>
             </article>
 
             <article class="world-card">
@@ -152,7 +204,9 @@
               <span class="tag tag--purple">EM BREVE</span>
               <h3>Domínio Técnico</h3>
               <p>API, logs, automação e performance.</p>
-              <div class="world-card__footer"><span>7 fases</span><strong>Bloqueado</strong></div>
+              <div class="world-card__footer">
+                <span>7 fases</span><strong>Bloqueado</strong>
+              </div>
             </article>
           </div>
         </div>
@@ -174,7 +228,9 @@
             <article>
               <span class="steps__number">02</span>
               <h3>Resolva desafios</h3>
-              <p>Analise situações, tome decisões e receba feedback imediato.</p>
+              <p>
+                Analise situações, tome decisões e receba feedback imediato.
+              </p>
             </article>
             <article>
               <span class="steps__number">03</span>
