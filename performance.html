@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Simule carga e estresse no catálogo da Bazaraza e aprenda a interpretar métricas de performance." />
+    <title>Teste de Performance — QA Quest</title>
+    <link rel="icon" type="image/png" href="qaquest.png" />
+    <link rel="apple-touch-icon" href="qaquest.png" />
+    <script>
+      try { document.documentElement.dataset.theme = localStorage.getItem("qa-quest-theme") || "dark"; }
+      catch { document.documentElement.dataset.theme = "dark"; }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/performance.css" />
+  </head>
+  <body class="performance-page">
+    <a class="skip-link" href="#performance-main">Ir para a missão</a>
+    <qa-header variant="simulator"></qa-header>
+    <main class="performance-container" id="performance-main">
+      <section id="performance-locked" class="performance-locked" hidden>
+        <span class="label label--cyan">BASE COMUM</span>
+        <h1>Conclua a Fase 4 para iniciar esta missão.</h1>
+        <p>Performance independe de Segurança e das outras trilhas. O contexto necessário está incluído aqui.</p>
+        <a class="button button--primary" id="performance-locked-link" href="index.html">Voltar à jornada</a>
+      </section>
+      <div id="performance-content" hidden>
+        <header class="performance-intro">
+          <div><span class="label label--cyan">TRILHA 03 · QUALIDADE ESPECIALIZADA</span><h1>Como a loja responde ao pico?</h1></div>
+          <p>Defina a pergunta, simule a campanha e transforme números em um parecer sobre a experiência do cliente.</p>
+        </header>
+        <section class="performance-briefing performance-panel" aria-labelledby="performance-briefing-title">
+          <div>
+            <span class="label">BAZARAZA · CANDIDATA BZ-2026.11.0</span>
+            <h2 id="performance-briefing-title">Uma campanha. Até 300 pessoas ao mesmo tempo.</h2>
+            <p>O time prevê até 300 usuários simultâneos pesquisando e filtrando produtos no catálogo. Você avaliará a resposta nesse uso previsto e, em uma etapa separada, observará o que acontece acima dele.</p>
+            <p class="performance-note">Laboratório local: os números são dados didáticos fixos, sem tráfego para a Bazaraza. Cada etapa representa 60 segundos de atividade, exibidos instantaneamente. A velocidade do seu dispositivo não altera as métricas.</p>
+            <details class="performance-concepts"><summary>Antes de começar: como ler as métricas?</summary>
+              <p><strong>Usuários simultâneos:</strong> pessoas usando o fluxo ao mesmo tempo, com pausas entre ações. Isso não é o mesmo que requisições por segundo.</p>
+              <p><strong>Requisições:</strong> operações de busca ou filtro na janela de 60 segundos, incluindo as que retornam erro. Dividir esse volume por 60 dá a vazão média, em requisições por segundo.</p>
+              <p><strong>Tempo médio:</strong> média dos tempos das respostas. Uma média boa pode esconder respostas lentas.</p>
+              <p><strong>Percentil 95 (p95):</strong> 95% das respostas levaram até esse tempo; cerca de 5% levaram mais. Ele ajuda a enxergar a parte mais lenta das respostas, sem representar a pior resposta possível.</p>
+              <p><strong>Taxa de erros:</strong> respostas com erro divididas pelo total de requisições. Resposta rápida com erro também prejudica o cliente.</p>
+              <p><strong>Carga</strong> usa o volume previsto; <strong>Estresse</strong> ultrapassa esse volume para observar degradação. Os limites desta missão foram definidos para a campanha fictícia e não são regras universais.</p>
+            </details>
+          </div>
+          <aside class="performance-scoring"><strong>Até 100 XP</strong><p>Pergunta + critérios: 20<br />3 execuções: 30<br />3 classificações: 30<br />Parecer + justificativa: 20</p><small>Resposta corrigida: metade dos pontos do item. A melhor pontuação permanece salva. Ao sair antes de concluir, a rodada recomeça.</small></aside>
+        </section>
+        <section id="performance-planning" class="performance-panel performance-planning" aria-label="Planejamento da análise">
+          <form id="performance-question">
+            <fieldset><legend>1. Qual pergunta esta campanha precisa responder?</legend>
+              <label><input type="radio" name="question" value="capacity" required /> Busca e filtro mantêm os tempos e erros aceitáveis nos patamares de carga até 300 usuários simultâneos?</label>
+              <label><input type="radio" name="question" value="sanity" required /> A correção isolada do HTTP 503 fez o Checkout voltar a abrir?</label>
+              <label><input type="radio" name="question" value="e2e" required /> Uma compra completa mantém dados coerentes do catálogo ao e-mail?</label>
+            </fieldset>
+            <p id="performance-question-feedback" class="performance-feedback" role="status" hidden></p>
+            <button class="button button--primary" type="submit">Confirmar pergunta</button>
+          </form>
+          <form id="performance-criteria" hidden>
+            <fieldset><legend tabindex="-1" id="performance-criteria-title">2. Quais critérios avaliam a carga prevista?</legend>
+              <label><input type="radio" name="criteria" value="all" required /> Nos patamares até 300 usuários: média ≤ 2 s, p95 ≤ 3 s e erros &lt; 1%, considerados em conjunto.</label>
+              <label><input type="radio" name="criteria" value="average" required /> Basta a média ser ≤ 2 s; respostas lentas e erros não mudam o parecer.</label>
+              <label><input type="radio" name="criteria" value="volume" required /> Quanto mais requisições, melhor o resultado, mesmo com falhas e lentidão.</label>
+            </fieldset>
+            <p id="performance-criteria-feedback" class="performance-feedback" role="status" hidden></p>
+            <button class="button button--primary" type="submit">Definir critérios</button>
+          </form>
+        </section>
+        <section id="performance-workspace" class="performance-workspace" aria-label="Bancada de performance" hidden>
+          <aside class="performance-panel performance-checklist">
+            <span class="label label--cyan">SEU PLANO</span><h2>Carga e, depois, estresse.</h2>
+            <p>Busca “Mochila” e filtro “Acessórios”, em um mix simulado de 70% de buscas e 30% de filtros, com pausas entre ações.</p>
+            <dl class="performance-limits"><div><dt>Carga prevista</dt><dd>Até 300 usuários</dd></div><div><dt>Média</dt><dd>≤ 2 s</dd></div><div><dt>p95</dt><dd>≤ 3 s</dd></div><div><dt>Erros</dt><dd>&lt; 1%</dd></div></dl>
+            <p class="performance-counter">Evidências classificadas <strong id="performance-count">0 / 3</strong></p>
+            <div id="performance-progress" role="progressbar" aria-label="Evidências classificadas" aria-valuemin="0" aria-valuemax="3" aria-valuenow="0"><i id="performance-bar"></i></div>
+            <ol id="performance-steps"></ol>
+            <p class="performance-note">Os resultados agregam busca e filtro. Três amostras não comprovam todos os volumes intermediários nem a capacidade máxima exata.</p>
+          </aside>
+          <div class="performance-lab">
+            <section class="performance-panel" aria-labelledby="performance-run-title">
+              <span class="label label--cyan" id="performance-stage-label">CHECKPOINT 01 · CARGA</span>
+              <h2 id="performance-run-title" tabindex="-1">Simular 100 usuários</h2>
+              <p id="performance-stage-description"></p>
+              <label class="performance-profile"><input id="performance-profile" type="checkbox" /> Confirmo o perfil: 100 → 300 usuários de carga prevista; depois 600 em estresse. Cada patamar representa 60 segundos.</label>
+              <button class="button button--primary" type="button" id="run-performance" disabled>Simular 100 usuários</button>
+              <div id="performance-sample" hidden>
+                <div class="performance-browser" aria-label="Prévia da Bazaraza simulada">
+                  <div class="performance-browser-bar"><span aria-hidden="true">● ● ●</span><span>bazaraza.test/catalog</span><small>Simulado</small></div>
+                  <div class="performance-store"><strong>Bazaraza · Catálogo</strong><p>Busca: Mochila · Categoria: Acessórios</p><div id="performance-store-status" role="status"></div></div>
+                </div>
+                <dl class="performance-metrics" id="performance-metrics"></dl>
+                <p id="performance-observed" class="performance-observed" role="status"></p>
+                <form id="performance-classification">
+                  <fieldset><legend>O que este resultado significa para o escopo da análise?</legend>
+                    <label><input type="radio" name="classification" value="meets" required /> Atende aos critérios no patamar de carga prevista.</label>
+                    <label><input type="radio" name="classification" value="stress" required /> Há degradação no estresse; investigar capacidade acima do uso previsto.</label>
+                    <label><input type="radio" name="classification" value="reject" required /> Reprova o teste de carga prevista de até 300 usuários.</label>
+                  </fieldset>
+                  <p id="performance-classification-feedback" class="performance-feedback" role="status" hidden></p>
+                  <button class="button button--ghost" type="submit">Registrar interpretação</button>
+                </form>
+              </div>
+              <button id="next-performance" class="button button--ghost performance-next" type="button" hidden>Próximo patamar →</button>
+            </section>
+            <section id="performance-report" class="performance-panel" aria-labelledby="performance-report-title">
+              <span class="label label--cyan">CADERNO DE EVIDÊNCIAS</span><h2 id="performance-report-title">Compare antes de decidir.</h2>
+              <p id="performance-report-empty">Execute os patamares para registrar esperado, observado e impacto. Sua classificação será anexada a cada evidência.</p>
+              <figure id="performance-chart" hidden><figcaption>p95 por patamar · traço: referência de 3 s · escala de 0 a 8 s</figcaption><ol id="performance-chart-rows"></ol></figure>
+              <div id="performance-evidence"></div>
+            </section>
+            <section id="performance-review-panel" class="performance-panel" hidden>
+              <span class="label label--cyan">PARECER TÉCNICO</span><h2 id="performance-review-title" tabindex="-1">O que os dados permitem concluir?</h2>
+              <form id="performance-review">
+                <fieldset><legend>Qual é o parecer sobre a BZ-2026.11.0 neste teste?</legend>
+                  <label><input type="radio" name="decision" value="scoped" required /> Aprovar tecnicamente a carga nos patamares testados até 300 usuários e investigar a degradação em 600; decisão de produção permanece pendente.</label>
+                  <label><input type="radio" name="decision" value="reject" required /> Reprovar a carga prevista de até 300 usuários porque houve degradação em 600.</label>
+                  <label><input type="radio" name="decision" value="production" required /> Aprovar a aplicação para produção e garantir capacidade máxima de 600 usuários.</label>
+                </fieldset>
+                <fieldset><legend>Qual justificativa sustenta esse parecer?</legend>
+                  <label><input type="radio" name="reason" value="metrics" required /> Em 100 e 300 usuários, média, p95 e erros atendem juntos aos limites; em 600, a degradação de estresse orienta investigação, planejamento de capacidade e monitoramento posterior.</label>
+                  <label><input type="radio" name="reason" value="smoke" required /> Como no Smoke, abrir a Home basta para concluir que os tempos sob carga são aceitáveis.</label>
+                  <label><input type="radio" name="reason" value="sanity" required /> Como na Sanidade, confirmar uma correção isolada comprova o desempenho de toda a campanha.</label>
+                  <label><input type="radio" name="reason" value="regression" required /> Como na Regressão, repetir casos funcionais conhecidos sem carga comprova os tempos no pico.</label>
+                  <label><input type="radio" name="reason" value="e2e" required /> Como no E2E, uma compra integrada de ponta a ponta comprova sozinha a capacidade de 300 usuários.</label>
+                </fieldset>
+                <p id="performance-review-feedback" class="performance-feedback" role="status" hidden></p>
+                <button class="button button--primary" type="submit">Concluir missão com parecer</button>
+              </form>
+            </section>
+          </div>
+        </section>
+        <section id="performance-result" class="performance-panel performance-result" aria-labelledby="performance-result-title" hidden>
+          <span class="label label--cyan">MISSÃO CONCLUÍDA · INTERPRETAÇÃO CORRETA</span>
+          <h2 id="performance-result-title" tabindex="-1">Carga prevista atendida. Estresse com degradação.</h2>
+          <p>Na BZ-2026.11.0, os patamares de 100 e 300 usuários atenderam aos critérios. Em 600, o p95 de 6,5 s e os 8% de erros revelaram degradação. A capacidade máxima exata não foi determinada.</p>
+          <div class="performance-result-stats"><div><span>CHECKPOINTS</span><strong>3 / 3</strong></div><div><span>NESTA TENTATIVA</span><strong id="performance-result-xp">0 XP</strong></div></div>
+          <p id="performance-result-summary"></p><qa-save-status></qa-save-status>
+          <div class="performance-result-plan"><p><strong>Pergunta:</strong> busca e filtro respondem de forma aceitável nos patamares até 300 usuários?</p><p><strong>Critérios:</strong> média ≤ 2 s, p95 ≤ 3 s e erros &lt; 1%, em janelas de 60 segundos.</p><p><strong>Parecer:</strong> carga tecnicamente aprovada no escopo testado; investigar a degradação acima dele e planejar capacidade e monitoramento. Aprovação para produção pendente.</p></div>
+          <details class="performance-result-evidence"><summary>Revisar métricas e evidências</summary><div id="performance-result-evidence"></div></details>
+          <p class="performance-note">Carga testa o uso previsto; Estresse explora volumes acima dele. Você concluiu a missão pela análise correta. Aprovar tecnicamente essa carga não aprova a aplicação para produção: ambiente, riscos e critérios do negócio ainda precisam ser avaliados. Ferramentas reais, scripts e monitoramento ficam para estudos posteriores.</p>
+          <div class="performance-result-actions"><button class="button button--primary" id="restart-performance" type="button">Repetir missão</button><a class="button button--ghost" href="tracks.html">Voltar às trilhas</a></div>
+        </section>
+      </div>
+    </main>
+    <script type="module" src="components/brand.js"></script>
+    <script type="module" src="components/theme-toggle.js"></script>
+    <script type="module" src="components/header.js"></script>
+    <script type="module" src="components/save-status.js"></script>
+    <script type="module" src="core/progress.js"></script>
+    <script type="module" src="pages/performance.js"></script>
+  </body>
+</html>

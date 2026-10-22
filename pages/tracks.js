@@ -32,9 +32,9 @@ const tracks = {
     objective: "Conheça perguntas iniciais sobre desempenho e segurança, com foco em riscos e observação antes de ferramentas avançadas.",
     prerequisite: "Concluir as Fases 1–4. Nenhuma das duas especialidades depende da outra.",
     order: "Performance e Segurança podem ser exploradas em qualquer ordem.",
-    note: "As duas especialidades serão construídas em etapas independentes, sem ordem obrigatória.",
+    note: "Performance está disponível: simule a carga prevista e interprete a degradação em estresse. Segurança continua planejada, sem depender desta missão.",
     modules: [
-      { id: "performance", title: "Teste de Performance", detail: "Tempo de resposta, carga esperada e sinais de lentidão." },
+      { id: "performance", title: "Teste de Performance", detail: "Simule carga e estresse no catálogo e interprete tempos, requisições e erros.", href: "performance.html", availableLabel: "Disponível agora", linkLabel: "Iniciar missão →", completedLinkLabel: "Repetir missão →" },
       { id: "security", title: "Teste de Segurança", detail: "Acesso, proteção de dados e riscos comuns de aplicação." }
     ]
   }

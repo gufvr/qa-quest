@@ -15,7 +15,8 @@ export default defineConfig({
         e2e: "e2e.html",
         smoke: "smoke.html",
         sanity: "sanity.html",
-        regression: "regression.html"
+        regression: "regression.html",
+        performance: "performance.html"
       }
     }
   }
