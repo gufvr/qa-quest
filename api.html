@@ -32,14 +32,14 @@
             <span class="label">BAZARAZA · CANDIDATA BZ-2026.12.0</span><h2>O que a interface espera do serviço?</h2>
             <p>O catálogo, o checkout e os pedidos serão integrados a uma atualização. Sua tarefa é conferir status, campos obrigatórios e regras de negócio antes da próxima rodada integrada.</p>
             <p><strong>Pergunta do teste:</strong> estas respostas atendem ao contrato que seus consumidores esperam?</p>
-            <p class="api-note">Quatro cenários e cinco respostas simuladas. O primeiro compara uma referência aderente com a candidata; os demais usam perfis isolados e identificados. Repetir o mesmo perfil produz o mesmo resultado. As ações só exibem dados locais: nenhum pedido, pagamento ou requisição à Bazaraza é realizado.</p>
+            <p class="api-note">Quatro cenários e cinco respostas simuladas. Cada fixture é um conjunto fixo de dados de teste. No catálogo, compare a referência do contrato com a fixture da candidata. No checkout, API-02 e API-03 usam o mesmo método, rota e body, com respostas didáticas independentes: uma aderente e outra com falhas. Repetir uma fixture produz o mesmo resultado. Todos os dados são preparados localmente; não são capturas de duas chamadas reais à candidata BZ-2026.12.0.</p>
             <details class="api-glossary"><summary>Glossário e relação com as outras missões</summary>
               <p><strong>API:</strong> uma forma de sistemas trocarem pedidos e respostas. Aqui, cada resposta é uma representação didática definida no navegador.</p>
               <p><strong>Método:</strong> operação, como GET para consultar ou POST para enviar dados e criar o pedido previsto neste contrato. <strong>Rota:</strong> caminho do recurso, como /api/catalog.</p>
               <p><strong>Parâmetro de consulta:</strong> filtro após “?”, como category=accessories. <strong>Parâmetro de rota:</strong> identificador no caminho, como BZ-API-1042 em /api/orders/BZ-API-1042.</p>
               <p><strong>Request body:</strong> dados enviados. <strong>Response body:</strong> dados recebidos; JSON organiza campos e valores. <strong>Header:</strong> informação adicional; Content-Type: application/json indica o formato.</p>
               <p><strong>Status HTTP:</strong> código que resume a resposta. 200 indica sucesso; 201 indica criação. Neste laboratório, o contrato do POST /api/checkout cria um pedido e exige 201. Nem todo POST exige 201.</p>
-              <p><strong>Contrato:</strong> acordo sobre entrada, status, campos, tipos e regras. Um JSON válido com status de sucesso ainda pode violar esse acordo.</p>
+              <p><strong>Contrato:</strong> acordo sobre entrada, status, campos, tipos e regras. Um JSON válido com status de sucesso ainda pode violar esse acordo. A referência aderente é uma resposta didática fixa para comparação; não vem de um serviço independente, não foi executada contra a candidata e não a valida.</p>
               <p><strong>E2E</strong> acompanha uma jornada integrada. <strong>Regressão</strong> repete comportamentos conhecidos após mudanças. Aqui você inspeciona contratos de endpoints isolados. <strong>Relato de Defeitos</strong> ajuda a comunicar os achados obtidos.</p>
             </details>
           </div>
@@ -72,7 +72,7 @@
             <p id="api-instruction"></p>
             <div class="api-contract">
               <strong>Contrato deste caso</strong><p id="api-contract-copy"></p>
-              <details><summary>Consultar resposta de exemplo aderente</summary><pre id="api-expected-response"></pre></details>
+              <details><summary>Consultar resposta de exemplo aderente</summary><p class="api-note">Exemplo didático fixo do contrato. Serve para comparação e não foi obtido de um serviço independente nem da candidata.</p><pre id="api-expected-response"></pre></details>
             </div>
             <div class="api-console">
               <header class="api-console-heading"><strong>Bazaraza · API Lab</strong><span>Dados locais · BZ-2026.12.0</span></header>
@@ -80,7 +80,7 @@
               <form id="api-request-form">
                 <div class="api-request-line">
                   <label>Método<select id="api-method" required><option value="">Selecionar</option><option value="GET">GET</option><option value="POST">POST</option></select></label>
-                  <div><span class="api-field-label">Destino fictício · rota</span><code id="api-request-path"></code></div>
+                  <div><span class="api-field-label">Destino fictício · rota e parâmetros de consulta</span><code id="api-request-path"></code></div>
                 </div>
                 <dl id="api-request-details" class="api-request-details"></dl>
                 <details id="api-request-body-panel"><summary>Request body · dados enviados</summary><pre id="api-request-body"></pre></details>
