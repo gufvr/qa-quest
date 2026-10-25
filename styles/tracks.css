@@ -25,7 +25,7 @@
 .track-card__footer span:last-child { color: var(--white); }
 .track-card__bar { display: block; height: 5px; background: var(--navy-700); border-radius: 99px; overflow: hidden; }
 .track-card__bar i { display: block; width: 0; height: 100%; background: linear-gradient(90deg, var(--purple), var(--cyan)); border-radius: inherit; }
-.track-details { margin-top: 34px; padding: 34px; background: var(--card); border: 1px solid var(--line); border-radius: 22px; }
+.track-details { scroll-margin-top: 24px; margin-top: 34px; padding: 34px; background: var(--card); border: 1px solid var(--line); border-radius: 22px; }
 .track-details__top { display: flex; justify-content: space-between; gap: 28px; }
 .track-details h2 { margin: 8px 0 10px; font-size: clamp(1.8rem, 3vw, 2.6rem); }
 .track-details__top p { max-width: 700px; margin: 0; color: var(--muted); font-size: .9rem; }

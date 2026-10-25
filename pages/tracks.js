@@ -137,10 +137,51 @@ function renderHub() {
   renderTrack(state.selectedTrack && tracks[state.selectedTrack] ? state.selectedTrack : "flows");
 }
 
+let scrollFrame;
+
+function cancelTrackScroll() {
+  window.cancelAnimationFrame(scrollFrame);
+}
+
+function scrollToTrackDetails() {
+  cancelTrackScroll();
+  const details = document.querySelector("#track-details");
+  const start = window.scrollY;
+  const margin = parseFloat(window.getComputedStyle(details).scrollMarginTop) || 0;
+  const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+  const target = Math.min(maxScroll, Math.max(0, start + details.getBoundingClientRect().top - margin));
+  const distance = target - start;
+
+  if (Math.abs(distance) < 1) return;
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const duration = reducedMotion ? 700 : Math.min(2100, 1400 + Math.abs(distance) * 0.35);
+  const startedAt = performance.now();
+
+  function animateScroll(now) {
+    const elapsed = Math.min(1, (now - startedAt) / duration);
+    const eased = (1 - Math.cos(Math.PI * elapsed)) / 2;
+    window.scrollTo({ top: start + distance * eased, behavior: "instant" });
+    if (elapsed < 1) scrollFrame = window.requestAnimationFrame(animateScroll);
+  }
+
+  scrollFrame = window.requestAnimationFrame(animateScroll);
+}
+
+// Let manual navigation interrupt the animation immediately.
+for (const event of ["wheel", "touchstart", "pointerdown"]) {
+  window.addEventListener(event, cancelTrackScroll, { passive: true });
+}
+window.addEventListener("keydown", (event) => {
+  if (["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " ", "Tab", "Escape"].includes(event.key)) {
+    cancelTrackScroll();
+  }
+});
+
 trackButtons.forEach((button) => {
   button.addEventListener("click", () => {
     progress.selectTrack(button.dataset.track);
     renderTrack(button.dataset.track);
+    scrollToTrackDetails();
   });
 });
 
