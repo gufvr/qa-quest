@@ -1,3 +1,5 @@
+import "../core/transitions.js";
+
 class QAHeader extends HTMLElement {
   connectedCallback() {
     if (this.dataset.rendered) return;

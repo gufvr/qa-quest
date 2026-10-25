@@ -253,7 +253,102 @@ qa-activity-streak { display: block; }
   .footer__top, .footer__bottom { flex-direction: column; text-align: center; }
 }
 
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: qa-page-out 0.18s ease-in both;
+}
+
+::view-transition-new(root) {
+  animation: qa-page-in 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.qa-step-enter {
+  animation: qa-step-enter 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.qa-content-refresh {
+  animation: qa-content-refresh 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+html.qa-page-fallback-enter body {
+  animation: qa-page-in 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+html.qa-page-fallback-leave body {
+  animation: qa-page-out 0.17s ease-in both;
+  pointer-events: none;
+}
+
+@keyframes qa-page-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.997);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes qa-page-out {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-3px) scale(0.997);
+  }
+}
+
+@keyframes qa-step-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes qa-content-refresh {
+  0% {
+    opacity: 0.58;
+    transform: translateY(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes qa-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes qa-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: .01ms !important; }
+
+  ::view-transition-old(root),
+  html.qa-page-fallback-leave body {
+    animation: qa-fade-out 0.1s ease both;
+  }
+
+  ::view-transition-new(root),
+  html.qa-page-fallback-enter body,
+  .qa-step-enter,
+  .qa-content-refresh {
+    animation: qa-fade-in 0.18s ease both;
+  }
 }

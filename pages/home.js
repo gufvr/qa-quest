@@ -15,6 +15,7 @@ const toast = document.querySelector("qa-toast");
 const get = (id) => document.getElementById(id);
 let recommendedRoute = "phase1.html";
 let lastAnnouncement = "";
+const expandedCompletedGroups = new Set();
 
 function groupFor(item) {
   return journeyGroups.find((group) => group.id === item.groupId);
@@ -222,21 +223,81 @@ function updateCompletedList(completedMissions) {
   get("completed-missions-count").textContent = String(completedMissions.length);
   empty.hidden = completedMissions.length > 0;
 
-  list.replaceChildren(...completedMissions.map((item) => {
-    const listItem = document.createElement("li");
-    const link = document.createElement("a");
-    const copy = document.createElement("span");
+  const completedGroups = journeyGroups.flatMap((group) => {
+    if (group.id === "base") {
+      return group.items.map((phase) => ({
+        id: phase.id,
+        eyebrow: `FASE ${String(phase.phase).padStart(2, "0")}`,
+        title: phase.title,
+        sourceItems: [phase],
+        items: completedMissions.filter((item) => item.progressId === phase.progressId)
+      }));
+    }
+
+    return [{
+      id: group.id,
+      eyebrow: `TRILHA ${String(group.index).padStart(2, "0")}`,
+      title: group.title,
+      sourceItems: group.items,
+      items: completedMissions.filter((item) => item.groupId === group.id)
+    }];
+  }).filter(({ items }) => items.length > 0);
+
+  list.replaceChildren(...completedGroups.map(({ id, eyebrow: groupEyebrow, title: groupTitle, sourceItems, items }) => {
+    const groupItem = document.createElement("li");
+    groupItem.className = "completed-missions__group";
+    groupItem.dataset.completedGroup = id;
+
+    const heading = document.createElement("button");
+    heading.className = "completed-missions__group-heading";
+    heading.type = "button";
+    heading.setAttribute("aria-expanded", String(expandedCompletedGroups.has(id)));
+    heading.setAttribute("aria-controls", `completed-group-${id}`);
+    const headingCopy = document.createElement("span");
+    const eyebrow = document.createElement("small");
     const title = document.createElement("strong");
-    const context = document.createElement("small");
-    const action = document.createElement("span");
-    link.href = item.route;
-    title.textContent = item.title;
-    context.textContent = item.type === "phase" ? `Fase ${item.phase} · Base comum` : item.groupTitle;
-    action.textContent = "Revisitar →";
-    copy.append(title, context);
-    link.append(copy, action);
-    listItem.append(link);
-    return listItem;
+    const counter = document.createElement("span");
+    eyebrow.textContent = groupEyebrow;
+    title.textContent = groupTitle;
+    counter.textContent = `${items.length} ${items.length === 1 ? "concluída" : "concluídas"}`;
+    headingCopy.append(eyebrow, title);
+    heading.append(headingCopy, counter);
+
+    const groupContent = document.createElement("div");
+    groupContent.className = "completed-missions__group-content";
+    groupContent.id = `completed-group-${id}`;
+    groupContent.setAttribute("aria-hidden", String(!expandedCompletedGroups.has(id)));
+    groupContent.inert = !expandedCompletedGroups.has(id);
+    const groupInner = document.createElement("div");
+    groupInner.className = "completed-missions__group-inner";
+
+    const missionList = document.createElement("ul");
+    missionList.className = "completed-missions__group-list";
+    missionList.replaceChildren(...items.map((item) => {
+      const missionItem = document.createElement("li");
+      const link = document.createElement("a");
+      const copy = document.createElement("span");
+      const missionTitle = document.createElement("strong");
+      const context = document.createElement("small");
+      const action = document.createElement("span");
+      const position = sourceItems.findIndex((groupItem) => groupItem.id === item.id) + 1;
+      link.href = item.route;
+      missionTitle.textContent = item.title;
+      context.textContent = item.type === "phase"
+        ? "Base comum"
+        : `Módulo ${String(position).padStart(2, "0")}`;
+      action.textContent = "Revisitar →";
+      copy.append(missionTitle, context);
+      link.append(copy, action);
+      missionItem.append(link);
+      return missionItem;
+    }));
+
+    groupInner.append(missionList);
+    groupContent.append(groupInner);
+    groupItem.classList.toggle("is-open", expandedCompletedGroups.has(id));
+    groupItem.append(heading, groupContent);
+    return groupItem;
   }));
 }
 
@@ -250,6 +311,24 @@ function initializeCompletedDetails() {
     panel.setAttribute("aria-hidden", String(!shouldOpen));
     panel.inert = !shouldOpen;
     section.classList.toggle("is-open", shouldOpen);
+  });
+
+  get("completed-missions-list").addEventListener("click", (event) => {
+    const groupToggle = event.target.closest(".completed-missions__group-heading");
+    if (!groupToggle) return;
+
+    const group = groupToggle.closest(".completed-missions__group");
+    const groupPanel = document.getElementById(groupToggle.getAttribute("aria-controls"));
+    const shouldOpen = groupToggle.getAttribute("aria-expanded") !== "true";
+    const groupId = group.dataset.completedGroup;
+
+    groupToggle.setAttribute("aria-expanded", String(shouldOpen));
+    groupPanel.setAttribute("aria-hidden", String(!shouldOpen));
+    groupPanel.inert = !shouldOpen;
+    group.classList.toggle("is-open", shouldOpen);
+
+    if (shouldOpen) expandedCompletedGroups.add(groupId);
+    else expandedCompletedGroups.delete(groupId);
   });
 }
 

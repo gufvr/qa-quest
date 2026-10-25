@@ -543,6 +543,117 @@
   list-style: none;
 }
 
+.completed-missions__group {
+  padding: 12px;
+  background: rgba(10, 10, 11, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.055);
+  border-radius: 14px;
+}
+
+.completed-missions__group-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto 12px;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 2px;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.completed-missions__group-heading > span:first-child {
+  display: grid;
+  gap: 2px;
+}
+
+.completed-missions__group-heading small {
+  color: var(--purple-bright);
+  font-size: 0.51rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+}
+
+.completed-missions__group-heading strong {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.78rem;
+}
+
+.completed-missions__group-heading > span:last-child {
+  flex: none;
+  padding: 4px 7px;
+  color: var(--home-green);
+  background: rgba(77, 227, 161, 0.075);
+  border-radius: 999px;
+  font-size: 0.55rem;
+  font-weight: 800;
+}
+
+.completed-missions__group-heading::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  margin-top: -3px;
+  border-right: 2px solid var(--purple-bright);
+  border-bottom: 2px solid var(--purple-bright);
+  transform: rotate(45deg);
+  transform-origin: center;
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.2s ease;
+}
+
+.completed-missions__group.is-open .completed-missions__group-heading::after {
+  border-color: var(--cyan-soft);
+  transform: translateY(3px) rotate(225deg);
+}
+
+.completed-missions__group-heading:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 5px;
+  border-radius: 7px;
+}
+
+.completed-missions__group-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transform: translateY(-6px);
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    grid-template-rows 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.2s ease,
+    transform 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0.4s;
+}
+
+.completed-missions__group.is-open .completed-missions__group-content {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  pointer-events: auto;
+  transition-delay: 0s, 0.06s, 0s, 0s;
+}
+
+.completed-missions__group-inner {
+  min-height: 0;
+  overflow: hidden;
+  padding-top: 0;
+  transition: padding-top 0.34s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.completed-missions__group.is-open .completed-missions__group-inner {
+  padding-top: 10px;
+}
+
+.completed-missions__group-list {
+  padding-top: 10px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.055);
+}
+
 .completed-missions__content li a {
   display: flex;
   align-items: center;
@@ -581,14 +692,21 @@
   font-weight: 800;
 }
 
-.completed-missions.is-open .completed-missions__content li {
+.completed-missions.is-open .completed-missions__group {
   animation: completed-mission-reveal 0.34s both cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.completed-missions.is-open .completed-missions__content li:nth-child(2) { animation-delay: 0.035s; }
-.completed-missions.is-open .completed-missions__content li:nth-child(3) { animation-delay: 0.07s; }
-.completed-missions.is-open .completed-missions__content li:nth-child(4) { animation-delay: 0.105s; }
-.completed-missions.is-open .completed-missions__content li:nth-child(n + 5) { animation-delay: 0.14s; }
+.completed-missions.is-open .completed-missions__group:nth-child(2) { animation-delay: 0.045s; }
+.completed-missions.is-open .completed-missions__group:nth-child(3) { animation-delay: 0.09s; }
+.completed-missions.is-open .completed-missions__group:nth-child(4) { animation-delay: 0.135s; }
+
+.completed-missions__group.is-open .completed-missions__group-list li {
+  animation: completed-mission-item-reveal 0.3s 0.08s both cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.completed-missions__group.is-open .completed-missions__group-list li:nth-child(2) { animation-delay: 0.115s; }
+.completed-missions__group.is-open .completed-missions__group-list li:nth-child(3) { animation-delay: 0.15s; }
+.completed-missions__group.is-open .completed-missions__group-list li:nth-child(n + 4) { animation-delay: 0.185s; }
 
 @keyframes completed-mission-reveal {
   from {
@@ -598,6 +716,17 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes completed-mission-item-reveal {
+  from {
+    opacity: 0;
+    transform: translateX(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
@@ -627,6 +756,15 @@
 [data-theme="light"] .completed-missions__body > p,
 [data-theme="light"] .completed-missions__content li a {
   background: rgba(255, 255, 255, 0.66);
+}
+
+[data-theme="light"] .completed-missions__group {
+  background: rgba(255, 255, 255, 0.48);
+  border-color: rgba(74, 52, 123, 0.1);
+}
+
+[data-theme="light"] .completed-missions__group-list {
+  border-top-color: rgba(74, 52, 123, 0.09);
 }
 
 [data-theme="light"] .home-journey {
@@ -798,7 +936,25 @@
     transition: transform 0.2s ease, border-color 0.16s ease !important;
   }
 
-  .completed-missions__content li {
+  .completed-missions__group-content {
+    transform: none !important;
+    transition:
+      grid-template-rows 0.28s ease-out,
+      opacity 0.18s ease,
+      visibility 0s linear 0.28s !important;
+  }
+
+  .completed-missions__group.is-open .completed-missions__group-content {
+    transition-delay: 0s, 0.04s, 0s !important;
+  }
+
+  .completed-missions__group-heading::after,
+  .completed-missions__group-inner {
+    transition-duration: 0.2s !important;
+  }
+
+  .completed-missions__group,
+  .completed-missions__group-list li {
     animation: none !important;
   }
 }
