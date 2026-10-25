@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Aprenda a validar requisições, respostas e contratos em um laboratório local de API da Bazaraza." />
+    <title>Testes de API — QA Quest</title>
+    <link rel="icon" type="image/png" href="qaquest.png" />
+    <script>
+      try { document.documentElement.dataset.theme = localStorage.getItem("qa-quest-theme") || "dark"; }
+      catch { document.documentElement.dataset.theme = "dark"; }
+    </script>
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/api.css" />
+  </head>
+  <body class="api-page">
+    <a class="skip-link" href="#api-main">Ir para a missão</a>
+    <qa-header variant="simulator"></qa-header>
+    <main class="api-container" id="api-main">
+      <section id="api-locked" class="api-locked" hidden>
+        <span class="label label--cyan">BASE COMUM</span><h1>Conclua a Fase 4 para investigar estes contratos.</h1>
+        <p>Esta missão inclui os conceitos necessários e independe de Relato de Defeitos, E2E ou outras trilhas.</p>
+        <a id="api-locked-link" class="button button--primary" href="index.html">Voltar à jornada</a>
+      </section>
+      <div id="api-content" hidden>
+        <header class="api-intro">
+          <div><span class="label label--cyan">TRILHA 04 · PRÁTICA PROFISSIONAL</span><h1>O status conta só uma parte.</h1></div>
+          <p>Leia a requisição, compare a resposta com o contrato e fundamente o parecer sobre a Bazaraza.</p>
+        </header>
+        <section class="api-panel api-briefing">
+          <div>
+            <span class="label">BAZARAZA · CANDIDATA BZ-2026.12.0</span><h2>O que a interface espera do serviço?</h2>
+            <p>O catálogo, o checkout e os pedidos serão integrados a uma atualização. Sua tarefa é conferir status, campos obrigatórios e regras de negócio antes da próxima rodada integrada.</p>
+            <p><strong>Pergunta do teste:</strong> estas respostas atendem ao contrato que seus consumidores esperam?</p>
+            <p class="api-note">Quatro cenários e cinco respostas simuladas. O primeiro compara uma referência aderente com a candidata; os demais usam perfis isolados e identificados. Repetir o mesmo perfil produz o mesmo resultado. As ações só exibem dados locais: nenhum pedido, pagamento ou requisição à Bazaraza é realizado.</p>
+            <details class="api-glossary"><summary>Glossário e relação com as outras missões</summary>
+              <p><strong>API:</strong> uma forma de sistemas trocarem pedidos e respostas. Aqui, cada resposta é uma representação didática definida no navegador.</p>
+              <p><strong>Método:</strong> operação, como GET para consultar ou POST para enviar dados e criar o pedido previsto neste contrato. <strong>Rota:</strong> caminho do recurso, como /api/catalog.</p>
+              <p><strong>Parâmetro de consulta:</strong> filtro após “?”, como category=accessories. <strong>Parâmetro de rota:</strong> identificador no caminho, como BZ-API-1042 em /api/orders/BZ-API-1042.</p>
+              <p><strong>Request body:</strong> dados enviados. <strong>Response body:</strong> dados recebidos; JSON organiza campos e valores. <strong>Header:</strong> informação adicional; Content-Type: application/json indica o formato.</p>
+              <p><strong>Status HTTP:</strong> código que resume a resposta. 200 indica sucesso; 201 indica criação. Neste laboratório, o contrato do POST /api/checkout cria um pedido e exige 201. Nem todo POST exige 201.</p>
+              <p><strong>Contrato:</strong> acordo sobre entrada, status, campos, tipos e regras. Um JSON válido com status de sucesso ainda pode violar esse acordo.</p>
+              <p><strong>E2E</strong> acompanha uma jornada integrada. <strong>Regressão</strong> repete comportamentos conhecidos após mudanças. Aqui você inspeciona contratos de endpoints isolados. <strong>Relato de Defeitos</strong> ajuda a comunicar os achados obtidos.</p>
+            </details>
+          </div>
+          <aside class="api-scoring"><strong>Até 100 XP</strong><p>Conceito: 10<br />Execuções: 10 + 5 + 5 + 10<br />4 classificações: 40<br />Parecer + justificativa: 20</p><small>Resposta corrigida vale metade do item. Só rodadas concluídas são salvas. A rodada em andamento recomeça ao sair.</small></aside>
+        </section>
+        <section id="api-concept-panel" class="api-panel">
+          <form id="api-concept">
+            <fieldset><legend>O que permite validar um contrato de API?</legend>
+              <label><input type="radio" name="concept" value="contract" required /> Comparar método, rota e dados enviados com status, campos e regras da resposta esperada.</label>
+              <label><input type="radio" name="concept" value="e2e" required /> Ver apenas se uma compra completa chega ao final, como em um E2E.</label>
+              <label><input type="radio" name="concept" value="regression" required /> Repetir telas conhecidas sem inspecionar a resposta do serviço.</label>
+              <label><input type="radio" name="concept" value="smoke" required /> Confirmar que a Home abre já valida todos os contratos.</label>
+              <label><input type="radio" name="concept" value="sanity" required /> Validar uma correção específica já garante todos os endpoints.</label>
+              <label><input type="radio" name="concept" value="performance" required /> Medir apenas a velocidade e aceitar qualquer body com resposta rápida.</label>
+            </fieldset>
+            <p id="api-concept-feedback" class="api-feedback" role="status" hidden></p>
+            <button class="button button--primary" type="submit">Abrir laboratório</button>
+          </form>
+        </section>
+        <section id="api-workspace" class="api-workspace" hidden aria-label="Laboratório de contratos">
+          <aside class="api-panel api-checklist">
+            <span class="label label--cyan">QUATRO CENÁRIOS</span><h2>Requisitar, ler e comparar.</h2>
+            <p class="api-counter">Classificados <strong id="api-count">0 / 4</strong></p>
+            <div id="api-progress" role="progressbar" aria-label="Cenários classificados" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0"><i id="api-progress-bar"></i></div>
+            <ol id="api-steps"></ol>
+            <p class="api-note">São casos isolados, com produtos e pedidos de teste pré-carregados. A sequência organiza o aprendizado; não representa uma compra E2E.</p>
+          </aside>
+          <section class="api-panel api-lab" aria-labelledby="api-case-title">
+            <span id="api-case-label" class="label label--cyan"></span><h2 id="api-case-title" tabindex="-1"></h2>
+            <p id="api-instruction"></p>
+            <div class="api-contract">
+              <strong>Contrato deste caso</strong><p id="api-contract-copy"></p>
+              <details><summary>Consultar resposta de exemplo aderente</summary><pre id="api-expected-response"></pre></details>
+            </div>
+            <div class="api-console">
+              <header class="api-console-heading"><strong>Bazaraza · API Lab</strong><span>Dados locais · BZ-2026.12.0</span></header>
+              <p id="api-profile" class="api-profile"></p>
+              <form id="api-request-form">
+                <div class="api-request-line">
+                  <label>Método<select id="api-method" required><option value="">Selecionar</option><option value="GET">GET</option><option value="POST">POST</option></select></label>
+                  <div><span class="api-field-label">Destino fictício · rota</span><code id="api-request-path"></code></div>
+                </div>
+                <dl id="api-request-details" class="api-request-details"></dl>
+                <details id="api-request-body-panel"><summary>Request body · dados enviados</summary><pre id="api-request-body"></pre></details>
+                <p id="api-request-feedback" class="api-console-message" role="status" hidden></p>
+                <div class="api-request-actions">
+                  <button id="api-run-reference" class="api-console-button" type="button" hidden>1. Simular referência aderente</button>
+                  <button id="api-execute" class="api-console-button" type="submit">Simular resposta</button>
+                </div>
+              </form>
+              <div id="api-responses" class="api-responses" aria-label="Respostas simuladas" aria-live="polite"></div>
+            </div>
+            <section id="api-observation" class="api-observation" hidden><h3>Resultado observado</h3><p id="api-observed-copy"></p></section>
+            <form id="api-classification" hidden>
+              <fieldset><legend>Quais classificações correspondem às respostas deste caso?</legend><p class="api-note">Selecione todas as opções que se aplicam. A classificação considera status e body em conjunto.</p><div id="api-options"></div></fieldset>
+              <p id="api-classification-feedback" class="api-feedback" role="status" hidden></p>
+              <button class="button button--ghost" type="submit">Registrar classificação</button>
+            </form>
+            <button id="api-next" class="button button--ghost api-next" type="button" hidden>Próximo cenário →</button>
+          </section>
+          <aside class="api-panel api-report">
+            <span class="label label--cyan">CADERNO DE EVIDÊNCIAS</span><h2>Contrato e impacto.</h2>
+            <p id="api-candidate-status" class="api-status" role="status">Parecer pendente.</p><div id="api-evidence"></div>
+            <p id="api-review-hint" class="api-note">Classifique os quatro cenários antes de emitir o parecer.</p>
+            <form id="api-review" hidden>
+              <fieldset><legend id="api-review-title" tabindex="-1">Qual é o parecer sobre a BZ-2026.12.0 neste escopo?</legend>
+                <label><input type="radio" name="decision" value="return" required /> Reprovar a candidata neste recorte de contratos, devolver para ajuste e validar novamente os casos afetados.</label>
+                <label><input type="radio" name="decision" value="accept" required /> Aprovar todos os contratos porque as respostas têm status 2xx e JSON válido.</label>
+                <label><input type="radio" name="decision" value="production" required /> Aprovar produção porque os quatro cenários foram executados.</label>
+              </fieldset>
+              <fieldset><legend>Qual justificativa sustenta o parecer?</legend>
+                <label><input type="radio" name="reason" value="contracts" required /> A criação correta passou, mas a candidata ignorou o filtro, divergiu no status e no total de outro checkout e omitiu total na consulta. A referência aderente não aprova a candidata.</label>
+                <label><input type="radio" name="reason" value="smoke" required /> A Home disponível no Smoke garante os campos das respostas.</label>
+                <label><input type="radio" name="reason" value="sanity" required /> Uma correção validada na Sanidade garante todos os contratos.</label>
+                <label><input type="radio" name="reason" value="regression" required /> Testar telas na Regressão dispensa conferir parâmetros e body.</label>
+                <label><input type="radio" name="reason" value="e2e" required /> Um E2E concluído garante todos os endpoints e casos de API.</label>
+                <label><input type="radio" name="reason" value="performance" required /> Respostas rápidas na Performance comprovam que os totais estão corretos.</label>
+                <label><input type="radio" name="reason" value="security" required /> Permissões validadas na Segurança garantem status e campos de qualquer resposta.</label>
+              </fieldset>
+              <p id="api-review-feedback" class="api-feedback" role="status" hidden></p>
+              <button class="button button--primary" type="submit">Concluir missão com parecer</button>
+            </form>
+          </aside>
+        </section>
+        <section id="api-result" class="api-panel api-result" aria-labelledby="api-result-title" hidden>
+          <span class="label label--cyan">MISSÃO CONCLUÍDA · PARECER FUNDAMENTADO</span><h2 id="api-result-title" tabindex="-1">Respostas recebidas. Contratos falharam.</h2>
+          <p>A criação de checkout do caso API-02 atendeu ao contrato. Os casos de filtro, checkout divergente e consulta de pedido revelaram quatro violações: filtro ignorado, status incorreto, total divergente e campo total ausente. A candidata BZ-2026.12.0 deve voltar para ajuste e nova avaliação neste escopo.</p>
+          <div class="api-stats"><div><span>CENÁRIOS</span><strong>4 / 4</strong></div><div><span>VIOLAÇÕES</span><strong>4</strong></div><div><span>NESTA TENTATIVA</span><strong id="api-result-xp"></strong></div></div>
+          <p id="api-result-summary"></p><qa-save-status></qa-save-status>
+          <details class="api-result-evidence"><summary>Revisar as quatro evidências completas</summary><div id="api-result-evidence"></div></details>
+          <p class="api-learning"><strong>Método e rota</strong> identificam a operação; <strong>parâmetros e request body</strong> levam os dados. <strong>Status e response body</strong> precisam respeitar campos, tipos e regras combinados. Um status 200 e um JSON legível não garantem filtro ou cálculo corretos.</p>
+          <p class="api-note">Você concluiu a missão ao interpretar os resultados e justificar a reprovação. A referência do catálogo é apenas um controle didático. Os casos validados cobrem este recorte; não confirmam todos os endpoints, não substituem E2E, Regressão ou Segurança e não aprovam produção.</p>
+          <p class="api-note">Esta experiência não executa HTTP real nem cria pedidos ou pagamentos. A rodada usa perfis locais fixos, sem autenticação ou ferramentas externas.</p>
+          <div class="api-result-actions"><button id="api-restart" class="button button--primary" type="button">Repetir missão</button><a class="button button--ghost" href="tracks.html">Voltar às trilhas</a></div>
+        </section>
+      </div>
+    </main>
+    <script type="module" src="components/brand.js"></script>
+    <script type="module" src="components/theme-toggle.js"></script>
+    <script type="module" src="components/header.js"></script>
+    <script type="module" src="components/save-status.js"></script>
+    <script type="module" src="core/progress.js"></script>
+    <script type="module" src="pages/api.js"></script>
+  </body>
+</html>

@@ -3,12 +3,13 @@ const tracks = {
   professional: {
     label: "TRILHA 04 · PRÁTICA PROFISSIONAL",
     title: "Prática Profissional",
-    objective: "Transforme achados em relatos claros, reproduzíveis e úteis para a equipe investigar.",
+    objective: "Comunique defeitos com clareza e valide contratos de serviços usando evidências reproduzíveis.",
     prerequisite: "Concluir as Fases 1–4. O defeito de referência está incluído; nenhuma outra trilha é obrigatória.",
-    order: "Comece por Relato de Defeitos e Evidências. API e Automação são possibilidades de evolução futura.",
-    note: "A primeira missão está disponível. Reproduza o filtro da Bazaraza e prepare um relato com evidências e critérios de triagem.",
+    order: "Relato de Defeitos e Evidências → Testes de API. É uma recomendação: as duas missões são independentes após a Fase 4.",
+    note: "Relato de Defeitos e Testes de API estão disponíveis. Prepare um relato ou compare requisições e respostas com contratos locais da Bazaraza.",
     modules: [
-      { id: "bug-report", title: "Relato de Defeitos e Evidências", detail: "Monte um relato reproduzível, diferencie severidade de prioridade e selecione evidências úteis.", href: "bug-report.html", availableLabel: "Disponível agora", linkLabel: "Iniciar missão →", completedLinkLabel: "Repetir missão →" }
+      { id: "bug-report", title: "Relato de Defeitos e Evidências", detail: "Monte um relato reproduzível, diferencie severidade de prioridade e selecione evidências úteis.", href: "bug-report.html", availableLabel: "Disponível agora", linkLabel: "Iniciar missão →", completedLinkLabel: "Repetir missão →" },
+      { id: "api", title: "Testes de API", detail: "Leia requisições e respostas, valide contratos e registre falhas de filtro, status, total e campos obrigatórios.", href: "api.html", availableLabel: "Disponível agora", linkLabel: "Iniciar missão →", completedLinkLabel: "Repetir missão →" }
     ]
   },
   release: {

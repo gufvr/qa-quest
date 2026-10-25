@@ -18,7 +18,8 @@ export default defineConfig({
         regression: "regression.html",
         performance: "performance.html",
         security: "security.html",
-        bugReport: "bug-report.html"
+        bugReport: "bug-report.html",
+        api: "api.html"
       }
     }
   }
