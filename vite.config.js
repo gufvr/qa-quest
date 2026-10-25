@@ -17,7 +17,8 @@ export default defineConfig({
         sanity: "sanity.html",
         regression: "regression.html",
         performance: "performance.html",
-        security: "security.html"
+        security: "security.html",
+        bugReport: "bug-report.html"
       }
     }
   }

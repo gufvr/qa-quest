@@ -12,7 +12,7 @@
 .tracks-section-heading { display: flex; justify-content: space-between; align-items: end; gap: 32px; margin-bottom: 24px; }
 .tracks-section-heading h2 { margin-top: 9px; font-size: clamp(1.6rem, 3vw, 2.4rem); }
 .tracks-section-heading p { max-width: 340px; margin: 0; color: var(--muted); font-size: .85rem; }
-.tracks-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.tracks-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
 .track-card { display: flex; flex-direction: column; align-items: stretch; min-height: 270px; padding: 25px; color: var(--white); text-align: left; background: var(--card); border: 1px solid var(--line); border-radius: 18px; cursor: pointer; transition: transform .2s, border-color .2s, background .2s; }
 .track-card:hover { transform: translateY(-3px); border-color: var(--purple); }
 .track-card:focus-visible { outline: 3px solid var(--cyan); outline-offset: 4px; }

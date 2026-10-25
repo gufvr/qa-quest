@@ -1,5 +1,16 @@
 // Track hub: the base phases remain shared, while each track has its own progress.
 const tracks = {
+  professional: {
+    label: "TRILHA 04 · PRÁTICA PROFISSIONAL",
+    title: "Prática Profissional",
+    objective: "Transforme achados em relatos claros, reproduzíveis e úteis para a equipe investigar.",
+    prerequisite: "Concluir as Fases 1–4. O defeito de referência está incluído; nenhuma outra trilha é obrigatória.",
+    order: "Comece por Relato de Defeitos e Evidências. API e Automação são possibilidades de evolução futura.",
+    note: "A primeira missão está disponível. Reproduza o filtro da Bazaraza e prepare um relato com evidências e critérios de triagem.",
+    modules: [
+      { id: "bug-report", title: "Relato de Defeitos e Evidências", detail: "Monte um relato reproduzível, diferencie severidade de prioridade e selecione evidências úteis.", href: "bug-report.html", availableLabel: "Disponível agora", linkLabel: "Iniciar missão →", completedLinkLabel: "Repetir missão →" }
+    ]
+  },
   release: {
     label: "TRILHA 02 · CONFIANÇA NA RELEASE",
     title: "Confiança na release",

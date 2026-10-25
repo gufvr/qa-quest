@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Transforme um defeito da Bazaraza em um relato claro, reproduzível e fundamentado por evidências." />
+    <title>Relato de Defeitos e Evidências — QA Quest</title>
+    <link rel="icon" type="image/png" href="qaquest.png" />
+    <script>
+      try { document.documentElement.dataset.theme = localStorage.getItem("qa-quest-theme") || "dark"; }
+      catch { document.documentElement.dataset.theme = "dark"; }
+    </script>
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/bug-report.css" />
+  </head>
+  <body class="report-page">
+    <a class="skip-link" href="#report-main">Ir para a missão</a>
+    <qa-header variant="simulator"></qa-header>
+    <main class="report-container" id="report-main">
+      <section id="report-locked" class="report-locked" hidden>
+        <span class="label label--cyan">BASE COMUM</span><h1>Conclua a Fase 4 para preparar seu relato.</h1>
+        <p>O caso de referência está incluído. Nenhuma outra trilha é obrigatória.</p>
+        <a id="report-locked-link" class="button button--primary" href="index.html">Voltar à jornada</a>
+      </section>
+      <div id="report-content" hidden>
+        <header class="report-intro">
+          <div><span class="label label--cyan">TRILHA 04 · PRÁTICA PROFISSIONAL</span><h1>Do achado ao relato.</h1></div>
+          <p>Reproduza, explique o impacto e entregue à equipe um defeito que ela consiga investigar.</p>
+        </header>
+        <section class="report-panel report-briefing">
+          <div>
+            <span class="label">BAZARAZA · BZ-2026.10.2</span><h2>O filtro mudou. Os resultados ficaram.</h2>
+            <p>Na Regressão, o filtro do catálogo deixou de restringir produtos. Você vai preparar o relato dessa candidata histórica. A missão de Regressão não é um pré-requisito: a referência e os dados estão nesta tela.</p>
+            <p><strong>Antes · BZ-2026.09:</strong> buscar “Mochila” retornava dois produtos; selecionar Acessórios deixava somente Mochila Urbana. <strong>Agora:</strong> o seletor muda, mas a lista continua com as duas categorias.</p>
+            <details><summary>O que torna um relato útil?</summary>
+              <p>Um título específico, ambiente e versão, pré-condições, passos mínimos, esperado, observado, impacto e evidências verificáveis permitem reproduzir o problema.</p>
+              <p><strong>Severidade</strong> descreve o impacto do defeito. <strong>Prioridade</strong> orienta quando tratar, considerando negócio, risco e alternativas. Use os critérios fictícios desta equipe na etapa de triagem.</p>
+              <p>Relate o que observou. Uma hipótese de causa deve ser identificada como hipótese; não é necessário provar a causa raiz para reportar um defeito.</p>
+            </details>
+          </div>
+          <aside><strong>Até 100 XP</strong><p>Reprodução: 10<br />Construção e revisão: 9 × 10</p><small>Cada resposta corrigida vale 5 XP. Só tentativas concluídas são salvas; o rascunho recomeça ao sair.</small></aside>
+        </section>
+        <section id="report-workspace" class="report-workspace">
+          <div class="report-editor">
+            <section id="report-reproduction" class="report-panel">
+              <span class="label label--cyan">01 · REPRODUZIR ANTES DE RELATAR</span><h2>Confira o mesmo dado de teste.</h2>
+              <p>Busque “Mochila”, selecione Acessórios e registre o resultado. A busca e a compra continuam disponíveis; o defeito está no refinamento por categoria.</p>
+              <div class="report-browser">
+                <div class="report-browser-bar"><span aria-hidden="true">● ● ●</span><span>bazaraza.test/catalog</span><small>Simulado</small></div>
+                <div class="report-store">
+                  <header><strong>Bazaraza</strong><span>BZ-2026.10.2 · homologação fictícia</span></header>
+                  <form id="report-search-form"><label>Busca de teste<input id="report-search" value="Mochila" readonly /></label><button type="submit">Buscar produtos</button></form>
+                  <div id="report-search-results" hidden>
+                    <label>Categoria<select id="report-filter"><option value="all">Todas</option><option value="accessories">Acessórios</option></select></label>
+                    <p id="report-filter-status" role="status">Categoria: Todas · 2 resultados</p>
+                    <ul id="report-products"><li><strong>Mochila Urbana</strong><span>Acessórios · R$ 189,90</span></li><li><strong>Mochila Notebook</strong><span>Tecnologia · R$ 249,90</span></li></ul>
+                    <p class="report-store-note">Referência BZ-2026.09: Acessórios → somente Mochila Urbana · 1 resultado.</p>
+                    <button id="report-capture" type="button" disabled>Registrar reprodução e evidências</button>
+                  </div>
+                </div>
+              </div>
+              <p id="report-reproduction-feedback" class="report-feedback" role="status" hidden></p>
+            </section>
+            <section id="report-question-panel" class="report-panel" hidden>
+              <span id="report-question-number" class="label label--cyan"></span><h2 id="report-question-title" tabindex="-1"></h2>
+              <p id="report-question-help"></p>
+              <aside id="report-rubric" class="report-rubric" hidden>
+                <h3>Critérios fictícios da equipe Bazaraza</h3>
+                <p><strong>S1 · Crítica:</strong> indisponibilidade geral, perda de dados ou compras bloqueadas para todos.<br /><strong>S2 · Alta:</strong> função essencial sem alternativa utilizável.<br /><strong>S3 · Moderada:</strong> função prejudicada com alternativa disponível.<br /><strong>S4 · Baixa:</strong> problema apenas visual.</p>
+                <p><strong>P0:</strong> emergência em produção. <strong>P1:</strong> tratar antes da campanha em 24 horas. <strong>P2:</strong> planejar para próxima iteração sem urgência de negócio.</p>
+                <p>Neste caso, busca direta e compra funcionam. A campanha de amanhã usará links e navegação por categorias. A equipe definiu que o filtro precisa ser corrigido antes dela. Esses critérios são locais; outras equipes podem adotar escalas diferentes.</p>
+              </aside>
+              <form id="report-answer-form">
+                <fieldset><legend id="report-question-legend"></legend><div id="report-options"></div><ol id="report-order" hidden></ol></fieldset>
+                <p id="report-question-feedback" class="report-feedback" role="status" hidden></p>
+                <button id="report-answer" class="button button--primary" type="submit">Confirmar resposta</button>
+              </form>
+              <button id="report-next" class="button button--ghost" type="button" hidden>Continuar →</button>
+            </section>
+          </div>
+          <aside class="report-panel report-draft" aria-labelledby="report-draft-title">
+            <span class="label label--cyan">RASCUNHO DO DEFEITO</span><h2 id="report-draft-title">Clareza em cada campo.</h2>
+            <p id="report-count">0 / 10 etapas</p>
+            <div id="report-progress" role="progressbar" aria-label="Etapas concluídas" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"><i id="report-progress-bar"></i></div>
+            <dl id="report-draft-fields"></dl>
+            <details id="report-source-evidence" hidden><summary>Consultar os registros da reprodução</summary><div id="report-source-records"></div></details>
+            <p class="report-note">As evidências são registros textuais locais da simulação. A seleção dos anexos será feita antes do parecer final.</p>
+          </aside>
+        </section>
+        <section id="report-result" class="report-panel report-result" hidden aria-labelledby="report-result-title">
+          <span class="label label--cyan">MISSÃO CONCLUÍDA · RELATO REVISADO</span><h2 id="report-result-title" tabindex="-1">Pronto para a equipe investigar.</h2>
+          <p>Você transformou a regressão do filtro em um relato reproduzível e fundamentado. O relato está pronto para encaminhamento no exercício; nenhum chamado foi enviado.</p>
+          <div class="report-stats"><div><span>NESTA TENTATIVA</span><strong id="report-result-xp"></strong></div><div><span>MELHOR RESULTADO</span><strong id="report-result-best"></strong></div><div><span>TENTATIVAS CONCLUÍDAS</span><strong id="report-result-attempts"></strong></div></div>
+          <p id="report-result-summary"></p><qa-save-status></qa-save-status>
+          <article class="report-final" aria-labelledby="report-final-title"><h3 id="report-final-title">Relato BZ-QA-014 · rascunho didático</h3><dl id="report-final-fields"></dl></article>
+          <p class="report-learning"><strong>Severidade S3 · moderada:</strong> o filtro falha, com busca direta e compra disponíveis. <strong>Prioridade P1:</strong> a campanha em 24 horas depende de categorias. Impacto e urgência foram avaliados com critérios diferentes.</p>
+          <p class="report-note">A missão terminou pela qualidade do relato e da revisão. O defeito continua presente nesta candidata; enviar um relato não confirma uma correção nem aprova uma release ou produção. O time ainda precisa triar, investigar, corrigir e testar novamente.</p>
+          <div class="report-actions"><button id="report-download" class="button button--ghost" type="button">Baixar relato .txt</button><button id="report-restart" class="button button--primary" type="button">Repetir missão</button><a class="button button--ghost" href="tracks.html">Voltar às trilhas</a></div>
+        </section>
+      </div>
+    </main>
+    <script type="module" src="components/brand.js"></script>
+    <script type="module" src="components/theme-toggle.js"></script>
+    <script type="module" src="components/header.js"></script>
+    <script type="module" src="components/save-status.js"></script>
+    <script type="module" src="core/progress.js"></script>
+    <script type="module" src="pages/bug-report.js"></script>
+  </body>
+</html>
