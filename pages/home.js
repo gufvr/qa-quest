@@ -1,4 +1,5 @@
 import "../core/progress.js";
+import "../components/support-material.js";
 import {
   catalogItems,
   getCompletedUniqueMissions,
@@ -7,6 +8,7 @@ import {
   isCompleted,
   journeyGroups,
   learningTracks,
+  supportMaterials,
   uniqueMissions
 } from "../core/content-catalog.js";
 
@@ -16,6 +18,23 @@ const get = (id) => document.getElementById(id);
 let recommendedRoute = "phase1.html";
 let lastAnnouncement = "";
 const expandedCompletedGroups = new Set();
+
+function initializeSupportLibrary() {
+  const missionIds = [...new Set(supportMaterials.map((material) => material.missionId))];
+  const count = supportMaterials.length;
+  get("library-count").textContent = `${count} ${count === 1 ? "aula em PDF cadastrada" : "aulas em PDF cadastradas"}`;
+  get("library-empty").hidden = count > 0;
+  get("library-list").replaceChildren(...missionIds.map((missionId) => {
+    const item = document.createElement("li");
+    const mission = catalogItems.find((entry) => entry.progressId === missionId || entry.id === missionId);
+    if (mission) item.setAttribute("aria-label", `Material de apoio: ${mission.title}`);
+
+    const material = document.createElement("qa-support-material");
+    material.setAttribute("mission-id", missionId);
+    item.append(material);
+    return item;
+  }));
+}
 
 function groupFor(item) {
   return journeyGroups.find((group) => group.id === item.groupId);
@@ -377,5 +396,6 @@ document.addEventListener("visibilitychange", () => {
   if (!document.hidden) renderHome();
 });
 
+initializeSupportLibrary();
 renderHome();
 initializeCompletedDetails();

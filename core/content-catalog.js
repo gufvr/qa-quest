@@ -189,6 +189,26 @@ export const uniqueMissions = catalogItems.filter((item, index, items) =>
   items.findIndex((candidate) => candidate.progressId === item.progressId) === index
 );
 
+// Materiais são associados ao progressId canônico para que aliases da mesma
+// missão (como functional → phase3) compartilhem uma única definição.
+export const supportMaterials = [
+  {
+    id: "functional-testing",
+    missionId: "phase3",
+    title: "Teste Funcional",
+    description: "Aula introdutória para consultar antes ou depois da prática.",
+    path: "materiais/teste-funcional.pdf",
+    filename: "teste-funcional.pdf",
+    format: "PDF"
+  }
+];
+
+export function getSupportMaterials(missionId) {
+  const item = catalogItems.find((candidate) => candidate.id === missionId || candidate.progressId === missionId);
+  const canonicalMissionId = item?.progressId || missionId;
+  return supportMaterials.filter((material) => material.missionId === canonicalMissionId);
+}
+
 export function isCompleted(item, state) {
   return Boolean(state.missions[item.progressId]?.completed);
 }

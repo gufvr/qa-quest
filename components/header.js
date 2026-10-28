@@ -38,6 +38,7 @@ class QAHeader extends HTMLElement {
           <qa-brand href="#inicio"></qa-brand>
           <div class="nav__links">
             <a href="#jornada">Jornada</a>
+            <a href="#biblioteca">Biblioteca</a>
             <a href="#como-funciona">Como funciona</a>
           </div>
           <div class="nav__actions">

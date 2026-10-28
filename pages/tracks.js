@@ -71,6 +71,10 @@ function renderModule(module, number, completedModules) {
   const detail = document.createElement("p");
   detail.textContent = module.detail;
   copy.append(title, detail);
+  const material = document.createElement("qa-support-material");
+  material.setAttribute("mission-id", module.id);
+  material.setAttribute("compact", "");
+  copy.append(material);
 
   const actions = document.createElement("div");
   actions.className = "track-module__actions";
