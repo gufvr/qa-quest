@@ -200,6 +200,15 @@ export const supportMaterials = [
     path: "materiais/teste-funcional.pdf",
     filename: "teste-funcional.pdf",
     format: "PDF"
+  },
+  {
+    id: "exploratory-testing",
+    missionId: "exploratory",
+    title: "Teste Exploratório",
+    description: "Aula introdutória para consultar antes ou depois da prática.",
+    path: "materiais/teste-exploratorio.pdf",
+    filename: "teste-exploratorio.pdf",
+    format: "PDF"
   }
 ];
 
