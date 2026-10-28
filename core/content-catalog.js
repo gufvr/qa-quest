@@ -209,6 +209,16 @@ export const supportMaterials = [
     path: "materiais/teste-exploratorio.pdf",
     filename: "teste-exploratorio.pdf",
     format: "PDF"
+  },
+  {
+    id: "e2e-testing",
+    missionId: "e2e",
+    title: "Teste End-to-End (E2E)",
+    description: "Aula introdutória para consultar antes ou depois da prática.",
+    path: "materiais/teste-end-to-end-e2e.pdf",
+    filename: "teste-end-to-end-e2e.pdf",
+    format: "PDF",
+    version: "1.0"
   }
 ];
 
