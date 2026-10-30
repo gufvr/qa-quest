@@ -249,6 +249,16 @@ export const supportMaterials = [
     filename: "qa-quest-teste-regressao.pdf",
     format: "PDF",
     version: "1.0"
+  },
+  {
+    id: "performance-testing",
+    missionId: "performance",
+    title: "Teste de Performance",
+    description: "Aula introdutória para consultar antes ou depois da prática.",
+    path: "materiais/qa-quest-teste-performance.pdf",
+    filename: "qa-quest-teste-performance.pdf",
+    format: "PDF",
+    version: "1.0"
   }
 ];
 
