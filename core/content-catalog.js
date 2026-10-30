@@ -239,6 +239,16 @@ export const supportMaterials = [
     filename: "qa-quest-teste-sanidade.pdf",
     format: "PDF",
     version: "1.0"
+  },
+  {
+    id: "regression-testing",
+    missionId: "regression",
+    title: "Teste de Regressão",
+    description: "Aula introdutória para consultar antes ou depois da prática.",
+    path: "materiais/qa-quest-teste-regressao.pdf",
+    filename: "qa-quest-teste-regressao.pdf",
+    format: "PDF",
+    version: "1.0"
   }
 ];
 
