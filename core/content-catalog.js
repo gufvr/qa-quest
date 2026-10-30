@@ -219,6 +219,16 @@ export const supportMaterials = [
     filename: "teste-end-to-end-e2e.pdf",
     format: "PDF",
     version: "1.0"
+  },
+  {
+    id: "smoke-testing",
+    missionId: "smoke",
+    title: "Smoke Test",
+    description: "Aula introdutória para consultar antes ou depois da prática.",
+    path: "materiais/qa-quest-smoke-test.pdf",
+    filename: "qa-quest-smoke-test.pdf",
+    format: "PDF",
+    version: "1.0"
   }
 ];
 
