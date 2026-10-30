@@ -43,7 +43,7 @@ class QAHeader extends HTMLElement {
           </div>
           <div class="nav__actions">
             <qa-theme-toggle></qa-theme-toggle>
-            <button class="button button--small button--ghost" data-start type="button">Começar</button>
+            <a class="button button--small button--ghost" data-start href="phase1.html">Começar</a>
           </div>
         </nav>
       </header>

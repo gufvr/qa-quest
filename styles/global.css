@@ -281,15 +281,8 @@ qa-support-material[compact] .support-material__status { max-width: none; text-a
 }
 
 @view-transition {
-  navigation: auto;
-}
-
-::view-transition-old(root) {
-  animation: qa-page-out 0.18s ease-in both;
-}
-
-::view-transition-new(root) {
-  animation: qa-page-in 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+  /* JS coordinates one entry/exit effect, avoiding duplicate native transitions. */
+  navigation: none;
 }
 
 .qa-step-enter {
@@ -300,19 +293,32 @@ qa-support-material[compact] .support-material__status { max-width: none; text-a
   animation: qa-content-refresh 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-html.qa-page-fallback-enter body {
-  animation: qa-page-in 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+html.qa-page-enter main {
+  animation: qa-page-in 0.64s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-html.qa-page-fallback-leave body {
-  animation: qa-page-out 0.17s ease-in both;
+html.qa-page-enter qa-header,
+html.qa-page-enter qa-footer {
+  animation: qa-fade-in 0.48s ease both;
+}
+
+html.qa-page-leave main {
+  animation: qa-page-out 0.26s cubic-bezier(0.4, 0, 1, 1) both;
+}
+
+html.qa-page-leave qa-header,
+html.qa-page-leave qa-footer {
+  animation: qa-fade-out 0.22s ease both;
+}
+
+html.qa-page-leave body {
   pointer-events: none;
 }
 
 @keyframes qa-page-in {
   from {
     opacity: 0;
-    transform: translateY(8px) scale(0.997);
+    transform: translateY(16px) scale(0.994);
   }
   to {
     opacity: 1;
@@ -327,7 +333,7 @@ html.qa-page-fallback-leave body {
   }
   to {
     opacity: 0;
-    transform: translateY(-3px) scale(0.997);
+    transform: translateY(-8px) scale(0.996);
   }
 }
 
@@ -367,13 +373,15 @@ html.qa-page-fallback-leave body {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: .01ms !important; }
 
-  ::view-transition-old(root),
-  html.qa-page-fallback-leave body {
-    animation: qa-fade-out 0.1s ease both;
+  html.qa-page-leave main,
+  html.qa-page-leave qa-header,
+  html.qa-page-leave qa-footer {
+    animation: qa-fade-out 0.09s ease both;
   }
 
-  ::view-transition-new(root),
-  html.qa-page-fallback-enter body,
+  html.qa-page-enter main,
+  html.qa-page-enter qa-header,
+  html.qa-page-enter qa-footer,
   .qa-step-enter,
   .qa-content-refresh {
     animation: qa-fade-in 0.18s ease both;

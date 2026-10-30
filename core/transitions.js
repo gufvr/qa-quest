@@ -132,28 +132,62 @@ function isEligibleNavigation(event, link) {
 
   const destination = new URL(link.href, window.location.href);
   if (destination.origin !== window.location.origin) return false;
+  // Animate application pages, not documents or other downloadable resources.
+  if (!/\.html?$/i.test(destination.pathname) && !destination.pathname.endsWith("/")) return false;
 
   const current = new URL(window.location.href);
   return destination.pathname !== current.pathname || destination.search !== current.search;
 }
 
-function initializeNavigationFallback() {
-  if ("startViewTransition" in document) return;
+function initializePageTransitions() {
+  const root = document.documentElement;
+  let entryTimer;
+  let leaveTimer;
+  let navigating = false;
 
-  document.documentElement.classList.add("qa-page-fallback-enter");
-  window.setTimeout(() => {
-    document.documentElement.classList.remove("qa-page-fallback-enter");
-  }, 420);
+  function clearNavigation() {
+    window.clearTimeout(entryTimer);
+    window.clearTimeout(leaveTimer);
+    navigating = false;
+    root.classList.remove("qa-page-enter", "qa-page-leave");
+  }
+
+  function enterPage() {
+    clearNavigation();
+    root.classList.add("qa-page-enter");
+    entryTimer = window.setTimeout(() => root.classList.remove("qa-page-enter"), 700);
+  }
+
+  // Use one CSS-driven path in every browser; the same-document API alone
+  // doesn't guarantee that cross-document View Transitions will run.
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", enterPage, { once: true });
+  } else {
+    enterPage();
+  }
+  window.addEventListener("pagehide", clearNavigation);
+  window.addEventListener("pageshow", (event) => {
+    if (event.persisted) enterPage();
+  });
 
   document.addEventListener("click", (event) => {
     const link = event.target.closest("a[href]");
     if (!link || !isEligibleNavigation(event, link)) return;
 
     event.preventDefault();
-    document.documentElement.classList.add("qa-page-fallback-leave");
-    window.setTimeout(() => window.location.assign(link.href), 170);
+    if (navigating) return;
+    navigating = true;
+    const destination = link.href;
+    window.clearTimeout(entryTimer);
+    root.classList.remove("qa-page-enter");
+    root.classList.add("qa-page-leave");
+    const duration = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 90 : 260;
+    leaveTimer = window.setTimeout(() => {
+      try { window.location.assign(destination); }
+      catch { enterPage(); }
+    }, duration);
   });
 }
 
 initializeStepTransitions();
-initializeNavigationFallback();
+initializePageTransitions();

@@ -1,5 +1,6 @@
 import "../core/progress.js";
 import "../components/support-material.js";
+import { initializeHomeHeader, initializeHomeNavigation } from "../core/home-interactions.js";
 import {
   catalogItems,
   getCompletedUniqueMissions,
@@ -357,6 +358,9 @@ function renderHome({ announce = false } = {}) {
   const completedMissions = getCompletedUniqueMissions(state);
   updateLevel(state);
   updateRecommendation(state, recommendation);
+  document.querySelectorAll("a[data-start]").forEach((link) => {
+    link.href = recommendedRoute;
+  });
   updateOverview(state, completedMissions);
   updateCompletedList(completedMissions);
   get("journey-groups").replaceChildren(
@@ -371,13 +375,6 @@ function renderHome({ announce = false } = {}) {
 }
 
 document.addEventListener("click", (event) => {
-  const start = event.target.closest("[data-start]");
-  if (start) {
-    event.preventDefault();
-    window.location.href = recommendedRoute;
-    return;
-  }
-
   const lockedControl = event.target.closest("[data-locked-mission]");
   if (!lockedControl) return;
   const item = catalogItems.find((candidate) => candidate.id === lockedControl.dataset.lockedMission);
@@ -399,3 +396,5 @@ document.addEventListener("visibilitychange", () => {
 initializeSupportLibrary();
 renderHome();
 initializeCompletedDetails();
+initializeHomeNavigation();
+initializeHomeHeader();
