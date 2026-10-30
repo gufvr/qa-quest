@@ -46,6 +46,18 @@
 .track-module--done .track-module__status { color: var(--cyan); }
 .track-module__actions a { color: var(--cyan); font-size: .72rem; font-weight: 700; }
 .track-module__actions a:hover { text-decoration: underline; }
+/* Keep support materials concise in the hub without changing mission/library cards. */
+.tracks-page qa-support-material[compact] { width: fit-content; max-width: 100%; margin-top: 8px; }
+.tracks-page qa-support-material[compact] .support-material { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 14px; padding: 5px 10px; border-radius: 8px; }
+.tracks-page qa-support-material[compact] .support-material__copy { min-width: 0; }
+.tracks-page qa-support-material[compact] .support-material__copy > strong,
+.tracks-page qa-support-material[compact] .support-material__copy > p { display: none; }
+.tracks-page qa-support-material[compact] .support-material__actions { gap: 2px 12px; min-width: 0; }
+.tracks-page qa-support-material[compact] .support-material__link { display: inline-flex; align-items: center; min-height: 32px; }
+.tracks-page qa-support-material[compact] .support-material__link:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: 3px; }
+@media (any-pointer: coarse), (max-width: 640px) {
+  .tracks-page qa-support-material[compact] .support-material__link { min-height: 44px; }
+}
 .track-details__note { margin: 22px 0 0; color: var(--muted); font-size: .77rem; }
 .tracks-locked { display: grid; justify-items: start; align-content: center; min-height: 60vh; }
 .tracks-locked p { margin-bottom: 26px; }

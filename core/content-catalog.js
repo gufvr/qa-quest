@@ -229,6 +229,16 @@ export const supportMaterials = [
     filename: "qa-quest-smoke-test.pdf",
     format: "PDF",
     version: "1.0"
+  },
+  {
+    id: "sanity-testing",
+    missionId: "sanity",
+    title: "Teste de Sanidade",
+    description: "Aula introdutória para consultar antes ou depois da prática.",
+    path: "materiais/qa-quest-teste-sanidade.pdf",
+    filename: "qa-quest-teste-sanidade.pdf",
+    format: "PDF",
+    version: "1.0"
   }
 ];
 
