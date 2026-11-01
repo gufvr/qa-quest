@@ -1,18 +1,18 @@
 // Guided report authoring from a known, entirely local regression.
 const REPORT = Object.freeze({
   title: "[Catálogo] Filtro Acessórios mantém Mochila Notebook nos resultados",
-  environment: "Homologação fictícia · BZ-2026.10.2 · navegador de laboratório desktop (simulado) · bazaraza.test/catalog.",
-  preconditions: "Catálogo disponível, sem login obrigatório; Mochila Urbana em Acessórios e Mochila Notebook em Tecnologia. Referência BZ-2026.09: filtro restringia a categoria.",
+  environment: "Homologação fictícia · FF-2026.10.2 · navegador de laboratório desktop (simulado) · fictfvr.test/catalog.",
+  preconditions: "Catálogo disponível, sem login obrigatório; Mochila Urbana em Acessórios e Mochila Notebook em Tecnologia. Referência FF-2026.09: filtro restringia a categoria.",
   expected: "Após buscar Mochila e selecionar Acessórios, exibir apenas Mochila Urbana: 1 resultado.",
   observed: "O seletor mostra Acessórios, mas a lista mantém Mochila Urbana (Acessórios) e Mochila Notebook (Tecnologia): 2 resultados.",
   impact: "Clientes recebem produtos fora da categoria. A navegação da campanha fica prejudicada; busca direta e compra continuam disponíveis.",
   severity: "S3 · Moderada — função de filtro prejudicada, com busca direta e compra disponíveis.",
   priority: "P1 · Tratar antes da campanha em 24 horas, que depende da navegação por categorias.",
-  evidence: "EV-01 · Registro textual das ações: abrir catálogo → buscar Mochila → selecionar Acessórios → conferir a lista.\nEV-02 · Registro textual do estado: BZ-2026.10.2; Acessórios selecionado; 2 resultados, incluindo Mochila Notebook (Tecnologia). Referência: apenas Mochila Urbana.",
+  evidence: "EV-01 · Registro textual das ações: abrir catálogo → buscar Mochila → selecionar Acessórios → conferir a lista.\nEV-02 · Registro textual do estado: FF-2026.10.2; Acessórios selecionado; 2 resultados, incluindo Mochila Notebook (Tecnologia). Referência: apenas Mochila Urbana.",
   status: "Pronto para encaminhar à triagem no exercício. Causa raiz não confirmada. Defeito permanece reproduzível; sem aprovação de release ou produção."
 });
 const STEPS = Object.freeze({
-  open: "Abrir o catálogo da candidata BZ-2026.10.2 no ambiente fictício.",
+  open: "Abrir o catálogo da candidata FF-2026.10.2 no ambiente fictício.",
   search: "Buscar Mochila e conferir os dois produtos iniciais.",
   filter: "Selecionar a categoria Acessórios.",
   compare: "Comparar a lista com o esperado: somente Mochila Urbana."
@@ -25,7 +25,7 @@ const QUESTIONS = [
     fields: [["Título", REPORT.title]] },
   { id: "context", title: "Ambiente e pré-condições.", legend: "Qual contexto permite repetir o mesmo caso?", help: "Use a versão e os dados realmente fornecidos. O navegador de laboratório é simulado; esta missão não mede compatibilidade com um navegador real.", answer: "complete",
     options: [["missing", "Aconteceu hoje no meu computador, com alguns produtos."], ["invented", "Produção, usuário administrador e carrinho cheio; não é necessário informar a versão."], ["complete", REPORT.environment + " Pré-condições: " + REPORT.preconditions]],
-    feedback: "Informe homologação fictícia, candidata BZ-2026.10.2, catálogo e os dois produtos. Login e carrinho não são pré-condições deste defeito.",
+    feedback: "Informe homologação fictícia, candidata FF-2026.10.2, catálogo e os dois produtos. Login e carrinho não são pré-condições deste defeito.",
     fields: [["Ambiente", REPORT.environment], ["Pré-condições", REPORT.preconditions]] },
   { id: "steps", type: "order", title: "Passos mínimos e em ordem.", legend: "Organize as ações para outra pessoa reproduzir.", help: "Use Subir e Descer para organizar. A reprodução começa no catálogo, usa o dado Mochila e termina comparando o filtro.",
     feedback: "A sequência reproduzível é abrir catálogo, buscar Mochila, selecionar Acessórios e comparar a lista. A ordem importa para repetir o mesmo estado.",
@@ -43,7 +43,7 @@ const QUESTIONS = [
     feedback: "A equipe definiu que o filtro precisa funcionar antes da campanha de amanhã: P1. Isso não torna o impacto S1 nem representa uma emergência em produção.",
     fields: [["Prioridade", REPORT.priority]] },
   { id: "evidence", type: "multiple", title: "Evidências que sustentam o relato.", legend: "Selecione os dois registros úteis para reproduzir e comparar.", help: "Os anexos deste laboratório são textuais. Consulte os registros da reprodução no rascunho; não existem prints, vídeos ou logs reais anexados.", answer: ["trace", "snapshot"],
-    options: [["trace", "EV-01 · Sequência registrada: catálogo → buscar Mochila → selecionar Acessórios → conferir lista."], ["cart", "EV-03 · Descrição de um carrinho vazio, sem categoria ou versão."], ["snapshot", "EV-02 · BZ-2026.10.2, filtro Acessórios, duas mochilas e referência esperada de um resultado."], ["guess", "EV-04 · Afirmação sem log ou investigação: a causa é o banco de dados."]],
+    options: [["trace", "EV-01 · Sequência registrada: catálogo → buscar Mochila → selecionar Acessórios → conferir lista."], ["cart", "EV-03 · Descrição de um carrinho vazio, sem categoria ou versão."], ["snapshot", "EV-02 · FF-2026.10.2, filtro Acessórios, duas mochilas e referência esperada de um resultado."], ["guess", "EV-04 · Afirmação sem log ou investigação: a causa é o banco de dados."]],
     feedback: "EV-01 mostra como chegar ao problema; EV-02 registra versão, filtro, lista observada e referência esperada. Carrinho vazio não sustenta o caso e uma causa presumida não é evidência.",
     fields: [["Evidências selecionadas", REPORT.evidence]] },
   { id: "decision", title: "O relato está pronto?", legend: "Qual é o parecer sobre este relato?", help: "Revise todos os campos e as evidências do rascunho antes de decidir.", answer: "ready",
@@ -159,7 +159,7 @@ function finishMission() {
   get("report-result-xp").textContent = score() + " XP";
   get("report-result-best").textContent = saved.bestXp + " XP";
   get("report-result-attempts").textContent = String(saved.attempts);
-  get("report-result-summary").textContent = "Relato preparado; defeito permanece na BZ-2026.10.2. XP compartilhado: " + saved.totalXp + ".";
+  get("report-result-summary").textContent = "Relato preparado; defeito permanece na FF-2026.10.2. XP compartilhado: " + saved.totalXp + ".";
   renderFields(get("report-final-fields"), state.fields);
   get("report-result").querySelector("qa-save-status").show(saved);
   get("report-result-title").focus();
@@ -235,11 +235,11 @@ get("report-restart").addEventListener("click", () => {
 });
 get("report-download").addEventListener("click", () => {
   if (!ensureAccess() || !state.finished) return;
-  const content = "BZ-QA-014 · Relato didático local da Bazaraza\n\n" +
+  const content = "FF-QA-014 · Relato didático local da FictFvr\n\n" +
     [...state.fields].map(([label, value]) => label + "\n" + value).join("\n\n");
   const url = URL.createObjectURL(new Blob([content], { type: "text/plain;charset=utf-8" }));
   const link = document.createElement("a");
-  link.href = url; link.download = "bazaraza-BZ-QA-014.txt"; document.body.append(link);
+  link.href = url; link.download = "fictfvr-FF-QA-014.txt"; document.body.append(link);
   link.click(); link.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000);
 });
 if (ensureAccess()) renderProgress();

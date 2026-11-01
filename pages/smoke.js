@@ -1,4 +1,4 @@
-// Six independent smoke checks for a deterministic, fictional Bazaraza release.
+// Six independent smoke checks for a deterministic, fictional FictFvr release.
 // Responses are local fixtures: no requests, authentication or purchases are performed.
 const checks = [
   {
@@ -7,8 +7,8 @@ const checks = [
     previewTitle: "Uma nova versão da sua loja.",
     previewDescription: "Abra a loja e confira se o conteúdo essencial está disponível.",
     status: "200 OK", outcome: "pass",
-    observed: "A home abriu com a marca Bazaraza, navegação e botão de acesso ao catálogo.",
-    detail: "Bazaraza\nInício · Catálogo · Carrinho · Minha conta\n[Ver produtos]",
+    observed: "A home abriu com a marca FictFvr, navegação e botão de acesso ao catálogo.",
+    detail: "FictFvr\nInício · Catálogo · Carrinho · Minha conta\n[Ver produtos]",
     impact: "O cliente consegue acessar a loja e localizar o catálogo."
   },
   {
@@ -38,14 +38,14 @@ const checks = [
     previewDescription: "Um carrinho de teste já está preparado para esta verificação independente.",
     status: "503 Service Unavailable", outcome: "fail",
     observed: "O checkout exibiu Serviço indisponível. Nenhum campo de entrega ou pagamento foi carregado.",
-    detail: "Serviço indisponível\nNão foi possível abrir o checkout.\nReferência: BZ-CHECKOUT-503",
+    detail: "Serviço indisponível\nNão foi possível abrir o checkout.\nReferência: FF-CHECKOUT-503",
     impact: "O cliente fica impedido de avançar para a finalização da compra. É uma falha crítica."
   },
   {
     id: "login", title: "Login", path: "/login", action: "Entrar com conta de teste",
     expected: "A conta fictícia de teste acessa Minha conta e recebe uma confirmação de sessão.",
     previewTitle: "Acesse sua conta de teste.",
-    previewDescription: "Use a conta preparada cliente@bazaraza.test. Nenhuma senha ou informação pessoal é necessária.",
+    previewDescription: "Use a conta preparada cliente@fictfvr.test. Nenhuma senha ou informação pessoal é necessária.",
     status: "200 OK", outcome: "pass",
     observed: "A conta fictícia entrou e a área Minha conta exibiu a sessão autenticada.",
     detail: "Bem-vindo, Cliente de teste!\nMinha conta\nSessão de teste: autenticada",
@@ -109,7 +109,7 @@ function makeEvidence(check) {
   summary.append(title);
   evidence.append(summary);
   const facts = [
-    ["Ação", check.action + " em bazaraza.test" + check.path],
+    ["Ação", check.action + " em fictfvr.test" + check.path],
     ["Esperado", check.expected],
     ["Observado", check.status + ". " + check.observed],
     ["Impacto", check.impact]
@@ -162,7 +162,7 @@ function updateProgress() {
   const status = get("smoke-release-status");
   status.dataset.blocked = String(failures.length > 0);
   status.textContent = failures.length
-    ? "Smoke reprovado · BZ-2026.10 · " + failures.length + " falha(s) crítica(s). Esta release está bloqueada; testes aprofundados não liberados."
+    ? "Smoke reprovado · FF-2026.10 · " + failures.length + " falha(s) crítica(s). Esta release está bloqueada; testes aprofundados não liberados."
     : count === checks.length
       ? "Smoke aprovado tecnicamente · checks essenciais aprovados. Testes aprofundados liberados; produção ainda não avaliada."
       : count ? "Em avaliação · há verificações essenciais restantes."
@@ -187,7 +187,7 @@ function selectCheck(id, focus = true) {
   const recorded = state.records.has(id);
   get("check-title").textContent = check.title;
   get("check-expected").textContent = "Esperado: " + check.expected;
-  get("smoke-address").textContent = "bazaraza.test" + check.path;
+  get("smoke-address").textContent = "fictfvr.test" + check.path;
   get("preview-kicker").textContent = check.title.toLocaleUpperCase("pt-BR");
   get("preview-title").textContent = check.previewTitle;
   get("preview-description").textContent = check.previewDescription;
@@ -264,7 +264,7 @@ function initializeMission() {
     get("header-xp").textContent = String(score());
     if (!correctDecision || !correctImpact) {
       const messages = [];
-      if (!correctDecision) messages.push("Reprove o Smoke Test e bloqueie apenas esta release, BZ-2026.10: o checkout retorna 503 e a API de pedidos retorna 500. As falhas críticas impedem liberar testes aprofundados; isso não reprova a Bazaraza como produto.");
+      if (!correctDecision) messages.push("Reprove o Smoke Test e bloqueie apenas esta release, FF-2026.10: o checkout retorna 503 e a API de pedidos retorna 500. As falhas críticas impedem liberar testes aprofundados; isso não reprova a FictFvr como produto.");
       if (!correctImpact) messages.push("O cliente não consegue concluir a compra nem consultar pedidos. Quatro checks aprovados não compensam esses impedimentos. Um Smoke Test aprovado liberaria apenas testes aprofundados; não aprovaria a aplicação para produção.");
       messages.push("Revise o parecer. Respostas incorretas passam a valer 10 XP quando corrigidas.");
       showFeedback("smoke-review-feedback", messages.join(" "));
@@ -281,7 +281,7 @@ function initializeMission() {
     get("smoke-workspace").hidden = true;
     get("smoke-result").hidden = false;
     get("smoke-result-xp").textContent = score() + " XP";
-    get("smoke-result-summary").textContent = "Missão concluída com o parecer técnico correto: o Smoke Test da release BZ-2026.10 foi reprovado e somente esta release está bloqueada. Melhor resultado: " + saved.bestXp +
+    get("smoke-result-summary").textContent = "Missão concluída com o parecer técnico correto: o Smoke Test da release FF-2026.10 foi reprovado e somente esta release está bloqueada. Melhor resultado: " + saved.bestXp +
       " XP · Tentativas concluídas: " + saved.attempts + " · XP compartilhado: " + saved.totalXp + ".";
     get("smoke-result-evidence").replaceChildren(...checks.map(makeEvidence));
     saveStatus.show(saved);

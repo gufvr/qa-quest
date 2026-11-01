@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Aprenda a validar requisições, respostas e contratos em um laboratório local de API da Bazaraza." />
+    <meta name="description" content="Aprenda a validar requisições, respostas e contratos em um laboratório local de API da FictFvr." />
     <title>Testes de API — QA Quest</title>
     <link rel="icon" type="image/png" href="qaquest.png" />
     <script>
@@ -25,18 +25,18 @@
       <div id="api-content" hidden>
         <header class="api-intro">
           <div><span class="label label--cyan">TRILHA 04 · PRÁTICA PROFISSIONAL</span><h1>O status conta só uma parte.</h1></div>
-          <p>Leia a requisição, compare a resposta com o contrato e fundamente o parecer sobre a Bazaraza.</p>
+          <p>Leia a requisição, compare a resposta com o contrato e fundamente o parecer sobre a FictFvr.</p>
         </header>
         <section class="api-panel api-briefing">
           <div>
-            <span class="label">BAZARAZA · CANDIDATA BZ-2026.12.0</span><h2>O que a interface espera do serviço?</h2>
+            <span class="label">FICTFVR · CANDIDATA FF-2026.12.0</span><h2>O que a interface espera do serviço?</h2>
             <p>O catálogo, o checkout e os pedidos serão integrados a uma atualização. Sua tarefa é conferir status, campos obrigatórios e regras de negócio antes da próxima rodada integrada.</p>
             <p><strong>Pergunta do teste:</strong> estas respostas atendem ao contrato que seus consumidores esperam?</p>
-            <p class="api-note">Quatro cenários e cinco respostas simuladas. Cada fixture é um conjunto fixo de dados de teste. No catálogo, compare a referência do contrato com a fixture da candidata. No checkout, API-02 e API-03 usam o mesmo método, rota e body, com respostas didáticas independentes: uma aderente e outra com falhas. Repetir uma fixture produz o mesmo resultado. Todos os dados são preparados localmente; não são capturas de duas chamadas reais à candidata BZ-2026.12.0.</p>
+            <p class="api-note">Quatro cenários e cinco respostas simuladas. Cada fixture é um conjunto fixo de dados de teste. No catálogo, compare a referência do contrato com a fixture da candidata. No checkout, API-02 e API-03 usam o mesmo método, rota e body, com respostas didáticas independentes: uma aderente e outra com falhas. Repetir uma fixture produz o mesmo resultado. Todos os dados são preparados localmente; não são capturas de duas chamadas reais à candidata FF-2026.12.0.</p>
             <details class="api-glossary"><summary>Glossário e relação com as outras missões</summary>
               <p><strong>API:</strong> uma forma de sistemas trocarem pedidos e respostas. Aqui, cada resposta é uma representação didática definida no navegador.</p>
               <p><strong>Método:</strong> operação, como GET para consultar ou POST para enviar dados e criar o pedido previsto neste contrato. <strong>Rota:</strong> caminho do recurso, como /api/catalog.</p>
-              <p><strong>Parâmetro de consulta:</strong> filtro após “?”, como category=accessories. <strong>Parâmetro de rota:</strong> identificador no caminho, como BZ-API-1042 em /api/orders/BZ-API-1042.</p>
+              <p><strong>Parâmetro de consulta:</strong> filtro após “?”, como category=accessories. <strong>Parâmetro de rota:</strong> identificador no caminho, como FF-API-1042 em /api/orders/FF-API-1042.</p>
               <p><strong>Request body:</strong> dados enviados. <strong>Response body:</strong> dados recebidos; JSON organiza campos e valores. <strong>Header:</strong> informação adicional; Content-Type: application/json indica o formato.</p>
               <p><strong>Status HTTP:</strong> código que resume a resposta. 200 indica sucesso; 201 indica criação. Neste laboratório, o contrato do POST /api/checkout cria um pedido e exige 201. Nem todo POST exige 201.</p>
               <p><strong>Contrato:</strong> acordo sobre entrada, status, campos, tipos e regras. Um JSON válido com status de sucesso ainda pode violar esse acordo. A referência aderente é uma resposta didática fixa para comparação; não vem de um serviço independente, não foi executada contra a candidata e não a valida.</p>
@@ -75,7 +75,7 @@
               <details><summary>Consultar resposta de exemplo aderente</summary><p class="api-note">Exemplo didático fixo do contrato. Serve para comparação e não foi obtido de um serviço independente nem da candidata.</p><pre id="api-expected-response"></pre></details>
             </div>
             <div class="api-console">
-              <header class="api-console-heading"><strong>Bazaraza · API Lab</strong><span>Dados locais · BZ-2026.12.0</span></header>
+              <header class="api-console-heading"><strong>FictFvr · API Lab</strong><span>Dados locais · FF-2026.12.0</span></header>
               <p id="api-profile" class="api-profile"></p>
               <form id="api-request-form">
                 <div class="api-request-line">
@@ -105,7 +105,7 @@
             <p id="api-candidate-status" class="api-status" role="status">Parecer pendente.</p><div id="api-evidence"></div>
             <p id="api-review-hint" class="api-note">Classifique os quatro cenários antes de emitir o parecer.</p>
             <form id="api-review" hidden>
-              <fieldset><legend id="api-review-title" tabindex="-1">Qual é o parecer sobre a BZ-2026.12.0 neste escopo?</legend>
+              <fieldset><legend id="api-review-title" tabindex="-1">Qual é o parecer sobre a FF-2026.12.0 neste escopo?</legend>
                 <label><input type="radio" name="decision" value="return" required /> Reprovar a candidata neste recorte de contratos, devolver para ajuste e validar novamente os casos afetados.</label>
                 <label><input type="radio" name="decision" value="accept" required /> Aprovar todos os contratos porque as respostas têm status 2xx e JSON válido.</label>
                 <label><input type="radio" name="decision" value="production" required /> Aprovar produção porque os quatro cenários foram executados.</label>
@@ -126,7 +126,7 @@
         </section>
         <section id="api-result" class="api-panel api-result" aria-labelledby="api-result-title" hidden>
           <span class="label label--cyan">MISSÃO CONCLUÍDA · PARECER FUNDAMENTADO</span><h2 id="api-result-title" tabindex="-1">Respostas recebidas. Contratos falharam.</h2>
-          <p>A criação de checkout do caso API-02 atendeu ao contrato. Os casos de filtro, checkout divergente e consulta de pedido revelaram quatro violações: filtro ignorado, status incorreto, total divergente e campo total ausente. A candidata BZ-2026.12.0 deve voltar para ajuste e nova avaliação neste escopo.</p>
+          <p>A criação de checkout do caso API-02 atendeu ao contrato. Os casos de filtro, checkout divergente e consulta de pedido revelaram quatro violações: filtro ignorado, status incorreto, total divergente e campo total ausente. A candidata FF-2026.12.0 deve voltar para ajuste e nova avaliação neste escopo.</p>
           <div class="api-stats"><div><span>CENÁRIOS</span><strong>4 / 4</strong></div><div><span>VIOLAÇÕES</span><strong>4</strong></div><div><span>NESTA TENTATIVA</span><strong id="api-result-xp"></strong></div></div>
           <p id="api-result-summary"></p><qa-save-status></qa-save-status>
           <details class="api-result-evidence"><summary>Revisar as quatro evidências completas</summary><div id="api-result-evidence"></div></details>

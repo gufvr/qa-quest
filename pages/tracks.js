@@ -6,7 +6,7 @@ const tracks = {
     objective: "Comunique defeitos com clareza e valide contratos de serviços usando evidências reproduzíveis.",
     prerequisite: "Concluir as Fases 1–4. O defeito de referência está incluído; nenhuma outra trilha é obrigatória.",
     order: "Relato de Defeitos e Evidências → Testes de API. É uma recomendação: as duas missões são independentes após a Fase 4.",
-    note: "Relato de Defeitos e Testes de API estão disponíveis. Prepare um relato ou compare requisições e respostas com contratos locais da Bazaraza.",
+    note: "Relato de Defeitos e Testes de API estão disponíveis. Prepare um relato ou compare requisições e respostas com contratos locais da FictFvr.",
     modules: [
       { id: "bug-report", title: "Relato de Defeitos e Evidências", detail: "Monte um relato reproduzível, diferencie severidade de prioridade e selecione evidências úteis.", href: "bug-report.html", availableLabel: "Disponível agora", linkLabel: "Iniciar missão →", completedLinkLabel: "Repetir missão →" },
       { id: "api", title: "Testes de API", detail: "Leia requisições e respostas, valide contratos e registre falhas de filtro, status, total e campos obrigatórios.", href: "api.html", availableLabel: "Disponível agora", linkLabel: "Iniciar missão →", completedLinkLabel: "Repetir missão →" }

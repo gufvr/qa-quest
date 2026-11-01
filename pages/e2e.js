@@ -59,7 +59,7 @@ function findingFor(id) {
   if (id === "discount") return {
     title: "O desconto se perde no checkout",
     question: "Compare o total confirmado no carrinho com o total no checkout. Os valores são consistentes?",
-    expected: "Manter " + money(state.cartSnapshot.total) + " com o cupom BAZAR10 e frete grátis.",
+    expected: "Manter " + money(state.cartSnapshot.total) + " com o cupom FVR10 e frete grátis.",
     observed: "O checkout mostra " + money(state.checkoutTotal) + ", sem o desconto.",
     impact: "O cliente pode pagar mais do que o valor que confirmou no carrinho."
   };
@@ -93,11 +93,11 @@ function renderComparison() {
 function setView(view, focus = true) {
   state.currentView = view;
   views.forEach((element) => { element.hidden = element.dataset.e2eView !== view; });
-  const paths = { catalog: "catalog", cart: "cart", delivery: "checkout", payment: "payment", order: "orders/BZ-314", post: "confirmation/BZ-314" };
-  document.querySelector("#e2e-address").textContent = "bazaraza.test/" + paths[view];
+  const paths = { catalog: "catalog", cart: "cart", delivery: "checkout", payment: "payment", order: "orders/FF-314", post: "confirmation/FF-314" };
+  document.querySelector("#e2e-address").textContent = "fictfvr.test/" + paths[view];
   const instructions = {
     catalog: "Escolha a Mochila Urbana para iniciar um único pedido.",
-    cart: "Escolha de 1 a 3 unidades, aplique BAZAR10 e confira o total.",
+    cart: "Escolha de 1 a 3 unidades, aplique FVR10 e confira o total.",
     delivery: "Compare os totais no checkpoint abaixo e informe uma entrega fictícia.",
     payment: "Confira os dados da entrega e escolha Pix ou cartão de teste.",
     order: "Compare o pagamento aprovado com o status registrado no pedido.",
@@ -120,7 +120,7 @@ function renderDetails(selector, data) {
   const details = document.querySelector(selector);
   const rows = [
     ["Produto", "Mochila Urbana × " + data.quantity],
-    ["Cupom", "BAZAR10 · 10%"],
+    ["Cupom", "FVR10 · 10%"],
     ["Entrega", data.delivery.address],
     ["CEP", data.delivery.cep]
   ];
@@ -256,19 +256,19 @@ function bindMission() {
     if (state.currentView !== "cart") return;
     const coupon = document.querySelector("#e2e-coupon").value.trim().toUpperCase();
     const feedback = document.querySelector("#coupon-feedback");
-    if (coupon !== "BAZAR10") {
-      feedback.textContent = state.couponApplied ? "Cupom não encontrado. BAZAR10 continua aplicado." : "Use o cupom do roteiro: BAZAR10.";
+    if (coupon !== "FVR10") {
+      feedback.textContent = state.couponApplied ? "Cupom não encontrado. FVR10 continua aplicado." : "Use o cupom do roteiro: FVR10.";
       return;
     }
     state.couponApplied = true;
     renderCart();
-    feedback.textContent = "BAZAR10 aplicado. Frete grátis e 10% de desconto confirmados.";
+    feedback.textContent = "FVR10 aplicado. Frete grátis e 10% de desconto confirmados.";
   });
 
   document.querySelector("#to-delivery").addEventListener("click", () => {
     if (state.currentView !== "cart") return;
     if (!state.couponApplied) {
-      document.querySelector("#coupon-feedback").textContent = "Aplique BAZAR10 para comparar o desconto entre as etapas.";
+      document.querySelector("#coupon-feedback").textContent = "Aplique FVR10 para comparar o desconto entre as etapas.";
       return;
     }
     const subtotal = UNIT_PRICE_CENTS * state.quantity;
@@ -328,7 +328,7 @@ function bindMission() {
     if (state.currentView !== "payment" || !state.delivery || state.order) return;
     const method = document.querySelector('input[name="payment"]:checked').value;
     state.order = Object.freeze({
-      id: "BZ-314", quantity: state.cartSnapshot.quantity, delivery: state.delivery,
+      id: "FF-314", quantity: state.cartSnapshot.quantity, delivery: state.delivery,
       total: state.checkoutTotal, method, methodLabel: method === "pix" ? "Pix simulado" : "Cartão de teste · final 4242",
       paymentStatus: "Aprovado",
       // Intentional defect: order status is not synchronized with payment.

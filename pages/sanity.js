@@ -1,4 +1,4 @@
-// Focused sanity session for the fictional BZ-2026.10.1 candidate.
+// Focused sanity session for the fictional FF-2026.10.1 candidate.
 // Only the R$ 15,00 total discrepancy is intentional. Everything runs locally.
 const UNIT_PRICE_CENTS = 18990;
 const EXTRA_FEE_CENTS = 1500;
@@ -57,7 +57,7 @@ function checkFor(id) {
     ...common,
     action: "Abrir /checkout com " + state.cart.quantity + " unidade(s) da Mochila Urbana.",
     expected: "O Checkout deve responder sem 503 e exibir entrega e pagamento.",
-    observed: "HTTP 200 OK. A tela exibiu entrega e pagamento; o 503 da BZ-2026.10 não foi reproduzido.",
+    observed: "HTTP 200 OK. A tela exibiu entrega e pagamento; o 503 da FF-2026.10 não foi reproduzido.",
     impact: "O impedimento original de abertura foi corrigido. A coerência dos dados ainda precisa ser verificada."
   };
   if (id === "fields") return {
@@ -130,10 +130,10 @@ function renderProgress() {
   const status = get("sanity-candidate-status");
   status.dataset.failed = String(state.records.has("consistency"));
   status.textContent = state.records.has("consistency")
-    ? "BZ-2026.10.1 · Total divergente. O 503 foi corrigido, mas esta candidata precisa voltar para ajuste."
+    ? "FF-2026.10.1 · Total divergente. O 503 foi corrigido, mas esta candidata precisa voltar para ajuste."
     : state.records.has("open")
-      ? "BZ-2026.10.1 · O 503 não se reproduz. Continue as verificações próximas antes de emitir parecer sobre a candidata inteira."
-      : "BZ-2026.10.1 · Aguardando verificações focadas.";
+      ? "FF-2026.10.1 · O 503 não se reproduz. Continue as verificações próximas antes de emitir parecer sobre a candidata inteira."
+      : "FF-2026.10.1 · Aguardando verificações focadas.";
   if (count) {
     get("sanity-evidence").replaceChildren(...STEP_IDS.filter((id) => state.records.has(id)).map(makeEvidence));
   } else {
@@ -154,7 +154,7 @@ function renderStep(focus = true) {
   document.querySelectorAll("[data-sanity-view]").forEach((element) => {
     element.hidden = element.dataset.sanityView !== view;
   });
-  get("sanity-address").textContent = "bazaraza.test/" + (view === "checkout" ? "checkout" : "cart");
+  get("sanity-address").textContent = "fictfvr.test/" + (view === "checkout" ? "checkout" : "cart");
   get("sanity-check-title").textContent = STEP_LABELS[state.step];
   const instructions = {
     open: "Com um item no carrinho, o Checkout deve abrir entrega e pagamento sem retornar 503.",
@@ -304,7 +304,7 @@ function initializeMission() {
     get("header-xp").textContent = String(score());
     if (!correctDecision || !correctReason) {
       const messages = [];
-      if (!correctDecision) messages.push("A verificação do defeito 503 passou, mas isso não aprova a candidata inteira. Devolva a BZ-2026.10.1: o Checkout cobra R$ 15,00 a mais que o carrinho sem taxa contratada.");
+      if (!correctDecision) messages.push("A verificação do defeito 503 passou, mas isso não aprova a candidata inteira. Devolva a FF-2026.10.1: o Checkout cobra R$ 15,00 a mais que o carrinho sem taxa contratada.");
       if (!correctReason) messages.push("O Checkout respondeu 200 e o 503 não se reproduziu. Para decidir sobre a candidata inteira, considere a evidência que ainda falha: o total diverge do carrinho. Sanidade cobre a correção e seu entorno; não exige executar toda a regressão nesta missão.");
       messages.push("Revise o parecer. Cada resposta incorreta valerá 5 XP quando corrigida.");
       feedback("sanity-review-feedback", messages.join(" "));

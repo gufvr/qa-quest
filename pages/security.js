@@ -1,6 +1,6 @@
 // Four local teaching cases. No account service or network requests are used.
-const ANA = Object.freeze({ name: "Ana Lima", email: "cliente.ana@bazaraza.test", order: "BZ-ANA-1042" });
-const BRUNO = Object.freeze({ name: "Bruno Costa", email: "cliente.bruno@bazaraza.test", order: "BZ-BRU-2088",
+const ANA = Object.freeze({ name: "Ana Lima", email: "cliente.ana@fictfvr.test", order: "FF-ANA-1042" });
+const BRUNO = Object.freeze({ name: "Bruno Costa", email: "cliente.bruno@fictfvr.test", order: "FF-BRU-2088",
   address: "Rua da Simulação, 20 — Cidade Exemplo", item: "1 × Mochila Notebook", total: "R$ 249,90" });
 const ADDRESSES = Object.freeze({
   lab: "Alameda do Laboratório, 77 — Cidade Exemplo",
@@ -9,14 +9,14 @@ const ADDRESSES = Object.freeze({
 const CASES = [
   { id: "own", title: "Acesso aos próprios dados", path: "account", points: 10, answer: "allowed",
     instruction: "Primeiro tente abrir Minha Conta sem sessão. Depois entre como Ana e confira Minha Conta e Histórico.",
-    expected: "Sem sessão: acesso negado, sem dados exibidos. Com Ana autenticada: somente Minha Conta de Ana e pedido BZ-ANA-1042.",
+    expected: "Sem sessão: acesso negado, sem dados exibidos. Com Ana autenticada: somente Minha Conta de Ana e pedido FF-ANA-1042.",
     control: "Autenticação e autorização do acesso próprio.",
     options: [
       ["allowed", "Controles corretos: sem sessão o acesso foi negado; Ana autenticada acessou apenas os próprios dados."],
       ["authentication", "Falha de autenticação: a área privada abriu sem sessão."],
       ["exposure", "Exposição de dados: o Histórico de Ana mostrou o pedido de Bruno."]
     ] },
-  { id: "read", title: "Leitura de pedido de terceiros", path: "orders/BZ-BRU-2088", points: 5, answer: "unauthorized-read",
+  { id: "read", title: "Leitura de pedido de terceiros", path: "orders/FF-BRU-2088", points: 5, answer: "unauthorized-read",
     instruction: "Mantenha a sessão de Ana e tente abrir o pedido de Bruno fornecido pelo time. Observe titular, dados e resposta.",
     expected: "Negar o acesso com mensagem segura, como “Você não tem permissão para acessar este pedido”, sem nome, endereço, itens ou valores de Bruno.",
     control: "Autorização de leitura e confidencialidade entre contas.",
@@ -25,7 +25,7 @@ const CASES = [
       ["allowed", "Acesso permitido: autenticar Ana também libera todos os pedidos da loja."],
       ["denied", "Acesso negado corretamente: nenhum dado de Bruno foi exibido."]
     ] },
-  { id: "write", title: "Alteração de pedido de terceiros", path: "orders/BZ-BRU-2088/address", points: 5, answer: "unauthorized-write",
+  { id: "write", title: "Alteração de pedido de terceiros", path: "orders/FF-BRU-2088/address", points: 5, answer: "unauthorized-write",
     instruction: "Ainda como Ana, selecione um endereço fictício e tente salvar a alteração no pedido de Bruno. Compare antes e depois.",
     expected: "Negar a alteração, preservar o endereço de Bruno e não expor seus dados na tela de Ana.",
     control: "Autorização de alteração, integridade e confidencialidade.",
@@ -81,7 +81,7 @@ function canAct(id) {
 }
 
 function sessionLabel() {
-  return state.session === "ana" ? "Sessão: Ana Lima · cliente.ana@bazaraza.test · autenticada (simulada)." : "Sessão: sem autenticação.";
+  return state.session === "ana" ? "Sessão: Ana Lima · cliente.ana@fictfvr.test · autenticada (simulada)." : "Sessão: sem autenticação.";
 }
 
 function showForeignOrder(element, address) {
@@ -101,27 +101,27 @@ function snapshot(id) {
   if (id === "own") return {
     ...common, identity: "Sem sessão no primeiro controle; depois Ana Lima autenticada.",
     action: "Abrir Minha Conta sem sessão; entrar com a conta fornecida de Ana; conferir Minha Conta e Histórico.",
-    observed: "Sem sessão, a tela negou o acesso (401 simulado), sem dados privados. Após o login válido, exibiu Ana Lima, cliente.ana@bazaraza.test e somente BZ-ANA-1042 · 1 × Mochila Urbana · R$ 189,90.",
+    observed: "Sem sessão, a tela negou o acesso (401 simulado), sem dados privados. Após o login válido, exibiu Ana Lima, cliente.ana@fictfvr.test e somente FF-ANA-1042 · 1 × Mochila Urbana · R$ 189,90.",
     impact: "O controle inicial protege a área privada; Ana consegue consultar os próprios dados. Este resultado não comprova o isolamento dos pedidos de outras contas.",
     learning: "O acesso próprio funcionou, mas ainda é necessário verificar as permissões entre contas."
   };
   if (id === "read") return {
     ...common, identity: "Ana Lima autenticada; titular do pedido solicitado: Bruno Costa.",
-    action: "Tentar abrir o pedido BZ-BRU-2088 com a sessão de Ana.",
+    action: "Tentar abrir o pedido FF-BRU-2088 com a sessão de Ana.",
     observed: "O acesso foi permitido e exibiu Bruno Costa, " + BRUNO.email + ", " + BRUNO.item + ", " + BRUNO.total + " e entrega em " + state.address + ".",
     impact: "Dados de outro cliente ficaram expostos. A candidata apresenta uma falha crítica de autorização de leitura neste cenário.",
     learning: "Ana foi autenticada corretamente. A falha está na permissão de ler um pedido que não lhe pertence."
   };
   if (id === "write") return {
     ...common, identity: "Ana Lima autenticada; pedido alterado pertence a Bruno Costa.",
-    action: "Salvar um endereço fictício no pedido BZ-BRU-2088 usando a sessão de Ana.",
+    action: "Salvar um endereço fictício no pedido FF-BRU-2088 usando a sessão de Ana.",
     observed: "A alteração foi aceita. Antes: " + state.previousAddress + ". Depois: " + state.address + ". O pedido e o endereço foram atualizados na simulação.",
     impact: "A alteração indevida viola a integridade do pedido e poderia desviar uma entrega. A tela também expõe os dados de Bruno, afetando a confidencialidade. É uma falha crítica de autorização neste cenário.",
     learning: "Autenticação válida não concede permissão de alterar pedidos de outras pessoas."
   };
   return {
     ...common, identity: "Sem sessão; tentativa com Ana e senha incorreta, seguida de conta inexistente.",
-    action: "Comparar os erros de cliente.ana@bazaraza.test e cliente.inexistente@bazaraza.test, ambos com credenciais inválidas.",
+    action: "Comparar os erros de cliente.ana@fictfvr.test e cliente.inexistente@fictfvr.test, ambos com credenciais inválidas.",
     observed: "Conta cadastrada + senha incorreta: “Senha incorreta”. Conta inexistente: “Esta conta não existe”. As duas entradas foram negadas e nenhuma sessão foi criada.",
     impact: "As respostas permitem distinguir uma conta cadastrada de uma inexistente. Essa exposição de informação pode auxiliar enumeração de contas.",
     learning: "Negar o login funcionou. O defeito desta evidência é a diferença informativa entre mensagens, e não uma entrada indevida."
@@ -155,7 +155,7 @@ function renderProgress() {
     if (index === state.step) item.setAttribute("aria-current", "step");
     item.append(title, status); return item;
   }));
-  get("security-candidate-status").textContent = "BZ-2026.11.1 · " + state.records.size +
+  get("security-candidate-status").textContent = "FF-2026.11.1 · " + state.records.size +
     " de 4 cenários classificados. " + (state.records.has("read") ? "Falha de autorização registrada; candidata sem aprovação." : "Parecer pendente.");
   const ids = CASES.filter(test => state.executions.has(test.id)).map(test => test.id);
   if (ids.length) get("security-evidence").replaceChildren(...ids.map(evidence));
@@ -173,7 +173,7 @@ function renderStep(focus = true) {
   get("security-check-title").textContent = test.title;
   get("security-instruction").textContent = test.instruction;
   get("security-expected").textContent = test.expected;
-  get("security-address").textContent = "bazaraza.test/" + test.path;
+  get("security-address").textContent = "fictfvr.test/" + test.path;
   get("security-session").textContent = sessionLabel();
   if (test.id === "write") showForeignOrder(get("security-write-order"), state.address);
   get("security-observation").hidden = !executed;
@@ -228,7 +228,7 @@ function initializeMission() {
     state.session = "ana";
     get("security-login").hidden = true; get("security-own-panels").hidden = false;
     get("security-session").textContent = sessionLabel();
-    get("security-address").textContent = "bazaraza.test/account";
+    get("security-address").textContent = "fictfvr.test/account";
     get("security-check-own").focus();
   });
   get("security-check-own").addEventListener("click", () => {

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Transforme um defeito da Bazaraza em um relato claro, reproduzível e fundamentado por evidências." />
+    <meta name="description" content="Transforme um defeito da FictFvr em um relato claro, reproduzível e fundamentado por evidências." />
     <title>Relato de Defeitos e Evidências — QA Quest</title>
     <link rel="icon" type="image/png" href="qaquest.png" />
     <script>
@@ -29,9 +29,9 @@
         </header>
         <section class="report-panel report-briefing">
           <div>
-            <span class="label">BAZARAZA · BZ-2026.10.2</span><h2>O filtro mudou. Os resultados ficaram.</h2>
+            <span class="label">FICTFVR · FF-2026.10.2</span><h2>O filtro mudou. Os resultados ficaram.</h2>
             <p>Na Regressão, o filtro do catálogo deixou de restringir produtos. Você vai preparar o relato dessa candidata histórica. A missão de Regressão não é um pré-requisito: a referência e os dados estão nesta tela.</p>
-            <p><strong>Antes · BZ-2026.09:</strong> buscar “Mochila” retornava dois produtos; selecionar Acessórios deixava somente Mochila Urbana. <strong>Agora:</strong> o seletor muda, mas a lista continua com as duas categorias.</p>
+            <p><strong>Antes · FF-2026.09:</strong> buscar “Mochila” retornava dois produtos; selecionar Acessórios deixava somente Mochila Urbana. <strong>Agora:</strong> o seletor muda, mas a lista continua com as duas categorias.</p>
             <details><summary>O que torna um relato útil?</summary>
               <p>Um título específico, ambiente e versão, pré-condições, passos mínimos, esperado, observado, impacto e evidências verificáveis permitem reproduzir o problema.</p>
               <p><strong>Severidade</strong> descreve o impacto do defeito. <strong>Prioridade</strong> orienta quando tratar, considerando negócio, risco e alternativas. Use os critérios fictícios desta equipe na etapa de triagem.</p>
@@ -46,15 +46,15 @@
               <span class="label label--cyan">01 · REPRODUZIR ANTES DE RELATAR</span><h2>Confira o mesmo dado de teste.</h2>
               <p>Busque “Mochila”, selecione Acessórios e registre o resultado. A busca e a compra continuam disponíveis; o defeito está no refinamento por categoria.</p>
               <div class="report-browser">
-                <div class="report-browser-bar"><span aria-hidden="true">● ● ●</span><span>bazaraza.test/catalog</span><small>Simulado</small></div>
+                <div class="report-browser-bar"><span aria-hidden="true">● ● ●</span><span>fictfvr.test/catalog</span><small>Simulado</small></div>
                 <div class="report-store">
-                  <header><strong>Bazaraza</strong><span>BZ-2026.10.2 · homologação fictícia</span></header>
+                  <header><strong>FictFvr</strong><span>FF-2026.10.2 · homologação fictícia</span></header>
                   <form id="report-search-form"><label>Busca de teste<input id="report-search" value="Mochila" readonly /></label><button type="submit">Buscar produtos</button></form>
                   <div id="report-search-results" hidden>
                     <label>Categoria<select id="report-filter"><option value="all">Todas</option><option value="accessories">Acessórios</option></select></label>
                     <p id="report-filter-status" role="status">Categoria: Todas · 2 resultados</p>
                     <ul id="report-products"><li><strong>Mochila Urbana</strong><span>Acessórios · R$ 189,90</span></li><li><strong>Mochila Notebook</strong><span>Tecnologia · R$ 249,90</span></li></ul>
-                    <p class="report-store-note">Referência BZ-2026.09: Acessórios → somente Mochila Urbana · 1 resultado.</p>
+                    <p class="report-store-note">Referência FF-2026.09: Acessórios → somente Mochila Urbana · 1 resultado.</p>
                     <button id="report-capture" type="button" disabled>Registrar reprodução e evidências</button>
                   </div>
                 </div>
@@ -65,7 +65,7 @@
               <span id="report-question-number" class="label label--cyan"></span><h2 id="report-question-title" tabindex="-1"></h2>
               <p id="report-question-help"></p>
               <aside id="report-rubric" class="report-rubric" hidden>
-                <h3>Critérios fictícios da equipe Bazaraza</h3>
+                <h3>Critérios fictícios da equipe FictFvr</h3>
                 <p><strong>S1 · Crítica:</strong> indisponibilidade geral, perda de dados ou compras bloqueadas para todos.<br /><strong>S2 · Alta:</strong> função essencial sem alternativa utilizável.<br /><strong>S3 · Moderada:</strong> função prejudicada com alternativa disponível.<br /><strong>S4 · Baixa:</strong> problema apenas visual.</p>
                 <p><strong>P0:</strong> emergência em produção. <strong>P1:</strong> tratar antes da campanha em 24 horas. <strong>P2:</strong> planejar para próxima iteração sem urgência de negócio.</p>
                 <p>Neste caso, busca direta e compra funcionam. A campanha de amanhã usará links e navegação por categorias. A equipe definiu que o filtro precisa ser corrigido antes dela. Esses critérios são locais; outras equipes podem adotar escalas diferentes.</p>
@@ -92,7 +92,7 @@
           <p>Você transformou a regressão do filtro em um relato reproduzível e fundamentado. O relato está pronto para encaminhamento no exercício; nenhum chamado foi enviado.</p>
           <div class="report-stats"><div><span>NESTA TENTATIVA</span><strong id="report-result-xp"></strong></div><div><span>MELHOR RESULTADO</span><strong id="report-result-best"></strong></div><div><span>TENTATIVAS CONCLUÍDAS</span><strong id="report-result-attempts"></strong></div></div>
           <p id="report-result-summary"></p><qa-save-status></qa-save-status>
-          <article class="report-final" aria-labelledby="report-final-title"><h3 id="report-final-title">Relato BZ-QA-014 · rascunho didático</h3><dl id="report-final-fields"></dl></article>
+          <article class="report-final" aria-labelledby="report-final-title"><h3 id="report-final-title">Relato FF-QA-014 · rascunho didático</h3><dl id="report-final-fields"></dl></article>
           <p class="report-learning"><strong>Severidade S3 · moderada:</strong> o filtro falha, com busca direta e compra disponíveis. <strong>Prioridade P1:</strong> a campanha em 24 horas depende de categorias. Impacto e urgência foram avaliados com critérios diferentes.</p>
           <p class="report-note">A missão terminou pela qualidade do relato e da revisão. O defeito continua presente nesta candidata; enviar um relato não confirma uma correção nem aprova uma release ou produção. O time ainda precisa triar, investigar, corrigir e testar novamente.</p>
           <div class="report-actions"><button id="report-download" class="button button--ghost" type="button">Baixar relato .txt</button><button id="report-restart" class="button button--primary" type="button">Repetir missão</button><a class="button button--ghost" href="tracks.html">Voltar às trilhas</a></div>

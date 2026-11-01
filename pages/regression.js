@@ -1,4 +1,4 @@
-// Local regression suite: BZ-2026.09 baseline vs BZ-2026.10.2 candidate.
+// Local regression suite: FF-2026.09 baseline vs FF-2026.10.2 candidate.
 // The category filter is the only intentional defect. Prices use integer cents.
 const UNIT_PRICE_CENTS = 18990;
 const PRODUCTS = Object.freeze([
@@ -57,7 +57,7 @@ function checkFor(id) {
   if (id === "login") return {
     ...base, path: "login", instruction: "Use a conta fictícia fornecida para entrar e verificar o painel.",
     baseline: "A conta de teste entrava e o painel era exibido com acesso autorizado.",
-    action: "Entrar com qa@bazaraza.test e abrir o painel.",
+    action: "Entrar com qa@fictfvr.test e abrir o painel.",
     expected: "Acesso autorizado e painel da Pessoa de teste carregado.",
     observed: "Acesso autorizado. O painel da Pessoa de teste carregou com pedidos e endereços.",
     impact: "O acesso à conta continua disponível nesta candidata."
@@ -94,9 +94,9 @@ function checkFor(id) {
   return {
     ...base, path: "orders", instruction: "Crie um pedido apenas no simulador e compare a confirmação com o histórico.",
     baseline: "O pedido de teste aparecia no histórico com o mesmo identificador, itens, quantidade e total da confirmação.",
-    action: "Criar o pedido local BZ-REG-1042 e comparar confirmação e histórico.",
-    expected: "Mesmo pedido BZ-REG-1042, mesmo item e quantidade e mesmo total nas duas telas.",
-    observed: "Confirmação e histórico mostram BZ-REG-1042 · " + cartCopy + " · " + (state.payment || "Pagamento de teste") + ". Dados coincidem; nenhum pedido ou pagamento real foi realizado.",
+    action: "Criar o pedido local FF-REG-1042 e comparar confirmação e histórico.",
+    expected: "Mesmo pedido FF-REG-1042, mesmo item e quantidade e mesmo total nas duas telas.",
+    observed: "Confirmação e histórico mostram FF-REG-1042 · " + cartCopy + " · " + (state.payment || "Pagamento de teste") + ". Dados coincidem; nenhum pedido ou pagamento real foi realizado.",
     impact: "O cliente continua conseguindo consultar os dados coerentes de seu pedido. Este caso usa um pedido isolado de teste."
   };
 }
@@ -110,7 +110,7 @@ function makeEvidence(id) {
   summary.textContent = check.title + " · " + (check.outcome === "pass" ? "Passou" : "Falhou");
   item.append(summary);
   for (const [label, text] of [
-    ["Antes · BZ-2026.09", check.baseline], ["Ação", check.action],
+    ["Antes · FF-2026.09", check.baseline], ["Ação", check.action],
     ["Esperado", check.expected], ["Observado", check.observed], ["Impacto", check.impact]
   ]) {
     const paragraph = document.createElement("p"), strong = document.createElement("b");
@@ -141,8 +141,8 @@ function renderProgress() {
   const status = get("regression-candidate-status");
   status.dataset.failed = String(state.records.has("catalog"));
   status.textContent = state.records.has("catalog")
-    ? "BZ-2026.10.2 · Regressão no filtro registrada. Continue os casos isolados para mapear o impacto; a candidata permanece sem aprovação."
-    : "BZ-2026.10.2 · " + count + " de 5 casos registrados. Parecer pendente.";
+    ? "FF-2026.10.2 · Regressão no filtro registrada. Continue os casos isolados para mapear o impacto; a candidata permanece sem aprovação."
+    : "FF-2026.10.2 · " + count + " de 5 casos registrados. Parecer pendente.";
   if (count) get("regression-evidence").replaceChildren(...CASES.filter(id => state.records.has(id)).map(makeEvidence));
   else {
     const empty = document.createElement("p");
@@ -156,7 +156,7 @@ function renderProgress() {
 function renderStep(focus = true) {
   const id = currentId(), check = checkFor(id), recorded = state.records.has(id), done = state.actions.has(id);
   document.querySelectorAll("[data-regression-view]").forEach(section => { section.hidden = section.dataset.regressionView !== id; });
-  get("regression-address").textContent = "bazaraza.test/" + check.path;
+  get("regression-address").textContent = "fictfvr.test/" + check.path;
   get("regression-case-id").textContent = "CASO REG-0" + (state.step + 1) + " · REPETIR E COMPARAR";
   get("regression-check-title").textContent = check.title;
   get("regression-instruction").textContent = check.instruction;
@@ -189,8 +189,8 @@ function initializeMission() {
   get("regression-login-form").addEventListener("submit", event => {
     event.preventDefault();
     if (!canAct("login")) return;
-    if (get("regression-email").value.trim().toLowerCase() !== "qa@bazaraza.test" || get("regression-password").value !== "Bazaraza123!") {
-      feedback("regression-login-feedback", "Use apenas a conta de teste fornecida: qa@bazaraza.test · Bazaraza123!.");
+    if (get("regression-email").value.trim().toLowerCase() !== "qa@fictfvr.test" || get("regression-password").value !== "Fvr123!") {
+      feedback("regression-login-feedback", "Use apenas a conta de teste fornecida: qa@fictfvr.test · Fvr123!.");
       return;
     }
     get("regression-dashboard").hidden = false;
@@ -277,7 +277,7 @@ function initializeMission() {
 
   get("create-regression-order").addEventListener("click", () => {
     if (!canAct("history") || !state.cart || state.order) return;
-    state.order = Object.freeze({ id: "BZ-REG-1042", ...state.cart, payment: state.payment });
+    state.order = Object.freeze({ id: "FF-REG-1042", ...state.cart, payment: state.payment });
     const copy = state.order.quantity + " × Mochila Urbana · " + money(state.order.total) + " · " + state.order.payment;
     get("regression-confirmation").textContent = copy;
     get("regression-history").textContent = copy;
@@ -318,7 +318,7 @@ function initializeMission() {
     }
     get("header-xp").textContent = String(score());
     if (decision !== "return" || reason !== "filter") {
-      feedback("regression-review-feedback", "Login, Carrinho, Checkout e Histórico passaram; o filtro regrediu. O 503 e os R$ 15,00 estão corrigidos, mas isso não aprova a candidata nesta suíte. Devolva a BZ-2026.10.2 para investigar o filtro antes de nova regressão. Concluir a missão exige esse parecer fundamentado, sem aprovação para produção. Cada resposta incorreta corrigida vale 5 XP.");
+      feedback("regression-review-feedback", "Login, Carrinho, Checkout e Histórico passaram; o filtro regrediu. O 503 e os R$ 15,00 estão corrigidos, mas isso não aprova a candidata nesta suíte. Devolva a FF-2026.10.2 para investigar o filtro antes de nova regressão. Concluir a missão exige esse parecer fundamentado, sem aprovação para produção. Cada resposta incorreta corrigida vale 5 XP.");
       return;
     }
     let saved;

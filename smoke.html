@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Faça o Smoke Test da Bazaraza, emita o parecer técnico da release e decida se testes aprofundados podem começar." />
+    <meta name="description" content="Faça o Smoke Test da FictFvr, emita o parecer técnico da release e decida se testes aprofundados podem começar." />
     <title>Smoke Test — QA Quest</title>
     <link rel="icon" type="image/png" href="qaquest.png" />
     <link rel="apple-touch-icon" href="qaquest.png" />
@@ -32,10 +32,10 @@
       <div id="smoke-content" hidden>
         <header class="smoke-intro">
           <div><span class="label label--cyan">TRILHA 02 · CONFIANÇA NA RELEASE</span><h1>Primeiro sinal da release.</h1></div>
-          <p>Uma nova versão da Bazaraza chegou à homologação. Confira o essencial, registre evidências e decida se vale avançar para testes aprofundados.</p>
+          <p>Uma nova versão da FictFvr chegou à homologação. Confira o essencial, registre evidências e decida se vale avançar para testes aprofundados.</p>
         </header>
         <section class="smoke-briefing" aria-labelledby="briefing-title">
-          <div><span class="label">RELEASE BZ-2026.10 · SIMULAÇÃO LOCAL</span><h2 id="briefing-title">Esta versão estável da Bazaraza pode seguir para testes aprofundados?</h2><p>Faça seis verificações curtas. O parecer vale somente para a release BZ-2026.10 desta simulação, não para a Bazaraza como produto. Uma falha crítica reprova o Smoke Test e bloqueia esta release. Se os checks essenciais passarem, o Smoke Test é aprovado e os testes aprofundados podem começar. Aprovar o Smoke não significa aprovar a aplicação para produção; essa decisão só vem depois de avaliar os testes seguintes. Você conclui esta missão ao emitir o parecer correto.</p></div>
+          <div><span class="label">RELEASE FF-2026.10 · SIMULAÇÃO LOCAL</span><h2 id="briefing-title">Esta versão estável da FictFvr pode seguir para testes aprofundados?</h2><p>Faça seis verificações curtas. O parecer vale somente para a release FF-2026.10 desta simulação, não para a FictFvr como produto. Uma falha crítica reprova o Smoke Test e bloqueia esta release. Se os checks essenciais passarem, o Smoke Test é aprovado e os testes aprofundados podem começar. Aprovar o Smoke não significa aprovar a aplicação para produção; essa decisão só vem depois de avaliar os testes seguintes. Você conclui esta missão ao emitir o parecer correto.</p></div>
           <div class="smoke-score-guide"><strong>Até 100 XP</strong><span>6 classificações × 10 XP<br />Decisão: 20 XP · Impacto: 20 XP</span><small>Uma resposta corrigida vale metade dos pontos daquele item. Reabrir um check não reduz a pontuação.</small></div>
         </section>
         <section id="smoke-workspace" class="smoke-workspace" aria-label="Bancada de Smoke Test">
@@ -49,10 +49,10 @@
           </aside>
           <section class="smoke-panel smoke-lab" aria-labelledby="check-title">
             <header class="smoke-lab__heading"><span class="label">VERIFICAÇÃO ATUAL</span><h2 id="check-title" tabindex="-1"></h2><p id="check-expected"></p></header>
-            <div class="smoke-browser" aria-label="Ambiente fictício Bazaraza">
+            <div class="smoke-browser" aria-label="Ambiente fictício FictFvr">
               <div class="smoke-browser__bar"><span aria-hidden="true">● ● ●</span><span id="smoke-address"></span><span class="smoke-simulation-label">Simulado</span></div>
               <div class="smoke-store">
-                <header class="smoke-store__nav"><strong><b>B</b> Bazaraza</strong><span>Homologação · BZ-2026.10</span></header>
+                <header class="smoke-store__nav"><strong><b>F</b> FictFvr</strong><span>Homologação · FF-2026.10</span></header>
                 <div class="smoke-store__body">
                   <span class="smoke-store__kicker" id="preview-kicker"></span>
                   <h3 id="preview-title"></h3>
@@ -99,7 +99,7 @@
         <section class="smoke-result smoke-panel" id="smoke-result" aria-labelledby="smoke-result-title" hidden>
           <span class="label label--cyan">MISSÃO CONCLUÍDA · PARECER DE QA CORRETO</span>
           <h2 id="smoke-result-title" tabindex="-1">Smoke reprovado. Release bloqueada.</h2>
-          <p>Você concluiu a missão porque identificou as falhas críticas e emitiu o parecer técnico correto. A release BZ-2026.10 foi reprovada no Smoke Test e está bloqueada para testes aprofundados; isso não reprova a Bazaraza como produto. Concluir a missão registra seu diagnóstico, não aprova a release. Uma nova versão precisará passar pelo Smoke Test antes de liberar testes aprofundados. A aprovação para produção será decidida depois, com base nos resultados dessas etapas.</p>
+          <p>Você concluiu a missão porque identificou as falhas críticas e emitiu o parecer técnico correto. A release FF-2026.10 foi reprovada no Smoke Test e está bloqueada para testes aprofundados; isso não reprova a FictFvr como produto. Concluir a missão registra seu diagnóstico, não aprova a release. Uma nova versão precisará passar pelo Smoke Test antes de liberar testes aprofundados. A aprovação para produção será decidida depois, com base nos resultados dessas etapas.</p>
           <div class="smoke-result__stats"><div><span>CHECKS</span><strong>6 / 6</strong></div><div><span>FALHAS CRÍTICAS</span><strong>2</strong></div><div><span>NESTA TENTATIVA</span><strong id="smoke-result-xp">0 XP</strong></div></div>
           <p id="smoke-result-summary"></p>
           <qa-save-status></qa-save-status>

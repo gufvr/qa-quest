@@ -1,4 +1,4 @@
-// Open-ended exploratory testing mission for the fictional Bazaraza store.
+// Open-ended exploratory testing mission for the fictional FictFvr store.
 const discoveries = {
   stock: {
     title: "Quantidade supera o estoque informado",
@@ -40,7 +40,7 @@ function formatMoney(value) {
 
 function setView(view) {
   views.forEach((element) => { element.hidden = element.dataset.shopView !== view; });
-  document.querySelector("#shop-address").textContent = `bazaraza.test/${view === "catalog" ? "catalog" : view}`;
+  document.querySelector("#shop-address").textContent = `fictfvr.test/${view === "catalog" ? "catalog" : view}`;
 }
 
 function updateCart() {
@@ -137,9 +137,9 @@ document.querySelector("#decrease-quantity").addEventListener("click", () => {
 document.querySelector("#apply-coupon").addEventListener("click", () => {
   const coupon = document.querySelector("#coupon-input").value.trim().toUpperCase();
   const message = document.querySelector("#coupon-message");
-  if (coupon === "BAZAR10") {
+  if (coupon === "FVR10") {
     state.couponApplied = true;
-    message.textContent = "Cupom BAZAR10 aplicado: 10% de desconto.";
+    message.textContent = "Cupom FVR10 aplicado: 10% de desconto.";
     document.querySelector("#remove-coupon").hidden = false;
   } else {
     message.textContent = "Cupom não encontrado.";
@@ -169,7 +169,7 @@ document.querySelector("#finish-order").addEventListener("click", () => {
   const cep = document.querySelector("#cep-input").value.trim();
   const message = document.querySelector("#checkout-message");
   if (!address || !cep) {
-    message.textContent = "Pedido #BZ-2048 confirmado. Enviaremos novidades por e-mail.";
+    message.textContent = "Pedido #FF-2048 confirmado. Enviaremos novidades por e-mail.";
     discover("checkout");
   } else {
     message.textContent = "Pedido enviado para análise.";

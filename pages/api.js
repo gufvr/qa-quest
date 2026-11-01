@@ -19,7 +19,7 @@ const checkoutResponse = orderId => ({
   orderId, status: "pending_payment", itemsTotal: 379.80, deliveryFee: 0, total: 379.80
 });
 const ORDER_BODY = deepFreeze({
-  orderId: "BZ-API-1042", status: "pending_payment",
+  orderId: "FF-API-1042", status: "pending_payment",
   items: [{ productId: "P-URB-01", quantity: 2, unitPrice: 189.90 }], total: 379.80
 });
 const CASES = deepFreeze([
@@ -36,34 +36,34 @@ const CASES = deepFreeze([
     options: [["pass", "Contrato atendido pela candidata, pois as duas respostas são 200."], ["filter", "Filtro ignorado pela candidata; a referência respeitou a categoria."], ["status", "Status HTTP divergente: o GET deveria criar um pedido com 201."], ["missing", "Campo obrigatório ausente: a resposta não contém items."]],
     feedback: "As duas respostas têm 200 e items. A candidata inclui technology quando recebeu accessories. A contagem 2 coincide com a lista; o defeito está no filtro, não na contagem." },
   { id: "created", title: "Checkout: criação aderente", method: "POST", path: "/api/checkout", query: null, body: CHECKOUT_BODY, points: 5,
-    profile: "Fixture local API-02 · perfil de resposta aderente para o pedido BZ-API-1042. Não é uma chamada real à candidata.",
+    profile: "Fixture local API-02 · perfil de resposta aderente para o pedido FF-API-1042. Não é uma chamada real à candidata.",
     instruction: "Escolha POST para enviar os itens, o endereço fictício e o pagamento simulado. Leia o body antes de simular a criação prevista no contrato.",
     contract: "POST /api/checkout cria um pedido e exige 201 Created neste contrato. orderId é texto não vazio, status é pending_payment e itemsTotal, deliveryFee e total são números em reais. Duas unidades de R$ 189,90 = R$ 379,80; entrega grátis; total = itemsTotal + deliveryFee. Todos esses campos são obrigatórios.",
-    expectedStatus: "201 Created", expectedBody: checkoutResponse("BZ-API-1042"),
-    response: { label: "Candidata · fixture local API-02 · criação aderente", status: "201 Created", body: checkoutResponse("BZ-API-1042") },
-    observed: "201 Created; orderId BZ-API-1042; status pending_payment; itemsTotal 379.80; deliveryFee 0; total 379.80. Campos e valores atendem ao contrato deste caso.",
+    expectedStatus: "201 Created", expectedBody: checkoutResponse("FF-API-1042"),
+    response: { label: "Candidata · fixture local API-02 · criação aderente", status: "201 Created", body: checkoutResponse("FF-API-1042") },
+    observed: "201 Created; orderId FF-API-1042; status pending_payment; itemsTotal 379.80; deliveryFee 0; total 379.80. Campos e valores atendem ao contrato deste caso.",
     impact: "O consumidor recebe a confirmação de criação e os valores esperados. pending_payment não significa pagamento aprovado. Este caso passou no escopo informado; outros perfis ainda precisam ser avaliados.",
     answer: ["pass"], classification: "Contrato atendido neste caso.",
     options: [["status", "Status HTTP divergente: qualquer POST deve responder 200."], ["pass", "Contrato atendido: 201 indica a criação prevista e os campos e totais são coerentes."], ["paid", "Pagamento aprovado: pending_payment significa que o valor foi pago."], ["total", "Total divergente: 2 × 189,90 deveria ser 394,80."]],
     feedback: "O contrato declara criação e exige 201. Os campos estão presentes e 2 × R$ 189,90 = R$ 379,80, sem frete. pending_payment significa pagamento pendente; não houve pagamento real." },
   { id: "divergent", title: "Checkout: status e total divergentes", method: "POST", path: "/api/checkout", query: null, body: CHECKOUT_BODY, points: 5,
-    profile: "Fixture local API-03 · perfil de resposta com falhas para o pedido BZ-API-1043. Usa a mesma entrada do API-02, mas é uma captura didática separada, não uma segunda chamada real à candidata.",
+    profile: "Fixture local API-03 · perfil de resposta com falhas para o pedido FF-API-1043. Usa a mesma entrada do API-02, mas é uma captura didática separada, não uma segunda chamada real à candidata.",
     instruction: "Envie o mesmo body ao perfil com falhas definido para este caso. Confira separadamente o status e a soma dos valores.",
     contract: "O mesmo contrato de criação exige 201 Created e os campos orderId (texto não vazio), status (pending_payment), itemsTotal, deliveryFee e total (números obrigatórios). Para estes itens: itemsTotal 379.80, deliveryFee 0 e total 379.80. O identificador pode variar entre pedidos; não é a falha.",
-    expectedStatus: "201 Created", expectedBody: checkoutResponse("BZ-API-1043"),
-    response: { label: "Candidata · fixture local API-03 · status e cálculo divergentes", status: "200 OK", body: { ...checkoutResponse("BZ-API-1043"), total: 394.80 } },
-    observed: "200 OK em vez de 201 Created. O body tem orderId BZ-API-1043, status pending_payment, itemsTotal 379.80 e deliveryFee 0, mas total 394.80: R$ 15,00 a mais sem taxa prevista.",
+    expectedStatus: "201 Created", expectedBody: checkoutResponse("FF-API-1043"),
+    response: { label: "Candidata · fixture local API-03 · status e cálculo divergentes", status: "200 OK", body: { ...checkoutResponse("FF-API-1043"), total: 394.80 } },
+    observed: "200 OK em vez de 201 Created. O body tem orderId FF-API-1043, status pending_payment, itemsTotal 379.80 e deliveryFee 0, mas total 394.80: R$ 15,00 a mais sem taxa prevista.",
     impact: "O consumidor pode tratar a criação em desacordo com o status contratado e apresentar ou cobrar um total indevido. Há duas violações independentes, mesmo com JSON válido e status de sucesso.",
     answer: ["status", "total"], classification: "Status HTTP divergente e total divergente.",
     options: [["status", "Status HTTP divergente: veio 200 e o contrato deste caso exige 201."], ["pass", "Contrato atendido, porque 200 é sucesso e existe JSON."], ["total", "Total divergente: 394,80 difere de 379,80 + 0."], ["missing", "Campo obrigatório ausente: a resposta não tem orderId."]],
     feedback: "Selecione as duas violações: status 200 em vez do 201 contratado e total R$ 394,80 em vez de R$ 379,80. orderId está presente; sua variação entre pedidos não viola o contrato." },
-  { id: "order", title: "Pedido: campo obrigatório ausente", method: "GET", path: "/api/orders/BZ-API-1042", query: null, body: null, points: 10,
-    profile: "Fixture local API-04 · perfil de resposta para consultar o pedido fictício BZ-API-1042. Não é uma chamada real à candidata.",
+  { id: "order", title: "Pedido: campo obrigatório ausente", method: "GET", path: "/api/orders/FF-API-1042", query: null, body: null, points: 10,
+    profile: "Fixture local API-04 · perfil de resposta para consultar o pedido fictício FF-API-1042. Não é uma chamada real à candidata.",
     instruction: "Consulte o pedido de teste pelo identificador na rota. Compare todos os campos obrigatórios, mesmo que o status seja 200.",
-    contract: "GET /api/orders/BZ-API-1042 → 200 OK. orderId deve coincidir com a rota; status é pending_payment; items lista productId textual, quantity inteira positiva e unitPrice numérico. total é um número obrigatório igual à soma dos itens neste pedido sem frete: 379.80.",
+    contract: "GET /api/orders/FF-API-1042 → 200 OK. orderId deve coincidir com a rota; status é pending_payment; items lista productId textual, quantity inteira positiva e unitPrice numérico. total é um número obrigatório igual à soma dos itens neste pedido sem frete: 379.80.",
     expectedStatus: "200 OK", expectedBody: ORDER_BODY,
     response: { label: "Candidata · fixture local API-04 · total ausente", status: "200 OK", body: { orderId: ORDER_BODY.orderId, status: ORDER_BODY.status, items: ORDER_BODY.items } },
-    observed: "200 OK com orderId BZ-API-1042, status pending_payment e items contendo 2 × 189.90. O campo obrigatório total não foi enviado.",
+    observed: "200 OK com orderId FF-API-1042, status pending_payment e items contendo 2 × 189.90. O campo obrigatório total não foi enviado.",
     impact: "O consumidor não recebe o total previsto no contrato. Calcular uma soma local não substitui o campo obrigatório nem garante a mesma regra de preço do serviço. Não há valor errado em total: o campo está ausente.",
     answer: ["missing"], classification: "Campo obrigatório total ausente.",
     options: [["pass", "Contrato atendido: status 200 garante todos os campos."], ["total", "Total divergente: a resposta enviou total 394,80."], ["missing", "Campo obrigatório ausente: total não foi enviado no body."], ["status", "Status HTTP divergente: uma consulta GET deveria responder 201."]],
@@ -83,7 +83,7 @@ const score = () => (state.conceptPoints || 0) +
   Object.values(state.reviewPoints).reduce((sum, points) => sum + points, 0);
 const pretty = value => JSON.stringify(value, null, 2);
 const fullPath = test => test.path + (test.query ? "?" + test.query : "");
-const requestUrl = test => "bazaraza.test" + fullPath(test);
+const requestUrl = test => "fictfvr.test" + fullPath(test);
 const requestText = test => test.method + " " + requestUrl(test) +
   (test.body ? "\nContent-Type: application/json\n\n" + pretty(test.body) : "\nSem request body neste caso.");
 const responseText = response => response.status + "\nContent-Type: application/json\n\n" + pretty(response.body);
@@ -152,7 +152,7 @@ function renderProgress() {
     const empty = document.createElement("p"); empty.className = "api-note";
     empty.textContent = "As requisições e respostas registradas aparecerão aqui com comparação e impacto."; get("api-evidence").append(empty);
   }
-  get("api-candidate-status").textContent = "BZ-2026.12.0 · " + count + " de 4 casos classificados. " +
+  get("api-candidate-status").textContent = "FF-2026.12.0 · " + count + " de 4 casos classificados. " +
     (state.records.has("catalog") ? "Filtro ignorado na candidata; continue para delimitar os outros contratos." : "Parecer pendente.");
   review.hidden = count !== CASES.length;
   get("api-review-hint").hidden = count === CASES.length;
@@ -167,7 +167,7 @@ function renderStep(focus = true) {
   get("api-profile").textContent = test.profile;
   get("api-request-path").textContent = requestUrl(test);
   get("api-request-details").replaceChildren();
-  addDetail(get("api-request-details"), "Parâmetros", test.query || (test.id === "order" ? "Parâmetro de rota: orderId = BZ-API-1042. Sem query string." : "Sem query string ou parâmetro de rota."));
+  addDetail(get("api-request-details"), "Parâmetros", test.query || (test.id === "order" ? "Parâmetro de rota: orderId = FF-API-1042. Sem query string." : "Sem query string ou parâmetro de rota."));
   addDetail(get("api-request-details"), "Headers enviados", test.body ? "Content-Type: application/json" : "Nenhum header adicional neste exemplo simplificado.");
   get("api-request-body").textContent = test.body ? pretty(test.body) : "Sem request body neste GET.";
   get("api-request-body-panel").open = Boolean(test.body);
@@ -219,7 +219,7 @@ get("api-request-form").addEventListener("submit", event => {
   if (test.reference && !state.referenceDone) return;
   get("api-responses").append(makeResponse(test.response, test.id));
   state.executions.set(test.id, Object.freeze({
-    profile: "BZ-2026.12.0 · " + test.profile,
+    profile: "FF-2026.12.0 · " + test.profile,
     request: requestText(test), expected: test.contract + "\nExemplo aderente:\n" + test.expectedStatus + "\n" + pretty(test.expectedBody),
     responses: (test.reference ? test.reference.label + "\n" + responseText(test.reference) + "\n\n" : "") + test.response.label + "\n" + responseText(test.response),
     observed: test.observed, impact: test.impact

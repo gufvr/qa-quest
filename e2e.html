@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Missão de teste End-to-End do QA Quest na loja fictícia Bazaraza." />
+    <meta name="description" content="Missão de teste End-to-End do QA Quest na loja fictícia FictFvr." />
     <title>Teste End-to-End — QA Quest</title>
     <link rel="icon" type="image/png" href="qaquest.png" />
     <link rel="apple-touch-icon" href="qaquest.png" />
@@ -37,7 +37,7 @@
             <span class="label label--cyan">TRILHA 01 · FLUXOS E INVESTIGAÇÃO</span>
             <h1>Jornada End-to-End</h1>
           </div>
-          <p>Acompanhe a compra da Bazaraza do catálogo à confirmação pós-compra e compare cada estado com o que o cliente deveria receber.</p>
+          <p>Acompanhe a compra da FictFvr do catálogo à confirmação pós-compra e compare cada estado com o que o cliente deveria receber.</p>
         </header>
 
         <section class="e2e-workspace" id="e2e-workspace">
@@ -45,7 +45,7 @@
             <div class="journey-panel__heading"><span aria-hidden="true">↝</span><div><small>JORNADA DO CLIENTE</small><strong id="journey-title">Compra de uma mochila</strong></div></div>
             <ol class="journey-steps">
               <li data-step="catalog"><span>01</span><div><strong>Produto</strong><small>Escolha a mochila indicada.</small></div></li>
-              <li data-step="cart"><span>02</span><div><strong>Carrinho</strong><small>Aplique o cupom BAZAR10.</small></div></li>
+              <li data-step="cart"><span>02</span><div><strong>Carrinho</strong><small>Aplique o cupom FVR10.</small></div></li>
               <li data-step="delivery"><span>03</span><div><strong>Entrega</strong><small>Informe endereço e CEP.</small></div></li>
               <li data-step="payment"><span>04</span><div><strong>Pagamento</strong><small>Simule uma compra aprovada.</small></div></li>
               <li data-step="order"><span>05</span><div><strong>Pedido</strong><small>Compare aprovação e status.</small></div></li>
@@ -54,11 +54,11 @@
             <div class="journey-panel__tip"><strong>O que valida um E2E?</strong><p>O mesmo pedido precisa manter dados e estados coerentes em todas as etapas. Use apenas dados fictícios nesta simulação.</p><p>Até 100 XP: 60 pela execução, 30 pelas comparações e 10 pela revisão. Novas tentativas de resposta valem metade dos pontos da pergunta.</p></div>
           </aside>
 
-          <section class="e2e-app-panel" aria-label="Loja Bazaraza simulada">
+          <section class="e2e-app-panel" aria-label="Loja FictFvr simulada">
             <div class="e2e-browser">
-              <div class="e2e-browser__bar" aria-hidden="true"><span class="browser-dots"><i></i><i></i><i></i></span><span id="e2e-address">bazaraza.test/catalog</span><span>↻</span></div>
+              <div class="e2e-browser__bar" aria-hidden="true"><span class="browser-dots"><i></i><i></i><i></i></span><span id="e2e-address">fictfvr.test/catalog</span><span>↻</span></div>
               <div class="e2e-store">
-                <header class="e2e-store__nav"><strong><b>B</b> Bazaraza</strong><span id="order-chip">Pedido em andamento</span></header>
+                <header class="e2e-store__nav"><strong><b>F</b> FictFvr</strong><span id="order-chip">Pedido em andamento</span></header>
 
                 <section class="e2e-view" data-e2e-view="catalog">
                   <span class="store-kicker">CATÁLOGO</span>
@@ -71,7 +71,7 @@
                   <h2 tabindex="-1">Confirme os dados antes de avançar.</h2>
                   <div class="summary-row"><span>Mochila Urbana <small>R$ 189,90 por unidade</small></span><strong id="cart-subtotal">R$ 189,90</strong></div>
                   <label class="store-field quantity-field" for="e2e-quantity">Quantidade<select id="e2e-quantity"><option value="1">1 unidade</option><option value="2">2 unidades</option><option value="3">3 unidades</option></select></label>
-                  <div class="coupon-control"><label for="e2e-coupon">Cupom de desconto</label><div><input id="e2e-coupon" type="text" placeholder="Digite BAZAR10" /><button id="apply-e2e-coupon" type="button">Aplicar</button></div><small id="coupon-feedback" role="status"></small></div>
+                  <div class="coupon-control"><label for="e2e-coupon">Cupom de desconto</label><div><input id="e2e-coupon" type="text" placeholder="Digite FVR10" /><button id="apply-e2e-coupon" type="button">Aplicar</button></div><small id="coupon-feedback" role="status"></small></div>
                   <div class="store-total"><span>Total do carrinho</span><strong id="cart-summary-total">R$ 189,90</strong></div>
                   <button class="store-button" id="to-delivery" type="button">Continuar para entrega →</button>
                 </section>
@@ -81,7 +81,7 @@
                   <h2 tabindex="-1">Onde este pedido será entregue?</h2>
                   <div class="reference-total"><span>Total confirmado no carrinho</span><strong id="cart-reference-total"></strong></div>
                   <p class="store-note">Frete grátis. O cupom deve continuar válido em todas as etapas.</p>
-                  <label class="store-field" for="delivery-address">Endereço fictício<input id="delivery-address" type="text" autocomplete="off" placeholder="Rua Bazaraza, 101" maxlength="160" /></label>
+                  <label class="store-field" for="delivery-address">Endereço fictício<input id="delivery-address" type="text" autocomplete="off" placeholder="Rua FictFvr, 101" maxlength="160" /></label>
                   <label class="store-field" for="delivery-cep">CEP fictício<input id="delivery-cep" type="text" autocomplete="off" inputmode="numeric" placeholder="01001-000" maxlength="9" /></label>
                   <div class="store-total store-total--checkout"><span>Total no checkout</span><strong id="checkout-summary-total">R$ 189,90</strong></div>
                   <small class="store-message" id="delivery-message" role="status"></small>
@@ -102,7 +102,7 @@
 
                 <section class="e2e-view" data-e2e-view="order" hidden>
                   <span class="store-kicker">PEDIDO CRIADO</span>
-                  <h2 tabindex="-1">Pedido #BZ-314 criado.</h2>
+                  <h2 tabindex="-1">Pedido #FF-314 criado.</h2>
                   <div class="order-status"><span id="payment-status">Aguardando pagamento</span><p id="payment-result"></p></div>
                   <dl class="order-details" id="order-details"></dl>
                   <div class="summary-row"><span>Total do pedido</span><strong id="order-summary-total"></strong></div>
@@ -111,8 +111,8 @@
 
                 <section class="e2e-view" data-e2e-view="post" hidden>
                   <span class="store-kicker">CONFIRMAÇÃO ENVIADA</span>
-                  <h2 tabindex="-1">E-mail para cliente@bazaraza.test</h2>
-                  <article class="email-preview"><strong>Recebemos seu pedido!</strong><p>Pedido #BZ-314 · Bazaraza</p><dl class="order-details" id="email-details"></dl><div><span>Total informado no e-mail</span><strong id="email-summary-total"></strong></div></article>
+                  <h2 tabindex="-1">E-mail para cliente@fictfvr.test</h2>
+                  <article class="email-preview"><strong>Recebemos seu pedido!</strong><p>Pedido #FF-314 · FictFvr</p><dl class="order-details" id="email-details"></dl><div><span>Total informado no e-mail</span><strong id="email-summary-total"></strong></div></article>
                   <div class="reference-total"><span>Total registrado no pedido</span><strong id="order-reference-total"></strong></div>
                   <button class="store-button" id="open-e2e-review" type="button">Revisar evidências →</button>
                 </section>
