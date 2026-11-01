@@ -7,7 +7,7 @@ class QAFooter extends HTMLElement {
       <footer class="footer">
         <div class="container footer__content">
           <div class="footer__top">
-            <qa-brand href="#inicio"></qa-brand>
+            <qa-brand href="index.html"></qa-brand>
             <p>Aprenda. Teste. Evolua.</p>
             <span>Projeto de aprendizado em construção.</span>
           </div>

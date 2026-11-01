@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Consulte e baixe as apostilas do QA Quest, organizadas por base comum e trilhas de aprendizado."
+    />
+    <title>Biblioteca de aulas — QA Quest</title>
+    <link rel="icon" type="image/png" href="qaquest.png" />
+    <link rel="apple-touch-icon" href="qaquest.png" />
+    <script>
+      document.documentElement.dataset.theme =
+        localStorage.getItem("qa-quest-theme") || "dark";
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/site.css" />
+    <link rel="stylesheet" href="styles/library.css" />
+  </head>
+  <body class="site-page library-page">
+    <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+    <qa-header variant="site"></qa-header>
+    <main id="conteudo">
+      <header class="page-intro container">
+        <a class="page-back" href="index.html">← Voltar ao início</a>
+        <span class="label label--cyan">BIBLIOTECA DE ESTUDOS</span>
+        <h1>Teoria no seu ritmo.<br /><span>Prática com mais contexto.</span></h1>
+        <p>Abra uma aula em PDF ou baixe para estudar depois. Os materiais são opcionais e ficam disponíveis mesmo antes de liberar as missões.</p>
+        <div class="page-actions">
+          <a class="button button--primary" href="jornada.html">Explorar a jornada <span aria-hidden="true">→</span></a>
+        </div>
+      </header>
+      <section class="home-library page-section" aria-labelledby="library-title">
+        <div class="container">
+          <h2 id="library-title">Suas aulas de apoio</h2>
+          <p class="home-library__count" id="library-count"></p>
+          <p class="home-library__empty" id="library-empty" hidden>As novas aulas em PDF aparecerão aqui conforme forem adicionadas ao QA Quest.</p>
+          <div class="library-groups" id="library-groups"></div>
+          <noscript><p>Ative o JavaScript para consultar o catálogo e acessar as aulas.</p></noscript>
+        </div>
+      </section>
+    </main>
+    <qa-footer></qa-footer>
+    <script type="module" src="pages/library.js"></script>
+  </body>
+</html>

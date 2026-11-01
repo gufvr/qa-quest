@@ -24,7 +24,7 @@ class QAHeader extends HTMLElement {
           <qa-brand href="index.html"></qa-brand>
           <div class="nav__actions">
             <qa-theme-toggle></qa-theme-toggle>
-            <a class="button button--small button--ghost tracks-header__back" href="index.html">Voltar à jornada</a>
+            <a class="button button--small button--ghost tracks-header__back" href="jornada.html">Voltar à jornada</a>
           </div>
         </nav>
       </header>
@@ -32,14 +32,16 @@ class QAHeader extends HTMLElement {
   }
 
   siteTemplate() {
+    const currentPath = window.location.pathname;
+    const current = (route) => new URL(route, document.baseURI).pathname === currentPath ? ' aria-current="page"' : "";
     return `
       <header class="site-header">
         <nav class="nav container" aria-label="Navegação principal">
-          <qa-brand href="#inicio"></qa-brand>
+          <qa-brand href="index.html"></qa-brand>
           <div class="nav__links">
-            <a href="#jornada">Jornada</a>
-            <a href="#biblioteca">Biblioteca</a>
-            <a href="#como-funciona">Como funciona</a>
+            <a href="jornada.html"${current("jornada.html")}>Jornada</a>
+            <a href="biblioteca.html"${current("biblioteca.html")}>Biblioteca</a>
+            <a href="como-funciona.html"${current("como-funciona.html")}>Como funciona</a>
           </div>
           <div class="nav__actions">
             <qa-theme-toggle></qa-theme-toggle>

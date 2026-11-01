@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Acompanhe suas fases, trilhas e missões concluídas no mapa de aprendizado do QA Quest."
+    />
+    <title>Jornada de aprendizado — QA Quest</title>
+    <link rel="icon" type="image/png" href="qaquest.png" />
+    <link rel="apple-touch-icon" href="qaquest.png" />
+    <script>
+      document.documentElement.dataset.theme =
+        localStorage.getItem("qa-quest-theme") || "dark";
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/site.css" />
+    <link rel="stylesheet" href="styles/journey.css" />
+  </head>
+  <body class="site-page journey-page">
+    <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+    <qa-header variant="site"></qa-header>
+    <main id="conteudo">
+      <header class="page-intro container">
+        <a class="page-back" href="index.html">← Voltar ao início</a>
+        <span class="label label--cyan">MAPA DA JORNADA</span>
+        <h1>Um passo de cada vez.<br /><span>Seu caminho em QA.</span></h1>
+        <p>Comece pelas quatro fases da base comum. Depois, escolha suas próximas práticas nas trilhas independentes e revisite o que já aprendeu.</p>
+      </header>
+      <section class="home-journey page-section" id="jornada">
+        <div class="container">
+          <h2 class="sr-only">Mapa e progresso da jornada</h2>
+          <a class="journey-next" id="journey-next" href="phase1.html">
+            <span><small>PRÓXIMA MISSÃO</small><strong id="journey-next-title">Fundamentos de QA</strong></span>
+            <span id="journey-next-action">Continuar missão →</span>
+          </a>
+          <div class="journey-overview" aria-label="Progresso geral da jornada">
+            <div class="journey-overview__copy">
+              <span class="journey-overview__eyebrow">PROGRESSO GERAL</span>
+              <strong id="journey-progress-label">0 de 0 missões concluídas</strong>
+              <span id="journey-progress-description">Sua primeira missão está pronta.</span>
+            </div>
+            <div class="journey-overview__meter">
+              <div
+                class="journey-overview__progress"
+                id="journey-progress"
+                role="progressbar"
+                aria-valuemin="0"
+                aria-valuemax="0"
+                aria-valuenow="0"
+                aria-label="Nenhuma missão concluída"
+              >
+                <span id="journey-progress-bar"></span>
+              </div>
+              <a class="journey-overview__hub" id="tracks-hub-link" href="phase4.html">
+                Hub de trilhas <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+
+          <p class="sr-only" id="journey-live-status" role="status" aria-live="polite"></p>
+          <div class="journey-groups" id="journey-groups"></div>
+
+          <section class="completed-missions" id="completed-missions" aria-labelledby="completed-missions-title">
+            <button
+              class="completed-missions__toggle"
+              id="completed-missions-toggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="completed-missions-panel"
+            >
+              <span>
+                <small>HISTÓRICO</small>
+                <strong id="completed-missions-title">Missões concluídas</strong>
+              </span>
+              <span class="completed-missions__count" id="completed-missions-count">0</span>
+            </button>
+            <div
+              class="completed-missions__content"
+              id="completed-missions-panel"
+              aria-hidden="true"
+              inert
+            >
+              <div class="completed-missions__inner">
+                <div class="completed-missions__body">
+                  <p id="completed-missions-empty">
+                    Suas missões concluídas aparecerão aqui para você revisitar quando quiser.
+                  </p>
+                  <ul id="completed-missions-list"></ul>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <noscript><p class="container">Ative o JavaScript para consultar seu progresso e as missões disponíveis.</p></noscript>
+    </main>
+    <qa-toast></qa-toast>
+    <qa-footer></qa-footer>
+    <script type="module" src="pages/journey.js"></script>
+  </body>
+</html>

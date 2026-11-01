@@ -6,6 +6,9 @@ export default defineConfig({
     rollupOptions: {
       input: {
         home: "index.html",
+        library: "biblioteca.html",
+        journey: "jornada.html",
+        howItWorks: "como-funciona.html",
         phase1: "phase1.html",
         phase2: "phase2.html",
         phase3: "phase3.html",
