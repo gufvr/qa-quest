@@ -1,14 +1,15 @@
 // Global progress state, independent from page interfaces.
 (function initializeProgress(global) {
   const STORAGE_KEY = "qa-quest-progress";
-  const CURRENT_VERSION = 5;
+  const CURRENT_VERSION = 6;
   const MAX_XP_PER_PHASE = 100;
   const phaseNumbers = { phase1: 1, phase2: 2, phase3: 3, phase4: 4 };
   const trackModules = {
     release: ["smoke", "sanity", "regression"],
     flows: ["functional", "exploratory", "e2e"],
     specialized: ["performance", "security"],
-    professional: ["bug-report", "api"]
+    professional: ["bug-report", "api"],
+    automation: ["automation-fundamentals"]
   };
   const trackMissionIds = new Set(Object.values(trackModules).flat().filter((id) => id !== "functional"));
 
@@ -111,6 +112,10 @@
       if (!stored) return clone(memoryState);
       const saved = JSON.parse(stored);
       const normalized = normalizeState(saved);
+      // Preserve a newer application's original save, including unknown missions.
+      if (Number(saved?.version) > CURRENT_VERSION) {
+        return clone({ ...normalized, version: saved.version });
+      }
       memoryState = normalized;
       if (saved.version !== CURRENT_VERSION || !saved.tracks || !Array.isArray(saved.activityDays)) {
         try {
@@ -126,6 +131,7 @@
   }
 
   function writeState(state) {
+    if (isReadOnly()) throw new Error("Este progresso foi salvo por uma versão mais recente. Atualize o QA Quest antes de salvar.");
     const normalized = normalizeState(state);
     memoryState = normalized;
 
@@ -136,6 +142,10 @@
     }
 
     return clone(normalized);
+  }
+
+  function isReadOnly() {
+    return Number(readState().version) > CURRENT_VERSION;
   }
 
   function saveMissionResult(missionId, earnedXp) {
@@ -247,6 +257,7 @@
   global.QAQuestProgress = Object.freeze({
     storageKey: STORAGE_KEY,
     getState: readState,
+    isReadOnly,
     getActivitySummary,
     getMission,
     isPhaseUnlocked,

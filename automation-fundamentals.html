@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Monte e revise um teste em um laboratório didático local de fundamentos da automação do QA Quest." />
+    <title>Fundamentos da Automação — QA Quest</title>
+    <link rel="icon" type="image/png" href="qaquest.png" />
+    <script>
+      try { document.documentElement.dataset.theme = localStorage.getItem("qa-quest-theme") || "dark"; }
+      catch { document.documentElement.dataset.theme = "dark"; }
+    </script>
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/automation-fundamentals.css" />
+  </head>
+  <body class="automation-page">
+    <a class="skip-link" href="#automation-main">Ir para a missão</a>
+    <qa-header variant="mission"></qa-header>
+    <main id="automation-main" class="automation-main container">
+      <header class="automation-intro">
+        <span class="label label--cyan">TRILHA 05 · MÓDULO 01</span>
+        <h1>Do comportamento ao teste.</h1>
+        <p>Automatizar é transformar uma verificação em ações e critérios repetíveis. Construa um teste, observe a falha e descubra por que clicar não é o mesmo que validar.</p>
+      </header>
+
+      <section id="lab-locked" class="lab-panel" hidden aria-labelledby="lab-locked-title">
+        <h2 id="lab-locked-title">Conclua a Fase 4 para começar.</h2>
+        <p id="lab-locked-copy">A missão não exige outras trilhas, ferramentas instaladas ou extensões.</p>
+        <a class="button button--primary" id="lab-locked-link" href="jornada.html">Voltar à jornada</a>
+      </section>
+      <qa-support-material mission-id="automation-fundamentals"></qa-support-material>
+
+      <div id="lab-content" hidden>
+        <section class="lab-panel lab-briefing" aria-labelledby="lab-briefing-title">
+          <div>
+            <span class="label">FICTFVR · LABORATÓRIO DE CATÁLOGO</span>
+            <h2 id="lab-briefing-title">O filtro continua fazendo o que promete?</h2>
+            <p><strong>Regra:</strong> ao selecionar Acessórios, a lista pronta deve mostrar somente produtos dessa categoria. O catálogo contém dois acessórios e um eletrônico.</p>
+            <p class="lab-notice">Simulação local, com fixtures fixas. As ações e o pseudocódigo são didáticos: não há execução de Cypress, Playwright, Selenium ou de código digitado. Nenhuma conta, extensão ou serviço externo é necessário.</p>
+            <details class="lab-glossary">
+              <summary>Conceitos e pontuação da missão</summary>
+              <p><strong>Seletor:</strong> identifica um elemento. <strong>Action:</strong> faz algo, como selecionar uma categoria. <strong>Assertion:</strong> compara o resultado observado com o esperado.</p>
+              <p><strong>Sincronização:</strong> aguardar uma condição com limite. <strong>Teste instável:</strong> pode passar ou falhar por problemas do próprio teste, como uma espera inadequada, mesmo sem mudança funcional. Uma falha também pode revelar um defeito real; investigue as evidências.</p>
+              <p><strong>Pontuação:</strong> cenário 10; seletor 15; ações 15; assertion 20; sincronização 15; diagnóstico 15; manutenção 10. Total: até 100 XP. Resposta corrigida vale metade. Itens de 15 XP podem valer 7,5 XP; apenas o total é arredondado ao inteiro mais próximo ao salvar.</p>
+              <p>Só a missão concluída é salva. Ao sair ou recarregar, a rodada em andamento recomeça; seu melhor resultado concluído permanece.</p>
+            </details>
+          </div>
+          <div class="lab-score-card"><span>SEU OBJETIVO</span><strong>7 etapas · 100 XP</strong><p>Construir e interpretar um teste — não aprovar uma aplicação para produção.</p></div>
+        </section>
+
+        <section id="lab-workspace" aria-labelledby="lab-workspace-title">
+          <div class="lab-workspace-heading">
+            <h2 id="lab-workspace-title">Construa, simule, revise.</h2>
+            <span id="lab-progress-copy">Etapa 1 de 7 · 0 XP nesta rodada</span>
+          </div>
+          <progress id="lab-progress" max="7" value="0" aria-label="Etapas concluídas">0 de 7</progress>
+          <ol id="lab-checkpoints" class="lab-checkpoints" aria-label="Etapas da missão"></ol>
+
+          <div class="lab-workspace-grid">
+            <section class="lab-panel lab-task" aria-labelledby="lab-step-title">
+              <span id="lab-step-label" class="label label--cyan"></span>
+              <h3 id="lab-step-title" tabindex="-1"></h3>
+              <p id="lab-instruction"></p>
+              <div id="lab-run-controls" class="lab-run-controls" hidden>
+                <button class="button button--ghost" type="button" data-run="reference">Simular referência</button>
+                <button class="button button--ghost" type="button" data-run="candidate">Simular candidata</button>
+              </div>
+              <form id="lab-answer">
+                <fieldset id="lab-answer-fieldset" aria-labelledby="lab-step-title">
+                  <div id="lab-answer-controls"></div>
+                </fieldset>
+                <button id="lab-check" class="button button--primary" type="submit">Conferir etapa</button>
+              </form>
+              <p id="lab-feedback" class="lab-feedback" role="status" aria-atomic="true"></p>
+              <button id="lab-next" class="button button--primary" type="button" hidden>Próxima etapa →</button>
+              <p class="lab-small">Corrigir faz parte do aprendizado. Revise o feedback antes de avançar.</p>
+            </section>
+
+            <div class="lab-reference-column">
+              <section class="lab-panel lab-store" aria-labelledby="lab-store-title">
+                <div class="lab-store-heading"><strong id="lab-store-title">FictFvr · catálogo local</strong><span class="lab-badge">EXEMPLO</span></div>
+                <p class="lab-small">Este controle explora o exemplo; não altera sua pontuação.</p>
+                <div id="lab-target" class="lab-filter-target">
+                  <label for="lab-preview-filter">Categoria</label>
+                  <select id="lab-preview-filter" data-testid="category-filter"><option value="all">Todas</option><option value="accessories">Acessórios</option><option value="electronics">Eletrônicos</option></select>
+                </div>
+                <p id="lab-preview-state" class="lab-small">Referência local · lista pronta</p>
+                <ul id="lab-products" class="lab-products"></ul>
+                <details><summary>Inspecionar o controle</summary><pre><code>&lt;select data-testid="category-filter"
+        class="filter--purple"&gt;
+  &lt;option value="accessories"&gt;
+    Acessórios
+  &lt;/option&gt;
+&lt;/select&gt;</code></pre><p class="lab-small">Trecho simplificado para estudo. O campo real tem um rótulo associado.</p></details>
+              </section>
+              <section class="lab-panel lab-code-panel" aria-labelledby="lab-code-title">
+                <span class="label">SEU TESTE EM CONSTRUÇÃO</span><h3 id="lab-code-title">Pseudocódigo · não executável</h3>
+                <pre tabindex="0" aria-label="Pseudocódigo didático do teste"><code id="lab-code"></code></pre>
+              </section>
+            </div>
+          </div>
+
+          <section id="lab-evidence-panel" class="lab-panel" hidden aria-labelledby="lab-evidence-title">
+            <h3 id="lab-evidence-title">Evidências da simulação</h3>
+            <p>Referência e candidata são fixtures locais independentes. Os resultados são preparados pelo laboratório, não vêm da execução do pseudocódigo.</p>
+            <div id="lab-evidence" class="lab-evidence-grid"></div>
+          </section>
+        </section>
+
+        <section id="lab-result" class="lab-panel lab-result" hidden aria-labelledby="lab-result-title">
+          <span class="label label--cyan">FUNDAMENTOS CONCLUÍDOS</span>
+          <h2 id="lab-result-title" tabindex="-1">Você construiu e interpretou um teste.</h2>
+          <strong id="lab-result-xp" class="lab-result-xp"></strong>
+          <p id="lab-result-summary"></p>
+          <qa-save-status></qa-save-status>
+          <p>A referência passou no caso preparado. A candidata falhou porque ignorou o filtro, mesmo após a lista ficar pronta. A assertion tornou essa divergência visível.</p>
+          <p><strong>Missão concluída não significa produto aprovado.</strong> Você concluiu ao montar o teste e interpretar a falha. O filtro da candidata precisa de investigação e ajuste. Um caso simulado, ou um teste real isolado, não aprova a aplicação para produção.</p>
+          <details><summary>Rever decisões, pontuação e evidências</summary><ol id="lab-result-records"></ol><div id="lab-result-evidence" class="lab-evidence-grid"></div></details>
+          <p class="lab-notice">Você praticou conceitos independentes de framework. Os módulos Cypress, Playwright e Selenium ainda não estão disponíveis. A instalação do StepScript não faz parte desta missão.</p>
+          <div class="lab-result-actions"><button id="lab-restart" class="button button--primary" type="button">Repetir missão</button><a class="button button--ghost" href="tracks.html">Voltar às trilhas →</a><a class="button button--ghost" href="jornada.html">Ver jornada</a></div>
+        </section>
+      </div>
+    </main>
+    <qa-footer></qa-footer>
+    <script type="module" src="pages/automation-fundamentals.js"></script>
+  </body>
+</html>

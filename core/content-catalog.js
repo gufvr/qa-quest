@@ -167,6 +167,24 @@ export const learningTracks = [
         order: 2
       }
     ]
+  },
+  {
+    id: "automation",
+    index: 5,
+    title: "Automação de Testes Web",
+    description: "Transforme comportamentos conhecidos em testes claros, verificáveis e confiáveis.",
+    // Planned tools do not inflate available content or create dead links.
+    modules: [
+      {
+        id: "automation-fundamentals",
+        progressId: "automation-fundamentals",
+        title: "Fundamentos da Automação",
+        description: "Monte um teste, escolha seletores e assertions e interprete falhas simuladas.",
+        route: "automation-fundamentals.html",
+        type: "track",
+        order: 1
+      }
+    ]
   }
 ];
 

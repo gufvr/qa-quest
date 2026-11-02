@@ -117,7 +117,8 @@ test("new pages, local resources, mission routes and PDFs exist", () => {
 
 test("insight catalog has reviewed paraphrases and clearly separate original content", () => {
   assert.equal(new Set(homeInsights.map((entry) => entry.id)).size, homeInsights.length);
-  const contexts = ["phase1", "phase2", "phase3", "phase4", ...learningTracks.map((track) => `track:${track.id}`), "general"];
+  // Existing editorial pools remain intact; new tracks can use the general fallback.
+  const contexts = ["phase1", "phase2", "phase3", "phase4", "track:flows", "track:release", "track:specialized", "track:professional", "general"];
   for (const context of contexts) {
     const pool = homeInsights.filter((entry) => entry.context === context);
     assert.deepEqual(pool.map((entry) => entry.type).sort(), ["fact", "guidance", "humor"]);
@@ -153,10 +154,13 @@ test("insights follow recommended phases, then selected track or general context
   for (const track of learningTracks) {
     progress.selectTrack(track.id);
     assert.equal(getHomeInsightContext(progress.getState()), `track:${track.id}`);
-    assert.equal(selectHomeInsight(progress.getState()).context, `track:${track.id}`);
+    const context = `track:${track.id}`;
+    assert.equal(selectHomeInsight(progress.getState()).context,
+      homeInsights.some(entry => entry.context === context) ? context : "general");
   }
   for (const mission of uniqueMissions) progress.saveMissionResult(mission.progressId, 100);
-  assert.equal(selectHomeInsight(progress.getState()).context, "track:professional");
+  assert.equal(progress.getState().selectedTrack, "automation");
+  assert.equal(selectHomeInsight(progress.getState()).context, "general");
 });
 
 test("daily selection is deterministic, varies with calendar day and uses safe fallbacks", () => {

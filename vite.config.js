@@ -22,7 +22,8 @@ export default defineConfig({
         performance: "performance.html",
         security: "security.html",
         bugReport: "bug-report.html",
-        api: "api.html"
+        api: "api.html",
+        automationFundamentals: "automation-fundamentals.html"
       }
     }
   }

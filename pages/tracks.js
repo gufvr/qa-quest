@@ -1,5 +1,16 @@
 // Track hub: the base phases remain shared, while each track has its own progress.
 const tracks = {
+  automation: {
+    label: "TRILHA 05 · AUTOMAÇÃO DE TESTES WEB",
+    title: "Automação de Testes Web",
+    objective: "Transforme cenários conhecidos em testes automatizados e interprete o que eles verificam.",
+    prerequisite: "Concluir as Fases 1–4. Nenhuma outra trilha ou ferramenta instalada é necessária.",
+    order: "Comece por Fundamentos da Automação. Cypress, Playwright e Selenium WebDriver serão entregas futuras, não disponíveis nesta versão.",
+    note: "Um módulo disponível. Monte e revise um teste em uma simulação didática local, sem executar código arbitrário nem instalar extensões.",
+    modules: [
+      { id: "automation-fundamentals", title: "Fundamentos da Automação", detail: "Construa ações, seletores e assertions; interprete sincronização, falhas e manutenção.", href: "automation-fundamentals.html", availableLabel: "Disponível agora", linkLabel: "Iniciar missão →", completedLinkLabel: "Repetir missão →" }
+    ]
+  },
   professional: {
     label: "TRILHA 04 · PRÁTICA PROFISSIONAL",
     title: "Prática Profissional",
@@ -139,6 +150,9 @@ function renderHub() {
     button.querySelector("[data-track-bar]").style.width = `${trackProgress.percentage}%`;
   });
   renderTrack(state.selectedTrack && tracks[state.selectedTrack] ? state.selectedTrack : "flows");
+  const readOnly = progress.isReadOnly();
+  trackButtons.forEach(button => { button.disabled = readOnly; });
+  if (readOnly) document.querySelector("#track-details-note").textContent = "Este progresso pertence a uma versão mais recente. Atualize o QA Quest antes de selecionar uma trilha ou salvar resultados.";
 }
 
 let scrollFrame;
@@ -190,3 +204,8 @@ trackButtons.forEach((button) => {
 });
 
 renderHub();
+window.addEventListener("qaquest:progress", renderHub);
+window.addEventListener("storage", event => {
+  if (event.key === progress.storageKey || event.key === null) renderHub();
+});
+window.addEventListener("pageshow", renderHub);
