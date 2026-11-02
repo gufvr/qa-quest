@@ -2,6 +2,8 @@ import { initializeLegacyHomeRedirect } from "../core/legacy-home-redirect.js";
 import "../components/activity-streak.js";
 import { initializeSitePage } from "../core/site-page.js";
 import { getCompletedUniqueMissions, journeyGroups, learningTracks, uniqueMissions } from "../core/content-catalog.js";
+import { createHomeInsightController } from "../core/home-insight-controller.js";
+import { renderHomeInsight } from "../components/home-insight.js";
 
 const get = (id) => document.getElementById(id);
 let lastAnnouncement = "";
@@ -56,13 +58,23 @@ function updateRecommendation(state, recommendation) {
 }
 
 
-if (!initializeLegacyHomeRedirect()) initializeSitePage((state, { announce, recommendation }) => {
-  updateLevel(state);
-  updateRecommendation(state, recommendation);
-  get("catalog-mission-count").textContent = String(uniqueMissions.length);
-  get("catalog-track-count").textContent = String(learningTracks.length);
-  get("catalog-completed-count").textContent = String(getCompletedUniqueMissions(state).length);
-  const message = recommendation ? `Próxima missão recomendada: ${recommendation.title}.` : "Todo o conteúdo disponível foi concluído.";
-  if (announce && message !== lastAnnouncement) get("home-live-status").textContent = message;
-  lastAnnouncement = message;
-});
+if (!initializeLegacyHomeRedirect()) {
+  const insight = createHomeInsightController({
+    getState: () => window.QAQuestProgress.getState(),
+    render: (message) => renderHomeInsight(get("home-insight"), message),
+    canRender: () => !get("home-insight").contains(document.activeElement)
+  });
+  // Do not hide or replace the source link while someone is using it.
+  get("home-insight").addEventListener("focusout", () => queueMicrotask(insight.refresh));
+  initializeSitePage((state, { announce, recommendation }) => {
+    insight.update(state, recommendation);
+    updateLevel(state);
+    updateRecommendation(state, recommendation);
+    get("catalog-mission-count").textContent = String(uniqueMissions.length);
+    get("catalog-track-count").textContent = String(learningTracks.length);
+    get("catalog-completed-count").textContent = String(getCompletedUniqueMissions(state).length);
+    const message = recommendation ? `Próxima missão recomendada: ${recommendation.title}.` : "Todo o conteúdo disponível foi concluído.";
+    if (announce && message !== lastAnnouncement) get("home-live-status").textContent = message;
+    lastAnnouncement = message;
+  });
+}
