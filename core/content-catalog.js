@@ -259,6 +259,16 @@ export const supportMaterials = [
     filename: "qa-quest-teste-performance.pdf",
     format: "PDF",
     version: "1.0"
+  },
+  {
+    id: "security-testing",
+    missionId: "security",
+    title: "Teste de Segurança",
+    description: "Aula introdutória para consultar antes ou depois da prática.",
+    path: "materiais/qa-quest-teste-seguranca.pdf",
+    filename: "qa-quest-teste-seguranca.pdf",
+    format: "PDF",
+    version: "1.0"
   }
 ];
 
