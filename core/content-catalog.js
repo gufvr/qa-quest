@@ -269,6 +269,16 @@ export const supportMaterials = [
     filename: "qa-quest-teste-seguranca.pdf",
     format: "PDF",
     version: "1.0"
+  },
+  {
+    id: "bug-reporting",
+    missionId: "bug-report",
+    title: "Relato de Defeitos e Evidências",
+    description: "Aula introdutória para consultar antes ou depois da prática.",
+    path: "materiais/qa-quest-relato-defeitos-evidencias.pdf",
+    filename: "qa-quest-relato-defeitos-evidencias.pdf",
+    format: "PDF",
+    version: "1.0"
   }
 ];
 
