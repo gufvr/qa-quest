@@ -183,6 +183,15 @@ export const learningTracks = [
         route: "automation-fundamentals.html",
         type: "track",
         order: 1
+      },
+      {
+        id: "cypress",
+        progressId: "cypress",
+        title: "Cypress",
+        description: "Construa um teste de catálogo e diferencie defeitos do produto de falhas do teste.",
+        route: "cypress.html",
+        type: "track",
+        order: 2
       }
     ]
   }
@@ -315,6 +324,16 @@ export const supportMaterials = [
     description: "Aula introdutória sobre automação de testes, seletores, assertions e boas práticas.",
     path: "materiais/qa-quest-fundamentos-automacao.pdf",
     filename: "qa-quest-fundamentos-automacao.pdf",
+    format: "PDF",
+    version: "1.0"
+  },
+  {
+    id: "cypress-guide",
+    missionId: "cypress",
+    title: "Cypress",
+    description: "Aula prática sobre comandos, assertions, sincronização e revisão de testes.",
+    path: "materiais/qa-quest-cypress.pdf",
+    filename: "qa-quest-cypress.pdf",
     format: "PDF",
     version: "1.0"
   }

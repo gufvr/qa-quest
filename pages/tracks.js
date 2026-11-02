@@ -5,10 +5,11 @@ const tracks = {
     title: "Automação de Testes Web",
     objective: "Transforme cenários conhecidos em testes automatizados e interprete o que eles verificam.",
     prerequisite: "Concluir as Fases 1–4. Nenhuma outra trilha ou ferramenta instalada é necessária.",
-    order: "Comece por Fundamentos da Automação. Cypress, Playwright e Selenium WebDriver serão entregas futuras, não disponíveis nesta versão.",
-    note: "Um módulo disponível. Monte e revise um teste em uma simulação didática local, sem executar código arbitrário nem instalar extensões.",
+    order: "Fundamentos da Automação → Cypress. Ordem recomendada, não obrigatória. Playwright e Selenium WebDriver ainda são planejados.",
+    note: "Dois módulos disponíveis, com simulações locais. No Cypress, construa comandos, assertions e um diagnóstico; o StepScript é um complemento opcional, sem efeito no XP.",
     modules: [
-      { id: "automation-fundamentals", title: "Fundamentos da Automação", detail: "Construa ações, seletores e assertions; interprete sincronização, falhas e manutenção.", href: "automation-fundamentals.html", availableLabel: "Disponível agora", linkLabel: "Iniciar missão →", completedLinkLabel: "Repetir missão →" }
+      { id: "automation-fundamentals", title: "Fundamentos da Automação", detail: "Construa ações, seletores e assertions; interprete sincronização, falhas e manutenção.", href: "automation-fundamentals.html", availableLabel: "Disponível agora", linkLabel: "Iniciar missão →", completedLinkLabel: "Repetir missão →" },
+      { id: "cypress", title: "Cypress", detail: "Monte um teste de catálogo, compare evidências e revise sincronização e isolamento.", href: "cypress.html", availableLabel: "Disponível agora", linkLabel: "Iniciar missão →", completedLinkLabel: "Repetir missão →" }
     ]
   },
   professional: {

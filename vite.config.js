@@ -23,7 +23,8 @@ export default defineConfig({
         security: "security.html",
         bugReport: "bug-report.html",
         api: "api.html",
-        automationFundamentals: "automation-fundamentals.html"
+        automationFundamentals: "automation-fundamentals.html",
+        cypress: "cypress.html"
       }
     }
   }

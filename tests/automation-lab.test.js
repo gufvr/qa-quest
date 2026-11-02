@@ -10,7 +10,7 @@ import { selectHomeInsight } from "../core/home-insights.js";
 
 const root = new URL("../", import.meta.url);
 const read = file => readFileSync(new URL(file, root), "utf8");
-const previousIds = uniqueMissions.filter(mission => mission.progressId !== AUTOMATION_MISSION_ID).map(mission => mission.progressId);
+const previousIds = uniqueMissions.filter(mission => ![AUTOMATION_MISSION_ID, "cypress"].includes(mission.progressId)).map(mission => mission.progressId);
 const plain = value => JSON.parse(JSON.stringify(value));
 
 function createProgress(saved, { unavailable = false } = {}) {
@@ -38,7 +38,7 @@ test("version 5 migration preserves all old missions, XP, attempts, dates and pr
   const saved = legacySave();
   const h = createProgress(saved);
   const state = plain(h.progress.getState());
-  assert.equal(state.version, 6);
+  assert.equal(state.version, 7);
   for (const key of ["missions", "totalXp", "unlockedPhase", "activityDays", "selectedTrack"]) assert.deepEqual(state[key], saved[key], key);
   for (const id of ["flows", "release", "specialized", "professional"]) assert.deepEqual(state.tracks[id], saved.tracks[id]);
   assert.deepEqual(state.tracks.automation, { completedModules: [] });
@@ -78,7 +78,7 @@ test("new module is independent after phase 4; repeats add only best-result impr
   const improved = progress.saveMissionResult(AUTOMATION_MISSION_ID, 100);
   assert.equal(improved.totalXp, 500); assert.equal(improved.gainedXp, 20); assert.equal(improved.attempts, 3);
   assert(progress.getMission(AUTOMATION_MISSION_ID).lastCompletedAt);
-  assert.equal(progress.getTrackProgress("automation").percentage, 100);
+  assert.equal(progress.getTrackProgress("automation").percentage, 50);
   for (const id of previousIds.filter(id => !id.startsWith("phase"))) assert.equal(progress.getMission(id), null);
   assert.equal(events(), 7);
   const reloaded = createProgress(JSON.parse(storage.get(progress.storageKey))).progress;
@@ -115,9 +115,9 @@ test("catalog, progress, hub and Vite agree; future modules and unregistered PDF
     for (const mission of track.modules) assert(read("pages/tracks.js").includes(`id: "${mission.id}"`));
   }
   const automation = learningTracks.find(track => track.id === "automation");
-  assert.equal(automation.modules.length, 1); assert.equal(automation.modules[0].progressId, AUTOMATION_MISSION_ID);
+  assert.equal(automation.modules.length, 2); assert.equal(automation.modules[0].progressId, AUTOMATION_MISSION_ID);
   assert(read("vite.config.js").includes('"automation-fundamentals.html"'));
-  assert.deepEqual(getSupportMaterials("cypress"), []);
+  assert.deepEqual(getSupportMaterials("playwright"), []);
   assert.equal(getLibraryGroups().flatMap(group => group.entries).reduce((sum, item) => sum + item.materialCount, 0), supportMaterials.length);
 });
 

@@ -1,7 +1,7 @@
 // Global progress state, independent from page interfaces.
 (function initializeProgress(global) {
   const STORAGE_KEY = "qa-quest-progress";
-  const CURRENT_VERSION = 6;
+  const CURRENT_VERSION = 7;
   const MAX_XP_PER_PHASE = 100;
   const phaseNumbers = { phase1: 1, phase2: 2, phase3: 3, phase4: 4 };
   const trackModules = {
@@ -9,7 +9,7 @@
     flows: ["functional", "exploratory", "e2e"],
     specialized: ["performance", "security"],
     professional: ["bug-report", "api"],
-    automation: ["automation-fundamentals"]
+    automation: ["automation-fundamentals", "cypress"]
   };
   const trackMissionIds = new Set(Object.values(trackModules).flat().filter((id) => id !== "functional"));
 
