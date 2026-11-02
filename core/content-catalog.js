@@ -307,6 +307,16 @@ export const supportMaterials = [
     filename: "qa-quest-testes-api.pdf",
     format: "PDF",
     version: "1.0"
+  },
+  {
+    id: "automation-fundamentals-guide",
+    missionId: "automation-fundamentals",
+    title: "Fundamentos da Automação",
+    description: "Aula introdutória sobre automação de testes, seletores, assertions e boas práticas.",
+    path: "materiais/qa-quest-fundamentos-automacao.pdf",
+    filename: "qa-quest-fundamentos-automacao.pdf",
+    format: "PDF",
+    version: "1.0"
   }
 ];
 

@@ -4,7 +4,7 @@ import vm from "node:vm";
 import { readFileSync } from "node:fs";
 import { AUTOMATION_MISSION_ID, AUTOMATION_STEPS, createLabSession, answerCheckpoint,
   advanceCheckpoint, runLabFixture, simulateCatalog, isLabComplete, labScore, buildLabCode } from "../core/automation-lab.js";
-import { learningTracks, uniqueMissions, getRecommendedMission, getSupportMaterials } from "../core/content-catalog.js";
+import { learningTracks, uniqueMissions, getRecommendedMission, getSupportMaterials, supportMaterials } from "../core/content-catalog.js";
 import { getLibraryGroups } from "../core/library-catalog.js";
 import { selectHomeInsight } from "../core/home-insights.js";
 
@@ -106,7 +106,7 @@ test("unavailable storage retains existing in-memory fallback and validates modu
   assert.throws(() => progress.saveMissionResult("unreleased-module", 100), /desconhecida/);
 });
 
-test("catalog, progress, hub and Vite agree; future modules and absent PDFs are not published", () => {
+test("catalog, progress, hub and Vite agree; future modules and unregistered PDFs are not published", () => {
   const { progress } = createProgress(legacySave());
   for (const track of learningTracks) {
     assert.equal(progress.getTrackProgress(track.id).total, track.modules.length);
@@ -117,9 +117,33 @@ test("catalog, progress, hub and Vite agree; future modules and absent PDFs are 
   const automation = learningTracks.find(track => track.id === "automation");
   assert.equal(automation.modules.length, 1); assert.equal(automation.modules[0].progressId, AUTOMATION_MISSION_ID);
   assert(read("vite.config.js").includes('"automation-fundamentals.html"'));
-  assert.deepEqual(getSupportMaterials(AUTOMATION_MISSION_ID), []);
-  assert(!getLibraryGroups().some(group => group.id === "automation"));
-  assert.equal(getLibraryGroups().flatMap(group => group.entries).reduce((sum, item) => sum + item.materialCount, 0), 10);
+  assert.deepEqual(getSupportMaterials("cypress"), []);
+  assert.equal(getLibraryGroups().flatMap(group => group.entries).reduce((sum, item) => sum + item.materialCount, 0), supportMaterials.length);
+});
+
+test("automation guide is canonical, appears once in its library group and stays outside the mission gate", () => {
+  assert.deepEqual(getSupportMaterials(AUTOMATION_MISSION_ID), [{
+    id: "automation-fundamentals-guide",
+    missionId: AUTOMATION_MISSION_ID,
+    title: "Fundamentos da Automação",
+    description: "Aula introdutória sobre automação de testes, seletores, assertions e boas práticas.",
+    path: "materiais/qa-quest-fundamentos-automacao.pdf",
+    filename: "qa-quest-fundamentos-automacao.pdf",
+    format: "PDF",
+    version: "1.0"
+  }]);
+  assert.equal(supportMaterials.filter(material => material.id === "automation-fundamentals-guide").length, 1);
+  const group = getLibraryGroups().find(item => item.id === "automation");
+  assert.equal(group.index, 5);
+  assert.equal(group.entries.filter(entry => entry.mission.progressId === AUTOMATION_MISSION_ID).length, 1);
+  assert.equal(group.entries[0].materialCount, 1);
+  const html = read("automation-fundamentals.html");
+  const widget = '<qa-support-material mission-id="automation-fundamentals"></qa-support-material>';
+  assert.equal(html.split(widget).length - 1, 1);
+  assert(html.indexOf(widget) < html.indexOf('<div id="lab-content" hidden>'));
+  assert(read("pages/automation-fundamentals.js").includes('import "../components/support-material.js"'));
+  const pdf = readFileSync(new URL("public/materiais/qa-quest-fundamentos-automacao.pdf", root));
+  assert.equal(pdf.subarray(0, 5).toString(), "%PDF-");
 });
 
 const answers = ["filter", "stable", ["open", "filter", "wait"], { subject: "categories", operator: "every", value: "accessories" }, "ready", "behavior", { selector: "stable", assertion: "keep" }];
