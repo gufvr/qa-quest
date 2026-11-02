@@ -6,15 +6,14 @@ class QAFooter extends HTMLElement {
     this.innerHTML = `
       <footer class="footer">
         <div class="container footer__content">
-          <div class="footer__top">
+          <div class="footer__identity">
             <qa-brand href="index.html"></qa-brand>
             <p>Aprenda. Teste. Evolua.</p>
-            <span>Projeto de aprendizado em construção.</span>
           </div>
 
-          <div class="footer__bottom">
+          <div class="footer__meta">
             <span>© 2026 QA Quest. Todos os direitos reservados.</span>
-            <span>
+            <span class="footer__credit">
               Desenvolvido por
               <a
                 href="https://github.com/gufvr"
