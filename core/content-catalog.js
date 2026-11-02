@@ -279,6 +279,16 @@ export const supportMaterials = [
     filename: "qa-quest-relato-defeitos-evidencias.pdf",
     format: "PDF",
     version: "1.0"
+  },
+  {
+    id: "api-testing",
+    missionId: "api",
+    title: "Testes de API",
+    description: "Aula introdutória para consultar antes ou depois da prática.",
+    path: "materiais/qa-quest-testes-api.pdf",
+    filename: "qa-quest-testes-api.pdf",
+    format: "PDF",
+    version: "1.0"
   }
 ];
 
