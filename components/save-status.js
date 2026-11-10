@@ -8,9 +8,10 @@ class QASaveStatus extends HTMLElement {
 
   show(result) {
     this.status.hidden = false;
-    this.status.textContent = result.gainedXp > 0
-      ? `Progresso salvo · +${result.gainedXp} XP adicionados ao total (${result.totalXp} XP).`
-      : `Progresso salvo · Seu melhor resultado permanece em ${result.bestXp} XP.`;
+    this.status.textContent =
+      result.gainedXp > 0
+        ? `Progresso salvo · +${result.gainedXp} XP adicionados ao total (${result.totalXp} XP).`
+        : `Progresso salvo · Seu melhor resultado permanece em ${result.bestXp} XP.`;
   }
 
   reset() {

@@ -11,7 +11,7 @@ class QAHeader extends HTMLElement {
       tracks: this.tracksTemplate(),
       mission: this.missionTemplate(),
       simulator: this.simulatorTemplate(),
-      planner: this.plannerTemplate()
+      planner: this.plannerTemplate(),
     };
 
     this.innerHTML = templates[variant] || templates.site;
@@ -33,7 +33,10 @@ class QAHeader extends HTMLElement {
 
   siteTemplate() {
     const currentPath = window.location.pathname;
-    const current = (route) => new URL(route, document.baseURI).pathname === currentPath ? ' aria-current="page"' : "";
+    const current = (route) =>
+      new URL(route, document.baseURI).pathname === currentPath
+        ? ' aria-current="page"'
+        : "";
     return `
       <header class="site-header">
         <nav class="nav container" aria-label="Navegação principal">

@@ -1,16 +1,14 @@
-// Catálogo único usado pela home para apresentar a jornada disponível.
-// Uma nova missão precisa ser registrada apenas aqui para aparecer nos
-// contadores, no mapa e na recomendação da página inicial.
 export const baseMissions = [
   {
     id: "phase1",
     progressId: "phase1",
     title: "Fundamentos de QA",
-    description: "Conceitos essenciais, tipos de teste e decisões do dia a dia.",
+    description:
+      "Conceitos essenciais, tipos de teste e decisões do dia a dia.",
     route: "phase1.html",
     type: "phase",
     phase: 1,
-    order: 1
+    order: 1,
   },
   {
     id: "phase2",
@@ -20,7 +18,7 @@ export const baseMissions = [
     route: "phase2.html",
     type: "phase",
     phase: 2,
-    order: 2
+    order: 2,
   },
   {
     id: "phase3",
@@ -30,7 +28,7 @@ export const baseMissions = [
     route: "phase3.html",
     type: "phase",
     phase: 3,
-    order: 3
+    order: 3,
   },
   {
     id: "phase4",
@@ -40,8 +38,8 @@ export const baseMissions = [
     route: "phase4.html",
     type: "phase",
     phase: 4,
-    order: 4
-  }
+    order: 4,
+  },
 ];
 
 export const learningTracks = [
@@ -49,7 +47,8 @@ export const learningTracks = [
     id: "flows",
     index: 1,
     title: "Fluxos e investigação",
-    description: "Valide funcionalidades, investigue comportamentos e acompanhe jornadas completas.",
+    description:
+      "Valide funcionalidades, investigue comportamentos e acompanhe jornadas completas.",
     modules: [
       {
         id: "functional",
@@ -59,16 +58,17 @@ export const learningTracks = [
         route: "phase3.html",
         type: "track",
         order: 1,
-        aliasOf: "phase3"
+        aliasOf: "phase3",
       },
       {
         id: "exploratory",
         progressId: "exploratory",
         title: "Teste Exploratório",
-        description: "Investigue hipóteses e registre evidências em uma experiência aberta.",
+        description:
+          "Investigue hipóteses e registre evidências em uma experiência aberta.",
         route: "exploratory.html",
         type: "track",
-        order: 2
+        order: 2,
       },
       {
         id: "e2e",
@@ -77,24 +77,26 @@ export const learningTracks = [
         description: "Acompanhe uma compra completa da busca à confirmação.",
         route: "e2e.html",
         type: "track",
-        order: 3
-      }
-    ]
+        order: 3,
+      },
+    ],
   },
   {
     id: "release",
     index: 2,
     title: "Confiança na release",
-    description: "Avalie disponibilidade, correções pontuais e comportamentos já conhecidos.",
+    description:
+      "Avalie disponibilidade, correções pontuais e comportamentos já conhecidos.",
     modules: [
       {
         id: "smoke",
         progressId: "smoke",
         title: "Smoke Test",
-        description: "Cheque rapidamente se os fluxos essenciais estão disponíveis.",
+        description:
+          "Cheque rapidamente se os fluxos essenciais estão disponíveis.",
         route: "smoke.html",
         type: "track",
-        order: 1
+        order: 1,
       },
       {
         id: "sanity",
@@ -103,33 +105,36 @@ export const learningTracks = [
         description: "Valide uma correção específica e seus efeitos próximos.",
         route: "sanity.html",
         type: "track",
-        order: 2
+        order: 2,
       },
       {
         id: "regression",
         progressId: "regression",
         title: "Teste de Regressão",
-        description: "Repita casos conhecidos para localizar impactos de mudanças.",
+        description:
+          "Repita casos conhecidos para localizar impactos de mudanças.",
         route: "regression.html",
         type: "track",
-        order: 3
-      }
-    ]
+        order: 3,
+      },
+    ],
   },
   {
     id: "specialized",
     index: 3,
     title: "Qualidade especializada",
-    description: "Explore desempenho e proteção de dados em cenários introdutórios.",
+    description:
+      "Explore desempenho e proteção de dados em cenários introdutórios.",
     modules: [
       {
         id: "performance",
         progressId: "performance",
         title: "Teste de Performance",
-        description: "Interprete carga, tempo de resposta, percentil e taxa de erros.",
+        description:
+          "Interprete carga, tempo de resposta, percentil e taxa de erros.",
         route: "performance.html",
         type: "track",
-        order: 1
+        order: 1,
       },
       {
         id: "security",
@@ -138,63 +143,79 @@ export const learningTracks = [
         description: "Avalie autenticação, autorização e exposição de dados.",
         route: "security.html",
         type: "track",
-        order: 2
-      }
-    ]
+        order: 2,
+      },
+    ],
   },
   {
     id: "professional",
     index: 4,
     title: "Prática profissional",
-    description: "Transforme achados em comunicação útil e valide contratos de serviços.",
+    description:
+      "Transforme achados em comunicação útil e valide contratos de serviços.",
     modules: [
       {
         id: "bug-report",
         progressId: "bug-report",
         title: "Relato de Defeitos e Evidências",
-        description: "Construa um relato claro, reproduzível e pronto para triagem.",
+        description:
+          "Construa um relato claro, reproduzível e pronto para triagem.",
         route: "bug-report.html",
         type: "track",
-        order: 1
+        order: 1,
       },
       {
         id: "api",
         progressId: "api",
         title: "Testes de API",
-        description: "Leia requisições, respostas e valide contratos HTTP locais.",
+        description:
+          "Leia requisições, respostas e valide contratos HTTP locais.",
         route: "api.html",
         type: "track",
-        order: 2
-      }
-    ]
+        order: 2,
+      },
+    ],
   },
   {
     id: "automation",
     index: 5,
     title: "Automação de Testes Web",
-    description: "Transforme comportamentos conhecidos em testes claros, verificáveis e confiáveis.",
-    // Planned tools do not inflate available content or create dead links.
+    description:
+      "Transforme comportamentos conhecidos em testes claros, verificáveis e confiáveis.",
+
     modules: [
       {
         id: "automation-fundamentals",
         progressId: "automation-fundamentals",
         title: "Fundamentos da Automação",
-        description: "Monte um teste, escolha seletores e assertions e interprete falhas simuladas.",
+        description:
+          "Monte um teste, escolha seletores e assertions e interprete falhas simuladas.",
         route: "automation-fundamentals.html",
         type: "track",
-        order: 1
+        order: 1,
       },
       {
         id: "cypress",
         progressId: "cypress",
         title: "Cypress",
-        description: "Construa um teste de catálogo e diferencie defeitos do produto de falhas do teste.",
+        description:
+          "Construa um teste de catálogo e diferencie defeitos do produto de falhas do teste.",
         route: "cypress.html",
         type: "track",
-        order: 2
-      }
-    ]
-  }
+        order: 2,
+      },
+      {
+        id: "playwright",
+        progressId: "playwright",
+        title: "Playwright",
+        description:
+          "Monte locators e assertions web-first e investigue uma linha do tempo didática.",
+        route: "playwright.html",
+        type: "track",
+        order: 3,
+      },
+    ],
+  },
 ];
 
 export const journeyGroups = [
@@ -202,22 +223,27 @@ export const journeyGroups = [
     id: "base",
     index: 0,
     title: "Base comum",
-    description: "Quatro fases sequenciais para construir o raciocínio essencial de QA.",
-    items: baseMissions
+    description:
+      "Quatro fases sequenciais para construir o raciocínio essencial de QA.",
+    items: baseMissions,
   },
-  ...learningTracks.map((track) => ({ ...track, items: track.modules }))
+  ...learningTracks.map((track) => ({ ...track, items: track.modules })),
 ];
 
 export const catalogItems = journeyGroups.flatMap((group) =>
-  group.items.map((item) => ({ ...item, groupId: group.id, groupTitle: group.title }))
+  group.items.map((item) => ({
+    ...item,
+    groupId: group.id,
+    groupTitle: group.title,
+  })),
 );
 
-export const uniqueMissions = catalogItems.filter((item, index, items) =>
-  items.findIndex((candidate) => candidate.progressId === item.progressId) === index
+export const uniqueMissions = catalogItems.filter(
+  (item, index, items) =>
+    items.findIndex((candidate) => candidate.progressId === item.progressId) ===
+    index,
 );
 
-// Materiais são associados ao progressId canônico para que aliases da mesma
-// missão (como functional → phase3) compartilhem uma única definição.
 export const supportMaterials = [
   {
     id: "functional-testing",
@@ -226,7 +252,7 @@ export const supportMaterials = [
     description: "Aula introdutória para consultar antes ou depois da prática.",
     path: "materiais/teste-funcional.pdf",
     filename: "teste-funcional.pdf",
-    format: "PDF"
+    format: "PDF",
   },
   {
     id: "exploratory-testing",
@@ -235,7 +261,7 @@ export const supportMaterials = [
     description: "Aula introdutória para consultar antes ou depois da prática.",
     path: "materiais/teste-exploratorio.pdf",
     filename: "teste-exploratorio.pdf",
-    format: "PDF"
+    format: "PDF",
   },
   {
     id: "e2e-testing",
@@ -245,7 +271,7 @@ export const supportMaterials = [
     path: "materiais/teste-end-to-end-e2e.pdf",
     filename: "teste-end-to-end-e2e.pdf",
     format: "PDF",
-    version: "1.0"
+    version: "1.0",
   },
   {
     id: "smoke-testing",
@@ -255,7 +281,7 @@ export const supportMaterials = [
     path: "materiais/qa-quest-smoke-test.pdf",
     filename: "qa-quest-smoke-test.pdf",
     format: "PDF",
-    version: "1.0"
+    version: "1.0",
   },
   {
     id: "sanity-testing",
@@ -265,7 +291,7 @@ export const supportMaterials = [
     path: "materiais/qa-quest-teste-sanidade.pdf",
     filename: "qa-quest-teste-sanidade.pdf",
     format: "PDF",
-    version: "1.0"
+    version: "1.0",
   },
   {
     id: "regression-testing",
@@ -275,7 +301,7 @@ export const supportMaterials = [
     path: "materiais/qa-quest-teste-regressao.pdf",
     filename: "qa-quest-teste-regressao.pdf",
     format: "PDF",
-    version: "1.0"
+    version: "1.0",
   },
   {
     id: "performance-testing",
@@ -285,7 +311,7 @@ export const supportMaterials = [
     path: "materiais/qa-quest-teste-performance.pdf",
     filename: "qa-quest-teste-performance.pdf",
     format: "PDF",
-    version: "1.0"
+    version: "1.0",
   },
   {
     id: "security-testing",
@@ -295,7 +321,7 @@ export const supportMaterials = [
     path: "materiais/qa-quest-teste-seguranca.pdf",
     filename: "qa-quest-teste-seguranca.pdf",
     format: "PDF",
-    version: "1.0"
+    version: "1.0",
   },
   {
     id: "bug-reporting",
@@ -305,7 +331,7 @@ export const supportMaterials = [
     path: "materiais/qa-quest-relato-defeitos-evidencias.pdf",
     filename: "qa-quest-relato-defeitos-evidencias.pdf",
     format: "PDF",
-    version: "1.0"
+    version: "1.0",
   },
   {
     id: "api-testing",
@@ -315,34 +341,52 @@ export const supportMaterials = [
     path: "materiais/qa-quest-testes-api.pdf",
     filename: "qa-quest-testes-api.pdf",
     format: "PDF",
-    version: "1.0"
+    version: "1.0",
   },
   {
     id: "automation-fundamentals-guide",
     missionId: "automation-fundamentals",
     title: "Fundamentos da Automação",
-    description: "Aula introdutória sobre automação de testes, seletores, assertions e boas práticas.",
+    description:
+      "Aula introdutória sobre automação de testes, seletores, assertions e boas práticas.",
     path: "materiais/qa-quest-fundamentos-automacao.pdf",
     filename: "qa-quest-fundamentos-automacao.pdf",
     format: "PDF",
-    version: "1.0"
+    version: "1.0",
   },
   {
     id: "cypress-guide",
     missionId: "cypress",
     title: "Cypress",
-    description: "Aula prática sobre comandos, assertions, sincronização e revisão de testes.",
+    description:
+      "Aula prática sobre comandos, assertions, sincronização e revisão de testes.",
     path: "materiais/qa-quest-cypress.pdf",
     filename: "qa-quest-cypress.pdf",
     format: "PDF",
-    version: "1.0"
-  }
+    version: "1.0",
+  },
+  {
+    id: "playwright-guide",
+    missionId: "playwright",
+    title: "Playwright",
+    description:
+      "Aula prática sobre locators, auto-waiting, assertions e diagnóstico de testes.",
+    path: "materiais/qa-quest-playwright.pdf",
+    filename: "qa-quest-playwright.pdf",
+    format: "PDF",
+    version: "1.0",
+  },
 ];
 
 export function getSupportMaterials(missionId) {
-  const item = catalogItems.find((candidate) => candidate.id === missionId || candidate.progressId === missionId);
+  const item = catalogItems.find(
+    (candidate) =>
+      candidate.id === missionId || candidate.progressId === missionId,
+  );
   const canonicalMissionId = item?.progressId || missionId;
-  return supportMaterials.filter((material) => material.missionId === canonicalMissionId);
+  return supportMaterials.filter(
+    (material) => material.missionId === canonicalMissionId,
+  );
 }
 
 export function isCompleted(item, state) {
@@ -355,18 +399,25 @@ export function isAvailable(item, state) {
 }
 
 export function getRecommendedMission(state) {
-  const pendingBase = baseMissions.find((item) => isAvailable(item, state) && !isCompleted(item, state));
-  if (pendingBase) return { ...pendingBase, groupId: "base", groupTitle: "Base comum" };
+  const pendingBase = baseMissions.find(
+    (item) => isAvailable(item, state) && !isCompleted(item, state),
+  );
+  if (pendingBase)
+    return { ...pendingBase, groupId: "base", groupTitle: "Base comum" };
   if (!state.missions.phase4?.completed) return null;
 
-  const selectedTrack = learningTracks.find((track) => track.id === state.selectedTrack);
+  const selectedTrack = learningTracks.find(
+    (track) => track.id === state.selectedTrack,
+  );
   const orderedTracks = [
     ...(selectedTrack ? [selectedTrack] : []),
-    ...learningTracks.filter((track) => track.id !== selectedTrack?.id)
+    ...learningTracks.filter((track) => track.id !== selectedTrack?.id),
   ];
 
   for (const track of orderedTracks) {
-    const pendingModule = track.modules.find((item) => !isCompleted(item, state));
+    const pendingModule = track.modules.find(
+      (item) => !isCompleted(item, state),
+    );
     if (pendingModule) {
       return { ...pendingModule, groupId: track.id, groupTitle: track.title };
     }

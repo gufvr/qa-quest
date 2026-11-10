@@ -3,7 +3,11 @@ import { getSupportMaterials } from "../core/content-catalog.js";
 const availabilityByUrl = new Map();
 
 function getContentType(response) {
-  return response.headers.get("content-type")?.split(";", 1)[0].trim().toLowerCase();
+  return response.headers
+    .get("content-type")
+    ?.split(";", 1)[0]
+    .trim()
+    .toLowerCase();
 }
 
 async function inspectPdfResponse(response) {
@@ -26,32 +30,42 @@ async function inspectPdfResponse(response) {
 
 async function checkPdfAvailability(url) {
   if (!availabilityByUrl.has(url)) {
-    availabilityByUrl.set(url, (async () => {
-      try {
-        const headResponse = await fetch(url, { method: "HEAD", cache: "no-store" });
-        const headContentType = getContentType(headResponse);
-        if (headResponse.ok && headContentType === "application/pdf") return true;
-        if (![405, 501].includes(headResponse.status) && headContentType !== "application/octet-stream") return false;
+    availabilityByUrl.set(
+      url,
+      (async () => {
+        try {
+          const headResponse = await fetch(url, {
+            method: "HEAD",
+            cache: "no-store",
+          });
+          const headContentType = getContentType(headResponse);
+          if (headResponse.ok && headContentType === "application/pdf")
+            return true;
+          if (
+            ![405, 501].includes(headResponse.status) &&
+            headContentType !== "application/octet-stream"
+          )
+            return false;
 
-        const rangeResponse = await fetch(url, {
-          headers: { Range: "bytes=0-4" },
-          cache: "no-store"
-        });
-        return inspectPdfResponse(rangeResponse);
-      } catch (error) {
-        return false;
-      }
-    })());
+          const rangeResponse = await fetch(url, {
+            headers: { Range: "bytes=0-4" },
+            cache: "no-store",
+          });
+          return inspectPdfResponse(rangeResponse);
+        } catch (error) {
+          return false;
+        }
+      })(),
+    );
   }
 
   return availabilityByUrl.get(url);
 }
 
 async function resolvePdfUrl(path) {
-  // Vite publica public/ na raiz do build. O fallback cobre o GitHub Pages
-  // configurado para servir diretamente a raiz do repositório.
-  const candidates = [path, `public/${path}`]
-    .map((candidate) => new URL(candidate, document.baseURI).href);
+  const candidates = [path, `public/${path}`].map(
+    (candidate) => new URL(candidate, document.baseURI).href,
+  );
 
   for (const url of candidates) {
     if (await checkPdfAvailability(url)) return url;
@@ -85,8 +99,13 @@ class QASupportMaterial extends HTMLElement {
     }
 
     this.hidden = false;
-    this.setAttribute("aria-label", materials.length === 1 ? "Material de apoio" : "Materiais de apoio");
-    this.replaceChildren(...materials.map((material) => this.renderMaterial(material)));
+    this.setAttribute(
+      "aria-label",
+      materials.length === 1 ? "Material de apoio" : "Materiais de apoio",
+    );
+    this.replaceChildren(
+      ...materials.map((material) => this.renderMaterial(material)),
+    );
   }
 
   renderMaterial(material) {
@@ -132,12 +151,23 @@ class QASupportMaterial extends HTMLElement {
     }
 
     status.remove();
-    const viewLink = createLink("support-material__link support-material__link--primary", url, "Visualizar aula (PDF)");
+    const viewLink = createLink(
+      "support-material__link support-material__link--primary",
+      url,
+      "Visualizar aula (PDF)",
+    );
     viewLink.target = "_blank";
     viewLink.rel = "noopener";
-    viewLink.setAttribute("aria-label", `${material.title}: visualizar aula em PDF (abre em nova aba)`);
+    viewLink.setAttribute(
+      "aria-label",
+      `${material.title}: visualizar aula em PDF (abre em nova aba)`,
+    );
 
-    const downloadLink = createLink("support-material__link", url, "Baixar PDF");
+    const downloadLink = createLink(
+      "support-material__link",
+      url,
+      "Baixar PDF",
+    );
     downloadLink.download = material.filename;
     downloadLink.setAttribute("aria-label", `${material.title}: baixar PDF`);
     actions.append(viewLink, downloadLink);

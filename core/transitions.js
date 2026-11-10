@@ -1,4 +1,5 @@
-const ACTION_PATTERN = /pr[oó]xim|continuar|avan[cç]|seguir|iniciar|finalizar|concluir|emitir|revisar|repetir|reiniciar|executar|simular|confirmar|registrar|aplicar|salvar|testar|validar|comparar|abrir/i;
+const ACTION_PATTERN =
+  /pr[oó]xim|continuar|avan[cç]|seguir|iniciar|finalizar|concluir|emitir|revisar|repetir|reiniciar|executar|simular|confirmar|registrar|aplicar|salvar|testar|validar|comparar|abrir/i;
 const ACTIVE_ANIMATIONS = new WeakMap();
 
 let activeInteraction = null;
@@ -23,25 +24,31 @@ function replayAnimation(element, className, duration = 520) {
 }
 
 function getTopLevelElements(elements) {
-  return elements.filter((element, index, list) => (
-    !list.some((candidate, candidateIndex) => (
-      candidateIndex !== index && candidate.contains(element)
-    ))
-  ));
+  return elements.filter(
+    (element, index, list) =>
+      !list.some(
+        (candidate, candidateIndex) =>
+          candidateIndex !== index && candidate.contains(element),
+      ),
+  );
 }
 
 function getInteractionScope(control) {
-  return control.closest([
-    ".quiz-card",
-    ".planning-workspace",
-    ".simulator-workspace",
-    "[class$='-workspace']",
-    "[class*='-workspace ']",
-    "[class$='-lab']",
-    "[class*='-lab ']",
-    "[class$='-panel']",
-    "[class*='-panel ']"
-  ].join(", ")) || document.querySelector("main");
+  return (
+    control.closest(
+      [
+        ".quiz-card",
+        ".planning-workspace",
+        ".simulator-workspace",
+        "[class$='-workspace']",
+        "[class*='-workspace ']",
+        "[class$='-lab']",
+        "[class*='-lab ']",
+        "[class$='-panel']",
+        "[class*='-panel ']",
+      ].join(", "),
+    ) || document.querySelector("main")
+  );
 }
 
 function isStepAction(control) {
@@ -55,8 +62,10 @@ function isStepAction(control) {
   const label = [
     control.id,
     control.getAttribute("aria-label"),
-    control.textContent
-  ].filter(Boolean).join(" ");
+    control.textContent,
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   return control.matches("button[type='submit']") || ACTION_PATTERN.test(label);
 }
@@ -66,15 +75,20 @@ function observeStepChanges() {
   if (!main) return;
 
   const observer = new MutationObserver((mutations) => {
-    const revealedElements = [...new Set(mutations
-      .filter(({ type, attributeName, target }) => (
-        type === "attributes"
-        && attributeName === "hidden"
-        && target instanceof HTMLElement
-        && !target.hidden
-        && main.contains(target)
-      ))
-      .map(({ target }) => target))];
+    const revealedElements = [
+      ...new Set(
+        mutations
+          .filter(
+            ({ type, attributeName, target }) =>
+              type === "attributes" &&
+              attributeName === "hidden" &&
+              target instanceof HTMLElement &&
+              !target.hidden &&
+              main.contains(target),
+          )
+          .map(({ target }) => target),
+      ),
+    ];
 
     if (!revealedElements.length) return;
 
@@ -87,56 +101,68 @@ function observeStepChanges() {
   observer.observe(main, {
     subtree: true,
     attributes: true,
-    attributeFilter: ["hidden"]
+    attributeFilter: ["hidden"],
   });
 }
 
 function initializeStepTransitions() {
   window.requestAnimationFrame(observeStepChanges);
 
-  document.addEventListener("click", (event) => {
-    const control = event.target.closest("main button, main a");
-    if (!control || !isStepAction(control)) return;
+  document.addEventListener(
+    "click",
+    (event) => {
+      const control = event.target.closest("main button, main a");
+      if (!control || !isStepAction(control)) return;
 
-    const interaction = {
-      id: ++interactionId,
-      revealedContent: false,
-      scope: getInteractionScope(control)
-    };
+      const interaction = {
+        id: ++interactionId,
+        revealedContent: false,
+        scope: getInteractionScope(control),
+      };
 
-    activeInteraction = interaction;
-    window.setTimeout(() => {
-      if (activeInteraction === interaction) activeInteraction = null;
-      if (
-        !interaction.revealedContent
-        && interaction.scope?.isConnected
-        && !interaction.scope.hidden
-      ) {
-        replayAnimation(interaction.scope, "qa-content-refresh", 420);
-      }
-    }, 0);
-  }, true);
+      activeInteraction = interaction;
+      window.setTimeout(() => {
+        if (activeInteraction === interaction) activeInteraction = null;
+        if (
+          !interaction.revealedContent &&
+          interaction.scope?.isConnected &&
+          !interaction.scope.hidden
+        ) {
+          replayAnimation(interaction.scope, "qa-content-refresh", 420);
+        }
+      }, 0);
+    },
+    true,
+  );
 }
 
 function isEligibleNavigation(event, link) {
   if (
-    event.defaultPrevented
-    || event.button !== 0
-    || event.metaKey
-    || event.ctrlKey
-    || event.shiftKey
-    || event.altKey
-    || link.hasAttribute("download")
-    || (link.target && link.target !== "_self")
-  ) return false;
+    event.defaultPrevented ||
+    event.button !== 0 ||
+    event.metaKey ||
+    event.ctrlKey ||
+    event.shiftKey ||
+    event.altKey ||
+    link.hasAttribute("download") ||
+    (link.target && link.target !== "_self")
+  )
+    return false;
 
   const destination = new URL(link.href, window.location.href);
   if (destination.origin !== window.location.origin) return false;
-  // Animate application pages, not documents or other downloadable resources.
-  if (!/\.html?$/i.test(destination.pathname) && !destination.pathname.endsWith("/")) return false;
+
+  if (
+    !/\.html?$/i.test(destination.pathname) &&
+    !destination.pathname.endsWith("/")
+  )
+    return false;
 
   const current = new URL(window.location.href);
-  return destination.pathname !== current.pathname || destination.search !== current.search;
+  return (
+    destination.pathname !== current.pathname ||
+    destination.search !== current.search
+  );
 }
 
 function initializePageTransitions() {
@@ -155,11 +181,12 @@ function initializePageTransitions() {
   function enterPage() {
     clearNavigation();
     root.classList.add("qa-page-enter");
-    entryTimer = window.setTimeout(() => root.classList.remove("qa-page-enter"), 700);
+    entryTimer = window.setTimeout(
+      () => root.classList.remove("qa-page-enter"),
+      700,
+    );
   }
 
-  // Use one CSS-driven path in every browser; the same-document API alone
-  // doesn't guarantee that cross-document View Transitions will run.
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", enterPage, { once: true });
   } else {
@@ -181,10 +208,16 @@ function initializePageTransitions() {
     window.clearTimeout(entryTimer);
     root.classList.remove("qa-page-enter");
     root.classList.add("qa-page-leave");
-    const duration = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 90 : 260;
+    const duration = window.matchMedia("(prefers-reduced-motion: reduce)")
+      .matches
+      ? 90
+      : 260;
     leaveTimer = window.setTimeout(() => {
-      try { window.location.assign(destination); }
-      catch { enterPage(); }
+      try {
+        window.location.assign(destination);
+      } catch {
+        enterPage();
+      }
     }, duration);
   });
 }

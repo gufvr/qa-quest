@@ -6,11 +6,13 @@ export function delayUntilLocalMidnight(date) {
   return Math.max(1, next.getTime() - date.getTime() + 50);
 }
 
-// Progress changes come from the existing home subscriber. Day/focus events
-// refresh only the insight, even when the shared subscriber skips unchanged state.
-// Clock and environment injection keep midnight/resume behavior testable.
 export function createHomeInsightController({
-  getState, render, canRender = () => true, now = () => new Date(), win = window, doc = document
+  getState,
+  render,
+  canRender = () => true,
+  now = () => new Date(),
+  win = window,
+  doc = document,
 }) {
   const events = new AbortController();
   const options = { signal: events.signal };
@@ -48,12 +50,30 @@ export function createHomeInsightController({
   }
 
   win.addEventListener("focus", refresh, options);
-  win.addEventListener("pageshow", () => { suspended = false; refresh(); }, options);
-  win.addEventListener("pagehide", () => { suspended = true; stopTimer(); }, options);
-  doc.addEventListener("visibilitychange", () => {
-    if (doc.hidden) stopTimer();
-    else refresh();
-  }, options);
+  win.addEventListener(
+    "pageshow",
+    () => {
+      suspended = false;
+      refresh();
+    },
+    options,
+  );
+  win.addEventListener(
+    "pagehide",
+    () => {
+      suspended = true;
+      stopTimer();
+    },
+    options,
+  );
+  doc.addEventListener(
+    "visibilitychange",
+    () => {
+      if (doc.hidden) stopTimer();
+      else refresh();
+    },
+    options,
+  );
 
   return {
     update,
@@ -62,6 +82,6 @@ export function createHomeInsightController({
       destroyed = true;
       stopTimer();
       events.abort();
-    }
+    },
   };
 }

@@ -24,12 +24,16 @@ class QAThemeToggle extends HTMLElement {
   updateButton(theme) {
     const isLight = theme === "light";
     this.button.setAttribute("aria-pressed", String(isLight));
-    this.button.setAttribute("aria-label", isLight ? "Ativar tema escuro" : "Ativar tema claro");
+    this.button.setAttribute(
+      "aria-label",
+      isLight ? "Ativar tema escuro" : "Ativar tema claro",
+    );
     this.button.title = isLight ? "Usar tema escuro" : "Usar tema claro";
   }
 
   toggleTheme() {
-    const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    const nextTheme =
+      document.documentElement.dataset.theme === "dark" ? "light" : "dark";
     document.documentElement.dataset.theme = nextTheme;
     localStorage.setItem("qa-quest-theme", nextTheme);
     this.updateButton(nextTheme);

@@ -1,67 +1,193 @@
-// Track hub: the base phases remain shared, while each track has its own progress.
 const tracks = {
   automation: {
     label: "TRILHA 05 · AUTOMAÇÃO DE TESTES WEB",
     title: "Automação de Testes Web",
-    objective: "Transforme cenários conhecidos em testes automatizados e interprete o que eles verificam.",
-    prerequisite: "Concluir as Fases 1–4. Nenhuma outra trilha ou ferramenta instalada é necessária.",
-    order: "Fundamentos da Automação → Cypress. Ordem recomendada, não obrigatória. Playwright e Selenium WebDriver ainda são planejados.",
-    note: "Dois módulos disponíveis, com simulações locais. No Cypress, construa comandos, assertions e um diagnóstico; o StepScript é um complemento opcional, sem efeito no XP.",
+    objective:
+      "Transforme cenários conhecidos em testes automatizados e interprete o que eles verificam.",
+    prerequisite:
+      "Concluir as Fases 1–4. Nenhuma outra trilha ou ferramenta instalada é necessária.",
+    order:
+      "Fundamentos da Automação → Cypress → Playwright. Ordem recomendada, não obrigatória. Selenium WebDriver ainda é planejado.",
+    note: "Três módulos disponíveis, com simulações locais. Construa comandos ou locators e interprete evidências. O StepScript é opcional nos módulos Cypress e Playwright, sem efeito no XP.",
     modules: [
-      { id: "automation-fundamentals", title: "Fundamentos da Automação", detail: "Construa ações, seletores e assertions; interprete sincronização, falhas e manutenção.", href: "automation-fundamentals.html", availableLabel: "Disponível agora", linkLabel: "Iniciar missão →", completedLinkLabel: "Repetir missão →" },
-      { id: "cypress", title: "Cypress", detail: "Monte um teste de catálogo, compare evidências e revise sincronização e isolamento.", href: "cypress.html", availableLabel: "Disponível agora", linkLabel: "Iniciar missão →", completedLinkLabel: "Repetir missão →" }
-    ]
+      {
+        id: "automation-fundamentals",
+        title: "Fundamentos da Automação",
+        detail:
+          "Construa ações, seletores e assertions; interprete sincronização, falhas e manutenção.",
+        href: "automation-fundamentals.html",
+        availableLabel: "Disponível agora",
+        linkLabel: "Iniciar missão →",
+        completedLinkLabel: "Repetir missão →",
+      },
+      {
+        id: "cypress",
+        title: "Cypress",
+        detail:
+          "Monte um teste de catálogo, compare evidências e revise sincronização e isolamento.",
+        href: "cypress.html",
+        availableLabel: "Disponível agora",
+        linkLabel: "Iniciar missão →",
+        completedLinkLabel: "Repetir missão →",
+      },
+      {
+        id: "playwright",
+        title: "Playwright",
+        detail:
+          "Monte locators, ações e assertions web-first; compare três perfis e revise o parecer.",
+        href: "playwright.html",
+        availableLabel: "Disponível agora",
+        linkLabel: "Iniciar missão →",
+        completedLinkLabel: "Repetir missão →",
+      },
+    ],
   },
   professional: {
     label: "TRILHA 04 · PRÁTICA PROFISSIONAL",
     title: "Prática Profissional",
-    objective: "Comunique defeitos com clareza e valide contratos de serviços usando evidências reproduzíveis.",
-    prerequisite: "Concluir as Fases 1–4. O defeito de referência está incluído; nenhuma outra trilha é obrigatória.",
-    order: "Relato de Defeitos e Evidências → Testes de API. É uma recomendação: as duas missões são independentes após a Fase 4.",
+    objective:
+      "Comunique defeitos com clareza e valide contratos de serviços usando evidências reproduzíveis.",
+    prerequisite:
+      "Concluir as Fases 1–4. O defeito de referência está incluído; nenhuma outra trilha é obrigatória.",
+    order:
+      "Relato de Defeitos e Evidências → Testes de API. É uma recomendação: as duas missões são independentes após a Fase 4.",
     note: "Relato de Defeitos e Testes de API estão disponíveis. Prepare um relato ou compare requisições e respostas com contratos locais da FictFvr.",
     modules: [
-      { id: "bug-report", title: "Relato de Defeitos e Evidências", detail: "Monte um relato reproduzível, diferencie severidade de prioridade e selecione evidências úteis.", href: "bug-report.html", availableLabel: "Disponível agora", linkLabel: "Iniciar missão →", completedLinkLabel: "Repetir missão →" },
-      { id: "api", title: "Testes de API", detail: "Leia requisições e respostas, valide contratos e registre falhas de filtro, status, total e campos obrigatórios.", href: "api.html", availableLabel: "Disponível agora", linkLabel: "Iniciar missão →", completedLinkLabel: "Repetir missão →" }
-    ]
+      {
+        id: "bug-report",
+        title: "Relato de Defeitos e Evidências",
+        detail:
+          "Monte um relato reproduzível, diferencie severidade de prioridade e selecione evidências úteis.",
+        href: "bug-report.html",
+        availableLabel: "Disponível agora",
+        linkLabel: "Iniciar missão →",
+        completedLinkLabel: "Repetir missão →",
+      },
+      {
+        id: "api",
+        title: "Testes de API",
+        detail:
+          "Leia requisições e respostas, valide contratos e registre falhas de filtro, status, total e campos obrigatórios.",
+        href: "api.html",
+        availableLabel: "Disponível agora",
+        linkLabel: "Iniciar missão →",
+        completedLinkLabel: "Repetir missão →",
+      },
+    ],
   },
   release: {
     label: "TRILHA 02 · CONFIANÇA NA RELEASE",
     title: "Confiança na release",
-    objective: "Aprenda a avaliar se uma entrega está estável, se a correção resolveu o defeito e se funcionalidades antigas continuam funcionando.",
+    objective:
+      "Aprenda a avaliar se uma entrega está estável, se a correção resolveu o defeito e se funcionalidades antigas continuam funcionando.",
     prerequisite: "Concluir as Fases 1–4.",
-    order: "Smoke → Sanidade → Regressão. A sequência ajuda a ir da checagem rápida à proteção mais ampla.",
+    order:
+      "Smoke → Sanidade → Regressão. A sequência ajuda a ir da checagem rápida à proteção mais ampla.",
     note: "Smoke Test, Sanidade e Regressão estão disponíveis. Verifique o essencial, valide uma correção e repita casos conhecidos para encontrar comportamentos afetados pelas mudanças.",
     modules: [
-      { id: "smoke", title: "Smoke Test", detail: "Seis verificações essenciais e um parecer sobre a estabilidade da release.", href: "smoke.html", availableLabel: "Disponível agora", linkLabel: "Iniciar missão →", completedLinkLabel: "Repetir missão →" },
-      { id: "sanity", title: "Teste de Sanidade", detail: "Valide a correção do Checkout e confira os dados próximos antes de aceitar a candidata.", href: "sanity.html", availableLabel: "Disponível agora", linkLabel: "Iniciar missão →", completedLinkLabel: "Repetir missão →" },
-      { id: "regression", title: "Teste de Regressão", detail: "Repita cinco casos conhecidos e compare a candidata com os comportamentos anteriores.", href: "regression.html", availableLabel: "Disponível agora", linkLabel: "Iniciar missão →", completedLinkLabel: "Repetir missão →" }
-    ]
+      {
+        id: "smoke",
+        title: "Smoke Test",
+        detail:
+          "Seis verificações essenciais e um parecer sobre a estabilidade da release.",
+        href: "smoke.html",
+        availableLabel: "Disponível agora",
+        linkLabel: "Iniciar missão →",
+        completedLinkLabel: "Repetir missão →",
+      },
+      {
+        id: "sanity",
+        title: "Teste de Sanidade",
+        detail:
+          "Valide a correção do Checkout e confira os dados próximos antes de aceitar a candidata.",
+        href: "sanity.html",
+        availableLabel: "Disponível agora",
+        linkLabel: "Iniciar missão →",
+        completedLinkLabel: "Repetir missão →",
+      },
+      {
+        id: "regression",
+        title: "Teste de Regressão",
+        detail:
+          "Repita cinco casos conhecidos e compare a candidata com os comportamentos anteriores.",
+        href: "regression.html",
+        availableLabel: "Disponível agora",
+        linkLabel: "Iniciar missão →",
+        completedLinkLabel: "Repetir missão →",
+      },
+    ],
   },
   flows: {
     label: "TRILHA 01 · FLUXOS E INVESTIGAÇÃO",
     title: "Fluxos e investigação",
-    objective: "Passe da validação de uma funcionalidade à descoberta de comportamentos inesperados e à verificação de jornadas de ponta a ponta.",
-    prerequisite: "Concluir as Fases 1–4. A Fase 3 já introduz testes funcionais.",
-    order: "Funcional → Exploratório → E2E, aproveitando o simulador da Fase 3 como primeiro contato.",
+    objective:
+      "Passe da validação de uma funcionalidade à descoberta de comportamentos inesperados e à verificação de jornadas de ponta a ponta.",
+    prerequisite:
+      "Concluir as Fases 1–4. A Fase 3 já introduz testes funcionais.",
+    order:
+      "Funcional → Exploratório → E2E, aproveitando o simulador da Fase 3 como primeiro contato.",
     note: "Teste Exploratório e Teste E2E estão disponíveis. Use o E2E para acompanhar os dados de um único pedido do começo ao fim.",
     modules: [
-      { id: "functional", title: "Teste Funcional", detail: "Introduzido no simulador de login da Fase 3.", href: "phase3.html", availableLabel: "Disponível na Fase 3", linkLabel: "Revisitar Fase 3 →" },
-      { id: "exploratory", title: "Teste Exploratório", detail: "Investigação guiada por hipóteses, observação e aprendizado.", href: "exploratory.html", availableLabel: "Disponível agora", linkLabel: "Iniciar missão →" },
-      { id: "e2e", title: "Teste End-to-End (E2E)", detail: "Validação de uma jornada completa entre catálogo, checkout e confirmação.", href: "e2e.html", availableLabel: "Disponível agora", linkLabel: "Iniciar missão →", completedLinkLabel: "Repetir missão →" }
-    ]
+      {
+        id: "functional",
+        title: "Teste Funcional",
+        detail: "Introduzido no simulador de login da Fase 3.",
+        href: "phase3.html",
+        availableLabel: "Disponível na Fase 3",
+        linkLabel: "Revisitar Fase 3 →",
+      },
+      {
+        id: "exploratory",
+        title: "Teste Exploratório",
+        detail: "Investigação guiada por hipóteses, observação e aprendizado.",
+        href: "exploratory.html",
+        availableLabel: "Disponível agora",
+        linkLabel: "Iniciar missão →",
+      },
+      {
+        id: "e2e",
+        title: "Teste End-to-End (E2E)",
+        detail:
+          "Validação de uma jornada completa entre catálogo, checkout e confirmação.",
+        href: "e2e.html",
+        availableLabel: "Disponível agora",
+        linkLabel: "Iniciar missão →",
+        completedLinkLabel: "Repetir missão →",
+      },
+    ],
   },
   specialized: {
     label: "TRILHA 03 · QUALIDADE ESPECIALIZADA",
     title: "Qualidade especializada",
-    objective: "Conheça perguntas iniciais sobre desempenho e segurança, com foco em riscos e observação antes de ferramentas avançadas.",
-    prerequisite: "Concluir as Fases 1–4. Nenhuma das duas especialidades depende da outra.",
+    objective:
+      "Conheça perguntas iniciais sobre desempenho e segurança, com foco em riscos e observação antes de ferramentas avançadas.",
+    prerequisite:
+      "Concluir as Fases 1–4. Nenhuma das duas especialidades depende da outra.",
     order: "Performance e Segurança podem ser exploradas em qualquer ordem.",
     note: "Performance e Segurança estão disponíveis, em qualquer ordem. Simule carga e estresse ou investigue identidade, permissões e proteção de dados entre contas.",
     modules: [
-      { id: "performance", title: "Teste de Performance", detail: "Simule carga e estresse no catálogo e interprete tempos, requisições e erros.", href: "performance.html", availableLabel: "Disponível agora", linkLabel: "Iniciar missão →", completedLinkLabel: "Repetir missão →" },
-      { id: "security", title: "Teste de Segurança", detail: "Valide autenticação, autorização entre contas e mensagens de erro com dados fictícios.", href: "security.html", availableLabel: "Disponível agora", linkLabel: "Iniciar missão →", completedLinkLabel: "Repetir missão →" }
-    ]
-  }
+      {
+        id: "performance",
+        title: "Teste de Performance",
+        detail:
+          "Simule carga e estresse no catálogo e interprete tempos, requisições e erros.",
+        href: "performance.html",
+        availableLabel: "Disponível agora",
+        linkLabel: "Iniciar missão →",
+        completedLinkLabel: "Repetir missão →",
+      },
+      {
+        id: "security",
+        title: "Teste de Segurança",
+        detail:
+          "Valide autenticação, autorização entre contas e mensagens de erro com dados fictícios.",
+        href: "security.html",
+        availableLabel: "Disponível agora",
+        linkLabel: "Iniciar missão →",
+        completedLinkLabel: "Repetir missão →",
+      },
+    ],
+  },
 };
 
 const progress = window.QAQuestProgress;
@@ -93,13 +219,19 @@ function renderModule(module, number, completedModules) {
   const status = document.createElement("span");
   status.className = "track-module__status";
   const isComplete = completedModules.includes(module.id);
-  status.textContent = isComplete ? "Concluído" : module.href ? module.availableLabel : "Missão em breve";
+  status.textContent = isComplete
+    ? "Concluído"
+    : module.href
+      ? module.availableLabel
+      : "Missão em breve";
   actions.append(status);
 
   if (module.href) {
     const link = document.createElement("a");
     link.href = module.href;
-    link.textContent = isComplete ? module.completedLinkLabel || module.linkLabel : module.linkLabel;
+    link.textContent = isComplete
+      ? module.completedLinkLabel || module.linkLabel
+      : module.linkLabel;
     actions.append(link);
   }
 
@@ -119,14 +251,21 @@ function renderTrack(trackId) {
 
   document.querySelector("#track-details-label").textContent = track.label;
   document.querySelector("#track-details-title").textContent = track.title;
-  document.querySelector("#track-details-objective").textContent = track.objective;
-  document.querySelector("#track-details-prerequisite").textContent = track.prerequisite;
+  document.querySelector("#track-details-objective").textContent =
+    track.objective;
+  document.querySelector("#track-details-prerequisite").textContent =
+    track.prerequisite;
   document.querySelector("#track-details-order").textContent = track.order;
-  document.querySelector("#track-details-progress").textContent = `${trackProgress.completed} / ${trackProgress.total}`;
+  document.querySelector("#track-details-progress").textContent =
+    `${trackProgress.completed} / ${trackProgress.total}`;
   document.querySelector("#track-details-note").textContent = track.note;
-  document.querySelector("#track-modules").replaceChildren(
-    ...track.modules.map((module, index) => renderModule(module, index + 1, trackProgress.completedModules))
-  );
+  document
+    .querySelector("#track-modules")
+    .replaceChildren(
+      ...track.modules.map((module, index) =>
+        renderModule(module, index + 1, trackProgress.completedModules),
+      ),
+    );
 }
 
 function renderHub() {
@@ -144,16 +283,27 @@ function renderHub() {
 
   locked.hidden = true;
   content.hidden = false;
-  document.querySelector("#tracks-total-xp").textContent = `${state.totalXp} XP`;
+  document.querySelector("#tracks-total-xp").textContent =
+    `${state.totalXp} XP`;
   trackButtons.forEach((button) => {
     const trackProgress = progress.getTrackProgress(button.dataset.track);
-    button.querySelector("[data-track-count]").textContent = `${trackProgress.completed} / ${trackProgress.total} temas`;
-    button.querySelector("[data-track-bar]").style.width = `${trackProgress.percentage}%`;
+    button.querySelector("[data-track-count]").textContent =
+      `${trackProgress.completed} / ${trackProgress.total} temas`;
+    button.querySelector("[data-track-bar]").style.width =
+      `${trackProgress.percentage}%`;
   });
-  renderTrack(state.selectedTrack && tracks[state.selectedTrack] ? state.selectedTrack : "flows");
+  renderTrack(
+    state.selectedTrack && tracks[state.selectedTrack]
+      ? state.selectedTrack
+      : "flows",
+  );
   const readOnly = progress.isReadOnly();
-  trackButtons.forEach(button => { button.disabled = readOnly; });
-  if (readOnly) document.querySelector("#track-details-note").textContent = "Este progresso pertence a uma versão mais recente. Atualize o QA Quest antes de selecionar uma trilha ou salvar resultados.";
+  trackButtons.forEach((button) => {
+    button.disabled = readOnly;
+  });
+  if (readOnly)
+    document.querySelector("#track-details-note").textContent =
+      "Este progresso pertence a uma versão mais recente. Atualize o QA Quest antes de selecionar uma trilha ou salvar resultados.";
 }
 
 let scrollFrame;
@@ -166,14 +316,25 @@ function scrollToTrackDetails() {
   cancelTrackScroll();
   const details = document.querySelector("#track-details");
   const start = window.scrollY;
-  const margin = parseFloat(window.getComputedStyle(details).scrollMarginTop) || 0;
-  const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-  const target = Math.min(maxScroll, Math.max(0, start + details.getBoundingClientRect().top - margin));
+  const margin =
+    parseFloat(window.getComputedStyle(details).scrollMarginTop) || 0;
+  const maxScroll = Math.max(
+    0,
+    document.documentElement.scrollHeight - window.innerHeight,
+  );
+  const target = Math.min(
+    maxScroll,
+    Math.max(0, start + details.getBoundingClientRect().top - margin),
+  );
   const distance = target - start;
 
   if (Math.abs(distance) < 1) return;
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const duration = reducedMotion ? 700 : Math.min(2100, 1400 + Math.abs(distance) * 0.35);
+  const reducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+  const duration = reducedMotion
+    ? 700
+    : Math.min(2100, 1400 + Math.abs(distance) * 0.35);
   const startedAt = performance.now();
 
   function animateScroll(now) {
@@ -186,12 +347,23 @@ function scrollToTrackDetails() {
   scrollFrame = window.requestAnimationFrame(animateScroll);
 }
 
-// Let manual navigation interrupt the animation immediately.
 for (const event of ["wheel", "touchstart", "pointerdown"]) {
   window.addEventListener(event, cancelTrackScroll, { passive: true });
 }
 window.addEventListener("keydown", (event) => {
-  if (["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " ", "Tab", "Escape"].includes(event.key)) {
+  if (
+    [
+      "ArrowUp",
+      "ArrowDown",
+      "PageUp",
+      "PageDown",
+      "Home",
+      "End",
+      " ",
+      "Tab",
+      "Escape",
+    ].includes(event.key)
+  ) {
     cancelTrackScroll();
   }
 });
@@ -206,7 +378,7 @@ trackButtons.forEach((button) => {
 
 renderHub();
 window.addEventListener("qaquest:progress", renderHub);
-window.addEventListener("storage", event => {
+window.addEventListener("storage", (event) => {
   if (event.key === progress.storageKey || event.key === null) renderHub();
 });
 window.addEventListener("pageshow", renderHub);

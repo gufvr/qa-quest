@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
@@ -11,7 +11,8 @@
     <link rel="icon" type="image/png" href="qaquest.png" />
     <link rel="apple-touch-icon" href="qaquest.png" />
     <script>
-      document.documentElement.dataset.theme = localStorage.getItem("qa-quest-theme") || "dark";
+      document.documentElement.dataset.theme =
+        localStorage.getItem("qa-quest-theme") || "dark";
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -30,16 +31,20 @@
     <main class="mission-shell" id="missao">
       <div class="container mission-layout">
         <aside class="mission-briefing" aria-labelledby="mission-title">
-          <a class="back-link" href="index.html"><span aria-hidden="true">←</span> Voltar à jornada</a>
+          <a class="back-link" href="index.html"
+            ><span aria-hidden="true">←</span> Voltar à jornada</a
+          >
           <span class="label label--cyan">MUNDO 01 · MISSÃO 01</span>
           <h1 id="mission-title">Fundamentos de QA</h1>
           <p>
-            Mostre que você entende o papel de QA e reconhece os testes essenciais
-            para proteger a qualidade do produto.
+            Mostre que você entende o papel de QA e reconhece os testes
+            essenciais para proteger a qualidade do produto.
           </p>
 
           <div class="mission-meta">
-            <div><span>DESAFIOS</span><strong>10 questões aleatórias</strong></div>
+            <div>
+              <span>DESAFIOS</span><strong>10 questões aleatórias</strong>
+            </div>
             <div><span>RECOMPENSA</span><strong>Até 100 XP</strong></div>
           </div>
 
@@ -47,7 +52,10 @@
             <span class="mission-objectives__icon" aria-hidden="true">◇</span>
             <div>
               <strong>Objetivo da missão</strong>
-              <p>Identificar conceitos, responsabilidades e estratégias básicas de QA.</p>
+              <p>
+                Identificar conceitos, responsabilidades e estratégias básicas
+                de QA.
+              </p>
             </div>
           </div>
         </aside>
@@ -70,11 +78,26 @@
               <span class="question-kind">MÚLTIPLA ESCOLHA</span>
               <h2 id="question-title"></h2>
               <p id="question-context"></p>
-              <div class="answers" id="answers" role="group" aria-labelledby="question-title"></div>
+              <div
+                class="answers"
+                id="answers"
+                role="group"
+                aria-labelledby="question-title"
+              ></div>
             </div>
 
-            <div class="answer-feedback" id="answer-feedback" role="status" aria-live="polite" hidden>
-              <span class="answer-feedback__icon" id="feedback-icon" aria-hidden="true"></span>
+            <div
+              class="answer-feedback"
+              id="answer-feedback"
+              role="status"
+              aria-live="polite"
+              hidden
+            >
+              <span
+                class="answer-feedback__icon"
+                id="feedback-icon"
+                aria-hidden="true"
+              ></span>
               <div>
                 <strong id="feedback-title"></strong>
                 <p id="feedback-text"></p>
@@ -82,11 +105,23 @@
             </div>
 
             <footer class="quiz-card__footer">
-              <span id="selection-hint">Selecione uma alternativa para continuar.</span>
-              <button class="button button--primary" id="confirm-answer" type="button" disabled>
+              <span id="selection-hint"
+                >Selecione uma alternativa para continuar.</span
+              >
+              <button
+                class="button button--primary"
+                id="confirm-answer"
+                type="button"
+                disabled
+              >
                 Confirmar resposta
               </button>
-              <button class="button button--primary" id="next-question" type="button" hidden>
+              <button
+                class="button button--primary"
+                id="next-question"
+                type="button"
+                hidden
+              >
                 Próxima questão <span aria-hidden="true">→</span>
               </button>
             </footer>
@@ -100,14 +135,29 @@
             <qa-save-status></qa-save-status>
 
             <div class="result-score">
-              <div><span>ACERTOS</span><strong id="result-correct">0 / 10</strong></div>
-              <div><span>EXPERIÊNCIA</span><strong><span id="result-xp">0</span> XP</strong></div>
+              <div>
+                <span>ACERTOS</span><strong id="result-correct">0 / 10</strong>
+              </div>
+              <div>
+                <span>EXPERIÊNCIA</span
+                ><strong><span id="result-xp">0</span> XP</strong>
+              </div>
             </div>
 
             <div class="result-actions">
-              <a class="button button--primary" href="phase2.html">Avançar para Fase 2</a>
-              <button class="button button--ghost" id="retry-mission" type="button">Tentar novamente</button>
-              <a class="button button--text" href="index.html">Voltar à jornada</a>
+              <a class="button button--primary" href="phase2.html"
+                >Avançar para Fase 2</a
+              >
+              <button
+                class="button button--ghost"
+                id="retry-mission"
+                type="button"
+              >
+                Tentar novamente
+              </button>
+              <a class="button button--text" href="index.html"
+                >Voltar à jornada</a
+              >
             </div>
           </div>
         </section>

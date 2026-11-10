@@ -1,0 +1,481 @@
+.playwright-page [hidden] {
+  display: none !important;
+}
+.playwright-page {
+  --pw-success: #65deb0;
+  --pw-success-bg: rgba(79, 200, 146, 0.08);
+}
+[data-theme="light"] .playwright-page {
+  --pw-success: #15774f;
+  --pw-success-bg: #e6f7ee;
+}
+.pw-main {
+  padding-block: 36px 64px;
+}
+.playwright-page .mission-header {
+  border-bottom: 1px solid var(--line);
+  background: var(--navy-900);
+}
+.playwright-page .mission-header__xp {
+  padding: 7px 10px;
+  color: var(--purple-bright);
+  background: rgba(139, 92, 246, 0.08);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  font-size: 0.75rem;
+}
+.playwright-page .mission-header__exit {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+.pw-intro {
+  max-width: 860px;
+  margin-bottom: 28px;
+}
+.pw-intro h1 {
+  margin: 12px 0 16px;
+  font:
+    700 clamp(2.25rem, 6vw, 4rem)/1.08 "Space Grotesk",
+    sans-serif;
+  letter-spacing: -0.045em;
+}
+.pw-intro p,
+.pw-panel p {
+  color: var(--muted);
+}
+.pw-intro a,
+.pw-reading a {
+  color: var(--cyan);
+  text-underline-offset: 4px;
+}
+.pw-panel {
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--card);
+}
+.pw-panel :is(h2, h3, h4) {
+  color: var(--white);
+  line-height: 1.3;
+}
+.pw-panel h2 {
+  margin: 12px 0;
+  font-size: 1.5rem;
+}
+.pw-panel h3 {
+  margin: 12px 0 16px;
+  font-size: 1.3rem;
+}
+.pw-panel p {
+  font-size: 0.86rem;
+}
+.pw-briefing {
+  display: grid;
+  gap: 22px;
+  margin-bottom: 30px;
+}
+.pw-notice {
+  padding: 12px 14px;
+  border-left: 2px solid var(--cyan);
+  background: rgba(82, 225, 232, 0.045);
+  border-radius: 0 8px 8px 0;
+}
+.pw-objective {
+  align-self: start;
+  padding: 18px;
+  background: var(--navy-950);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+.pw-objective > span {
+  color: var(--purple-bright);
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+}
+.pw-objective > strong {
+  display: block;
+  margin-top: 10px;
+  color: var(--cyan);
+  font:
+    700 1.6rem/1.5 "Space Grotesk",
+    sans-serif;
+}
+.pw-objective p {
+  margin-bottom: 0;
+}
+.playwright-page summary {
+  min-height: 44px;
+  padding-block: 10px;
+  color: var(--cyan);
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+.playwright-page :is(summary, select, input, button, a, pre):focus-visible {
+  outline: 3px solid var(--cyan);
+  outline-offset: 3px;
+}
+.pw-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.pw-heading h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+.pw-heading h3 {
+  font-size: 1rem;
+}
+.pw-heading > span {
+  color: var(--muted);
+  font-size: 0.76rem;
+}
+#pw-progress {
+  display: block;
+  width: 100%;
+  height: 6px;
+  margin: 16px 0;
+  border: 0;
+  border-radius: 99px;
+  background: var(--navy-700);
+  accent-color: var(--cyan);
+}
+#pw-progress::-webkit-progress-bar {
+  border-radius: 99px;
+  background: var(--navy-700);
+}
+#pw-progress::-webkit-progress-value {
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--purple), var(--cyan));
+  transition: width 0.25s ease;
+}
+.pw-checkpoints {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0;
+  margin: 0 0 20px;
+  list-style: none;
+}
+.pw-checkpoints li {
+  padding: 6px 9px;
+  color: var(--muted);
+  font-size: 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+}
+.pw-checkpoints [aria-current="step"] {
+  color: var(--cyan);
+  border-color: var(--cyan);
+  background: rgba(82, 225, 232, 0.04);
+}
+.pw-checkpoints .is-done {
+  color: var(--pw-success);
+}
+.pw-workspace-grid,
+.pw-reference-column,
+.pw-evidence-grid {
+  display: grid;
+  gap: 18px;
+  align-items: start;
+}
+.pw-workspace-grid > *,
+.pw-reference-column > * {
+  min-width: 0;
+}
+#pw-step-title,
+#pw-result-title {
+  scroll-margin-top: 24px;
+}
+.pw-task fieldset {
+  min-width: 0;
+  margin: 22px 0;
+  padding: 0;
+  border: 0;
+}
+#pw-controls {
+  display: grid;
+  gap: 12px;
+}
+.pw-field {
+  display: grid;
+  gap: 8px;
+  color: var(--white);
+  font-size: 0.82rem;
+}
+.playwright-page :is(select, input[type="search"]) {
+  width: 100%;
+  min-width: 0;
+  min-height: 46px;
+  padding: 10px;
+  color: var(--white);
+  background: var(--navy-950);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  font: inherit;
+}
+.playwright-page option {
+  color: var(--white);
+  background: var(--navy-950);
+}
+.pw-choice {
+  display: flex;
+  align-items: start;
+  gap: 12px;
+  min-height: 48px;
+  padding: 13px;
+  color: var(--white);
+  font-size: 0.83rem;
+  background: var(--navy-950);
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+.pw-choice:hover,
+.pw-choice:focus-within {
+  border-color: var(--purple-bright);
+}
+.pw-choice:has(input:checked) {
+  border-color: var(--cyan);
+  background: rgba(82, 225, 232, 0.055);
+}
+.pw-choice input {
+  flex-shrink: 0;
+  margin-top: 5px;
+  accent-color: var(--cyan);
+}
+.pw-order {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.pw-order li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background: var(--navy-950);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.pw-order code {
+  overflow-wrap: anywhere;
+  font-size: 0.78rem;
+}
+.pw-move {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.pw-move button {
+  width: 44px;
+  min-height: 44px;
+  color: var(--cyan);
+  background: var(--navy-800);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.pw-move button:hover:not(:disabled) {
+  background: var(--navy-700);
+}
+.playwright-page button:disabled {
+  opacity: 0.5;
+  cursor: default;
+  transform: none;
+}
+.pw-feedback {
+  min-height: 1.4em;
+}
+.pw-feedback:not(:empty) {
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--navy-950);
+}
+.pw-feedback.is-correct {
+  color: var(--pw-success);
+  background: var(--pw-success-bg);
+}
+.pw-small,
+.pw-panel .pw-small {
+  color: var(--muted);
+  font-size: 0.74rem;
+}
+.pw-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+.pw-badge {
+  padding: 4px 7px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-size: 0.58rem !important;
+}
+#pw-preview-form {
+  display: grid;
+  gap: 12px;
+  margin: 14px 0;
+}
+.pw-products {
+  display: grid;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.pw-products li {
+  display: grid;
+  gap: 3px;
+  padding: 12px;
+  background: var(--navy-950);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+}
+.pw-products strong {
+  font-size: 0.85rem;
+}
+.pw-products span {
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+.playwright-page pre {
+  max-width: 100%;
+  margin: 12px 0 0;
+  padding: 14px;
+  overflow-x: auto;
+  color: var(--cyan-soft);
+  background: var(--navy-950);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font:
+    0.74rem/1.8 ui-monospace,
+    SFMono-Regular,
+    Consolas,
+    monospace;
+  tab-size: 2;
+}
+.pw-evidence-panel {
+  margin-top: 20px;
+}
+.pw-evidence-card {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--navy-950);
+}
+.pw-evidence-card h4 {
+  margin-top: 0;
+  font-size: 1rem;
+}
+.pw-timeline {
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+.pw-timeline li {
+  margin-bottom: 12px;
+  padding-left: 5px;
+}
+.pw-timeline time {
+  display: block;
+  color: var(--cyan);
+  font:
+    0.78rem/1.8 ui-monospace,
+    Consolas,
+    monospace;
+}
+.pw-evidence-card p {
+  font-size: 0.8rem;
+}
+.pw-result {
+  max-width: 1000px;
+  margin: 24px auto 0;
+}
+.pw-result-xp {
+  color: var(--cyan);
+  font:
+    700 3rem "Space Grotesk",
+    sans-serif;
+}
+#pw-result-records {
+  padding-left: 20px;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+#pw-result-records li {
+  margin-bottom: 12px;
+}
+.pw-reading {
+  margin-top: 24px;
+}
+.pw-reading :is(p, li) {
+  color: var(--muted);
+  font-size: 0.83rem;
+}
+.pw-reading a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.playwright-page .support-material__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+@media (min-width: 850px) {
+  .pw-main {
+    padding-top: 54px;
+  }
+  .pw-panel {
+    padding: 26px;
+  }
+  .pw-briefing {
+    grid-template-columns: minmax(0, 1fr) 225px;
+    gap: 30px;
+  }
+  .pw-workspace-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+  .pw-evidence-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 480px) {
+  .pw-main {
+    width: calc(100% - 28px);
+  }
+  .pw-panel {
+    padding: 16px;
+  }
+  .pw-actions .button {
+    width: 100%;
+  }
+  .playwright-page .mission-header .nav {
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-block: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .playwright-page *,
+  .playwright-page *::before,
+  .playwright-page *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

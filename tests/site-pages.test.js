@@ -3,59 +3,93 @@ import assert from "node:assert/strict";
 import { readFileSync, existsSync } from "node:fs";
 import vm from "node:vm";
 import {
-  baseMissions, catalogItems, getRecommendedMission, getCompletedUniqueMissions,
-  isAvailable, learningTracks, supportMaterials, uniqueMissions
+  baseMissions,
+  catalogItems,
+  getRecommendedMission,
+  getCompletedUniqueMissions,
+  isAvailable,
+  learningTracks,
+  supportMaterials,
+  uniqueMissions,
 } from "../core/content-catalog.js";
 import { getLibraryGroups } from "../core/library-catalog.js";
 import { getLegacyHomeDestination } from "../core/legacy-home-redirect.js";
-import { homeInsights, getHomeInsightContext, localCalendarDay, selectHomeInsight } from "../core/home-insights.js";
-import { createHomeInsightController, delayUntilLocalMidnight } from "../core/home-insight-controller.js";
+import {
+  homeInsights,
+  getHomeInsightContext,
+  localCalendarDay,
+  selectHomeInsight,
+} from "../core/home-insights.js";
+import {
+  createHomeInsightController,
+  delayUntilLocalMidnight,
+} from "../core/home-insight-controller.js";
 import { renderHomeInsight } from "../components/home-insight.js";
 
 const root = new URL("../", import.meta.url);
 const read = (file) => readFileSync(new URL(file, root), "utf8");
 
-// Isolated storage: these checks never open or modify a real browser profile.
 function createProgress() {
   const storage = new Map();
   const window = {
     localStorage: {
       getItem: (key) => storage.get(key) ?? null,
-      setItem: (key, value) => storage.set(key, value)
+      setItem: (key, value) => storage.set(key, value),
     },
-    dispatchEvent() {}
+    dispatchEvent() {},
   };
   vm.runInNewContext(read("core/progress.js"), { window });
   return { progress: window.QAQuestProgress, storage };
 }
 
 for (const [hash, route] of Object.entries({
-  jornada: "jornada.html", biblioteca: "biblioteca.html", "como-funciona": "como-funciona.html"
+  jornada: "jornada.html",
+  biblioteca: "biblioteca.html",
+  "como-funciona": "como-funciona.html",
 })) {
   test(`legacy ${hash}: preserve query, subdirectory and root entry`, () => {
-    assert.equal(getLegacyHomeDestination(`https://gufvr.github.io/qa-quest/index.html?from=old#${hash}`),
-      `https://gufvr.github.io/qa-quest/${route}?from=old`);
-    assert.equal(getLegacyHomeDestination(`https://gufvr.github.io/qa-quest/#${hash}`),
-      `https://gufvr.github.io/qa-quest/${route}`);
-    assert.equal(getLegacyHomeDestination(`http://127.0.0.1:5173/index.html#${hash}`),
-      `http://127.0.0.1:5173/${route}`);
+    assert.equal(
+      getLegacyHomeDestination(
+        `https://gufvr.github.io/qa-quest/index.html?from=old#${hash}`,
+      ),
+      `https://gufvr.github.io/qa-quest/${route}?from=old`,
+    );
+    assert.equal(
+      getLegacyHomeDestination(`https://gufvr.github.io/qa-quest/#${hash}`),
+      `https://gufvr.github.io/qa-quest/${route}`,
+    );
+    assert.equal(
+      getLegacyHomeDestination(`http://127.0.0.1:5173/index.html#${hash}`),
+      `http://127.0.0.1:5173/${route}`,
+    );
   });
 }
 
 test("unknown hashes and non-home pages are not redirected", () => {
   for (const href of [
-    "https://example.test/index.html#inicio", "https://example.test/index.html#unknown",
-    "https://example.test/index.html", "https://example.test/phase3.html#jornada",
-    "https://example.test/index.html#toString"
-  ]) assert.equal(getLegacyHomeDestination(href), null);
+    "https://example.test/index.html#inicio",
+    "https://example.test/index.html#unknown",
+    "https://example.test/index.html",
+    "https://example.test/phase3.html#jornada",
+    "https://example.test/index.html#toString",
+  ])
+    assert.equal(getLegacyHomeDestination(href), null);
 });
 
 test("library is derived from catalog and canonical materials appear once", () => {
   const groups = getLibraryGroups();
   const entries = groups.flatMap((group) => group.entries);
-  assert.equal(new Set(entries.map(({ mission }) => mission.progressId)).size, entries.length);
-  assert.equal(entries.reduce((sum, entry) => sum + entry.materialCount, 0), supportMaterials.length);
-  const functional = entries.filter(({ mission }) => mission.progressId === "phase3");
+  assert.equal(
+    new Set(entries.map(({ mission }) => mission.progressId)).size,
+    entries.length,
+  );
+  assert.equal(
+    entries.reduce((sum, entry) => sum + entry.materialCount, 0),
+    supportMaterials.length,
+  );
+  const functional = entries.filter(
+    ({ mission }) => mission.progressId === "phase3",
+  );
   assert.equal(functional.length, 1);
   assert.equal(functional[0].mission.id, "phase3");
   assert(groups.every((group) => group.entries.length > 0));
@@ -67,7 +101,11 @@ test("recommendation follows base, unlocks tracks and respects selected track", 
   for (const mission of baseMissions) {
     const state = progress.getState();
     assert.equal(getRecommendedMission(state).progressId, mission.progressId);
-    assert(catalogItems.filter((item) => item.type === "track").every((item) => !isAvailable(item, state)));
+    assert(
+      catalogItems
+        .filter((item) => item.type === "track")
+        .every((item) => !isAvailable(item, state)),
+    );
     progress.saveMissionResult(mission.progressId, 100);
   }
   assert(catalogItems.every((item) => isAvailable(item, progress.getState())));
@@ -75,13 +113,17 @@ test("recommendation follows base, unlocks tracks and respects selected track", 
     progress.selectTrack(track.id);
     const next = getRecommendedMission(progress.getState());
     assert.equal(next.groupId, track.id);
-    assert.equal(next.progressId, track.modules.find((item) => item.progressId !== "phase3").progressId);
+    assert.equal(
+      next.progressId,
+      track.modules.find((item) => item.progressId !== "phase3").progressId,
+    );
   }
 });
 
 test("completed content has empty recommendation and does not duplicate XP", () => {
   const { progress, storage } = createProgress();
-  for (const mission of uniqueMissions) progress.saveMissionResult(mission.progressId, 100);
+  for (const mission of uniqueMissions)
+    progress.saveMissionResult(mission.progressId, 100);
   const state = progress.getState();
   assert.equal(getRecommendedMission(state), null);
   assert.equal(getCompletedUniqueMissions(state).length, uniqueMissions.length);
@@ -98,16 +140,28 @@ test("completed content has empty recommendation and does not duplicate XP", () 
 });
 
 test("new pages, local resources, mission routes and PDFs exist", () => {
-  for (const route of ["index.html", "jornada.html", "biblioteca.html", "como-funciona.html"]) {
+  for (const route of [
+    "index.html",
+    "jornada.html",
+    "biblioteca.html",
+    "como-funciona.html",
+  ]) {
     const html = read(route);
     assert.equal((html.match(/<h1(?:\s|>)/g) || []).length, 1, route);
     for (const [, value] of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
       if (/^(?:https?:|data:|#|mailto:)/.test(value)) continue;
-      assert(existsSync(new URL(value, new URL(route, root))), `${route}: ${value}`);
+      assert(
+        existsSync(new URL(value, new URL(route, root))),
+        `${route}: ${value}`,
+      );
     }
-    assert(read("vite.config.js").includes(`"${route}"`), `Vite input: ${route}`);
+    assert(
+      read("vite.config.js").includes(`"${route}"`),
+      `Vite input: ${route}`,
+    );
   }
-  for (const mission of catalogItems) assert(existsSync(new URL(mission.route, root)), mission.route);
+  for (const mission of catalogItems)
+    assert(existsSync(new URL(mission.route, root)), mission.route);
   for (const material of supportMaterials) {
     const file = new URL(`public/${material.path}`, root);
     assert(existsSync(file), material.path);
@@ -116,12 +170,29 @@ test("new pages, local resources, mission routes and PDFs exist", () => {
 });
 
 test("insight catalog has reviewed paraphrases and clearly separate original content", () => {
-  assert.equal(new Set(homeInsights.map((entry) => entry.id)).size, homeInsights.length);
-  // Existing editorial pools remain intact; new tracks can use the general fallback.
-  const contexts = ["phase1", "phase2", "phase3", "phase4", "track:flows", "track:release", "track:specialized", "track:professional", "general"];
+  assert.equal(
+    new Set(homeInsights.map((entry) => entry.id)).size,
+    homeInsights.length,
+  );
+
+  const contexts = [
+    "phase1",
+    "phase2",
+    "phase3",
+    "phase4",
+    "track:flows",
+    "track:release",
+    "track:specialized",
+    "track:professional",
+    "general",
+  ];
   for (const context of contexts) {
     const pool = homeInsights.filter((entry) => entry.context === context);
-    assert.deepEqual(pool.map((entry) => entry.type).sort(), ["fact", "guidance", "humor"]);
+    assert.deepEqual(pool.map((entry) => entry.type).sort(), [
+      "fact",
+      "guidance",
+      "humor",
+    ]);
   }
   for (const entry of homeInsights) {
     assert(entry.text.length > 0 && entry.text.length < 220);
@@ -132,7 +203,9 @@ test("insight catalog has reviewed paraphrases and clearly separate original con
       assert.match(entry.source.reviewedAt, /^\d{4}-\d{2}-\d{2}$/);
       const url = new URL(entry.source.url);
       assert.equal(url.protocol, "https:");
-      assert(["learn.microsoft.com", "martinfowler.com"].includes(url.hostname));
+      assert(
+        ["learn.microsoft.com", "martinfowler.com"].includes(url.hostname),
+      );
       assert.equal(entry.author, entry.source.author);
     } else {
       assert.equal(entry.author, "QA Quest");
@@ -153,12 +226,20 @@ test("insights follow recommended phases, then selected track or general context
   assert.equal(getHomeInsightContext(progress.getState()), "general");
   for (const track of learningTracks) {
     progress.selectTrack(track.id);
-    assert.equal(getHomeInsightContext(progress.getState()), `track:${track.id}`);
+    assert.equal(
+      getHomeInsightContext(progress.getState()),
+      `track:${track.id}`,
+    );
     const context = `track:${track.id}`;
-    assert.equal(selectHomeInsight(progress.getState()).context,
-      homeInsights.some(entry => entry.context === context) ? context : "general");
+    assert.equal(
+      selectHomeInsight(progress.getState()).context,
+      homeInsights.some((entry) => entry.context === context)
+        ? context
+        : "general",
+    );
   }
-  for (const mission of uniqueMissions) progress.saveMissionResult(mission.progressId, 100);
+  for (const mission of uniqueMissions)
+    progress.saveMissionResult(mission.progressId, 100);
   assert.equal(progress.getState().selectedTrack, "automation");
   assert.equal(selectHomeInsight(progress.getState()).context, "general");
 });
@@ -170,23 +251,48 @@ test("daily selection is deterministic, varies with calendar day and uses safe f
     const date = new Date(2026, 10, day, 8);
     const selected = selectHomeInsight(state, { date });
     assert.strictEqual(selected, selectHomeInsight(state, { date }));
-    assert.strictEqual(selected, selectHomeInsight(state, { date: new Date(2026, 10, day, 23, 59) }));
-    assert.notEqual(selected.id, selectHomeInsight(state, { date: new Date(2026, 10, day + 1) }).id);
+    assert.strictEqual(
+      selected,
+      selectHomeInsight(state, { date: new Date(2026, 10, day, 23, 59) }),
+    );
+    assert.notEqual(
+      selected.id,
+      selectHomeInsight(state, { date: new Date(2026, 10, day + 1) }).id,
+    );
   }
-  const generalOnly = homeInsights.filter((entry) => entry.context === "general");
-  assert.equal(selectHomeInsight(state, { messages: generalOnly }).context, "general");
-  assert.equal(selectHomeInsight(state, { messages: [] }).id, "general-guidance");
+  const generalOnly = homeInsights.filter(
+    (entry) => entry.context === "general",
+  );
+  assert.equal(
+    selectHomeInsight(state, { messages: generalOnly }).context,
+    "general",
+  );
+  assert.equal(
+    selectHomeInsight(state, { messages: [] }).id,
+    "general-guidance",
+  );
   assert.equal(JSON.stringify(state), before);
-  assert.throws(() => selectHomeInsight(state, { date: new Date(NaN) }), RangeError);
+  assert.throws(
+    () => selectHomeInsight(state, { date: new Date(NaN) }),
+    RangeError,
+  );
 });
 
 test("day calculation and next wakeup use local midnight, including month/year changes", () => {
-  for (const date of [new Date(2026, 10, 1, 23, 59, 59), new Date(2026, 11, 31, 23, 59, 59)]) {
+  for (const date of [
+    new Date(2026, 10, 1, 23, 59, 59),
+    new Date(2026, 11, 31, 23, 59, 59),
+  ]) {
     const next = new Date(date.getTime());
     next.setHours(24, 0, 0, 0);
     assert.equal(localCalendarDay(next) - localCalendarDay(date), 1);
     assert.equal(delayUntilLocalMidnight(date), 1050);
-    assert.equal(localCalendarDay(new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0)), localCalendarDay(date));
+    assert.equal(
+      localCalendarDay(
+        new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0),
+      ),
+      localCalendarDay(date),
+    );
   }
 });
 
@@ -199,18 +305,40 @@ function insightHarness() {
   let date = new Date(2026, 10, 1, 23, 59, 59);
   let canRender = true;
   doc.hidden = false;
-  win.setTimeout = (callback, delay) => { const id = ++nextTimer; timers.set(id, { callback, delay }); return id; };
+  win.setTimeout = (callback, delay) => {
+    const id = ++nextTimer;
+    timers.set(id, { callback, delay });
+    return id;
+  };
   win.clearTimeout = (id) => timers.delete(id);
   const { progress, storage } = createProgress();
   const controller = createHomeInsightController({
-    win, doc, getState: () => progress.getState(), now: () => date,
-    canRender: () => canRender, render: (entry) => rendered.push(entry)
+    win,
+    doc,
+    getState: () => progress.getState(),
+    now: () => date,
+    canRender: () => canRender,
+    render: (entry) => rendered.push(entry),
   });
   return {
-    win, doc, timers, rendered, controller, progress, storage,
-    setDate: (value) => { date = value; },
-    setCanRender: (value) => { canRender = value; },
-    tick() { const [id, timer] = timers.entries().next().value; timers.delete(id); timer.callback(); }
+    win,
+    doc,
+    timers,
+    rendered,
+    controller,
+    progress,
+    storage,
+    setDate: (value) => {
+      date = value;
+    },
+    setCanRender: (value) => {
+      canRender = value;
+    },
+    tick() {
+      const [id, timer] = timers.entries().next().value;
+      timers.delete(id);
+      timer.callback();
+    },
   };
 }
 
@@ -277,13 +405,19 @@ test("rendered labels, source metadata and authored messages stay unambiguous", 
   const source = {
     hidden: true,
     setAttribute: (key, value) => attributes.set(key, value),
-    removeAttribute: (key) => { attributes.delete(key); delete source[key]; }
+    removeAttribute: (key) => {
+      attributes.delete(key);
+      delete source[key];
+    },
   };
-  const nodes = Object.fromEntries(["label", "text", "author"].map((key) => [`[data-insight-${key}]`, {}]));
+  const nodes = Object.fromEntries(
+    ["label", "text", "author"].map((key) => [`[data-insight-${key}]`, {}]),
+  );
   nodes["[data-insight-source]"] = source;
   const root = {
-    dataset: {}, classList: { remove() {}, add() {} },
-    querySelector: (selector) => nodes[selector]
+    dataset: {},
+    classList: { remove() {}, add() {} },
+    querySelector: (selector) => nodes[selector],
   };
   const fact = homeInsights.find((entry) => entry.type === "fact");
   renderHomeInsight(root, fact);
@@ -300,6 +434,9 @@ test("rendered labels, source metadata and authored messages stay unambiguous", 
   assert.equal(root.dataset.insightType, "humor");
   assert(nodes["[data-insight-author]"].textContent.includes("humor autoral"));
   const html = read("index.html");
-  assert.match(html, /id="home-insight" aria-live="off"/);
-  assert.match(html, /data-insight-source hidden target="_blank" rel="noopener noreferrer"/);
+  assert.match(html, /id="home-insight"\s+aria-live="off"/);
+  assert.match(
+    html,
+    /data-insight-source\s+hidden\s+target="_blank"\s+rel="noopener noreferrer"/,
+  );
 });

@@ -32,20 +32,30 @@
         <a class="page-back" href="index.html">← Voltar ao início</a>
         <span class="label label--cyan">MAPA DA JORNADA</span>
         <h1>Um passo de cada vez.<br /><span>Seu caminho em QA.</span></h1>
-        <p>Comece pelas quatro fases da base comum. Depois, escolha suas próximas práticas nas trilhas independentes e revisite o que já aprendeu.</p>
+        <p>
+          Comece pelas quatro fases da base comum. Depois, escolha suas próximas
+          práticas nas trilhas independentes e revisite o que já aprendeu.
+        </p>
       </header>
       <section class="home-journey page-section" id="jornada">
         <div class="container">
           <h2 class="sr-only">Mapa e progresso da jornada</h2>
           <a class="journey-next" id="journey-next" href="phase1.html">
-            <span><small>PRÓXIMA MISSÃO</small><strong id="journey-next-title">Fundamentos de QA</strong></span>
+            <span
+              ><small>PRÓXIMA MISSÃO</small
+              ><strong id="journey-next-title">Fundamentos de QA</strong></span
+            >
             <span id="journey-next-action">Continuar missão →</span>
           </a>
           <div class="journey-overview" aria-label="Progresso geral da jornada">
             <div class="journey-overview__copy">
               <span class="journey-overview__eyebrow">PROGRESSO GERAL</span>
-              <strong id="journey-progress-label">0 de 0 missões concluídas</strong>
-              <span id="journey-progress-description">Sua primeira missão está pronta.</span>
+              <strong id="journey-progress-label"
+                >0 de 0 missões concluídas</strong
+              >
+              <span id="journey-progress-description"
+                >Sua primeira missão está pronta.</span
+              >
             </div>
             <div class="journey-overview__meter">
               <div
@@ -59,16 +69,29 @@
               >
                 <span id="journey-progress-bar"></span>
               </div>
-              <a class="journey-overview__hub" id="tracks-hub-link" href="phase4.html">
+              <a
+                class="journey-overview__hub"
+                id="tracks-hub-link"
+                href="phase4.html"
+              >
                 Hub de trilhas <span aria-hidden="true">→</span>
               </a>
             </div>
           </div>
 
-          <p class="sr-only" id="journey-live-status" role="status" aria-live="polite"></p>
+          <p
+            class="sr-only"
+            id="journey-live-status"
+            role="status"
+            aria-live="polite"
+          ></p>
           <div class="journey-groups" id="journey-groups"></div>
 
-          <section class="completed-missions" id="completed-missions" aria-labelledby="completed-missions-title">
+          <section
+            class="completed-missions"
+            id="completed-missions"
+            aria-labelledby="completed-missions-title"
+          >
             <button
               class="completed-missions__toggle"
               id="completed-missions-toggle"
@@ -78,9 +101,15 @@
             >
               <span>
                 <small>HISTÓRICO</small>
-                <strong id="completed-missions-title">Missões concluídas</strong>
+                <strong id="completed-missions-title"
+                  >Missões concluídas</strong
+                >
               </span>
-              <span class="completed-missions__count" id="completed-missions-count">0</span>
+              <span
+                class="completed-missions__count"
+                id="completed-missions-count"
+                >0</span
+              >
             </button>
             <div
               class="completed-missions__content"
@@ -91,7 +120,8 @@
               <div class="completed-missions__inner">
                 <div class="completed-missions__body">
                   <p id="completed-missions-empty">
-                    Suas missões concluídas aparecerão aqui para você revisitar quando quiser.
+                    Suas missões concluídas aparecerão aqui para você revisitar
+                    quando quiser.
                   </p>
                   <ul id="completed-missions-list"></ul>
                 </div>
@@ -101,7 +131,12 @@
         </div>
       </section>
 
-      <noscript><p class="container">Ative o JavaScript para consultar seu progresso e as missões disponíveis.</p></noscript>
+      <noscript
+        ><p class="container">
+          Ative o JavaScript para consultar seu progresso e as missões
+          disponíveis.
+        </p></noscript
+      >
     </main>
     <qa-toast></qa-toast>
     <qa-footer></qa-footer>

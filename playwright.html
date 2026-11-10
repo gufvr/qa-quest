@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Monte locators e assertions Playwright em uma simulação local do QA Quest, com apostila gratuita e diagnóstico guiado."
+    />
+    <title>Playwright — QA Quest</title>
+    <link rel="icon" type="image/png" href="qaquest.png" />
+    <script>
+      try {
+        document.documentElement.dataset.theme =
+          localStorage.getItem("qa-quest-theme") || "dark";
+      } catch {
+        document.documentElement.dataset.theme = "dark";
+      }
+    </script>
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/playwright.css" />
+  </head>
+  <body class="playwright-page">
+    <a class="skip-link" href="#pw-main">Ir para a missão</a>
+    <qa-header variant="mission"></qa-header>
+    <main id="pw-main" class="pw-main container">
+      <header class="pw-intro">
+        <span class="label label--cyan">TRILHA 05 · MÓDULO 03</span>
+        <h1>Do locator à evidência.</h1>
+        <p>
+          Construa um teste Playwright, acompanhe a atualização do catálogo e
+          descubra por que uma falha não conta toda a história.
+        </p>
+        <p class="pw-small">
+          Ordem recomendada, não obrigatória:
+          <a href="automation-fundamentals.html">Fundamentos</a> →
+          <a href="cypress.html">Cypress</a> → Playwright.
+        </p>
+      </header>
+      <qa-support-material mission-id="playwright"></qa-support-material>
+      <section
+        id="pw-locked"
+        class="pw-panel"
+        hidden
+        aria-labelledby="pw-locked-title"
+      >
+        <h2 id="pw-locked-title">Conclua a Fase 4 para começar.</h2>
+        <p id="pw-locked-copy">
+          Nenhuma outra missão, extensão ou ferramenta instalada é obrigatória.
+          A apostila acima é livre.
+        </p>
+        <a class="button button--primary" href="jornada.html">Ver jornada</a>
+      </section>
+      <div id="pw-content" hidden>
+        <section
+          class="pw-panel pw-briefing"
+          aria-labelledby="pw-briefing-title"
+        >
+          <div>
+            <span class="label">FICTFVR · CANDIDATA FF-PW-2026.01</span>
+            <h2 id="pw-briefing-title">O clique terminou. E a atualização?</h2>
+            <p>
+              Selecione <strong>Acessórios</strong>, busque
+              <strong>Aurora</strong> e aplique. Quando a lista estiver pronta,
+              ela deve mostrar Mochila Aurora e Estojo Aurora, sem o eletrônico
+              Teclado Aurora.
+            </p>
+            <p class="pw-notice">
+              Simulação didática local. O QA Quest não executa Playwright,
+              código digitado, chamadas à FictFvr ou um Trace Viewer. A linha do
+              tempo usa dados fixos; seus tempos não medem seu dispositivo.
+            </p>
+            <details>
+              <summary>Como esta missão funciona</summary>
+              <p>
+                Monte a estrutura, associe locators, ordene ações, componha
+                assertions e compare três perfis. O exemplo exibido é código
+                para um projeto Playwright Test configurado externamente, não um
+                editor executável.
+              </p>
+              <p>
+                Até 100 XP: estrutura 10, locators 15, ações 15, assertions 20,
+                sincronização 15, diagnóstico 15 e revisão 10. Correção vale
+                metade do item. Pontos fracionários são mantidos na rodada; só o
+                total final é arredondado ao salvar, conforme o progresso atual.
+              </p>
+              <p>
+                Só a conclusão é salva. Sair ou recarregar reinicia a rodada em
+                andamento, não seu melhor resultado. Evidência incompleta não
+                reduz pontos. Instalar StepScript ou ler o PDF não muda seu XP.
+              </p>
+            </details>
+          </div>
+          <aside class="pw-objective">
+            <span>CONSTRUA · INVESTIGUE · REVISE</span
+            ><strong>7 etapas<br />100 XP</strong>
+            <p>
+              Um teste confiável procura evidências. Não tenta deixar todo
+              resultado verde.
+            </p>
+          </aside>
+        </section>
+        <section id="pw-workspace" aria-labelledby="pw-workspace-title">
+          <div class="pw-heading">
+            <h2 id="pw-workspace-title">Seu teste em construção</h2>
+            <span id="pw-progress-copy"></span>
+          </div>
+          <progress
+            id="pw-progress"
+            max="7"
+            value="0"
+            aria-label="Etapas concluídas"
+          >
+            0 de 7
+          </progress>
+          <ol
+            id="pw-checkpoints"
+            class="pw-checkpoints"
+            aria-label="Etapas da missão"
+          ></ol>
+          <div class="pw-workspace-grid">
+            <section class="pw-panel pw-task" aria-labelledby="pw-step-title">
+              <span id="pw-step-label" class="label label--cyan"></span>
+              <h3 id="pw-step-title" tabindex="-1"></h3>
+              <p id="pw-instruction"></p>
+              <div id="pw-run-controls" class="pw-actions" hidden></div>
+              <button
+                id="pw-counterexample"
+                class="button button--ghost"
+                type="button"
+                hidden
+              >
+                Simular 2 cards, um eletrônico
+              </button>
+              <p
+                id="pw-counterexample-result"
+                class="pw-notice"
+                role="status"
+                hidden
+              ></p>
+              <form id="pw-answer">
+                <fieldset id="pw-fieldset" aria-labelledby="pw-step-title">
+                  <div id="pw-controls"></div>
+                </fieldset>
+                <button
+                  id="pw-check"
+                  class="button button--primary"
+                  type="submit"
+                >
+                  Conferir etapa
+                </button>
+              </form>
+              <p
+                id="pw-feedback"
+                class="pw-feedback"
+                role="status"
+                aria-atomic="true"
+              ></p>
+              <button
+                id="pw-next"
+                class="button button--primary"
+                type="button"
+                hidden
+              >
+                Próxima etapa →
+              </button>
+            </section>
+            <div class="pw-reference-column">
+              <section class="pw-panel" aria-labelledby="pw-preview-title">
+                <div class="pw-heading">
+                  <h3 id="pw-preview-title">FictFvr · catálogo</h3>
+                  <span class="pw-badge">REFERÊNCIA INTERATIVA</span>
+                </div>
+                <p class="pw-small">
+                  Experimente sem pontuação. Os controles abaixo não alteram as
+                  evidências capturadas pelas fixtures.
+                </p>
+                <form id="pw-preview-form">
+                  <div class="pw-field">
+                    <label for="pw-category">Categoria</label>
+                    <select id="pw-category" data-testid="category-filter">
+                      <option value="all">Todas</option>
+                      <option value="accessories">Acessórios</option>
+                      <option value="electronics">Eletrônicos</option>
+                    </select>
+                  </div>
+                  <div class="pw-field">
+                    <label for="pw-search">Buscar produto</label>
+                    <input
+                      id="pw-search"
+                      data-testid="catalog-search"
+                      type="search"
+                      placeholder="Ex.: Aurora"
+                      maxlength="60"
+                    />
+                  </div>
+                  <button
+                    class="button button--ghost"
+                    data-testid="apply-filter"
+                    type="submit"
+                  >
+                    Aplicar
+                  </button>
+                </form>
+                <p id="pw-preview-state" class="pw-small" role="status"></p>
+                <ul
+                  id="pw-products"
+                  class="pw-products"
+                  data-testid="catalog-results"
+                  data-state="ready"
+                ></ul>
+                <details>
+                  <summary>Comparar contratos de locators</summary>
+                  <pre
+                    tabindex="0"
+                    aria-label="Exemplos de locators compatíveis"
+                  ><code>page.getByLabel("Categoria", { exact: true })
+page.getByRole("searchbox", { name: "Buscar produto", exact: true })
+page.getByRole("button", { name: "Aplicar", exact: true })
+page.getByTestId("catalog-results")
+page.getByPlaceholder("Ex.: Aurora")</code></pre>
+                  <p class="pw-small">
+                    O último é uma alternativa válida para a busca quando o
+                    placeholder é o contrato desejado. Nome acessível, atributo
+                    de teste e seletor CSS respondem a intenções diferentes;
+                    nenhum substitui toda a avaliação de acessibilidade.
+                  </p>
+                </details>
+              </section>
+              <section class="pw-panel" aria-labelledby="pw-code-title">
+                <span class="label">EXEMPLO PLAYWRIGHT · NÃO EXECUTADO</span>
+                <h3 id="pw-code-title">catalog.spec.js</h3>
+                <p class="pw-small">
+                  Requer @playwright/test, baseURL e uma aplicação autorizada
+                  com /catalog. Trechos só aparecem após a decisão correta.
+                </p>
+                <pre
+                  tabindex="0"
+                  aria-label="Código Playwright em construção"
+                ><code id="pw-code"></code></pre>
+              </section>
+            </div>
+          </div>
+          <section
+            id="pw-evidence-panel"
+            class="pw-panel pw-evidence-panel"
+            hidden
+            aria-labelledby="pw-evidence-title"
+          >
+            <span class="label"
+              >LINHA DO TEMPO DIDÁTICA · NÃO É UM TRACE REAL</span
+            >
+            <h3 id="pw-evidence-title">
+              O que mudou entre a ação e a assertion?
+            </h3>
+            <p>
+              Perfis locais independentes. Observe estado, instante da leitura,
+              resultado esperado, observado e impacto antes de classificar.
+            </p>
+            <div id="pw-evidence" class="pw-evidence-grid"></div>
+            <details>
+              <summary>Inspecionar o trecho frágil</summary>
+              <pre
+                tabindex="0"
+                aria-label="Exemplo frágil: snapshot sem retry"
+              ><code id="pw-fragile-code"></code></pre>
+              <p class="pw-small">
+                count captura um número naquele instante. expect(snapshot).toBe
+                não reconsulta a lista. Isso é diferente de await
+                expect(cards).toHaveCount(2). expect.poll com uma função e
+                critério adequados é outra estratégia válida, não a causa da
+                falha deste perfil.
+              </p>
+            </details>
+          </section>
+        </section>
+        <section
+          id="pw-result"
+          class="pw-panel pw-result"
+          hidden
+          aria-labelledby="pw-result-title"
+        >
+          <span class="label label--cyan">MISSÃO PLAYWRIGHT CONCLUÍDA</span>
+          <h2 id="pw-result-title" tabindex="-1">
+            Você montou o teste e interpretou as evidências.
+          </h2>
+          <strong id="pw-result-xp" class="pw-result-xp"></strong>
+          <p id="pw-rounding"></p>
+          <p id="pw-result-summary"></p>
+          <qa-save-status></qa-save-status>
+          <p>
+            <strong>Parecer técnico:</strong> a referência atendeu a este caso.
+            A candidata FF-PW-2026.01 precisa de ajuste no filtro porque exibiu
+            um eletrônico após a atualização. A variante com snapshot prematuro
+            precisa de sincronização por condição.
+          </p>
+          <p>
+            <strong>Conclusão da missão não é aprovação para produção.</strong>
+            Você concluiu pelo diagnóstico correto. Nenhuma suíte real foi
+            executada; os casos simulados não substituem avaliação de riscos,
+            ambiente e critérios do negócio.
+          </p>
+          <details>
+            <summary>Rever pontos, decisões e evidências</summary>
+            <ol id="pw-result-records"></ol>
+            <div id="pw-result-evidence" class="pw-evidence-grid"></div>
+          </details>
+          <div class="pw-actions">
+            <button
+              id="pw-restart"
+              class="button button--primary"
+              type="button"
+            >
+              Repetir missão</button
+            ><a class="button button--ghost" href="tracks.html"
+              >Voltar às trilhas →</a
+            ><a class="button button--ghost" href="biblioteca.html"
+              >Biblioteca</a
+            >
+          </div>
+        </section>
+        <details class="pw-panel pw-reading">
+          <summary>Isolamento, retries e Trace Viewer no projeto real</summary>
+          <p>
+            Playwright Test fornece contextos de navegador isolados por teste.
+            Fixtures e beforeEach ajudam a preparar o caso. Projects definem
+            configurações; storageState pode reutilizar estado de autenticação e
+            não garante independência sozinho. Nada disso é configurado nesta
+            simulação.
+          </p>
+          <pre
+            tabindex="0"
+            aria-label="Exemplo externo de configuração de retries e trace"
+          ><code>import { defineConfig } from "@playwright/test";
+export default defineConfig({
+  retries: 1,
+  use: { trace: "on-first-retry" },
+});</code></pre>
+          <p>
+            No projeto real, essa configuração grava o trace na primeira nova
+            tentativa. Retry de um teste inteiro difere do retry de uma
+            assertion. O QA Quest não gera nem recebe trace.zip, gravações ou
+            scripts.
+          </p>
+        </details>
+        <qa-stepscript-support framework="playwright"></qa-stepscript-support>
+        <details class="pw-reading">
+          <summary>Fontes oficiais gratuitas</summary>
+          <ul>
+            <li>
+              <a
+                href="https://playwright.dev/docs/writing-tests"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Estrutura de testes</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://playwright.dev/docs/locators"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Locators</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://playwright.dev/docs/actionability"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Auto-waiting e actionability</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://playwright.dev/docs/test-assertions"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Assertions e polling</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://playwright.dev/docs/browser-contexts"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Isolamento</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://playwright.dev/docs/trace-viewer"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Trace Viewer no Playwright real</a
+              >
+            </li>
+          </ul>
+        </details>
+      </div>
+    </main>
+    <qa-footer></qa-footer>
+    <script type="module" src="pages/playwright.js"></script>
+  </body>
+</html>

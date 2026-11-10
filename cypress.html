@@ -1,14 +1,21 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Construa e revise um teste Cypress em uma simulação didática local do QA Quest, com apostila gratuita." />
+    <meta
+      name="description"
+      content="Construa e revise um teste Cypress em uma simulação didática local do QA Quest, com apostila gratuita."
+    />
     <title>Cypress — QA Quest</title>
     <link rel="icon" type="image/png" href="qaquest.png" />
     <script>
-      try { document.documentElement.dataset.theme = localStorage.getItem("qa-quest-theme") || "dark"; }
-      catch { document.documentElement.dataset.theme = "dark"; }
+      try {
+        document.documentElement.dataset.theme =
+          localStorage.getItem("qa-quest-theme") || "dark";
+      } catch {
+        document.documentElement.dataset.theme = "dark";
+      }
     </script>
     <link rel="stylesheet" href="styles/global.css" />
     <link rel="stylesheet" href="styles/cypress.css" />
@@ -20,37 +27,101 @@
       <header class="cy-intro">
         <span class="label label--cyan">TRILHA 05 · MÓDULO 02</span>
         <h1>Do cenário ao spec.</h1>
-        <p>Monte um teste Cypress e descubra o que uma falha está dizendo: o produto quebrou, ou o teste observou na hora errada?</p>
-        <a class="cy-text-link" href="automation-fundamentals.html">Recomendado antes: Fundamentos da Automação →</a>
+        <p>
+          Monte um teste Cypress e descubra o que uma falha está dizendo: o
+          produto quebrou, ou o teste observou na hora errada?
+        </p>
+        <a class="cy-text-link" href="automation-fundamentals.html"
+          >Recomendado antes: Fundamentos da Automação →</a
+        >
       </header>
 
       <qa-support-material mission-id="cypress"></qa-support-material>
-      <section id="cy-locked" class="cy-panel" hidden aria-labelledby="cy-locked-title">
+      <section
+        id="cy-locked"
+        class="cy-panel"
+        hidden
+        aria-labelledby="cy-locked-title"
+      >
         <h2 id="cy-locked-title">Conclua a Fase 4 para começar.</h2>
-        <p id="cy-locked-copy">Não é obrigatório concluir Fundamentos ou outra trilha. A apostila acima é livre e opcional.</p>
+        <p id="cy-locked-copy">
+          Não é obrigatório concluir Fundamentos ou outra trilha. A apostila
+          acima é livre e opcional.
+        </p>
         <a class="button button--primary" href="jornada.html">Ver jornada</a>
       </section>
 
       <div id="cy-content" hidden>
-        <section class="cy-panel cy-briefing" aria-labelledby="cy-briefing-title">
+        <section
+          class="cy-panel cy-briefing"
+          aria-labelledby="cy-briefing-title"
+        >
           <div>
             <span class="label">FICTFVR · CANDIDATA FF-CY-2026.01</span>
             <h2 id="cy-briefing-title">Um filtro, três diagnósticos.</h2>
-            <p>Ao selecionar <strong>Acessórios</strong>, buscar <strong>Aurora</strong> e aplicar, a lista pronta deve conter somente acessórios. A massa fixa contém dois acessórios e um eletrônico, todos com Aurora no nome.</p>
-            <p class="cy-notice">Simulação local: nenhum Cypress é instalado ou executado. O código é um exemplo para um projeto configurado, não um editor executável. Os resultados são fixtures preparadas, não chamadas a fictfvr.test.</p>
-            <details><summary>Comandos, limites e pontuação</summary>
-              <p><code>describe</code> agrupa; <code>it</code> define um caso. <code>cy.get</code> consulta por seletor; <code>cy.contains</code> encontra por texto; <code>should</code> faz assertions. <code>select</code>, <code>type</code> e <code>click</code> são ações.</p>
-              <p>Consultas e assertions podem ser reavaliadas até passar ou atingir o timeout. Isso não significa clicar repetidamente: ações não são repetidas como assertions. Uma espera fixa não garante que a aplicação terminou.</p>
-              <p>Até 100 XP: regra 10, estrutura 10, seletor 10, ações 20, assertions 20, diagnóstico 20 e revisão 10. Etapa corrigida vale metade. Só a conclusão é salva; sair ou recarregar reinicia a rodada, não o melhor resultado.</p>
+            <p>
+              Ao selecionar <strong>Acessórios</strong>, buscar
+              <strong>Aurora</strong> e aplicar, a lista pronta deve conter
+              somente acessórios. A massa fixa contém dois acessórios e um
+              eletrônico, todos com Aurora no nome.
+            </p>
+            <p class="cy-notice">
+              Simulação local: nenhum Cypress é instalado ou executado. O código
+              é um exemplo para um projeto configurado, não um editor
+              executável. Os resultados são fixtures preparadas, não chamadas a
+              fictfvr.test.
+            </p>
+            <details>
+              <summary>Comandos, limites e pontuação</summary>
+              <p>
+                <code>describe</code> agrupa; <code>it</code> define um caso.
+                <code>cy.get</code> consulta por seletor;
+                <code>cy.contains</code> encontra por texto;
+                <code>should</code> faz assertions. <code>select</code>,
+                <code>type</code> e <code>click</code> são ações.
+              </p>
+              <p>
+                Consultas e assertions podem ser reavaliadas até passar ou
+                atingir o timeout. Isso não significa clicar repetidamente:
+                ações não são repetidas como assertions. Uma espera fixa não
+                garante que a aplicação terminou.
+              </p>
+              <p>
+                Até 100 XP: regra 10, estrutura 10, seletor 10, ações 20,
+                assertions 20, diagnóstico 20 e revisão 10. Etapa corrigida vale
+                metade. Só a conclusão é salva; sair ou recarregar reinicia a
+                rodada, não o melhor resultado.
+              </p>
             </details>
           </div>
-          <div class="cy-objective"><span>CONSTRUA · OBSERVE · REVISE</span><strong>7 etapas<br>100 XP</strong><p>A referência pode passar e a candidata falhar. Seu objetivo é interpretar corretamente.</p></div>
+          <div class="cy-objective">
+            <span>CONSTRUA · OBSERVE · REVISE</span
+            ><strong>7 etapas<br />100 XP</strong>
+            <p>
+              A referência pode passar e a candidata falhar. Seu objetivo é
+              interpretar corretamente.
+            </p>
+          </div>
         </section>
 
         <section id="cy-workspace" aria-labelledby="cy-workspace-title">
-          <div class="cy-section-heading"><h2 id="cy-workspace-title">Seu teste em construção</h2><span id="cy-progress-copy"></span></div>
-          <progress id="cy-progress" max="7" value="0" aria-label="Etapas concluídas">0 de 7</progress>
-          <ol id="cy-checkpoints" class="cy-checkpoints" aria-label="Etapas da missão"></ol>
+          <div class="cy-section-heading">
+            <h2 id="cy-workspace-title">Seu teste em construção</h2>
+            <span id="cy-progress-copy"></span>
+          </div>
+          <progress
+            id="cy-progress"
+            max="7"
+            value="0"
+            aria-label="Etapas concluídas"
+          >
+            0 de 7
+          </progress>
+          <ol
+            id="cy-checkpoints"
+            class="cy-checkpoints"
+            aria-label="Etapas da missão"
+          ></ol>
           <div class="cy-workspace-grid">
             <section class="cy-panel cy-task" aria-labelledby="cy-step-title">
               <span id="cy-step-label" class="label label--cyan"></span>
@@ -58,60 +129,220 @@
               <p id="cy-instruction"></p>
               <div id="cy-run-controls" class="cy-run-controls" hidden></div>
               <form id="cy-answer">
-                <fieldset id="cy-answer-fieldset" aria-labelledby="cy-step-title"><div id="cy-answer-controls"></div></fieldset>
-                <button id="cy-check" class="button button--primary" type="submit">Conferir etapa</button>
+                <fieldset
+                  id="cy-answer-fieldset"
+                  aria-labelledby="cy-step-title"
+                >
+                  <div id="cy-answer-controls"></div>
+                </fieldset>
+                <button
+                  id="cy-check"
+                  class="button button--primary"
+                  type="submit"
+                >
+                  Conferir etapa
+                </button>
               </form>
-              <p id="cy-feedback" class="cy-feedback" role="status" aria-atomic="true"></p>
-              <button id="cy-next" class="button button--primary" type="button" hidden>Próxima etapa →</button>
+              <p
+                id="cy-feedback"
+                class="cy-feedback"
+                role="status"
+                aria-atomic="true"
+              ></p>
+              <button
+                id="cy-next"
+                class="button button--primary"
+                type="button"
+                hidden
+              >
+                Próxima etapa →
+              </button>
             </section>
             <div class="cy-reference-column">
-              <section class="cy-panel cy-preview" aria-labelledby="cy-preview-title">
-                <div class="cy-section-heading"><h3 id="cy-preview-title">FictFvr · catálogo</h3><span class="cy-badge">REFERÊNCIA LOCAL</span></div>
-                <p class="cy-small">Experimente os controles. Esta área não altera XP nem as evidências das fixtures.</p>
+              <section
+                class="cy-panel cy-preview"
+                aria-labelledby="cy-preview-title"
+              >
+                <div class="cy-section-heading">
+                  <h3 id="cy-preview-title">FictFvr · catálogo</h3>
+                  <span class="cy-badge">REFERÊNCIA LOCAL</span>
+                </div>
+                <p class="cy-small">
+                  Experimente os controles. Esta área não altera XP nem as
+                  evidências das fixtures.
+                </p>
                 <form id="cy-preview-form">
-                  <label class="cy-field" for="cy-preview-category">Categoria<select id="cy-preview-category" data-testid="category-filter"><option value="all">Todas</option><option value="accessories">Acessórios</option><option value="electronics">Eletrônicos</option></select></label>
-                  <label class="cy-field" for="cy-preview-search">Buscar produto<input id="cy-preview-search" data-testid="catalog-search" type="search" placeholder="Ex.: Aurora" maxlength="60" /></label>
-                  <button class="button button--ghost" data-testid="apply-filter" type="submit">Aplicar</button>
+                  <label class="cy-field" for="cy-preview-category"
+                    >Categoria<select
+                      id="cy-preview-category"
+                      data-testid="category-filter"
+                    >
+                      <option value="all">Todas</option>
+                      <option value="accessories">Acessórios</option>
+                      <option value="electronics">Eletrônicos</option>
+                    </select></label
+                  >
+                  <label class="cy-field" for="cy-preview-search"
+                    >Buscar produto<input
+                      id="cy-preview-search"
+                      data-testid="catalog-search"
+                      type="search"
+                      placeholder="Ex.: Aurora"
+                      maxlength="60"
+                  /></label>
+                  <button
+                    class="button button--ghost"
+                    data-testid="apply-filter"
+                    type="submit"
+                  >
+                    Aplicar
+                  </button>
                 </form>
                 <p id="cy-preview-state" class="cy-small" role="status"></p>
-                <ul id="cy-products" data-testid="catalog-results" data-state="ready" class="cy-products"></ul>
-                <details><summary>Inspecionar o contrato dos elementos</summary><pre tabindex="0" aria-label="Trecho HTML simplificado do catálogo"><code>&lt;select data-testid="category-filter"&gt;…&lt;/select&gt;
+                <ul
+                  id="cy-products"
+                  data-testid="catalog-results"
+                  data-state="ready"
+                  class="cy-products"
+                ></ul>
+                <details>
+                  <summary>Inspecionar o contrato dos elementos</summary>
+                  <pre
+                    tabindex="0"
+                    aria-label="Trecho HTML simplificado do catálogo"
+                  ><code>&lt;select data-testid="category-filter"&gt;…&lt;/select&gt;
 &lt;input data-testid="catalog-search"&gt;
 &lt;button data-testid="apply-filter"&gt;Aplicar&lt;/button&gt;
 &lt;ul data-testid="catalog-results" data-state="ready"&gt;
   &lt;li data-testid="product-card"
       data-category="accessories"&gt;…&lt;/li&gt;
-&lt;/ul&gt;</code></pre><p class="cy-small">Contrato simplificado alinhado aos controles reais desta área. O spec usa /catalog como rota de exemplo em outro projeto.</p></details>
+&lt;/ul&gt;</code></pre>
+                  <p class="cy-small">
+                    Contrato simplificado alinhado aos controles reais desta
+                    área. O spec usa /catalog como rota de exemplo em outro
+                    projeto.
+                  </p>
+                </details>
               </section>
-              <section class="cy-panel cy-code-panel" aria-labelledby="cy-code-title">
-                <span class="label">EXEMPLO CYPRESS · NÃO EXECUTADO</span><h3 id="cy-code-title">catalog.cy.js</h3>
-                <pre tabindex="0" aria-label="Exemplo de código Cypress em construção"><code id="cy-code"></code></pre>
+              <section
+                class="cy-panel cy-code-panel"
+                aria-labelledby="cy-code-title"
+              >
+                <span class="label">EXEMPLO CYPRESS · NÃO EXECUTADO</span>
+                <h3 id="cy-code-title">catalog.cy.js</h3>
+                <pre
+                  tabindex="0"
+                  aria-label="Exemplo de código Cypress em construção"
+                ><code id="cy-code"></code></pre>
               </section>
             </div>
           </div>
-          <section id="cy-evidence-panel" class="cy-panel" hidden aria-labelledby="cy-evidence-title">
+          <section
+            id="cy-evidence-panel"
+            class="cy-panel"
+            hidden
+            aria-labelledby="cy-evidence-title"
+          >
             <h3 id="cy-evidence-title">Evidências, não adivinhações</h3>
-            <p>Três perfis fixos, preparados pelo laboratório. Os tempos são dados didáticos; não medem a velocidade do seu computador nem vêm da execução do spec. O perfil frágil lê um snapshot com <code>then</code> após <code>cy.wait(300)</code>, sem retry da verificação. Ele não usa o <code>should</code> confiável que você montou.</p>
+            <p>
+              Três perfis fixos, preparados pelo laboratório. Os tempos são
+              dados didáticos; não medem a velocidade do seu computador nem vêm
+              da execução do spec. O perfil frágil lê um snapshot com
+              <code>then</code> após <code>cy.wait(300)</code>, sem retry da
+              verificação. Ele não usa o <code>should</code> confiável que você
+              montou.
+            </p>
             <div id="cy-evidence" class="cy-evidence-grid"></div>
           </section>
         </section>
 
-        <section id="cy-result" class="cy-panel cy-result" hidden aria-labelledby="cy-result-title">
-          <span class="label label--cyan">MISSÃO CYPRESS CONCLUÍDA</span><h2 id="cy-result-title" tabindex="-1">Você construiu e revisou um spec.</h2>
-          <strong id="cy-result-xp" class="cy-result-xp"></strong><p id="cy-result-summary"></p><qa-save-status></qa-save-status>
-          <p><strong>Parecer técnico:</strong> a referência atende a este caso. A candidata FF-CY-2026.01 deve voltar para ajuste porque exibe um eletrônico após o filtro. A variante de teste com pausa fixa precisa de sincronização por condição.</p>
-          <p><strong>Conclusão não é aprovação para produção.</strong> Você concluiu ao interpretar as evidências e justificar o parecer. Nenhuma suíte real foi executada. Produção exige avaliação adicional de riscos, ambiente e critérios do negócio.</p>
-          <details><summary>Rever pontuação, decisões e evidências</summary><ol id="cy-result-records"></ol><div id="cy-result-evidence" class="cy-evidence-grid"></div></details>
-          <div class="cy-actions"><button id="cy-restart" class="button button--primary" type="button">Repetir missão</button><a class="button button--ghost" href="tracks.html">Voltar às trilhas →</a><a class="button button--ghost" href="biblioteca.html">Biblioteca</a></div>
+        <section
+          id="cy-result"
+          class="cy-panel cy-result"
+          hidden
+          aria-labelledby="cy-result-title"
+        >
+          <span class="label label--cyan">MISSÃO CYPRESS CONCLUÍDA</span>
+          <h2 id="cy-result-title" tabindex="-1">
+            Você construiu e revisou um spec.
+          </h2>
+          <strong id="cy-result-xp" class="cy-result-xp"></strong>
+          <p id="cy-result-summary"></p>
+          <qa-save-status></qa-save-status>
+          <p>
+            <strong>Parecer técnico:</strong> a referência atende a este caso. A
+            candidata FF-CY-2026.01 deve voltar para ajuste porque exibe um
+            eletrônico após o filtro. A variante de teste com pausa fixa precisa
+            de sincronização por condição.
+          </p>
+          <p>
+            <strong>Conclusão não é aprovação para produção.</strong> Você
+            concluiu ao interpretar as evidências e justificar o parecer.
+            Nenhuma suíte real foi executada. Produção exige avaliação adicional
+            de riscos, ambiente e critérios do negócio.
+          </p>
+          <details>
+            <summary>Rever pontuação, decisões e evidências</summary>
+            <ol id="cy-result-records"></ol>
+            <div id="cy-result-evidence" class="cy-evidence-grid"></div>
+          </details>
+          <div class="cy-actions">
+            <button
+              id="cy-restart"
+              class="button button--primary"
+              type="button"
+            >
+              Repetir missão</button
+            ><a class="button button--ghost" href="tracks.html"
+              >Voltar às trilhas →</a
+            ><a class="button button--ghost" href="biblioteca.html"
+              >Biblioteca</a
+            >
+          </div>
         </section>
 
         <qa-stepscript-support></qa-stepscript-support>
-        <details class="cy-sources"><summary>Fontes oficiais e gratuitas</summary><p>O conteúdo foi conferido na documentação do Cypress. Não é necessário instalar a ferramenta para concluir a missão.</p><ul>
-          <li><a href="https://docs.cypress.io/app/core-concepts/best-practices" target="_blank" rel="noopener noreferrer">Boas práticas e seletores</a></li>
-          <li><a href="https://docs.cypress.io/app/core-concepts/retry-ability" target="_blank" rel="noopener noreferrer">Retry-ability: consultas, assertions e ações</a></li>
-          <li><a href="https://docs.cypress.io/api/commands/should" target="_blank" rel="noopener noreferrer">should e seus callbacks</a></li>
-          <li><a href="https://docs.cypress.io/app/core-concepts/test-isolation" target="_blank" rel="noopener noreferrer">Isolamento de testes</a></li>
-        </ul></details>
+        <details class="cy-sources">
+          <summary>Fontes oficiais e gratuitas</summary>
+          <p>
+            O conteúdo foi conferido na documentação do Cypress. Não é
+            necessário instalar a ferramenta para concluir a missão.
+          </p>
+          <ul>
+            <li>
+              <a
+                href="https://docs.cypress.io/app/core-concepts/best-practices"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Boas práticas e seletores</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://docs.cypress.io/app/core-concepts/retry-ability"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Retry-ability: consultas, assertions e ações</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://docs.cypress.io/api/commands/should"
+                target="_blank"
+                rel="noopener noreferrer"
+                >should e seus callbacks</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://docs.cypress.io/app/core-concepts/test-isolation"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Isolamento de testes</a
+              >
+            </li>
+          </ul>
+        </details>
       </div>
     </main>
     <qa-footer></qa-footer>

@@ -1,11 +1,59 @@
-.how-content { background: var(--navy-900); }
-.how-steps { display: grid; gap: 28px; margin: 28px 0 40px; padding: 0; list-style: none; }
-.how-steps li { display: grid; grid-template-columns: 44px minmax(0, 1fr); align-items: start; gap: 16px; }
-.how-steps li > span { display: grid; place-items: center; min-height: 44px; color: var(--purple-bright); background: rgba(139, 92, 246, 0.1); border: 1px solid var(--line); border-radius: 12px; font-weight: 800; }
-.how-steps h3, .how-cards h3 { font-size: 1.1rem; }
-.how-steps p, .how-cards p { margin: 8px 0 0; color: var(--muted); font-size: 0.9rem; }
-.how-cards { display: grid; gap: 16px; }
-.how-cards article { padding: 24px; background: var(--home-surface); border: 1px solid var(--home-border); border-radius: 18px; }
-.how-cards .label { display: block; margin-bottom: 12px; }
-.how-cards .page-back { margin: 12px 0 0; color: var(--cyan-soft); }
-@media (min-width: 760px) { .how-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.how-content {
+  background: var(--navy-900);
+}
+.how-steps {
+  display: grid;
+  gap: 28px;
+  margin: 28px 0 40px;
+  padding: 0;
+  list-style: none;
+}
+.how-steps li {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  align-items: start;
+  gap: 16px;
+}
+.how-steps li > span {
+  display: grid;
+  place-items: center;
+  min-height: 44px;
+  color: var(--purple-bright);
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  font-weight: 800;
+}
+.how-steps h3,
+.how-cards h3 {
+  font-size: 1.1rem;
+}
+.how-steps p,
+.how-cards p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.how-cards {
+  display: grid;
+  gap: 16px;
+}
+.how-cards article {
+  padding: 24px;
+  background: var(--home-surface);
+  border: 1px solid var(--home-border);
+  border-radius: 18px;
+}
+.how-cards .label {
+  display: block;
+  margin-bottom: 12px;
+}
+.how-cards .page-back {
+  margin: 12px 0 0;
+  color: var(--cyan-soft);
+}
+@media (min-width: 760px) {
+  .how-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

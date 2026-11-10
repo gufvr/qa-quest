@@ -1,18 +1,25 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Escolha sua trilha de aprendizado em QA após concluir as quatro fases iniciais do QA Quest." />
+    <meta
+      name="description"
+      content="Escolha sua trilha de aprendizado em QA após concluir as quatro fases iniciais do QA Quest."
+    />
     <title>Trilhas de aprendizado — QA Quest</title>
     <link rel="icon" type="image/png" href="qaquest.png" />
     <link rel="apple-touch-icon" href="qaquest.png" />
     <script>
-      document.documentElement.dataset.theme = localStorage.getItem("qa-quest-theme") || "dark";
+      document.documentElement.dataset.theme =
+        localStorage.getItem("qa-quest-theme") || "dark";
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles/global.css" />
     <link rel="stylesheet" href="styles/tracks.css" />
   </head>
@@ -24,8 +31,16 @@
       <section class="tracks-locked" id="tracks-locked" hidden>
         <span class="label label--cyan">PRÓXIMA ETAPA</span>
         <h1>As trilhas começam após a Fase 4.</h1>
-        <p>Conclua o plano de testes para escolher o próximo tema. Seu progresso nas fases continua salvo.</p>
-        <a class="button button--primary" id="tracks-locked-link" href="index.html">Voltar à jornada</a>
+        <p>
+          Conclua o plano de testes para escolher o próximo tema. Seu progresso
+          nas fases continua salvo.
+        </p>
+        <a
+          class="button button--primary"
+          id="tracks-locked-link"
+          href="index.html"
+          >Voltar à jornada</a
+        >
       </section>
 
       <div id="tracks-content" hidden>
@@ -33,7 +48,10 @@
           <div>
             <span class="label label--cyan">DEPOIS DA BASE COMUM</span>
             <h1>Escolha sua próxima trilha.</h1>
-            <p>As Fases 1–4 deram a base. Agora você pode explorar as áreas de QA no seu ritmo, sem precisar terminar uma trilha para abrir outra.</p>
+            <p>
+              As Fases 1–4 deram a base. Agora você pode explorar as áreas de QA
+              no seu ritmo, sem precisar terminar uma trilha para abrir outra.
+            </p>
           </div>
           <div class="tracks-summary" aria-label="Progresso geral">
             <strong id="tracks-total-xp">0 XP</strong>
@@ -47,65 +65,161 @@
               <span class="label">TRILHAS DISPONÍVEIS PARA EXPLORAR</span>
               <h2 id="tracks-choose-title">Por onde você quer seguir?</h2>
             </div>
-            <p>A escolha só muda a trilha em destaque. Você pode alternar quando quiser.</p>
+            <p>
+              A escolha só muda a trilha em destaque. Você pode alternar quando
+              quiser.
+            </p>
           </div>
 
           <div class="tracks-grid">
-            <button class="track-card" type="button" data-track="flows" aria-controls="track-details" aria-pressed="false">
+            <button
+              class="track-card"
+              type="button"
+              data-track="flows"
+              aria-controls="track-details"
+              aria-pressed="false"
+            >
               <span class="track-card__eyebrow">TRILHA 01 · FLUXOS</span>
               <strong>Fluxos e investigação</strong>
-              <span class="track-card__description">Investigue comportamentos e acompanhe jornadas completas.</span>
-              <span class="track-card__sequence">Funcional → Exploratório → E2E</span>
-              <span class="track-card__footer"><span data-track-count>0 / 3 temas</span><span>Ver trilha →</span></span>
-              <span class="track-card__bar" aria-hidden="true"><i data-track-bar></i></span>
+              <span class="track-card__description"
+                >Investigue comportamentos e acompanhe jornadas completas.</span
+              >
+              <span class="track-card__sequence"
+                >Funcional → Exploratório → E2E</span
+              >
+              <span class="track-card__footer"
+                ><span data-track-count>0 / 3 temas</span
+                ><span>Ver trilha →</span></span
+              >
+              <span class="track-card__bar" aria-hidden="true"
+                ><i data-track-bar></i
+              ></span>
             </button>
-            <button class="track-card" type="button" data-track="release" aria-controls="track-details" aria-pressed="false">
+            <button
+              class="track-card"
+              type="button"
+              data-track="release"
+              aria-controls="track-details"
+              aria-pressed="false"
+            >
               <span class="track-card__eyebrow">TRILHA 02 · RELEASE</span>
               <strong>Confiança na release</strong>
-              <span class="track-card__description">Decida o que verificar antes e depois de uma entrega.</span>
-              <span class="track-card__sequence">Smoke → Sanidade → Regressão</span>
-              <span class="track-card__footer"><span data-track-count>0 / 3 temas</span><span>Ver trilha →</span></span>
-              <span class="track-card__bar" aria-hidden="true"><i data-track-bar></i></span>
+              <span class="track-card__description"
+                >Decida o que verificar antes e depois de uma entrega.</span
+              >
+              <span class="track-card__sequence"
+                >Smoke → Sanidade → Regressão</span
+              >
+              <span class="track-card__footer"
+                ><span data-track-count>0 / 3 temas</span
+                ><span>Ver trilha →</span></span
+              >
+              <span class="track-card__bar" aria-hidden="true"
+                ><i data-track-bar></i
+              ></span>
             </button>
-            <button class="track-card" type="button" data-track="specialized" aria-controls="track-details" aria-pressed="false">
-              <span class="track-card__eyebrow">TRILHA 03 · ESPECIALIDADES</span>
+            <button
+              class="track-card"
+              type="button"
+              data-track="specialized"
+              aria-controls="track-details"
+              aria-pressed="false"
+            >
+              <span class="track-card__eyebrow"
+                >TRILHA 03 · ESPECIALIDADES</span
+              >
               <strong>Qualidade especializada</strong>
-              <span class="track-card__description">Conheça riscos de desempenho e proteção de dados.</span>
+              <span class="track-card__description"
+                >Conheça riscos de desempenho e proteção de dados.</span
+              >
               <span class="track-card__sequence">Performance ↔ Segurança</span>
-              <span class="track-card__footer"><span data-track-count>0 / 2 temas</span><span>Ver trilha →</span></span>
-              <span class="track-card__bar" aria-hidden="true"><i data-track-bar></i></span>
+              <span class="track-card__footer"
+                ><span data-track-count>0 / 2 temas</span
+                ><span>Ver trilha →</span></span
+              >
+              <span class="track-card__bar" aria-hidden="true"
+                ><i data-track-bar></i
+              ></span>
             </button>
-            <button class="track-card" type="button" data-track="professional" aria-controls="track-details" aria-pressed="false">
-              <span class="track-card__eyebrow">TRILHA 04 · PRÁTICA PROFISSIONAL</span>
+            <button
+              class="track-card"
+              type="button"
+              data-track="professional"
+              aria-controls="track-details"
+              aria-pressed="false"
+            >
+              <span class="track-card__eyebrow"
+                >TRILHA 04 · PRÁTICA PROFISSIONAL</span
+              >
               <strong>Prática Profissional</strong>
-              <span class="track-card__description">Comunique defeitos e valide contratos de serviços com evidências.</span>
-              <span class="track-card__sequence">Relato de Defeitos e Evidências → Testes de API</span>
-              <span class="track-card__footer"><span data-track-count>0 / 2 temas</span><span>Ver trilha →</span></span>
-              <span class="track-card__bar" aria-hidden="true"><i data-track-bar></i></span>
+              <span class="track-card__description"
+                >Comunique defeitos e valide contratos de serviços com
+                evidências.</span
+              >
+              <span class="track-card__sequence"
+                >Relato de Defeitos e Evidências → Testes de API</span
+              >
+              <span class="track-card__footer"
+                ><span data-track-count>0 / 2 temas</span
+                ><span>Ver trilha →</span></span
+              >
+              <span class="track-card__bar" aria-hidden="true"
+                ><i data-track-bar></i
+              ></span>
             </button>
-            <button class="track-card" type="button" data-track="automation" aria-controls="track-details" aria-pressed="false">
+            <button
+              class="track-card"
+              type="button"
+              data-track="automation"
+              aria-controls="track-details"
+              aria-pressed="false"
+            >
               <span class="track-card__eyebrow">TRILHA 05 · AUTOMAÇÃO</span>
               <strong>Automação de Testes Web</strong>
-              <span class="track-card__description">Construa e revise um teste antes de escolher uma ferramenta.</span>
-              <span class="track-card__sequence">Fundamentos da Automação → Cypress</span>
-              <span class="track-card__footer"><span data-track-count>0 / 2 temas</span><span>Ver trilha →</span></span>
-              <span class="track-card__bar" aria-hidden="true"><i data-track-bar></i></span>
+              <span class="track-card__description"
+                >Construa e revise um teste antes de escolher uma
+                ferramenta.</span
+              >
+              <span class="track-card__sequence"
+                >Fundamentos da Automação → Cypress → Playwright</span
+              >
+              <span class="track-card__footer"
+                ><span data-track-count>0 / 3 temas</span
+                ><span>Ver trilha →</span></span
+              >
+              <span class="track-card__bar" aria-hidden="true"
+                ><i data-track-bar></i
+              ></span>
             </button>
           </div>
         </section>
 
-        <section class="track-details" id="track-details" aria-labelledby="track-details-title" aria-live="polite">
+        <section
+          class="track-details"
+          id="track-details"
+          aria-labelledby="track-details-title"
+          aria-live="polite"
+        >
           <div class="track-details__top">
             <div>
               <span class="label label--cyan" id="track-details-label"></span>
               <h2 id="track-details-title"></h2>
               <p id="track-details-objective"></p>
             </div>
-            <div class="track-details__progress"><strong id="track-details-progress"></strong><span>temas explorados</span></div>
+            <div class="track-details__progress">
+              <strong id="track-details-progress"></strong
+              ><span>temas explorados</span>
+            </div>
           </div>
           <div class="track-details__facts">
-            <p><strong>Pré-requisito</strong><span id="track-details-prerequisite"></span></p>
-            <p><strong>Ordem sugerida</strong><span id="track-details-order"></span></p>
+            <p>
+              <strong>Pré-requisito</strong
+              ><span id="track-details-prerequisite"></span>
+            </p>
+            <p>
+              <strong>Ordem sugerida</strong
+              ><span id="track-details-order"></span>
+            </p>
           </div>
           <ol class="track-modules" id="track-modules"></ol>
           <p class="track-details__note" id="track-details-note"></p>

@@ -1,61 +1,74 @@
-// Tasks and state machine for the Phase 3 Simulator.
 const tasks = [
   {
     type: "VALIDAÇÃO DE CAMPOS",
     title: "Teste os campos obrigatórios",
-    instruction: "Sem preencher e-mail ou senha, tente entrar na aplicação e observe as validações apresentadas.",
+    instruction:
+      "Sem preencher e-mail ou senha, tente entrar na aplicação e observe as validações apresentadas.",
     expectedEvents: ["empty_submit"],
     points: 10,
-    feedback: "Os dois campos foram sinalizados sem enviar a autenticação. Essa ação cobriu o comportamento obrigatório do formulário."
+    feedback:
+      "Os dois campos foram sinalizados sem enviar a autenticação. Essa ação cobriu o comportamento obrigatório do formulário.",
   },
   {
     type: "PARTIÇÃO INVÁLIDA",
     title: "Valide o formato do e-mail",
-    instruction: "Informe um endereço incompleto, como “qa@”, preencha qualquer senha e tente entrar.",
+    instruction:
+      "Informe um endereço incompleto, como “qa@”, preencha qualquer senha e tente entrar.",
     expectedEvents: ["invalid_email"],
     points: 10,
-    feedback: "A aplicação impediu o envio e informou que o formato do endereço não é válido."
+    feedback:
+      "A aplicação impediu o envio e informou que o formato do endereço não é válido.",
   },
   {
     type: "CREDENCIAL INVÁLIDA",
     title: "Teste uma senha incorreta",
-    instruction: "Use o e-mail válido do briefing, informe uma senha diferente de QA@2026 e tente entrar.",
+    instruction:
+      "Use o e-mail válido do briefing, informe uma senha diferente de QA@2026 e tente entrar.",
     expectedEvents: ["wrong_password"],
     points: 10,
-    feedback: "O acesso foi negado, mas a mensagem específica confirma que o e-mail existe. Guarde essa observação para comparar com o próximo teste."
+    feedback:
+      "O acesso foi negado, mas a mensagem específica confirma que o e-mail existe. Guarde essa observação para comparar com o próximo teste.",
   },
   {
     type: "TESTE NEGATIVO",
     title: "Investigue a mensagem de autenticação",
-    instruction: "Tente entrar com inexistente@fictfvr.test e qualquer senha. Compare a resposta com a tarefa anterior.",
+    instruction:
+      "Tente entrar com inexistente@fictfvr.test e qualquer senha. Compare a resposta com a tarefa anterior.",
     expectedEvents: ["unknown_user"],
     points: 10,
-    feedback: "Defeito observado: mensagens diferentes revelam se uma conta está cadastrada. O comportamento esperado seria uma resposta genérica."
+    feedback:
+      "Defeito observado: mensagens diferentes revelam se uma conta está cadastrada. O comportamento esperado seria uma resposta genérica.",
   },
   {
     type: "CAMINHO FELIZ",
     title: "Execute o login com sucesso",
-    instruction: "Use qa@fictfvr.test e QA@2026 para confirmar o fluxo principal de autenticação.",
+    instruction:
+      "Use qa@fictfvr.test e QA@2026 para confirmar o fluxo principal de autenticação.",
     expectedEvents: ["login_success", "login_success_with_remember"],
     points: 10,
-    feedback: "O caminho principal levou à área autenticada e apresentou uma confirmação clara ao usuário."
+    feedback:
+      "O caminho principal levou à área autenticada e apresentou uma confirmação clara ao usuário.",
   },
   {
     type: "PERSISTÊNCIA DE SESSÃO",
     title: "Teste a opção “Lembrar acesso”",
-    instruction: "Marque “Lembrar acesso”, entre com as credenciais válidas e clique em “Simular nova visita”.",
+    instruction:
+      "Marque “Lembrar acesso”, entre com as credenciais válidas e clique em “Simular nova visita”.",
     expectedEvents: ["remember_bug"],
     points: 20,
-    feedback: "Defeito reproduzido: mesmo com a preferência marcada, a nova visita exige autenticação novamente."
+    feedback:
+      "Defeito reproduzido: mesmo com a preferência marcada, a nova visita exige autenticação novamente.",
   },
   {
     type: "RELATO DE DEFEITO",
     title: "Registre o problema encontrado",
-    instruction: "Documente o defeito da opção “Lembrar acesso” com título, severidade, passos e resultados esperado e obtido.",
+    instruction:
+      "Documente o defeito da opção “Lembrar acesso” com título, severidade, passos e resultados esperado e obtido.",
     expectedEvents: ["valid_bug_report"],
     points: 30,
-    feedback: "Relatório completo. A evidência contém informações suficientes para reprodução, análise e priorização pelo time."
-  }
+    feedback:
+      "Relatório completo. A evidência contém informações suficientes para reprodução, análise e priorização pelo time.",
+  },
 ];
 
 const actionLabels = {
@@ -66,7 +79,7 @@ const actionLabels = {
   login_success: "Login válido executado",
   login_success_with_remember: "Login válido com preferência de sessão",
   remember_bug: "Nova visita simulada; sessão não foi mantida",
-  valid_bug_report: "Relatório de defeito enviado"
+  valid_bug_report: "Relatório de defeito enviado",
 };
 
 const validEmail = "qa@fictfvr.test";
@@ -137,7 +150,9 @@ function showFieldError(input, errorElement, message) {
 
 function showLoginMessage(message, success = false) {
   loginMessage.hidden = false;
-  loginMessage.className = success ? "login-message is-success" : "login-message";
+  loginMessage.className = success
+    ? "login-message is-success"
+    : "login-message";
   loginMessage.textContent = message;
 }
 
@@ -168,15 +183,18 @@ function renderActionLog() {
     empty.textContent = "Suas interações aparecerão aqui.";
     actionList.append(empty);
   } else {
-    actions.slice(-6).reverse().forEach((action) => {
-      const item = document.createElement("li");
-      const label = document.createElement("span");
-      const time = document.createElement("time");
-      label.textContent = action.label;
-      time.textContent = action.time;
-      item.append(document.createTextNode(""), label, time);
-      actionList.append(item);
-    });
+    actions
+      .slice(-6)
+      .reverse()
+      .forEach((action) => {
+        const item = document.createElement("li");
+        const label = document.createElement("span");
+        const time = document.createElement("time");
+        label.textContent = action.label;
+        time.textContent = action.time;
+        item.append(document.createTextNode(""), label, time);
+        actionList.append(item);
+      });
   }
 
   actionCount.textContent = `${actions.length} ${actions.length === 1 ? "ação" : "ações"}`;
@@ -187,7 +205,10 @@ function recordAction(eventName) {
   actions.push({
     event: eventName,
     label: actionLabels[eventName] || "Interação registrada",
-    time: now.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" })
+    time: now.toLocaleTimeString("pt-BR", {
+      hour: "2-digit",
+      minute: "2-digit",
+    }),
   });
   renderActionLog();
   evaluateTask(eventName);
@@ -206,9 +227,10 @@ function evaluateTask(eventName) {
   taskFeedbackTitle.textContent = `Tarefa concluída · +${task.points} XP`;
   taskFeedbackText.textContent = task.feedback;
   nextTaskButton.hidden = false;
-  nextTaskButton.innerHTML = currentTask === tasks.length - 1
-    ? "Ver resultado <span aria-hidden=\"true\">→</span>"
-    : "Próxima tarefa <span aria-hidden=\"true\">→</span>";
+  nextTaskButton.innerHTML =
+    currentTask === tasks.length - 1
+      ? 'Ver resultado <span aria-hidden="true">→</span>'
+      : 'Próxima tarefa <span aria-hidden="true">→</span>';
   nextTaskButton.focus();
 }
 
@@ -273,7 +295,9 @@ function handleLoginSubmit(event) {
 
   const rememberRequested = rememberInput.checked;
   showLoggedView(rememberRequested);
-  recordAction(rememberRequested ? "login_success_with_remember" : "login_success");
+  recordAction(
+    rememberRequested ? "login_success_with_remember" : "login_success",
+  );
 }
 
 function simulateNewVisit() {
@@ -283,15 +307,17 @@ function simulateNewVisit() {
 }
 
 function validateBugReport() {
-  const fieldsAreComplete = bugTitle.value.trim().length >= 8
-    && bugSeverity.value
-    && bugSteps.value.trim().length >= 15
-    && bugExpected.value.trim().length >= 10
-    && bugActual.value.trim().length >= 10;
+  const fieldsAreComplete =
+    bugTitle.value.trim().length >= 8 &&
+    bugSeverity.value &&
+    bugSteps.value.trim().length >= 15 &&
+    bugExpected.value.trim().length >= 10 &&
+    bugActual.value.trim().length >= 10;
 
   if (!fieldsAreComplete) {
     bugReportError.hidden = false;
-    bugReportError.textContent = "Complete todos os campos com informações suficientes para reproduzir o defeito.";
+    bugReportError.textContent =
+      "Complete todos os campos com informações suficientes para reproduzir o defeito.";
     return false;
   }
 
@@ -303,7 +329,9 @@ function handleBugReport(event) {
   event.preventDefault();
   if (!validateBugReport()) return;
   recordAction("valid_bug_report");
-  [...bugReport.elements].forEach((element) => { element.disabled = true; });
+  [...bugReport.elements].forEach((element) => {
+    element.disabled = true;
+  });
 }
 
 function showResult() {
@@ -332,7 +360,9 @@ function restartSimulator() {
   actions = [];
   headerXp.textContent = "0";
   bugReport.reset();
-  [...bugReport.elements].forEach((element) => { element.disabled = false; });
+  [...bugReport.elements].forEach((element) => {
+    element.disabled = false;
+  });
   workspace.hidden = false;
   resultScreen.hidden = true;
   progressSaveStatus.reset();
