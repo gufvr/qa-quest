@@ -244,7 +244,7 @@ const score = () =>
   Object.values(state.reviewPoints).reduce((sum, points) => sum + points, 0);
 const pretty = (value) => JSON.stringify(value, null, 2);
 const fullPath = (test) => test.path + (test.query ? "?" + test.query : "");
-const requestUrl = (test) => "fictfvr.test" + fullPath(test);
+const requestUrl = (test) => "fikily.test" + fullPath(test);
 const requestText = (test) =>
   test.method +
   " " +

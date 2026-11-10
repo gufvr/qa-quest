@@ -166,7 +166,7 @@ rows(
     [155, 316],
 )
 box(
-    "Os casos fictícios da FictFvr",
+    "Os casos fictícios da Fikily",
     "<b>Regra A:</b> a quantidade já é um número inteiro. Aceitar de 1 a 5, inclusive; rejeitar os demais inteiros.<br/><br/><b>Regra B:</b> oferecer frete grátis somente se VIP estiver ativo <b>E</b> o subtotal for de pelo menos R$ 200,00. Nos demais casos, manter frete padrão.",
 )
 add(
@@ -238,7 +238,7 @@ section(
     "Uma tabela de decisão relaciona combinações de condições às ações esperadas. No formato abaixo, cada linha é uma regra. Todas as quatro combinações são viáveis. [1, seção 4.2.3]",
 )
 box(
-    "Regra B - frete da FictFvr",
+    "Regra B - frete da Fikily",
     "Frete grátis somente com <b>VIP ativo E subtotal de pelo menos R$ 200,00</b>. Não há outra condição. R$ 250,00 representa um subtotal que atende ao patamar; R$ 150,00 representa um que não atende.",
 )
 rows(

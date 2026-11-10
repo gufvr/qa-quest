@@ -5,7 +5,7 @@ const planningSteps = [
     shortTitle: "Objetivo",
     title: "Qual é o objetivo central deste plano?",
     instruction:
-      "Escolha a formulação que orienta melhor o esforço de teste do Checkout 3.0 da FictFvr.",
+      "Escolha a formulação que orienta melhor o esforço de teste do Checkout 3.0 da Fikily.",
     type: "single",
     min: 1,
     max: 1,

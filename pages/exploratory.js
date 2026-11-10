@@ -50,7 +50,7 @@ function setView(view) {
     element.hidden = element.dataset.shopView !== view;
   });
   document.querySelector("#shop-address").textContent =
-    `fictfvr.test/${view === "catalog" ? "catalog" : view}`;
+    `fikily.test/${view === "catalog" ? "catalog" : view}`;
 }
 
 function updateCart() {

@@ -420,7 +420,7 @@
     0 0 0 42px rgba(255, 255, 255, 0.025),
     0 0 0 84px rgba(255, 255, 255, 0.018);
 }
-.fictfvr-mark,
+.fikily-mark,
 .login-brand > span {
   display: grid;
   place-items: center;
@@ -589,7 +589,7 @@
   font-weight: 700;
   cursor: pointer;
 }
-.fictfvr-button {
+.fikily-button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -603,10 +603,10 @@
   font: 700 0.66rem "Manrope";
   cursor: pointer;
 }
-.fictfvr-button:hover {
+.fikily-button:hover {
   background: #5d34c9;
 }
-.fictfvr-button:focus-visible,
+.fikily-button:focus-visible,
 .fake-link:focus-visible {
   outline: 3px solid #56bac1;
   outline-offset: 2px;

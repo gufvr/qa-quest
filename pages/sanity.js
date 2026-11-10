@@ -223,7 +223,7 @@ function renderStep(focus = true) {
     element.hidden = element.dataset.sanityView !== view;
   });
   get("sanity-address").textContent =
-    "fictfvr.test/" + (view === "checkout" ? "checkout" : "cart");
+    "fikily.test/" + (view === "checkout" ? "checkout" : "cart");
   get("sanity-check-title").textContent = STEP_LABELS[state.step];
   const instructions = {
     open: "Com um item no carrinho, o Checkout deve abrir entrega e pagamento sem retornar 503.",

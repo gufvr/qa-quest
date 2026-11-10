@@ -197,7 +197,7 @@ add(
     "Monte um teste, acompanhe o estado da interface e investigue uma falha antes de decidir se o problema está no produto ou no teste."
 )
 box(
-    "O caso FictFvr",
+    "O caso Fikily",
     "Selecionar Acessórios, buscar Aurora e aplicar deve produzir uma lista pronta com Mochila Aurora e Estojo Aurora. Teclado Aurora é um eletrônico e não deve aparecer. Todos os dados são fictícios.",
 )
 rows(
@@ -238,7 +238,7 @@ section(
     "test e expect vêm de @playwright/test. test.describe agrupa casos; beforeEach prepara cada caso. async/await organiza operações assíncronas; Arrange, Act, Assert ajuda a separar preparação, ações e verificações. [1]",
 )
 code(
-    'import { test, expect } from "@playwright/test";\ntest.describe("Catálogo FictFvr", () => {\n  test.beforeEach(async ({ page }) => {\n    await page.goto("/catalog");\n  });\n  test("filtra acessórios", async ({ page }) => {\n    const category = page.getByLabel("Categoria");\n    await category.selectOption("accessories");\n  });\n});'
+    'import { test, expect } from "@playwright/test";\ntest.describe("Catálogo Fikily", () => {\n  test.beforeEach(async ({ page }) => {\n    await page.goto("/catalog");\n  });\n  test("filtra acessórios", async ({ page }) => {\n    const category = page.getByLabel("Categoria");\n    await category.selectOption("accessories");\n  });\n});'
 )
 add(
     "/catalog é uma rota de exemplo: exige baseURL e uma aplicação que implemente esse caminho. Não é uma URL pública oferecida pelo QA Quest.",

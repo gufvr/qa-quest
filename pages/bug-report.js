@@ -1,7 +1,7 @@
 const REPORT = Object.freeze({
   title: "[Catálogo] Filtro Acessórios mantém Mochila Notebook nos resultados",
   environment:
-    "Homologação fictícia · FF-2026.10.2 · navegador de laboratório desktop (simulado) · fictfvr.test/catalog.",
+    "Homologação fictícia · FF-2026.10.2 · navegador de laboratório desktop (simulado) · fikily.test/catalog.",
   preconditions:
     "Catálogo disponível, sem login obrigatório; Mochila Urbana em Acessórios e Mochila Notebook em Tecnologia. Referência FF-2026.09: filtro restringia a categoria.",
   expected:
@@ -542,7 +542,7 @@ get("report-restart").addEventListener("click", () => {
 get("report-download").addEventListener("click", () => {
   if (!ensureAccess() || !state.finished) return;
   const content =
-    "FF-QA-014 · Relato didático local da FictFvr\n\n" +
+    "FF-QA-014 · Relato didático local da Fikily\n\n" +
     [...state.fields]
       .map(([label, value]) => label + "\n" + value)
       .join("\n\n");
@@ -551,7 +551,7 @@ get("report-download").addEventListener("click", () => {
   );
   const link = document.createElement("a");
   link.href = url;
-  link.download = "fictfvr-FF-QA-014.txt";
+  link.download = "fikily-FF-QA-014.txt";
   document.body.append(link);
   link.click();
   link.remove();

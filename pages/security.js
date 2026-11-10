@@ -1,11 +1,11 @@
 const ANA = Object.freeze({
   name: "Ana Lima",
-  email: "cliente.ana@fictfvr.test",
+  email: "cliente.ana@fikily.test",
   order: "FF-ANA-1042",
 });
 const BRUNO = Object.freeze({
   name: "Bruno Costa",
-  email: "cliente.bruno@fictfvr.test",
+  email: "cliente.bruno@fikily.test",
   order: "FF-BRU-2088",
   address: "Rua da Simulação, 20 — Cidade Exemplo",
   item: "1 × Mochila Notebook",
@@ -187,7 +187,7 @@ function canAct(id) {
 
 function sessionLabel() {
   return state.session === "ana"
-    ? "Sessão: Ana Lima · cliente.ana@fictfvr.test · autenticada (simulada)."
+    ? "Sessão: Ana Lima · cliente.ana@fikily.test · autenticada (simulada)."
     : "Sessão: sem autenticação.";
 }
 
@@ -225,7 +225,7 @@ function snapshot(id) {
       action:
         "Abrir Minha Conta sem sessão; entrar com a conta fornecida de Ana; conferir Minha Conta e Histórico.",
       observed:
-        "Sem sessão, a tela negou o acesso (401 simulado), sem dados privados. Após o login válido, exibiu Ana Lima, cliente.ana@fictfvr.test e somente FF-ANA-1042 · 1 × Mochila Urbana · R$ 189,90.",
+        "Sem sessão, a tela negou o acesso (401 simulado), sem dados privados. Após o login válido, exibiu Ana Lima, cliente.ana@fikily.test e somente FF-ANA-1042 · 1 × Mochila Urbana · R$ 189,90.",
       impact:
         "O controle inicial protege a área privada; Ana consegue consultar os próprios dados. Este resultado não comprova o isolamento dos pedidos de outras contas.",
       learning:
@@ -274,7 +274,7 @@ function snapshot(id) {
     identity:
       "Sem sessão; tentativa com Ana e senha incorreta, seguida de conta inexistente.",
     action:
-      "Comparar os erros de cliente.ana@fictfvr.test e cliente.inexistente@fictfvr.test, ambos com credenciais inválidas.",
+      "Comparar os erros de cliente.ana@fikily.test e cliente.inexistente@fikily.test, ambos com credenciais inválidas.",
     observed:
       "Conta cadastrada + senha incorreta: “Senha incorreta”. Conta inexistente: “Esta conta não existe”. As duas entradas foram negadas e nenhuma sessão foi criada.",
     impact:
@@ -379,7 +379,7 @@ function renderStep(focus = true) {
   get("security-check-title").textContent = test.title;
   get("security-instruction").textContent = test.instruction;
   get("security-expected").textContent = test.expected;
-  get("security-address").textContent = "fictfvr.test/" + test.path;
+  get("security-address").textContent = "fikily.test/" + test.path;
   get("security-session").textContent = sessionLabel();
   if (test.id === "write")
     showForeignOrder(get("security-write-order"), state.address);
@@ -471,7 +471,7 @@ function initializeMission() {
     get("security-login").hidden = true;
     get("security-own-panels").hidden = false;
     get("security-session").textContent = sessionLabel();
-    get("security-address").textContent = "fictfvr.test/account";
+    get("security-address").textContent = "fikily.test/account";
     get("security-check-own").focus();
   });
   get("security-check-own").addEventListener("click", () => {

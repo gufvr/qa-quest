@@ -24,7 +24,7 @@ class QATestDesignPractice extends HTMLElement {
           <span class="test-design-practice__chevron" aria-hidden="true">⌄</span>
         </summary>
         <div class="test-design-practice__body">
-          <p class="test-design-practice__intro">Cenários fictícios da FictFvr. Comece pela regra; depois escolha os dados. Você pode conferir e corrigir quantas vezes quiser. Recarregar a página reinicia apenas esta prática temporária.</p>
+          <p class="test-design-practice__intro">Cenários fictícios da Fikily. Comece pela regra; depois escolha os dados. Você pode conferir e corrigir quantas vezes quiser. Recarregar a página reinicia apenas esta prática temporária.</p>
           <section class="test-design-card test-design-panel" aria-labelledby="td-equivalence-title">
             <span class="label label--cyan">01 · AGRUPAR</span>
             <h3 id="td-equivalence-title">Partição de equivalência</h3>

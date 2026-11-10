@@ -106,7 +106,7 @@ export const AUTOMATION_STEPS = Object.freeze(
 );
 
 export const ACTIONS = Object.freeze([
-  Object.freeze({ id: "open", label: "Abrir o catálogo da FictFvr" }),
+  Object.freeze({ id: "open", label: "Abrir o catálogo da Fikily" }),
   Object.freeze({ id: "filter", label: "Selecionar a categoria Acessórios" }),
   Object.freeze({
     id: "wait",

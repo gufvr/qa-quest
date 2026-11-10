@@ -33,7 +33,7 @@ const tasks = [
     type: "TESTE NEGATIVO",
     title: "Investigue a mensagem de autenticação",
     instruction:
-      "Tente entrar com inexistente@fictfvr.test e qualquer senha. Compare a resposta com a tarefa anterior.",
+      "Tente entrar com inexistente@fikily.test e qualquer senha. Compare a resposta com a tarefa anterior.",
     expectedEvents: ["unknown_user"],
     points: 10,
     feedback:
@@ -43,7 +43,7 @@ const tasks = [
     type: "CAMINHO FELIZ",
     title: "Execute o login com sucesso",
     instruction:
-      "Use qa@fictfvr.test e QA@2026 para confirmar o fluxo principal de autenticação.",
+      "Use qa@fikily.test e QA@2026 para confirmar o fluxo principal de autenticação.",
     expectedEvents: ["login_success", "login_success_with_remember"],
     points: 10,
     feedback:
@@ -82,7 +82,7 @@ const actionLabels = {
   valid_bug_report: "Relatório de defeito enviado",
 };
 
-const validEmail = "qa@fictfvr.test";
+const validEmail = "qa@fikily.test";
 const validPassword = "QA@2026";
 
 const workspace = document.querySelector("#simulator-workspace");

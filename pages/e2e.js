@@ -152,7 +152,7 @@ function setView(view, focus = true) {
     post: "confirmation/FF-314",
   };
   document.querySelector("#e2e-address").textContent =
-    "fictfvr.test/" + paths[view];
+    "fikily.test/" + paths[view];
   const instructions = {
     catalog: "Escolha a Mochila Urbana para iniciar um único pedido.",
     cart: "Escolha de 1 a 3 unidades, aplique FVR10 e confira o total.",

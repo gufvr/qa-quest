@@ -305,7 +305,7 @@ export function buildCypressCode(session) {
     "// Exemplo Cypress · não executado pelo QA Quest",
     "// Requer projeto/servidor local com baseUrl e /catalog.",
     done("structure")
-      ? 'describe("Catálogo FictFvr", () => {\n  it("filtra acessórios por busca", () => {\n    cy.visit("/catalog")'
+      ? 'describe("Catálogo Fikily", () => {\n  it("filtra acessórios por busca", () => {\n    cy.visit("/catalog")'
       : "// TODO: escolher describe, it e cy.visit",
     done("selector")
       ? '    // Contrato: [data-testid="category-filter"]'

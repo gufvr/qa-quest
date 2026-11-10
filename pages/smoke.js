@@ -12,9 +12,9 @@ const checks = [
     status: "200 OK",
     outcome: "pass",
     observed:
-      "A home abriu com a marca FictFvr, navegação e botão de acesso ao catálogo.",
+      "A home abriu com a marca Fikily, navegação e botão de acesso ao catálogo.",
     detail:
-      "FictFvr\nInício · Catálogo · Carrinho · Minha conta\n[Ver produtos]",
+      "Fikily\nInício · Catálogo · Carrinho · Minha conta\n[Ver produtos]",
     impact: "O cliente consegue acessar a loja e localizar o catálogo.",
   },
   {
@@ -80,7 +80,7 @@ const checks = [
       "A conta fictícia de teste acessa Minha conta e recebe uma confirmação de sessão.",
     previewTitle: "Acesse sua conta de teste.",
     previewDescription:
-      "Use a conta preparada cliente@fictfvr.test. Nenhuma senha ou informação pessoal é necessária.",
+      "Use a conta preparada cliente@fikily.test. Nenhuma senha ou informação pessoal é necessária.",
     status: "200 OK",
     outcome: "pass",
     observed:
@@ -171,7 +171,7 @@ function makeEvidence(check) {
   summary.append(title);
   evidence.append(summary);
   const facts = [
-    ["Ação", check.action + " em fictfvr.test" + check.path],
+    ["Ação", check.action + " em fikily.test" + check.path],
     ["Esperado", check.expected],
     ["Observado", check.status + ". " + check.observed],
     ["Impacto", check.impact],
@@ -266,7 +266,7 @@ function selectCheck(id, focus = true) {
   const recorded = state.records.has(id);
   get("check-title").textContent = check.title;
   get("check-expected").textContent = "Esperado: " + check.expected;
-  get("smoke-address").textContent = "fictfvr.test" + check.path;
+  get("smoke-address").textContent = "fikily.test" + check.path;
   get("preview-kicker").textContent = check.title.toLocaleUpperCase("pt-BR");
   get("preview-title").textContent = check.previewTitle;
   get("preview-description").textContent = check.previewDescription;
@@ -385,7 +385,7 @@ function initializeMission() {
       const messages = [];
       if (!correctDecision)
         messages.push(
-          "Reprove o Smoke Test e bloqueie apenas esta release, FF-2026.10: o checkout retorna 503 e a API de pedidos retorna 500. As falhas críticas impedem liberar testes aprofundados; isso não reprova a FictFvr como produto.",
+          "Reprove o Smoke Test e bloqueie apenas esta release, FF-2026.10: o checkout retorna 503 e a API de pedidos retorna 500. As falhas críticas impedem liberar testes aprofundados; isso não reprova a Fikily como produto.",
         );
       if (!correctImpact)
         messages.push(

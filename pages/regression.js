@@ -95,7 +95,7 @@ function checkFor(id) {
         "Use a conta fictícia fornecida para entrar e verificar o painel.",
       baseline:
         "A conta de teste entrava e o painel era exibido com acesso autorizado.",
-      action: "Entrar com qa@fictfvr.test e abrir o painel.",
+      action: "Entrar com qa@fikily.test e abrir o painel.",
       expected: "Acesso autorizado e painel da Pessoa de teste carregado.",
       observed:
         "Acesso autorizado. O painel da Pessoa de teste carregou com pedidos e endereços.",
@@ -280,7 +280,7 @@ function renderStep(focus = true) {
   document.querySelectorAll("[data-regression-view]").forEach((section) => {
     section.hidden = section.dataset.regressionView !== id;
   });
-  get("regression-address").textContent = "fictfvr.test/" + check.path;
+  get("regression-address").textContent = "fikily.test/" + check.path;
   get("regression-case-id").textContent =
     "CASO REG-0" + (state.step + 1) + " · REPETIR E COMPARAR";
   get("regression-check-title").textContent = check.title;
@@ -333,13 +333,12 @@ function initializeMission() {
     event.preventDefault();
     if (!canAct("login")) return;
     if (
-      get("regression-email").value.trim().toLowerCase() !==
-        "qa@fictfvr.test" ||
+      get("regression-email").value.trim().toLowerCase() !== "qa@fikily.test" ||
       get("regression-password").value !== "Fvr123!"
     ) {
       feedback(
         "regression-login-feedback",
-        "Use apenas a conta de teste fornecida: qa@fictfvr.test · Fvr123!.",
+        "Use apenas a conta de teste fornecida: qa@fikily.test · Fvr123!.",
       );
       return;
     }

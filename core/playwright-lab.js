@@ -333,7 +333,7 @@ export function buildPlaywrightCode(session) {
   const done = (id) => session.awards[id] !== undefined;
   return [
     'import { test, expect } from "@playwright/test";',
-    'test.describe("Catálogo FictFvr", () => {',
+    'test.describe("Catálogo Fikily", () => {',
     ...(done("structure")
       ? [
           "  test.beforeEach(async ({ page }) => {",

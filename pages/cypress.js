@@ -177,7 +177,7 @@ function renderStep(focus = true) {
   get("cy-run-controls").hidden = step.kind !== "diagnosis";
   if (step.kind === "structure") {
     select("Agrupar os casos", "suite", [
-      ["describe", 'describe("Catálogo FictFvr", () => { … })'],
+      ["describe", 'describe("Catálogo Fikily", () => { … })'],
       ["should", 'should("Catálogo", …)'],
     ]);
     select("Definir um caso", "test", [

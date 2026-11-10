@@ -189,7 +189,7 @@ add(
 )
 story.append(Spacer(1, 18))
 box(
-    "O caso FictFvr",
+    "O caso Fikily",
     "Ao selecionar Acessórios, buscar Aurora e aplicar, a lista pronta deve exibir somente acessórios. A massa fictícia tem Mochila Aurora, Estojo Aurora e Teclado Aurora. O último é um eletrônico.",
 )
 rows(
@@ -217,7 +217,7 @@ section(
     "Um spec é um arquivo de teste. describe organiza um grupo de casos e it descreve um comportamento verificável. cy.visit abre a página do ambiente configurado. [1, 2]",
 )
 code(
-    'describe("Catálogo FictFvr", () => {\n  it("filtra acessórios por busca", () => {\n    cy.visit("/catalog")\n    // Ações e assertions ficam aqui.\n  })\n})'
+    'describe("Catálogo Fikily", () => {\n  it("filtra acessórios por busca", () => {\n    cy.visit("/catalog")\n    // Ações e assertions ficam aqui.\n  })\n})'
 )
 add("Ambiente e dados controlados", "SubGuide")
 add(

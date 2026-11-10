@@ -190,7 +190,7 @@ add(
     "Controle um navegador em um projeto externo, observe o estado da interface e investigue uma falha antes de atribuir sua causa."
 )
 box(
-    "O caso FictFvr",
+    "O caso Fikily",
     "Um carrinho fictício tem subtotal de R$ 200,00. O cupom FVR10 deve mostrar Cupom aplicado, desconto de R$ 20,00 e total de R$ 180,00 quando o resultado estiver pronto.",
 )
 rows(
@@ -224,7 +224,7 @@ code(
     "async function testCoupon() {\n"
     "  let driver;\n"
     "  try {\n"
-    "    const labUrl = process.env.FICTFVR_LAB_URL;\n"
+    "    const labUrl = process.env.FIKILY_LAB_URL;\n"
     '    if (!labUrl) throw new Error("Configure o laboratório.");\n'
     '    driver = await new Builder().forBrowser("chrome").build();\n'
     "    await driver.get(labUrl);\n"
@@ -238,7 +238,7 @@ code(
     "});"
 )
 add(
-    "FICTFVR_LAB_URL representa uma aplicação autorizada que implementa os controles do exercício. Não é uma URL pública oferecida pelo QA Quest. [2]",
+    "FIKILY_LAB_URL representa uma aplicação autorizada que implementa os controles do exercício. Não é uma URL pública oferecida pelo QA Quest. [2]",
     "SmallSE",
 )
 rows(
@@ -267,7 +267,7 @@ code(
     "async function testCoupon() {\n"
     "  let driver;\n"
     "  try {\n"
-    "    const url = process.env.FICTFVR_LAB_URL;\n"
+    "    const url = process.env.FIKILY_LAB_URL;\n"
     '    if (!url) throw new Error("Configure o laboratório.");\n'
     '    driver = await new Builder().forBrowser("chrome").build();\n'
     "    await driver.get(url);\n"

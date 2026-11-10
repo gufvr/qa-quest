@@ -321,10 +321,10 @@ export function buildSeleniumCode(session) {
     "async function testCoupon() {",
     "  let driver;",
     "  try {",
-    "    if (!process.env.FICTFVR_LAB_URL)",
+    "    if (!process.env.FIKILY_LAB_URL)",
     '      throw new Error("Configure uma URL de laboratório autorizada.");',
     '    driver = await new Builder().forBrowser("chrome").build();',
-    "    await driver.get(process.env.FICTFVR_LAB_URL);",
+    "    await driver.get(process.env.FIKILY_LAB_URL);",
     ...(done("locators")
       ? [
           '    const coupon = await driver.findElement(By.id("coupon-code"));',

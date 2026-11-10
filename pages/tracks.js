@@ -61,7 +61,7 @@ const tracks = {
       "Concluir as Fases 1–4. O defeito de referência está incluído; nenhuma outra trilha é obrigatória.",
     order:
       "Relato de Defeitos e Evidências → Testes de API. É uma recomendação: as duas missões são independentes após a Fase 4.",
-    note: "Relato de Defeitos e Testes de API estão disponíveis. Prepare um relato ou compare requisições e respostas com contratos locais da FictFvr.",
+    note: "Relato de Defeitos e Testes de API estão disponíveis. Prepare um relato ou compare requisições e respostas com contratos locais da Fikily.",
     modules: [
       {
         id: "bug-report",
