@@ -97,6 +97,7 @@ function oldSave(version) {
     .filter(
       (id) =>
         id !== "playwright" &&
+        id !== "selenium" &&
         (version >= 7 || id !== "cypress") &&
         (version >= 6 || id !== "automation-fundamentals"),
     );
@@ -241,12 +242,12 @@ test("reference data agrees with Cypress but remains local and unchanged by lear
   assert.equal(filterPlaywrightCatalog().length, 3);
 });
 
-test("versions 5, 6 and 7 migrate once to 8 without losing previous missions, XP, dates or preferences", () => {
+test("versions 5, 6 and 7 migrate once to 9 without losing previous missions, XP, dates or preferences", () => {
   for (const version of [5, 6, 7]) {
     const saved = oldSave(version),
       h = harness(saved),
       state = plain(h.progress.getState());
-    assert.equal(state.version, 8);
+    assert.equal(state.version, 9);
     for (const field of [
       "missions",
       "totalXp",
@@ -256,7 +257,7 @@ test("versions 5, 6 and 7 migrate once to 8 without losing previous missions, XP
     ])
       assert.deepEqual(state[field], saved[field], field);
     assert.equal(h.progress.getMission("playwright"), null);
-    assert.equal(h.progress.getTrackProgress("automation").total, 3);
+    assert.equal(h.progress.getTrackProgress("automation").total, 4);
     assert.deepEqual(
       plain(h.progress.getTrackProgress("automation").completedModules),
       saved.tracks.automation.completedModules,
@@ -325,11 +326,11 @@ test("future saves stay byte-identical and unavailable storage retains the memor
   assert.equal(memory.getState().totalXp, 500);
 });
 
-test("canonical catalog, hub, library, PDF and multipage Vite agree without publishing Selenium", () => {
+test("canonical catalog, hub, library, PDF and multipage Vite agree with Selenium", () => {
   const track = learningTracks.find((track) => track.id === "automation");
   assert.deepEqual(
     track.modules.map((item) => item.id),
-    ["automation-fundamentals", "cypress", "playwright"],
+    ["automation-fundamentals", "cypress", "playwright", "selenium"],
   );
   const materials = getSupportMaterials(PLAYWRIGHT_MISSION_ID);
   assert.equal(materials.length, 1);
@@ -361,11 +362,8 @@ test("canonical catalog, hub, library, PDF and multipage Vite agree without publ
         existsSync(new URL(value, new URL("playwright.html", root))),
         value,
       );
-  assert.deepEqual(getSupportMaterials("selenium"), []);
-  assert.equal(
-    track.modules.some((item) => item.id === "selenium"),
-    false,
-  );
+  assert.equal(getSupportMaterials("selenium").length, 1);
+  assert(track.modules.some((item) => item.id === "selenium"));
 });
 
 test("StepScript supports Playwright and keeps Cypress as the safe default", () => {

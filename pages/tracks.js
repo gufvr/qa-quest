@@ -7,8 +7,8 @@ const tracks = {
     prerequisite:
       "Concluir as Fases 1–4. Nenhuma outra trilha ou ferramenta instalada é necessária.",
     order:
-      "Fundamentos da Automação → Cypress → Playwright. Ordem recomendada, não obrigatória. Selenium WebDriver ainda é planejado.",
-    note: "Três módulos disponíveis, com simulações locais. Construa comandos ou locators e interprete evidências. O StepScript é opcional nos módulos Cypress e Playwright, sem efeito no XP.",
+      "Fundamentos da Automação → Cypress → Playwright → Selenium WebDriver. Ordem recomendada, não obrigatória.",
+    note: "Quatro módulos disponíveis, com simulações locais. Construa comandos ou locators e interprete evidências. O StepScript é opcional nos módulos Cypress e Playwright, sem efeito no XP.",
     modules: [
       {
         id: "automation-fundamentals",
@@ -36,6 +36,16 @@ const tracks = {
         detail:
           "Monte locators, ações e assertions web-first; compare três perfis e revise o parecer.",
         href: "playwright.html",
+        availableLabel: "Disponível agora",
+        linkLabel: "Iniciar missão →",
+        completedLinkLabel: "Repetir missão →",
+      },
+      {
+        id: "selenium",
+        title: "Selenium WebDriver",
+        detail:
+          "Aplique um cupom fictício, sincronize o resultado e compare três evidências.",
+        href: "selenium.html",
         availableLabel: "Disponível agora",
         linkLabel: "Iniciar missão →",
         completedLinkLabel: "Repetir missão →",

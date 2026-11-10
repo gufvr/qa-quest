@@ -90,7 +90,7 @@ function oldSave(version) {
     uniqueMissions
       .filter(
         (item) =>
-          !["cypress", "playwright"].includes(item.progressId) &&
+          !["cypress", "playwright", "selenium"].includes(item.progressId) &&
           (version >= 6 || item.progressId !== "automation-fundamentals"),
       )
       .map((item, index) => [
@@ -197,7 +197,7 @@ test("version 5 and 6 migrate once, preserving old missions, XP, attempts, activ
     const save = oldSave(version),
       h = harness(save),
       state = plain(h.progress.getState());
-    assert.equal(state.version, 8);
+    assert.equal(state.version, 9);
     for (const field of [
       "missions",
       "totalXp",
@@ -207,7 +207,7 @@ test("version 5 and 6 migrate once, preserving old missions, XP, attempts, activ
     ])
       assert.deepEqual(state[field], save[field], field);
     assert.equal(h.progress.getMission("cypress"), null);
-    assert.equal(h.progress.getTrackProgress("automation").total, 3);
+    assert.equal(h.progress.getTrackProgress("automation").total, 4);
     assert.equal(h.storage.get("qa-quest-theme"), "light");
     assert.equal(h.storage.get("unrelated-key"), "untouched");
     assert.equal(h.writes(), 1);
@@ -269,7 +269,7 @@ test("mission, hub, journey, library, PDF and Vite share the canonical Cypress I
   const track = learningTracks.find((track) => track.id === "automation");
   assert.deepEqual(
     track.modules.map((item) => item.id),
-    ["automation-fundamentals", "cypress", "playwright"],
+    ["automation-fundamentals", "cypress", "playwright", "selenium"],
   );
   assert.equal(track.modules[1].route, "cypress.html");
   const material = getSupportMaterials(CYPRESS_MISSION_ID);
@@ -290,11 +290,7 @@ test("mission, hub, journey, library, PDF and Vite share the canonical Cypress I
   );
   assert(read("vite.config.js").includes('cypress: "cypress.html"'));
   assert(read("pages/tracks.js").includes('id: "cypress"'));
-  for (const future of ["selenium"])
-    assert.equal(
-      track.modules.some((item) => item.id === future),
-      false,
-    );
+  assert(track.modules.some((item) => item.id === "selenium"));
   const html = read("cypress.html");
   assert(
     html.indexOf('mission-id="cypress"') <

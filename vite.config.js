@@ -26,6 +26,7 @@ export default defineConfig({
         automationFundamentals: "automation-fundamentals.html",
         cypress: "cypress.html",
         playwright: "playwright.html",
+        selenium: "selenium.html",
       },
     },
   },

@@ -214,6 +214,16 @@ export const learningTracks = [
         type: "track",
         order: 3,
       },
+      {
+        id: "selenium",
+        progressId: "selenium",
+        title: "Selenium WebDriver",
+        description:
+          "Localize controles, sincronize o checkout e interprete valores de um cupom.",
+        route: "selenium.html",
+        type: "track",
+        order: 4,
+      },
     ],
   },
 ];
@@ -373,6 +383,17 @@ export const supportMaterials = [
       "Aula prática sobre locators, auto-waiting, assertions e diagnóstico de testes.",
     path: "materiais/qa-quest-playwright.pdf",
     filename: "qa-quest-playwright.pdf",
+    format: "PDF",
+    version: "1.0",
+  },
+  {
+    id: "selenium-guide",
+    missionId: "selenium",
+    title: "Selenium WebDriver",
+    description:
+      "Aula prática sobre sessões, localizadores, esperas explícitas e evidências.",
+    path: "materiais/qa-quest-selenium.pdf",
+    filename: "qa-quest-selenium.pdf",
     format: "PDF",
     version: "1.0",
   },

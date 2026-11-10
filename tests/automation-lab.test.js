@@ -29,7 +29,7 @@ const read = (file) => readFileSync(new URL(file, root), "utf8");
 const previousIds = uniqueMissions
   .filter(
     (mission) =>
-      ![AUTOMATION_MISSION_ID, "cypress", "playwright"].includes(
+      ![AUTOMATION_MISSION_ID, "cypress", "playwright", "selenium"].includes(
         mission.progressId,
       ),
   )
@@ -111,7 +111,7 @@ test("version 5 migration preserves all old missions, XP, attempts, dates and pr
   const saved = legacySave();
   const h = createProgress(saved);
   const state = plain(h.progress.getState());
-  assert.equal(state.version, 8);
+  assert.equal(state.version, 9);
   for (const key of [
     "missions",
     "totalXp",
@@ -192,7 +192,7 @@ test("new module is independent after phase 4; repeats add only best-result impr
   assert.equal(improved.gainedXp, 20);
   assert.equal(improved.attempts, 3);
   assert(progress.getMission(AUTOMATION_MISSION_ID).lastCompletedAt);
-  assert.equal(progress.getTrackProgress("automation").percentage, 33);
+  assert.equal(progress.getTrackProgress("automation").percentage, 25);
   for (const id of previousIds.filter((id) => !id.startsWith("phase")))
     assert.equal(progress.getMission(id), null);
   assert.equal(events(), 7);
@@ -256,10 +256,10 @@ test("catalog, progress, hub and Vite agree; future modules and unregistered PDF
       assert(read("pages/tracks.js").includes(`id: "${mission.id}"`));
   }
   const automation = learningTracks.find((track) => track.id === "automation");
-  assert.equal(automation.modules.length, 3);
+  assert.equal(automation.modules.length, 4);
   assert.equal(automation.modules[0].progressId, AUTOMATION_MISSION_ID);
   assert(read("vite.config.js").includes('"automation-fundamentals.html"'));
-  assert.deepEqual(getSupportMaterials("selenium"), []);
+  assert.equal(getSupportMaterials("selenium").length, 1);
   assert.equal(
     getLibraryGroups()
       .flatMap((group) => group.entries)

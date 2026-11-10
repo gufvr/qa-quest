@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Monte um teste Selenium WebDriver em uma simulação local, investigue um cupom e consulte uma apostila gratuita."
+    />
+    <title>Selenium WebDriver — QA Quest</title>
+    <link rel="icon" type="image/png" href="qaquest.png" />
+    <script>
+      try {
+        document.documentElement.dataset.theme =
+          localStorage.getItem("qa-quest-theme") || "dark";
+      } catch {
+        document.documentElement.dataset.theme = "dark";
+      }
+    </script>
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/selenium.css" />
+  </head>
+  <body class="selenium-page">
+    <a class="skip-link" href="#sel-main">Ir para a missão</a>
+    <qa-header variant="mission"></qa-header>
+    <main id="sel-main" class="sel-main container">
+      <header class="sel-intro">
+        <span class="label label--cyan">TRILHA 05 · MÓDULO 04</span>
+        <h1>Da sessão ao parecer.</h1>
+        <p>
+          Monte um teste Selenium WebDriver, observe o resultado de um cupom e
+          descubra quando a falha está no produto ou na sincronização.
+        </p>
+        <p class="sel-small">
+          Ordem sugerida, não obrigatória:
+          <a href="automation-fundamentals.html">Fundamentos</a> →
+          <a href="cypress.html">Cypress</a> →
+          <a href="playwright.html">Playwright</a> → Selenium.
+        </p>
+      </header>
+      <qa-support-material mission-id="selenium"></qa-support-material>
+      <section
+        id="sel-locked"
+        class="sel-panel"
+        hidden
+        aria-labelledby="sel-locked-title"
+      >
+        <h2 id="sel-locked-title">Conclua a Fase 4 para começar.</h2>
+        <p id="sel-locked-copy">
+          Nenhum módulo anterior ou ferramenta instalada é obrigatório. A
+          apostila acima é livre.
+        </p>
+        <a class="button button--primary" href="jornada.html">Ver jornada</a>
+      </section>
+      <div id="sel-content" hidden>
+        <section
+          class="sel-panel sel-briefing"
+          aria-labelledby="sel-briefing-title"
+        >
+          <div>
+            <span class="label">FICTFVR · CANDIDATA FF-SE-2026.01</span>
+            <h2 id="sel-briefing-title">“Cupom aplicado” basta?</h2>
+            <p>
+              Em um carrinho fictício de <strong>R$ 200,00</strong>, o cupom
+              <strong>FVR10</strong> deve reduzir <strong>R$ 20,00</strong> e
+              deixar o total em <strong>R$ 180,00</strong> quando o resultado
+              estiver pronto.
+            </p>
+            <p class="sel-notice">
+              Simulação local. O QA Quest não executa Selenium, navegador
+              automatizado, código do aluno ou checkout real. Tempos e estados
+              das evidências são fixos, não medições do seu dispositivo.
+            </p>
+            <details>
+              <summary>Como funciona a pontuação</summary>
+              <p>
+                Sete etapas e até 100 XP: estrutura 10, localizadores 15,
+                interações 15, espera 15, verificações 15, diagnóstico 20 e
+                revisão 10. Correções valem metade da etapa. Pontos fracionários
+                são mantidos até o arredondamento final do XP salvo.
+              </p>
+              <p>
+                Só a conclusão é salva. Sair ou recarregar reinicia a rodada
+                incompleta, sem perder seu melhor resultado. Evidência ainda não
+                observada não reduz pontos. A apostila é opcional.
+              </p>
+            </details>
+          </div>
+          <aside class="sel-objective">
+            <span>LOCALIZE · AGUARDE · INVESTIGUE</span>
+            <strong>7 etapas<br />100 XP</strong>
+            <p>
+              Uma mensagem positiva não comprova que o desconto chegou ao total.
+            </p>
+          </aside>
+        </section>
+        <section id="sel-workspace" aria-labelledby="sel-workspace-title">
+          <div class="sel-heading">
+            <h2 id="sel-workspace-title">Seu teste em construção</h2>
+            <span id="sel-progress-copy"></span>
+          </div>
+          <progress
+            id="sel-progress"
+            max="7"
+            value="0"
+            aria-label="Etapas concluídas"
+          >
+            0 de 7
+          </progress>
+          <ol
+            id="sel-checkpoints"
+            class="sel-checkpoints"
+            aria-label="Etapas da missão"
+          ></ol>
+          <div class="sel-grid">
+            <section
+              class="sel-panel sel-task"
+              aria-labelledby="sel-step-title"
+            >
+              <span id="sel-step-label" class="label label--cyan"></span>
+              <h3 id="sel-step-title" tabindex="-1"></h3>
+              <p id="sel-instruction"></p>
+              <div id="sel-run-controls" class="sel-actions" hidden></div>
+              <button
+                id="sel-counterexample"
+                class="button button--ghost"
+                type="button"
+                hidden
+              >
+                Simular mensagem positiva com total incorreto
+              </button>
+              <p
+                id="sel-counterexample-result"
+                class="sel-notice"
+                role="status"
+                hidden
+              ></p>
+              <form id="sel-answer">
+                <fieldset id="sel-fieldset" aria-labelledby="sel-step-title">
+                  <div id="sel-controls"></div>
+                </fieldset>
+                <button
+                  id="sel-check"
+                  class="button button--primary"
+                  type="submit"
+                >
+                  Conferir etapa
+                </button>
+              </form>
+              <p
+                id="sel-feedback"
+                class="sel-feedback"
+                role="status"
+                aria-atomic="true"
+              ></p>
+              <button
+                id="sel-next"
+                class="button button--primary"
+                type="button"
+                hidden
+              >
+                Próxima etapa →
+              </button>
+            </section>
+            <div class="sel-side">
+              <section class="sel-panel" aria-labelledby="sel-preview-title">
+                <div class="sel-heading">
+                  <h3 id="sel-preview-title">FictFvr · checkout</h3>
+                  <span class="sel-badge">REFERÊNCIA INTERATIVA</span>
+                </div>
+                <p class="sel-small">
+                  Experimente livremente. Este formulário não muda as fixtures
+                  nem concede pontos.
+                </p>
+                <p class="sel-subtotal">
+                  Subtotal
+                  <strong data-testid="coupon-subtotal">R$ 200,00</strong>
+                </p>
+                <form id="sel-preview-form">
+                  <label for="coupon-code">Cupom</label>
+                  <input
+                    id="coupon-code"
+                    name="coupon-code"
+                    type="text"
+                    autocomplete="off"
+                    maxlength="20"
+                    placeholder="Ex.: FVR10"
+                  />
+                  <button
+                    class="button button--ghost"
+                    type="submit"
+                    data-testid="apply-coupon"
+                  >
+                    Aplicar cupom
+                  </button>
+                </form>
+                <div
+                  id="sel-preview-result"
+                  class="sel-preview-result"
+                  data-testid="coupon-result"
+                  data-state="idle"
+                  aria-live="polite"
+                >
+                  <strong data-testid="coupon-message">Aguardando cupom</strong>
+                  <p>
+                    Desconto <span data-testid="coupon-discount">R$ 0,00</span>
+                  </p>
+                  <p>Total <span data-testid="coupon-total">R$ 200,00</span></p>
+                </div>
+                <details>
+                  <summary>Inspecionar os contratos da interface</summary>
+                  <p class="sel-small">
+                    O campo possui id coupon-code; o botão possui data-testid
+                    apply-coupon; a região possui data-testid coupon-result e
+                    data-state. Mensagem, desconto e total têm identificadores
+                    próprios.
+                  </p>
+                </details>
+              </section>
+              <section class="sel-panel" aria-labelledby="sel-code-title">
+                <span class="label"
+                  >EXEMPLO SELENIUM JAVASCRIPT · NÃO EXECUTADO</span
+                >
+                <h3 id="sel-code-title">cupom.cjs</h3>
+                <p class="sel-small">
+                  Requer um projeto Node.js com selenium-webdriver e uma
+                  aplicação de laboratório autorizada na variável
+                  FICTFVR_LAB_URL. Trechos aparecem após cada decisão correta.
+                </p>
+                <pre
+                  tabindex="0"
+                  aria-label="Código Selenium em construção"
+                ><code id="sel-code"></code></pre>
+              </section>
+            </div>
+          </div>
+          <section
+            id="sel-evidence-panel"
+            class="sel-panel sel-evidence-panel"
+            hidden
+            aria-labelledby="sel-evidence-title"
+          >
+            <span class="label"
+              >SEQUÊNCIA TEMPORAL DIDÁTICA · NÃO É UM LOG REAL</span
+            >
+            <h3 id="sel-evidence-title">O que ocorreu antes da leitura?</h3>
+            <p>
+              Observe esperado, observado e impacto nos três perfis locais
+              independentes.
+            </p>
+            <div id="sel-evidence" class="sel-evidence-grid"></div>
+            <details>
+              <summary>Inspecionar o trecho frágil</summary>
+              <pre
+                tabindex="0"
+                aria-label="Exemplo de leitura prematura"
+              ><code id="sel-fragile-code"></code></pre>
+              <p class="sel-small">
+                Uma pausa fixa de 300 ms seguida de uma leitura captura o total
+                daquele instante. O valor não muda dentro da variável quando a
+                interface fica pronta depois.
+              </p>
+            </details>
+          </section>
+        </section>
+        <section
+          id="sel-result"
+          class="sel-panel sel-result"
+          hidden
+          aria-labelledby="sel-result-title"
+        >
+          <span class="label label--cyan">MISSÃO SELENIUM CONCLUÍDA</span>
+          <h2 id="sel-result-title" tabindex="-1">
+            Você investigou o cupom com evidências.
+          </h2>
+          <strong id="sel-result-xp" class="sel-result-xp"></strong>
+          <p id="sel-rounding"></p>
+          <p id="sel-result-summary"></p>
+          <qa-save-status></qa-save-status>
+          <p>
+            <strong>Parecer técnico:</strong> a referência atende ao caso
+            preparado. A candidata FF-SE-2026.01 precisa de correção porque
+            confirma o cupom sem reduzir o total. O teste que lê cedo demais
+            precisa de uma espera por condição observável.
+          </p>
+          <p>
+            <strong>Concluir a missão não aprova produção.</strong> Você emitiu
+            o parecer correto sobre fixtures locais. Nenhum teste Selenium real
+            foi executado; a decisão de produção exige avaliação de riscos,
+            ambiente e critérios do negócio.
+          </p>
+          <details>
+            <summary>Rever pontos e evidências</summary>
+            <ol id="sel-result-records"></ol>
+            <div id="sel-result-evidence" class="sel-evidence-grid"></div>
+          </details>
+          <div class="sel-actions">
+            <button
+              id="sel-restart"
+              class="button button--primary"
+              type="button"
+            >
+              Repetir missão
+            </button>
+            <a class="button button--ghost" href="tracks.html"
+              >Voltar às trilhas →</a
+            >
+            <a class="button button--ghost" href="biblioteca.html"
+              >Biblioteca</a
+            >
+          </div>
+        </section>
+        <details class="sel-panel sel-reading">
+          <summary>WebDriver, esperas e isolamento no projeto real</summary>
+          <p>
+            O WebDriver comunica-se com o navegador; node:assert/strict faz
+            comparações no exemplo. Uma sessão limpa por teste e estado inicial
+            controlado reduzem interferências. Use finally para encerrar a
+            sessão, inclusive se ocorrer uma falha após sua criação.
+          </p>
+          <p>
+            Presença, visibilidade e estado pronto respondem a perguntas
+            diferentes. Evite misturar esperas implícitas e explícitas sem
+            critério. Selenium não inclui um runner ou sistema de assertions
+            embutido que substitua essas decisões.
+          </p>
+          <p>
+            Cypress e Playwright usam APIs próprias para consultas e
+            sincronização. O Selenium apresenta outra maneira de controlar o
+            navegador; nenhuma diferença isolada define a qualidade do teste.
+          </p>
+        </details>
+        <details class="sel-reading">
+          <summary>Fontes oficiais gratuitas</summary>
+          <ul>
+            <li>
+              <a
+                href="https://www.selenium.dev/documentation/overview/components/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Componentes e papel do WebDriver</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.selenium.dev/documentation/webdriver/getting_started/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Primeiro script em JavaScript</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.selenium.dev/documentation/webdriver/elements/locators/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Localizadores</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.selenium.dev/documentation/webdriver/waits/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Estratégias de espera</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.selenium.dev/documentation/test_practices/encouraged/avoid_sharing_state/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Independência e estado</a
+              >
+            </li>
+          </ul>
+        </details>
+      </div>
+    </main>
+    <qa-footer></qa-footer>
+    <script type="module" src="pages/selenium.js"></script>
+  </body>
+</html>
