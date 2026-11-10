@@ -17,6 +17,258 @@
   grid-template-columns: 370px minmax(0, 760px);
 }
 
+.phase-two-complement {
+  max-width: 1184px;
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+}
+.phase-two-complement h2 {
+  margin: 10px 0 12px;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  letter-spacing: -0.04em;
+}
+.phase-two-complement__intro {
+  max-width: 760px;
+  margin-bottom: 22px;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+qa-test-design-practice {
+  display: block;
+}
+.test-design-practice {
+  overflow: clip;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+.test-design-practice > summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  min-height: 80px;
+  padding: 20px;
+  cursor: pointer;
+  list-style: none;
+  transition: background-color 180ms ease;
+}
+.test-design-practice > summary::-webkit-details-marker {
+  display: none;
+}
+.test-design-practice > summary:hover {
+  background: var(--navy-800);
+}
+.test-design-practice > summary strong,
+.test-design-practice > summary small {
+  display: block;
+}
+.test-design-practice > summary strong {
+  font-size: 0.98rem;
+}
+.test-design-practice > summary small {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+.test-design-practice__chevron {
+  color: var(--cyan);
+  font-size: 1.5rem;
+  transition: transform 180ms ease;
+}
+.test-design-practice[open] .test-design-practice__chevron {
+  transform: rotate(180deg);
+}
+.test-design-practice__body {
+  padding: 0 16px 20px;
+}
+.test-design-practice__intro,
+.test-design-practice__source {
+  padding: 0 4px;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+.test-design-practice__source {
+  margin: 20px 0 0;
+  font-size: 0.74rem;
+}
+.test-design-practice__source a {
+  color: var(--cyan);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.test-design-card {
+  margin-top: 16px;
+  padding: 20px 16px;
+  background: var(--navy-900);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.test-design-card h3 {
+  margin: 8px 0 12px;
+  font-size: 1.18rem;
+}
+.test-design-card p,
+.test-design-card legend,
+.test-design-card label {
+  font-size: 0.83rem;
+}
+.test-design-card p {
+  color: var(--muted);
+}
+.test-design-card .test-design-rule {
+  padding: 14px;
+  background: var(--navy-800);
+  border-left: 2px solid var(--cyan);
+  border-radius: 4px 10px 10px 4px;
+}
+.test-design-rule strong {
+  color: var(--white);
+}
+.test-design-card fieldset {
+  min-width: 0;
+  margin: 22px 0 16px;
+  padding: 0;
+  border: 0;
+}
+.test-design-card legend {
+  width: 100%;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+.test-design-fields,
+.test-design-review {
+  display: grid;
+  gap: 14px;
+}
+.test-design-fields label,
+.test-design-review label {
+  display: grid;
+  gap: 8px;
+  color: var(--muted);
+}
+.test-design-card :is(input[type="number"], select) {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 10px;
+  color: var(--white);
+  background: var(--navy-950);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font: inherit;
+}
+.test-design-card select option {
+  color: var(--white);
+  background: var(--navy-950);
+}
+.test-design-values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.test-design-values label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 65px;
+  min-height: 44px;
+  padding: 10px;
+  background: var(--navy-950);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.test-design-values input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--cyan);
+}
+.test-design-values label:has(input:checked) {
+  border-color: var(--cyan);
+}
+.test-design-table-wrap {
+  overflow-x: auto;
+}
+.test-design-card table {
+  width: 100%;
+  min-width: 400px;
+  border-collapse: collapse;
+  font-size: 0.75rem;
+}
+.test-design-card caption {
+  padding-bottom: 10px;
+  color: var(--muted);
+  text-align: left;
+}
+.test-design-card :is(td, th) {
+  padding: 10px 6px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+.test-design-card td:last-child {
+  width: 125px;
+}
+.test-design-card td select {
+  min-width: 100px;
+}
+.test-design-card .test-design-table-hint {
+  margin: 10px 0 0;
+  font-size: 0.74rem;
+}
+.test-design-card .button {
+  min-height: 44px;
+  max-width: 100%;
+  white-space: normal;
+}
+.test-design-card .test-design-feedback {
+  margin: 16px 0 0;
+  padding: 14px;
+  color: var(--white);
+  background: var(--navy-800);
+  border-left: 3px solid var(--purple-bright);
+  border-radius: 4px 10px 10px 4px;
+}
+.test-design-feedback[data-result="correct"] {
+  border-left-color: var(--cyan);
+}
+.phase-two-complement
+  :is(
+    summary,
+    input,
+    select,
+    button,
+    a,
+    .test-design-table-wrap
+  ):focus-visible {
+  outline: 3px solid var(--cyan);
+  outline-offset: 4px;
+}
+
+@media (min-width: 700px) {
+  .test-design-practice__body {
+    padding: 0 24px 24px;
+  }
+  .test-design-card {
+    padding: 24px;
+  }
+  .test-design-fields {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .test-design-table-hint {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .test-design-practice > summary,
+  .test-design-practice__chevron {
+    transition: none;
+  }
+}
+
 .requirement-dossier {
   margin-top: 30px;
   overflow: hidden;

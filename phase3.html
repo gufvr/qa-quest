@@ -43,6 +43,82 @@
 
         <qa-support-material mission-id="phase3"></qa-support-material>
 
+        <details class="a11y-study">
+          <summary>
+            <span>
+              <small>PRÁTICA COMPLEMENTAR · OPCIONAL</small>
+              <strong>Acessibilidade: observe além do clique</strong>
+            </span>
+            <span class="a11y-study__chevron" aria-hidden="true">⌄</span>
+          </summary>
+          <div class="a11y-study__body">
+            <p>
+              Use o login simulado para uma primeira inspeção. As marcações
+              abaixo são temporárias, não são salvas nem concedem XP. Ações
+              executadas no simulador continuam seguindo as tarefas normais da
+              missão, e os defeitos intencionais permanecem.
+            </p>
+            <ul class="a11y-study__checks">
+              <li>
+                <label
+                  ><input type="checkbox" />
+                  <span
+                    ><strong>Rótulos e campos</strong> Clique nos rótulos de
+                    E-mail e Senha: o campo correspondente recebe foco? Confira
+                    o nome acessível com ferramenta ou leitor de tela.
+                    Placeholder não substitui um rótulo.</span
+                  >
+                </label>
+              </li>
+              <li>
+                <label
+                  ><input type="checkbox" />
+                  <span
+                    ><strong>Operação por teclado</strong> Percorra os controles
+                    com Tab e Shift+Tab; use Espaço e Enter onde apropriado.
+                    Verifique ordem, ativação e saída sem armadilha de foco.
+                    Receber foco não prova que a ação funciona.</span
+                  >
+                </label>
+              </li>
+              <li>
+                <label
+                  ><input type="checkbox" />
+                  <span
+                    ><strong>Foco visível</strong> Você consegue identificar
+                    qual controle está ativo nos temas claro e escuro, sem
+                    depender de hover? Registre qualquer indicador ausente,
+                    oculto ou difícil de perceber.</span
+                  >
+                </label>
+              </li>
+              <li>
+                <label
+                  ><input type="checkbox" />
+                  <span
+                    ><strong>Mensagens de validação</strong> Ao testar dados
+                    vazios ou inválidos, a mensagem identifica o problema e
+                    orienta a correção? Verifique também se ela é percebida pelo
+                    leitor de tela, não apenas visualmente.</span
+                  >
+                </label>
+              </li>
+            </ul>
+            <p class="a11y-study__limit">
+              Marcar um item significa apenas que você o inspecionou, não que o
+              produto atende às WCAG. Esta checklist não substitui avaliação
+              completa de acessibilidade, tecnologias assistivas e participação
+              de pessoas com deficiência.
+            </p>
+            <a
+              href="https://www.w3.org/WAI/test-evaluate/preliminary/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Consultar W3C WAI Easy Checks (inglês, nova aba)</a
+            >
+          </div>
+        </details>
+
         <div class="simulator-workspace" id="simulator-workspace">
           <aside class="briefing-panel" aria-labelledby="briefing-title">
             <div class="panel-heading">

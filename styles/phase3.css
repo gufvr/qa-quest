@@ -90,6 +90,110 @@
   gap: 16px;
   align-items: start;
 }
+.a11y-study {
+  margin: 0 0 24px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+.a11y-study > summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  min-height: 76px;
+  padding: 18px 20px;
+  cursor: pointer;
+  list-style: none;
+  transition: background-color 180ms ease;
+}
+.a11y-study > summary::-webkit-details-marker {
+  display: none;
+}
+.a11y-study > summary:hover {
+  background: var(--navy-800);
+  border-radius: 14px;
+}
+.a11y-study summary small,
+.a11y-study summary strong {
+  display: block;
+}
+.a11y-study summary small {
+  margin-bottom: 5px;
+  color: var(--purple-bright);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+.a11y-study summary strong {
+  font-size: 0.9rem;
+}
+.a11y-study__chevron {
+  color: var(--cyan);
+  font-size: 1.4rem;
+  transition: transform 180ms ease;
+}
+.a11y-study[open] .a11y-study__chevron {
+  transform: rotate(180deg);
+}
+.a11y-study__body {
+  max-width: 1050px;
+  padding: 0 20px 22px;
+  font-size: 0.82rem;
+}
+.a11y-study__body p {
+  color: var(--muted);
+}
+.a11y-study__checks {
+  display: grid;
+  gap: 12px;
+  margin: 20px 0;
+  padding: 0;
+  list-style: none;
+}
+.a11y-study__checks label {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-height: 44px;
+  padding: 14px;
+  color: var(--muted);
+  background: var(--navy-900);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  cursor: pointer;
+}
+.a11y-study__checks strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--white);
+}
+.a11y-study__checks input {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  margin-top: 3px;
+  accent-color: var(--cyan);
+}
+.a11y-study__limit {
+  padding-left: 14px;
+  border-left: 2px solid var(--purple-bright);
+}
+.a11y-study__body a {
+  color: var(--cyan);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.a11y-study :is(summary, input, a):focus-visible {
+  outline: 3px solid var(--cyan);
+  outline-offset: 4px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .a11y-study > summary,
+  .a11y-study__chevron {
+    transition: none;
+  }
+}
 .briefing-panel,
 .qa-panel,
 .app-panel {

@@ -256,6 +256,17 @@ export const uniqueMissions = catalogItems.filter(
 
 export const supportMaterials = [
   {
+    id: "test-design-guide",
+    missionId: "phase2",
+    title: "Técnicas de Projeto de Testes",
+    description:
+      "Prática complementar de partição de equivalência, valores-limite e tabelas de decisão.",
+    path: "materiais/qa-quest-tecnicas-projeto-testes.pdf",
+    filename: "qa-quest-tecnicas-projeto-testes.pdf",
+    format: "PDF",
+    version: "1.0",
+  },
+  {
     id: "functional-testing",
     missionId: "phase3",
     title: "Teste Funcional",

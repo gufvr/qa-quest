@@ -13,6 +13,20 @@
   padding-top: 68px;
   padding-bottom: 100px;
 }
+.tracks-foundation-material {
+  margin-top: 44px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+.tracks-foundation-material h2 {
+  margin: 10px 0;
+  font-size: clamp(1.3rem, 2.3vw, 1.8rem);
+}
+.tracks-foundation-material > p {
+  max-width: 720px;
+  color: var(--muted);
+  font-size: 0.84rem;
+}
 .tracks-intro {
   display: flex;
   align-items: end;
