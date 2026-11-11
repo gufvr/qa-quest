@@ -122,13 +122,6 @@
   width: 100%;
 }
 
-.home-metrics {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
-  margin: 36px 0 0;
-}
-
 .home-metrics div {
   min-width: 0;
   padding: 14px 8px;

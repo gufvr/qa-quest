@@ -1,11 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import styled from "styled-components";
-import { getLibraryGroups } from "../core/library-catalog.js";
-
-const Group = styled.section`
-  min-width: 0;
-`;
+import { getLibraryGroups } from "../../../core/library-catalog.js";
+import { Group } from "./Library.styles.js";
 
 const groups = getLibraryGroups();
 const count = groups.reduce(

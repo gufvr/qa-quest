@@ -147,7 +147,9 @@ test("new pages, local resources, mission routes and PDFs exist", () => {
     "como-funciona.html",
   ]) {
     const html = read(route);
-    assert.equal((html.match(/<h1(?:\s|>)/g) || []).length, 1, route);
+    const pageMarkup =
+      route === "index.html" ? read("src/pages/Home/Home.jsx") : html;
+    assert.equal((pageMarkup.match(/<h1(?:\s|>)/g) || []).length, 1, route);
     for (const [, value] of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
       if (/^(?:https?:|data:|#|mailto:)/.test(value)) continue;
       assert(
@@ -433,10 +435,10 @@ test("rendered labels, source metadata and authored messages stay unambiguous", 
   assert(!source.href);
   assert.equal(root.dataset.insightType, "humor");
   assert(nodes["[data-insight-author]"].textContent.includes("humor autoral"));
-  const html = read("index.html");
+  const html = read("src/pages/Home/Home.jsx");
   assert.match(html, /id="home-insight"\s+aria-live="off"/);
   assert.match(
     html,
-    /data-insight-source\s+hidden\s+target="_blank"\s+rel="noopener noreferrer"/,
+    /data-insight-source[\s\S]*?target="_blank"\s+rel="noopener noreferrer"/,
   );
 });

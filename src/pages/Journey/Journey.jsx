@@ -1,16 +1,12 @@
 import React from "react";
 import { flushSync } from "react-dom";
 import { createRoot } from "react-dom/client";
-import styled from "styled-components";
 import {
   isAvailable,
   isCompleted,
   journeyGroups,
-} from "../core/content-catalog.js";
-
-const Group = styled.article`
-  min-width: 0;
-`;
+} from "../../../core/content-catalog.js";
+import { Group } from "./Journey.styles.js";
 
 function Mission({ item, group, state, recommendation, index }) {
   const status = isCompleted(item, state)

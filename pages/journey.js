@@ -1,5 +1,5 @@
 import "../components/toast.js";
-import { renderJourneyGroups } from "./journey-groups.jsx";
+import { renderJourneyGroups } from "../src/pages/Journey/Journey.jsx";
 import { initializeSitePage } from "../core/site-page.js";
 import {
   catalogItems,

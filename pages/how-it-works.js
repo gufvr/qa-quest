@@ -1,4 +1,4 @@
 import { initializeSitePage } from "../core/site-page.js";
-import "./how-it-works-pilot.jsx";
+import "../src/pages/HowItWorks/HowItWorks.jsx";
 
 initializeSitePage();
