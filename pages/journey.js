@@ -1,10 +1,9 @@
 import "../components/toast.js";
+import { renderJourneyGroups } from "./journey-groups.jsx";
 import { initializeSitePage } from "../core/site-page.js";
 import {
   catalogItems,
   getCompletedUniqueMissions,
-  isAvailable,
-  isCompleted,
   journeyGroups,
   uniqueMissions,
 } from "../core/content-catalog.js";
@@ -26,126 +25,6 @@ function lockedMessage(item) {
     title: "Trilhas bloqueadas",
     detail: "Conclua a Fase 4 para explorar as trilhas de QA.",
   };
-}
-
-function missionState(item, state, recommendation) {
-  if (isCompleted(item, state)) return "done";
-  if (!isAvailable(item, state)) return "locked";
-  if (recommendation?.progressId === item.progressId) return "current";
-  return "available";
-}
-
-function stateLabel(item, state, status) {
-  if (status === "done")
-    return `${state.missions[item.progressId]?.bestXp || 0} XP`;
-  if (status === "current") return "PRÓXIMA";
-  if (status === "available") return "DISPONÍVEL";
-  return "BLOQUEADA";
-}
-
-function createMissionItem(item, group, state, recommendation, index) {
-  const status = missionState(item, state, recommendation);
-  const listItem = document.createElement("li");
-  listItem.className = `journey-mission journey-mission--${status}`;
-
-  const control = document.createElement(status === "locked" ? "button" : "a");
-  control.className = "journey-mission__control";
-  control.id = `mission-${group.id}-${item.id}`;
-  if (control instanceof HTMLAnchorElement) control.href = item.route;
-  else {
-    control.type = "button";
-    control.dataset.lockedMission = item.id;
-    control.setAttribute("aria-disabled", "true");
-  }
-
-  const icon = document.createElement("span");
-  icon.className = "journey-mission__icon";
-  icon.setAttribute("aria-hidden", "true");
-  icon.textContent = status === "done" ? "✓" : status === "current" ? "◆" : "◇";
-
-  const copy = document.createElement("span");
-  copy.className = "journey-mission__copy";
-  const eyebrow = document.createElement("small");
-  eyebrow.textContent =
-    item.type === "phase"
-      ? `FASE ${String(item.phase).padStart(2, "0")}`
-      : `MÓDULO ${String(index + 1).padStart(2, "0")}`;
-  const title = document.createElement("strong");
-  title.textContent = item.title;
-  const description = document.createElement("span");
-  description.textContent = item.description;
-  copy.append(eyebrow, title, description);
-
-  const badge = document.createElement("span");
-  badge.className = "journey-mission__status";
-  badge.textContent = stateLabel(item, state, status);
-
-  const accessibleAction =
-    status === "done"
-      ? "Revisitar"
-      : status === "locked"
-        ? "Bloqueada"
-        : "Abrir";
-  control.setAttribute(
-    "aria-label",
-    `${accessibleAction}: ${item.title}, ${group.title}`,
-  );
-  control.append(icon, copy, badge);
-  listItem.append(control);
-  return listItem;
-}
-
-function createJourneyGroup(group, state, recommendation) {
-  const completed = group.items.filter((item) =>
-    isCompleted(item, state),
-  ).length;
-  const unlocked =
-    group.id === "base" || Boolean(state.missions.phase4?.completed);
-  const article = document.createElement("article");
-  article.className = "journey-group";
-  article.dataset.group = group.id;
-  article.classList.toggle("journey-group--locked", !unlocked);
-
-  const header = document.createElement("header");
-  header.className = "journey-group__header";
-  const headingCopy = document.createElement("div");
-  const eyebrow = document.createElement("span");
-  eyebrow.className = "journey-group__eyebrow";
-  eyebrow.textContent =
-    group.id === "base"
-      ? "COMECE AQUI"
-      : `TRILHA ${String(group.index).padStart(2, "0")}`;
-  const title = document.createElement("h3");
-  title.textContent = group.title;
-  const description = document.createElement("p");
-  description.textContent = group.description;
-  headingCopy.append(eyebrow, title, description);
-
-  const counter = document.createElement("span");
-  counter.className = "journey-group__counter";
-  counter.textContent = `${completed} / ${group.items.length}`;
-  counter.setAttribute(
-    "aria-label",
-    `${completed} de ${group.items.length} concluídas`,
-  );
-  header.append(headingCopy, counter);
-
-  const meter = document.createElement("div");
-  meter.className = "journey-group__progress";
-  meter.setAttribute("aria-hidden", "true");
-  const meterBar = document.createElement("span");
-  meterBar.style.width = `${(completed / group.items.length) * 100}%`;
-  meter.append(meterBar);
-
-  const list = document.createElement("ol");
-  list.className = "journey-group__missions";
-  list.replaceChildren(
-    ...group.items.map((item, index) =>
-      createMissionItem(item, group, state, recommendation, index),
-    ),
-  );
-  article.append(header, meter, list);
-  return article;
 }
 
 function updateOverview(state, completedMissions) {
@@ -348,11 +227,7 @@ initializeSitePage((state, { announce, recommendation }) => {
   const completedMissions = getCompletedUniqueMissions(state);
   updateOverview(state, completedMissions);
   updateCompletedList(completedMissions);
-  get("journey-groups").replaceChildren(
-    ...journeyGroups.map((group) =>
-      createJourneyGroup(group, state, recommendation),
-    ),
-  );
+  renderJourneyGroups(state, recommendation);
   const next = get("journey-next");
   next.href = recommendation?.route || "tracks.html";
   get("journey-next-title").textContent =
