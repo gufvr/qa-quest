@@ -37,7 +37,8 @@ test("simulators consistently identify the Fikily fictional brand", () => {
     read("components/test-design-practice.js"),
     /Cenários fictícios da Fikily/,
   );
-  assert.match(read("como-funciona.html"), /cenários da Fikily/);
+  assert.match(read("como-funciona.html"), /id="how-cards-root"/);
+  assert.match(read("pages/how-it-works-pilot.jsx"), /cenários da Fikily/);
 });
 
 test("fictional accounts and login controls remain aligned after the rename", () => {
