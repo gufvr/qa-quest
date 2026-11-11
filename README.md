@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  <a href="https://gufvr.github.io/qa-quest/index.html"><strong>🎮 Começar a jornada</strong></a>
+  <a href="https://qa-quest.vercel.app/"><strong>🎮 Começar a jornada</strong></a>
 </p>
 
 ## 🎯 O que é o QA Quest?
@@ -46,7 +46,10 @@ Mais do que construir uma plataforma, quero que o QA Quest seja um ambiente de a
 | **Missões práticas** | Aprendizado ativo, com situações para analisar e resolver. |
 | **Cenários simulados** | Contato com contextos inspirados no dia a dia de produtos digitais. |
 | **Feedback de aprendizagem** | Oportunidades para compreender decisões e revisar conceitos. |
-| **Progressão gamificada** | Uma jornada por etapas, com conquistas e acompanhamento da evolução. |
+| **Progressão gamificada** | XP, missões concluídas e acompanhamento da evolução. |
+| **Biblioteca de Estudos** | Apostilas opcionais em PDF para consultar ou baixar no seu ritmo. |
+
+A jornada começa com quatro fases de base e continua em cinco trilhas: Fluxos e investigação, Confiança na release, Qualidade especializada, Prática profissional e Automação de Testes Web. O conteúdo vai da análise de requisitos e do relato de defeitos à interpretação de APIs e à construção de testes automatizados em laboratórios didáticos.
 
 Cada etapa propõe uma nova forma de observar, investigar e tomar decisões. **Os desafios ficam para a sua descoberta.**
 
@@ -55,6 +58,7 @@ Cada etapa propõe uma nova forma de observar, investigar e tomar decisões. **O
 - Pensamento crítico e investigação de problemas.
 - Análise de requisitos e identificação de riscos.
 - Planejamento, execução e avaliação de testes.
+- Registro de evidências, leitura de contratos de API e raciocínio para automação.
 - Comunicação e tomada de decisão orientadas à qualidade.
 
 ## 👥 Para quem é?
@@ -67,24 +71,28 @@ Não é necessário ter experiência profissional em QA para começar.
 
 O QA Quest está disponível online e pode ser acessado diretamente pelo navegador, sem instalação ou configuração.
 
-**[🎮 Acessar o QA Quest e começar a jornada](https://gufvr.github.io/qa-quest/index.html)**
+**[🎮 Acessar o QA Quest e começar a jornada](https://qa-quest.vercel.app/)**
 
 Explore as missões, exercite seu raciocínio em QA e acompanhe sua evolução ao longo dos desafios.
 
-## 🛠️ Tecnologias
+## 🛠️ Tecnologias e evolução do projeto
 
-O projeto foi desenvolvido com **HTML5, CSS3, JavaScript, Web Components nativos e Vite**. O progresso da jornada é armazenado localmente no navegador com `localStorage`.
+O QA Quest começou com **HTML5, CSS3, JavaScript, Web Components nativos e Vite**. Essa base permitiu construir e validar as primeiras experiências sem complicar a estrutura do projeto.
 
-Além de explorar Quality Assurance, o QA Quest também é um projeto de estudo e experimentação em desenvolvimento web.
+Com o crescimento das páginas, dos materiais e das interações, decidi começar a adotar **React e styled-components** para organizar melhor a interface em componentes. Eu já vinha estudando ReactJS e front-end, então foi uma escolha natural para aplicar o que já estava aprendendo e facilitar a manutenção do projeto.
+
+A mudança está acontecendo aos poucos: partes da interface já usam React, enquanto as missões e os componentes existentes continuam funcionando na estrutura anterior. A ideia é melhorar a organização sem reescrever tudo de uma vez nem perder o foco no aprendizado de QA.
+
+O **Vite** continua responsável pelo desenvolvimento e pelo build, e o site está publicado na **Vercel**. O progresso é salvo no próprio navegador com `localStorage`, sem sincronização automática entre dispositivos ou domínios.
 
 ## 🌱 Um projeto em evolução
 
-O QA Quest está em desenvolvimento contínuo. A proposta é expandir a experiência gradualmente, com novas oportunidades de aprendizado, desafios e melhorias de usabilidade.
+O QA Quest continua sendo um projeto pessoal de aprendizado. Quero evoluir a experiência com cuidado, priorizando clareza, usabilidade e melhorias que realmente ajudem quem está estudando, sem acrescentar complexidade só por acrescentar.
 
-Por ser um projeto pessoal de aprendizado, ele também evolui conforme adquiro experiência, descubro novas ferramentas e identifico oportunidades de melhoria.
+Além de estudar QA, desenvolver a plataforma tem sido uma forma de praticar front-end, revisar decisões técnicas e acompanhar minha própria evolução.
 
 **Feedbacks são bem-vindos!** Se você experimentar a plataforma e tiver sugestões, encontrar problemas ou identificar algo que poderia ser melhorado, poderá compartilhar suas ideias pelas [Issues do repositório](https://github.com/gufvr/qa-quest/issues).
 
 ---
 
-<sub>Os produtos, empresas e domínios apresentados nos cenários são fictícios e utilizados exclusivamente para fins educacionais.</sub>
+<sub>A Fikily e os dados dos cenários são fictícios e utilizados para fins educacionais. Os laboratórios de API e automação são simulações locais: não fazem chamadas a APIs reais nem executam Cypress, Playwright ou Selenium.</sub>
