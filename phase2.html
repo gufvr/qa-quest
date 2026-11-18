@@ -83,115 +83,7 @@
           class="quiz-card"
           aria-label="Caso prático de análise de requisitos"
         >
-          <div id="quiz-screen">
-            <header class="quiz-card__header">
-              <div>
-                <span class="label">PROGRESSO DA ANÁLISE</span>
-                <strong id="question-counter">Questão 1 de 10</strong>
-              </div>
-              <span class="quiz-card__reward">+10 XP</span>
-            </header>
-
-            <div class="mission-progress" aria-hidden="true">
-              <span id="mission-progress-bar"></span>
-            </div>
-
-            <div class="question-area">
-              <span class="question-kind" id="question-kind"
-                >TÉCNICA DE ANÁLISE</span
-              >
-              <h2 id="question-title" tabindex="-1"></h2>
-              <p id="question-context"></p>
-              <div
-                class="answers"
-                id="answers"
-                role="group"
-                aria-labelledby="question-title"
-              ></div>
-            </div>
-
-            <div
-              class="answer-feedback"
-              id="answer-feedback"
-              role="status"
-              aria-live="polite"
-              hidden
-            >
-              <span
-                class="answer-feedback__icon"
-                id="feedback-icon"
-                aria-hidden="true"
-              ></span>
-              <div>
-                <strong id="feedback-title"></strong>
-                <p id="feedback-text"></p>
-              </div>
-            </div>
-
-            <footer class="quiz-card__footer">
-              <span id="selection-hint"
-                >Selecione a melhor análise para continuar.</span
-              >
-              <button
-                class="button button--primary"
-                id="confirm-answer"
-                type="button"
-                disabled
-              >
-                Confirmar análise
-              </button>
-              <button
-                class="button button--primary"
-                id="next-question"
-                type="button"
-                hidden
-              >
-                Próxima análise <span aria-hidden="true">→</span>
-              </button>
-            </footer>
-          </div>
-
-          <div class="result-screen phase-result" id="result-screen" hidden>
-            <div class="result-screen__symbol" aria-hidden="true">◈</div>
-            <span class="label label--cyan">ANÁLISE CONCLUÍDA</span>
-            <h2 tabindex="-1">Requisito investigado!</h2>
-            <p id="result-message"></p>
-            <qa-save-status></qa-save-status>
-
-            <div class="result-score">
-              <div>
-                <span>ACERTOS</span><strong id="result-correct">0 / 10</strong>
-              </div>
-              <div>
-                <span>EXPERIÊNCIA</span
-                ><strong><span id="result-xp">0</span> XP</strong>
-              </div>
-            </div>
-
-            <section
-              class="competency-summary"
-              aria-labelledby="competency-title"
-            >
-              <h3 id="competency-title">Resumo por competência</h3>
-              <div id="competency-list"></div>
-            </section>
-
-            <div class="result-actions">
-              <a class="button button--primary" href="phase3.html"
-                >Entrar no Simulador</a
-              >
-              <button
-                class="button button--ghost"
-                id="retry-mission"
-                type="button"
-              >
-                Analisar novamente
-              </button>
-              <a class="button button--text" href="index.html"
-                >Voltar à jornada</a
-              >
-            </div>
-          </div>
+          <div id="phase2-root"></div>
         </section>
       </div>
 
@@ -215,7 +107,6 @@
     <script type="module" src="components/theme-toggle.js"></script>
     <script type="module" src="components/header.js"></script>
     <script type="module" src="components/save-status.js"></script>
-    <script type="module" src="core/progress.js"></script>
     <script type="module" src="pages/phase2.js"></script>
     <script type="module" src="components/support-material.js"></script>
     <script type="module" src="components/test-design-practice.js"></script>

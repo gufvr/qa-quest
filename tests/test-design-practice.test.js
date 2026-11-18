@@ -124,9 +124,14 @@ test("the complement has no progress, arbitrary-code execution or storage depend
   assert.match(component, /type="submit"/);
   assert.match(component, /test-design-table-wrap" tabindex="0" role="region"/);
   const phase2 = read("phase2.html");
+  const phase2Component = read("src/pages/Phase2/Phase2.jsx");
   assert(
     phase2.indexOf("phase-two-complement") >
-      phase2.indexOf('id="result-screen"'),
+      phase2.indexOf('id="phase2-root"'),
+  );
+  assert(
+    phase2Component.indexOf('id="result-screen"') >
+      phase2Component.indexOf('id="quiz-screen"'),
   );
   assert(phase2.includes("<qa-test-design-practice>"));
   assert.equal((phase2.match(/<h1(?:\s|>)/g) || []).length, 1);
