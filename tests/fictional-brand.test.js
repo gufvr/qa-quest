@@ -18,7 +18,6 @@ test("simulators consistently identify the Fikily fictional brand", () => {
   for (const route of [
     "phase4.html",
     "exploratory.html",
-    "e2e.html",
     "smoke.html",
     "sanity.html",
     "regression.html",
@@ -32,6 +31,7 @@ test("simulators consistently identify the Fikily fictional brand", () => {
     "selenium.html",
   ])
     assert.match(read(route), /Fikily|FIKILY/, route);
+  assert.match(read("src/pages/E2E/E2E.jsx"), /Fikily|FIKILY/);
   assert.match(read("src/pages/Phase3/Phase3.jsx"), /Fikily/);
   assert.match(
     read("components/test-design-practice.js"),
