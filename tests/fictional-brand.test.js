@@ -47,8 +47,7 @@ test("simulators consistently identify the Fikily fictional brand", () => {
 test("fictional accounts and login controls remain aligned after the rename", () => {
   for (const file of [
     "core/phase3-simulator.js",
-    "regression.html",
-    "pages/regression.js",
+    "src/pages/Regression/Regression.jsx",
   ])
     assert(read(file).includes("qa@fikily.test"), file);
   for (const account of [
@@ -61,7 +60,7 @@ test("fictional accounts and login controls remain aligned after the rename", ()
     for (const file of ["src/pages/Phase3/Phase3.jsx", "styles/phase3.css"])
       assert(read(file).includes(selector), `${file}: ${selector}`);
   assert(read("core/phase3-simulator.js").includes('password: "QA@2026"'));
-  assert(read("pages/regression.js").includes('"Fvr123!"'));
+  assert(read("src/pages/Regression/Regression.jsx").includes("Fvr123!"));
 });
 
 test("generated framework examples and exported report names use the new brand", () => {
