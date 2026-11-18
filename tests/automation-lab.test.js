@@ -240,8 +240,12 @@ test("unavailable storage retains existing in-memory fallback and validates modu
   );
 });
 
-test("catalog, progress, hub and Vite agree; future modules and unregistered PDFs are not published", () => {
+test("catalog, progress, React hub and Vite agree; future modules and unregistered PDFs are not published", () => {
   const { progress } = createProgress(legacySave());
+  const hub = read("src/pages/Tracks/Tracks.jsx");
+  assert.match(read("tracks.html"), /id="tracks-root"/);
+  assert.match(hub, /learningTracks\.map\(\(track\)/);
+  assert.match(hub, /data-track=\{track\.id\}/);
   for (const track of learningTracks) {
     assert.equal(
       progress.getTrackProgress(track.id).total,
@@ -251,9 +255,6 @@ test("catalog, progress, hub and Vite agree; future modules and unregistered PDF
       assert.doesNotThrow(() =>
         progress.saveMissionResult(mission.progressId, 100),
       );
-    assert(read("tracks.html").includes(`data-track="${track.id}"`));
-    for (const mission of track.modules)
-      assert(read("pages/tracks.js").includes(`id: "${mission.id}"`));
   }
   const automation = learningTracks.find((track) => track.id === "automation");
   assert.equal(automation.modules.length, 4);

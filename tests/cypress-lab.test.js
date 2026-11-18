@@ -289,7 +289,6 @@ test("mission, hub, journey, library, PDF and Vite share the canonical Cypress I
     "%PDF-",
   );
   assert(read("vite.config.js").includes('cypress: "cypress.html"'));
-  assert(read("pages/tracks.js").includes('id: "cypress"'));
   assert(track.modules.some((item) => item.id === "selenium"));
   const html = read("cypress.html");
   assert(

@@ -331,7 +331,6 @@ test("catalog, hub, journey, library, route and PDF share the Selenium identifie
   assert.match(html, /data-testid="coupon-result"/);
   assert.match(html, /data-testid="coupon-total"/);
   assert.equal((html.match(/<h1(?:\s|>)/g) || []).length, 1);
-  assert(read("pages/tracks.js").includes('id: "selenium"'));
   assert(read("vite.config.js").includes('selenium: "selenium.html"'));
   for (const [, value] of html.matchAll(/(?:href|src)="([^"]+)"/g))
     if (!/^(?:https?:|#|data:)/.test(value))

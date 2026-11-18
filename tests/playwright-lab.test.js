@@ -354,7 +354,6 @@ test("canonical catalog, hub, library, PDF and multipage Vite agree with Seleniu
     html.indexOf('mission-id="playwright"') <
       html.indexOf('<div id="pw-content" hidden>'),
   );
-  assert(read("pages/tracks.js").includes('id: "playwright"'));
   assert(read("vite.config.js").includes('playwright: "playwright.html"'));
   for (const [, value] of html.matchAll(/(?:href|src)="([^"]+)"/g))
     if (!/^(?:https?:|#|data:)/.test(value))
