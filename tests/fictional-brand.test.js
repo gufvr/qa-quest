@@ -16,7 +16,6 @@ const completed = (steps) => ({
 
 test("simulators consistently identify the Fikily fictional brand", () => {
   for (const route of [
-    "phase3.html",
     "phase4.html",
     "exploratory.html",
     "e2e.html",
@@ -33,6 +32,7 @@ test("simulators consistently identify the Fikily fictional brand", () => {
     "selenium.html",
   ])
     assert.match(read(route), /Fikily|FIKILY/, route);
+  assert.match(read("src/pages/Phase3/Phase3.jsx"), /Fikily/);
   assert.match(
     read("components/test-design-practice.js"),
     /Cenários fictícios da Fikily/,
@@ -46,8 +46,7 @@ test("simulators consistently identify the Fikily fictional brand", () => {
 
 test("fictional accounts and login controls remain aligned after the rename", () => {
   for (const file of [
-    "phase3.html",
-    "pages/phase3.js",
+    "core/phase3-simulator.js",
     "regression.html",
     "pages/regression.js",
   ])
@@ -59,9 +58,9 @@ test("fictional accounts and login controls remain aligned after the rename", ()
     for (const file of ["security.html", "pages/security.js"])
       assert(read(file).includes(account), `${file}: ${account}`);
   for (const selector of ["fikily-mark", "fikily-button"])
-    for (const file of ["phase3.html", "styles/phase3.css"])
+    for (const file of ["src/pages/Phase3/Phase3.jsx", "styles/phase3.css"])
       assert(read(file).includes(selector), `${file}: ${selector}`);
-  assert(read("pages/phase3.js").includes('const validPassword = "QA@2026"'));
+  assert(read("core/phase3-simulator.js").includes('password: "QA@2026"'));
   assert(read("pages/regression.js").includes('"Fvr123!"'));
 });
 

@@ -178,9 +178,10 @@ test("phase2 material is canonical, ungated in the hub and appears once in the b
 
 test("the phase3 checklist is native, optional and outside both evaluated views", () => {
   const html = read("phase3.html");
+  const component = read("src/pages/Phase3/Phase3.jsx");
   const checklist = html.slice(
     html.indexOf('<details class="a11y-study">'),
-    html.indexOf('<div class="simulator-workspace"'),
+    html.indexOf('<div id="phase3-root">'),
   );
   assert.equal((checklist.match(/type="checkbox"/g) || []).length, 4);
   for (const text of [
@@ -198,5 +199,7 @@ test("the phase3 checklist is native, optional and outside both evaluated views"
       ".a11y-study :is(summary, input, a):focus-visible",
     ),
   );
+  assert(component.includes('id="simulator-workspace"'));
+  assert(component.includes('id="simulator-result"'));
   assert(read("styles/phase2.css").includes("prefers-reduced-motion"));
 });
