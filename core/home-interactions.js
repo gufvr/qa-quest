@@ -138,16 +138,34 @@ export function initializeHomeHeader() {
     header.contains(document.activeElement) &&
     document.activeElement.matches(":focus-visible");
   function show() {
+    const wasRetracted = header.classList.contains("is-retracted");
     window.clearTimeout(hideTimer);
     window.clearTimeout(revealTimer);
     revealTimer = null;
     header.classList.remove("is-retracted");
+    if (
+      !wasRetracted ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    )
+      return;
+
+    header.classList.remove("is-revealing");
+    void header.offsetWidth;
+    header.classList.add("is-revealing");
+  }
+  function hide() {
+    header.classList.remove("is-revealing");
+    header.classList.add("is-retracted");
+  }
+  function finishReveal(event) {
+    if (event.target === header && event.animationName === "site-header-reveal")
+      header.classList.remove("is-revealing");
   }
   function hideWhenIdle() {
     window.clearTimeout(hideTimer);
     hideTimer = window.setTimeout(() => {
       if (window.scrollY > header.offsetHeight && !hovered && !hasFocus()) {
-        header.classList.add("is-retracted");
+        hide();
       }
     }, 600);
   }
@@ -158,7 +176,7 @@ export function initializeHomeHeader() {
       show();
       referenceY = y;
     } else if (y - referenceY > 8) {
-      header.classList.add("is-retracted");
+      hide();
       referenceY = y;
     } else if (referenceY - y > 8) {
       show();
@@ -183,7 +201,7 @@ export function initializeHomeHeader() {
         header.classList.contains("is-retracted") &&
         revealTimer == null
       ) {
-        revealTimer = window.setTimeout(show, 140);
+        revealTimer = window.setTimeout(show, 90);
       }
     },
     options,
@@ -207,6 +225,8 @@ export function initializeHomeHeader() {
   );
   header.addEventListener("focusin", show, options);
   header.addEventListener("focusout", hideWhenIdle, options);
+  header.addEventListener("animationend", finishReveal, options);
+  header.addEventListener("animationcancel", finishReveal, options);
   window.addEventListener(
     "pageshow",
     () => {
