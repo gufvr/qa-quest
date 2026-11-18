@@ -60,107 +60,11 @@
           </div>
         </aside>
 
-        <section class="quiz-card" aria-label="Desafio de múltipla escolha">
-          <div id="quiz-screen">
-            <header class="quiz-card__header">
-              <div>
-                <span class="label">PROGRESSO DA MISSÃO</span>
-                <strong id="question-counter">Questão 1 de 10</strong>
-              </div>
-              <span class="quiz-card__reward">+10 XP</span>
-            </header>
-
-            <div class="mission-progress" aria-hidden="true">
-              <span id="mission-progress-bar"></span>
-            </div>
-
-            <div class="question-area">
-              <span class="question-kind">MÚLTIPLA ESCOLHA</span>
-              <h2 id="question-title"></h2>
-              <p id="question-context"></p>
-              <div
-                class="answers"
-                id="answers"
-                role="group"
-                aria-labelledby="question-title"
-              ></div>
-            </div>
-
-            <div
-              class="answer-feedback"
-              id="answer-feedback"
-              role="status"
-              aria-live="polite"
-              hidden
-            >
-              <span
-                class="answer-feedback__icon"
-                id="feedback-icon"
-                aria-hidden="true"
-              ></span>
-              <div>
-                <strong id="feedback-title"></strong>
-                <p id="feedback-text"></p>
-              </div>
-            </div>
-
-            <footer class="quiz-card__footer">
-              <span id="selection-hint"
-                >Selecione uma alternativa para continuar.</span
-              >
-              <button
-                class="button button--primary"
-                id="confirm-answer"
-                type="button"
-                disabled
-              >
-                Confirmar resposta
-              </button>
-              <button
-                class="button button--primary"
-                id="next-question"
-                type="button"
-                hidden
-              >
-                Próxima questão <span aria-hidden="true">→</span>
-              </button>
-            </footer>
-          </div>
-
-          <div class="result-screen" id="result-screen" hidden>
-            <div class="result-screen__symbol" aria-hidden="true">◆</div>
-            <span class="label label--cyan">MISSÃO CONCLUÍDA</span>
-            <h2>Fundamentos dominados!</h2>
-            <p id="result-message"></p>
-            <qa-save-status></qa-save-status>
-
-            <div class="result-score">
-              <div>
-                <span>ACERTOS</span><strong id="result-correct">0 / 10</strong>
-              </div>
-              <div>
-                <span>EXPERIÊNCIA</span
-                ><strong><span id="result-xp">0</span> XP</strong>
-              </div>
-            </div>
-
-            <div class="result-actions">
-              <a class="button button--primary" href="phase2.html"
-                >Avançar para Fase 2</a
-              >
-              <button
-                class="button button--ghost"
-                id="retry-mission"
-                type="button"
-              >
-                Tentar novamente
-              </button>
-              <a class="button button--text" href="index.html"
-                >Voltar à jornada</a
-              >
-            </div>
-          </div>
-        </section>
+        <section
+          class="quiz-card"
+          id="phase1-root"
+          aria-label="Desafio de múltipla escolha"
+        ></section>
       </div>
     </main>
 
