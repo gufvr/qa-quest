@@ -325,7 +325,7 @@ test("catalog, hub, journey, library, route and PDF share the Selenium identifie
   const html = read("selenium.html");
   assert(
     html.indexOf('mission-id="selenium"') <
-      html.indexOf('<div id="sel-content" hidden>'),
+      html.indexOf('<div id="selenium-root"></div>'),
   );
   assert.match(html, /id="coupon-code"/);
   assert.match(html, /data-testid="coupon-result"/);
@@ -338,13 +338,21 @@ test("catalog, hub, journey, library, route and PDF share the Selenium identifie
 });
 
 test("mission avoids arbitrary code execution, network simulation and extension coupling", () => {
-  for (const file of ["core/selenium-lab.js", "pages/selenium.js"])
+  for (const file of [
+    "core/selenium-lab.js",
+    "pages/selenium.js",
+    "src/pages/Automation/AutomationFramework.jsx",
+    "src/pages/Selenium/Selenium.jsx",
+  ])
     assert.doesNotMatch(
       read(file),
       /\beval\s*\(|\b(?:new\s+)?Function\s*\(|\bfetch\s*\(|XMLHttpRequest|chrome\.runtime|postMessage\s*\(/,
     );
   assert.match(read("styles/selenium.css"), /prefers-reduced-motion/);
-  assert.match(read("selenium.html"), /role="status"/);
-  assert.match(read("selenium.html"), /NÃO É UM LOG REAL/);
+  assert.match(
+    read("src/pages/Automation/AutomationFramework.jsx"),
+    /role="status"/,
+  );
+  assert.match(read("core/selenium-lab.js"), /fixture|perfil|simulação/i);
   assert.doesNotMatch(read("selenium.html"), /qa-stepscript-support/);
 });

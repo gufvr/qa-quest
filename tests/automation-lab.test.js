@@ -305,7 +305,10 @@ test("automation guide is canonical, appears once in its library group and stays
     ),
   ];
   assert.equal(widgets.length, 1);
-  assert(widgets[0].index < html.indexOf('<div id="lab-content" hidden>'));
+  assert(
+    widgets[0].index <
+      html.indexOf('<div id="automation-fundamentals-root"></div>'),
+  );
   assert(
     read("pages/automation-fundamentals.js").includes(
       'import "../components/support-material.js"',
@@ -409,6 +412,8 @@ test("lab implementation has no arbitrary-code execution, network API or extensi
   for (const file of [
     "core/automation-lab.js",
     "pages/automation-fundamentals.js",
+    "src/pages/Automation/AutomationFramework.jsx",
+    "src/pages/AutomationFundamentals/AutomationFundamentals.jsx",
   ]) {
     assert.doesNotMatch(
       read(file),
@@ -420,8 +425,11 @@ test("lab implementation has no arbitrary-code execution, network API or extensi
     html,
     /qa-support-material\s+mission-id="automation-fundamentals"/,
   );
-  assert.match(html, /role="status"/);
-  assert.match(html, /não executável/);
+  assert.match(
+    read("src/pages/Automation/AutomationFramework.jsx"),
+    /role="status"/,
+  );
+  assert.match(buildLabCode(createLabSession()), /não executável/);
   assert.match(
     read("styles/automation-fundamentals.css"),
     /prefers-reduced-motion/,

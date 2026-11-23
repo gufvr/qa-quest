@@ -23,12 +23,11 @@ test("simulators consistently identify the Fikily fictional brand", () => {
     "regression.html",
     "bug-report.html",
     "api.html",
-    "automation-fundamentals.html",
-    "cypress.html",
-    "playwright.html",
-    "selenium.html",
   ])
     assert.match(read(route), /Fikily|FIKILY/, route);
+  assert.match(read("core/cypress-lab.js"), /Fikily|FIKILY/);
+  assert.match(read("core/playwright-lab.js"), /Fikily|FIKILY/);
+  assert.match(read("core/selenium-lab.js"), /Fikily|FIKILY/);
   assert.match(read("src/pages/Performance/Performance.jsx"), /Fikily|FIKILY/);
   assert.match(read("src/pages/Security/Security.jsx"), /Fikily|FIKILY/);
   assert.match(read("src/pages/E2E/E2E.jsx"), /Fikily|FIKILY/);
@@ -73,7 +72,7 @@ test("generated framework examples and exported report names use the new brand",
     buildSeleniumCode(completed(SELENIUM_STEPS)),
     /process\.env\.FIKILY_LAB_URL/,
   );
-  assert(read("selenium.html").includes("FIKILY_LAB_URL"));
+  assert(read("core/selenium-lab.js").includes("FIKILY_LAB_URL"));
   assert(
     read("src/pages/BugReport/BugReport.jsx").includes("fikily-FF-QA-014.txt"),
   );

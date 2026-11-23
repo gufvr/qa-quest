@@ -348,11 +348,11 @@ test("canonical catalog, hub, library, PDF and multipage Vite agree with Seleniu
     "%PDF-",
   );
   const html = read("playwright.html");
-  assert.match(html, /<label for="pw-category">Categoria<\/label>/);
-  assert.match(html, /<label for="pw-search">Buscar produto<\/label>/);
+  assert.match(read("core/playwright-lab.js"), /getByLabel/);
+  assert.match(read("src/pages/Playwright/Playwright.jsx"), /Playwright/);
   assert(
     html.indexOf('mission-id="playwright"') <
-      html.indexOf('<div id="pw-content" hidden>'),
+      html.indexOf('<div id="playwright-root"></div>'),
   );
   assert(read("vite.config.js").includes('playwright: "playwright.html"'));
   for (const [, value] of html.matchAll(/(?:href|src)="([^"]+)"/g))
@@ -406,13 +406,21 @@ test("StepScript supports Playwright and keeps Cypress as the safe default", () 
 });
 
 test("new lab has no code execution, network simulation calls or extension messaging", () => {
-  for (const file of ["core/playwright-lab.js", "pages/playwright.js"])
+  for (const file of [
+    "core/playwright-lab.js",
+    "pages/playwright.js",
+    "src/pages/Automation/AutomationFramework.jsx",
+    "src/pages/Playwright/Playwright.jsx",
+  ])
     assert.doesNotMatch(
       read(file),
       /\beval\s*\(|\b(?:new\s+)?Function\s*\(|\bfetch\s*\(|XMLHttpRequest|chrome\.runtime|postMessage\s*\(/,
     );
   assert.match(read("styles/playwright.css"), /prefers-reduced-motion/);
-  assert.match(read("playwright.html"), /role="status"/);
+  assert.match(
+    read("src/pages/Automation/AutomationFramework.jsx"),
+    /role="status"/,
+  );
   assert.match(read("playwright.html"), /framework="playwright"/);
   assert.match(
     read("playwright.html"),

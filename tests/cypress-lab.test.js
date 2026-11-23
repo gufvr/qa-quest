@@ -293,7 +293,7 @@ test("mission, hub, journey, library, PDF and Vite share the canonical Cypress I
   const html = read("cypress.html");
   assert(
     html.indexOf('mission-id="cypress"') <
-      html.indexOf('<div id="cy-content" hidden>'),
+      html.indexOf('<div id="cypress-root"></div>'),
   );
   assert.equal((html.match(/<h1(?:\s|>)/g) || []).length, 1);
   for (const [, value] of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
@@ -307,6 +307,8 @@ test("no arbitrary code execution, real requests or extension communication is i
     "core/cypress-lab.js",
     "pages/cypress.js",
     "components/stepscript-support.js",
+    "src/pages/Automation/AutomationFramework.jsx",
+    "src/pages/Cypress/Cypress.jsx",
   ]) {
     assert.doesNotMatch(
       read(file),
@@ -314,10 +316,13 @@ test("no arbitrary code execution, real requests or extension communication is i
     );
   }
   assert.match(
-    read("cypress.html"),
-    /não instala|nenhum Cypress|nenhum Cypress/i,
+    read("src/pages/Cypress/Cypress.jsx"),
+    /nenhum framework|nenhum Cypress|simulação local/i,
   );
-  assert.match(read("cypress.html"), /role="status"/);
+  assert.match(
+    read("src/pages/Automation/AutomationFramework.jsx"),
+    /role="status"/,
+  );
   assert.match(read("styles/cypress.css"), /prefers-reduced-motion/);
   const support = read("components/stepscript-support.js");
   assert.match(support, /SEM XP EXTRA/);
