@@ -21,8 +21,6 @@ test("simulators consistently identify the Fikily fictional brand", () => {
     "smoke.html",
     "sanity.html",
     "regression.html",
-    "performance.html",
-    "security.html",
     "bug-report.html",
     "api.html",
     "automation-fundamentals.html",
@@ -31,6 +29,8 @@ test("simulators consistently identify the Fikily fictional brand", () => {
     "selenium.html",
   ])
     assert.match(read(route), /Fikily|FIKILY/, route);
+  assert.match(read("src/pages/Performance/Performance.jsx"), /Fikily|FIKILY/);
+  assert.match(read("src/pages/Security/Security.jsx"), /Fikily|FIKILY/);
   assert.match(read("src/pages/E2E/E2E.jsx"), /Fikily|FIKILY/);
   assert.match(read("src/pages/Phase3/Phase3.jsx"), /Fikily/);
   assert.match(
@@ -54,7 +54,7 @@ test("fictional accounts and login controls remain aligned after the rename", ()
     "cliente.ana@fikily.test",
     "cliente.bruno@fikily.test",
   ])
-    for (const file of ["security.html", "pages/security.js"])
+    for (const file of ["core/security-lab.js"])
       assert(read(file).includes(account), `${file}: ${account}`);
   for (const selector of ["fikily-mark", "fikily-button"])
     for (const file of ["src/pages/Phase3/Phase3.jsx", "styles/phase3.css"])
