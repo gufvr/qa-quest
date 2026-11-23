@@ -74,8 +74,12 @@ test("generated framework examples and exported report names use the new brand",
     /process\.env\.FIKILY_LAB_URL/,
   );
   assert(read("selenium.html").includes("FIKILY_LAB_URL"));
-  assert(read("pages/bug-report.js").includes('"fikily-FF-QA-014.txt"'));
   assert(
-    read("pages/bug-report.js").includes("Relato didático local da Fikily"),
+    read("src/pages/BugReport/BugReport.jsx").includes("fikily-FF-QA-014.txt"),
+  );
+  assert(
+    read("src/pages/BugReport/BugReport.jsx").includes(
+      "Relato didático local da Fikily",
+    ),
   );
 });
